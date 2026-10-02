@@ -4,10 +4,10 @@ import {
   AnimatePresence,
   motion,
   useInView,
-  useMotionTemplate,
   useMotionValue,
   useScroll,
   useSpring,
+  animate,
   type MotionValue,
 } from "framer-motion";
 import {
@@ -19,15 +19,18 @@ import {
   type ReactNode,
 } from "react";
 
-const SPRING_TILT = { stiffness: 150, damping: 20 };
-const SPRING_MAGNETIC = { stiffness: 200, damping: 15 };
+const SPRING_TILT = { stiffness: 100, damping: 25, mass: 0.5 };
+const SPRING_MAGNETIC = { stiffness: 120, damping: 18, mass: 0.4 };
 const EASE_LUXE = [0.16, 1, 0.3, 1] as const;
 
 /* ============================================================================
- * TiltCard — 3D hover tilt that follows the cursor, with a gold glow trail.
- * Wrapper provides perspective; inner motion.div rotates on X/Y axes via
- * useSpring (smooth lag). A radial gold gradient overlays the card, moving
- * with the cursor for a subtle highlight.
+ * TiltCard — 3D hover tilt that follows the cursor. Jitter-free version:
+ *  - Rotation clamped to ±8° (intensity default 8)
+ *  - 10% edge deadzone (cursor in outer 10% snaps to edge value, no spike)
+ *  - Spring (stiffness 100, damping 25, mass 0.5) smooths both enter + leave
+ *  - On mouseleave, rx/ry animate to 0 via the spring (no instant reset)
+ *  - Removed the radial gold glow overlay (was adding to the "kasha" feel)
+ *  - No-op on touch / coarse pointer devices (no mousemove)
  * ========================================================================== */
 export function TiltCard({
   children,
@@ -39,57 +42,64 @@ export function TiltCard({
   intensity?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [fine, setFine] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(pointer: fine)");
+    const update = () => setFine(mq.matches);
+    update();
+    mq.addEventListener?.("change", update);
+    return () => mq.removeEventListener?.("change", update);
+  }, []);
 
   const rx = useMotionValue(0);
   const ry = useMotionValue(0);
-  const gx = useMotionValue(50);
-  const gy = useMotionValue(50);
 
   const rotateX = useSpring(rx, SPRING_TILT);
   const rotateY = useSpring(ry, SPRING_TILT);
-  const glowX = useSpring(gx, SPRING_TILT);
-  const glowY = useSpring(gy, SPRING_TILT);
-
-  const glow = useMotionTemplate`radial-gradient(circle at ${glowX}% ${glowY}%, rgba(201,169,97,0.18) 0%, transparent 55%)`;
 
   const handleMove: MouseEventHandler<HTMLDivElement> = (e) => {
-    if (!ref.current) return;
+    if (!fine || !ref.current) return;
     const rect = ref.current.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / Math.max(rect.width, 1);
-    const py = (e.clientY - rect.top) / Math.max(rect.height, 1);
+    let px = (e.clientX - rect.left) / Math.max(rect.width, 1);
+    let py = (e.clientY - rect.top) / Math.max(rect.height, 1);
+
+    // 10% edge deadzone — clamp cursor position so it can't spike at the
+    // very edge of the card. Outside [0.1, 0.9] snaps to 0.1 or 0.9.
+    const dz = 0.1;
+    px = Math.min(1 - dz, Math.max(dz, px));
+    py = Math.min(1 - dz, Math.max(dz, py));
+
+    // (0.5 - py) ∈ [-0.4, 0.4] → × 2 = [-0.8, 0.8] × intensity(8) = ±6.4°
+    // (px - 0.5) ∈ [-0.4, 0.4] → × 2 = [-0.8, 0.8] × intensity(8) = ±6.4°
+    // Always within ±8° clamp — no jitter spikes.
     rx.set((0.5 - py) * intensity * 2);
     ry.set((px - 0.5) * intensity * 2);
-    gx.set(Math.max(0, Math.min(100, px * 100)));
-    gy.set(Math.max(0, Math.min(100, py * 100)));
   };
 
   const handleLeave = () => {
+    // Animate back to 0 via the spring (smooth, not instant).
     rx.set(0);
     ry.set(0);
-    gx.set(50);
-    gy.set(50);
   };
 
   return (
     <div className={className} style={{ perspective: 1000 }}>
       <motion.div
         ref={ref}
-        onMouseMove={handleMove}
-        onMouseLeave={handleLeave}
+        onMouseMove={fine ? handleMove : undefined}
+        onMouseLeave={fine ? handleLeave : undefined}
         style={{
-          rotateX,
-          rotateY,
+          rotateX: fine ? rotateX : 0,
+          rotateY: fine ? rotateY : 0,
           transformPerspective: 1000,
           transformStyle: "preserve-3d",
+          willChange: "transform",
         }}
         className="relative"
       >
         {children}
-        <motion.div
-          aria-hidden
-          style={{ background: glow }}
-          className="pointer-events-none absolute inset-0 z-10 mix-blend-soft-light"
-        />
       </motion.div>
     </div>
   );
@@ -97,8 +107,9 @@ export function TiltCard({
 
 /* ============================================================================
  * MagneticButton — element attracts toward the cursor on hover by a small
- * translateX/Y based on distance from the element's center. Polymorphic:
- * can render <a>, <button>, or <div>. Reset to 0 on mouse leave.
+ * translateX/Y based on distance from the element's center. Smoother spring,
+ * stronger pull (0.4 default). Disabled on touch devices via mediaQuery.
+ * Polymorphic: can render <a>, <button>, or <div>.
  * ========================================================================== */
 type MagneticButtonProps = {
   children: ReactNode;
@@ -117,11 +128,21 @@ export function MagneticButton({
   className,
   as = "button",
   href,
-  strength = 0.3,
+  strength = 0.4,
   onClick,
   ...rest
 }: MagneticButtonProps) {
   const innerRef = useRef<HTMLElement | null>(null);
+  const [fine, setFine] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(pointer: fine)");
+    const update = () => setFine(mq.matches);
+    update();
+    mq.addEventListener?.("change", update);
+    return () => mq.removeEventListener?.("change", update);
+  }, []);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -130,7 +151,7 @@ export function MagneticButton({
 
   const handleMove: MouseEventHandler<HTMLElement> = (e) => {
     const el = innerRef.current;
-    if (!el) return;
+    if (!el || !fine) return;
     const rect = el.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
@@ -144,9 +165,9 @@ export function MagneticButton({
 
   const common = {
     className,
-    style: { x: sx, y: sy },
-    onMouseMove: handleMove,
-    onMouseLeave: handleLeave,
+    style: fine ? { x: sx, y: sy } : undefined,
+    onMouseMove: fine ? handleMove : undefined,
+    onMouseLeave: fine ? handleLeave : undefined,
     onClick,
   } as const;
 
@@ -223,6 +244,90 @@ export function RevealText({
       >
         {children}
       </motion.span>
+    </span>
+  );
+}
+
+/* ============================================================================
+ * Reveal — generic scroll-triggered reveal wrapper. Fades + clip-path wipes
+ * children in from the right when they scroll into view.
+ * Initial: opacity 0, y {default 30}, clip-path inset(0 100% 0 0) [hidden right]
+ * Animate: opacity 1, y 0, clip-path inset(0 0% 0 0) [revealed]
+ * Transition: duration 0.9, ease [0.16, 1, 0.3, 1], {delay}
+ * ========================================================================== */
+export function Reveal({
+  children,
+  className,
+  delay = 0,
+  y = 30,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+  y?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      className={className}
+      initial={{ opacity: 0, y, clipPath: "inset(0 100% 0 0)" }}
+      animate={
+        inView
+          ? { opacity: 1, y: 0, clipPath: "inset(0 0% 0 0)" }
+          : {}
+      }
+      transition={{ duration: 0.9, ease: EASE_LUXE, delay }}
+      style={{ willChange: "transform, opacity, clip-path" }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ============================================================================
+ * Counter — animated number counter that counts up from 0 to target value
+ * when scrolled into view. Uses framer-motion's imperative `animate()`.
+ * Renders the value formatted with `toLocaleString('ru-RU')` + suffix.
+ * Supports decimals (e.g. to={4.9}) — fixed to 1 decimal place.
+ * ========================================================================== */
+export function Counter({
+  to,
+  duration = 2,
+  suffix = "",
+  className,
+}: {
+  to: number;
+  duration?: number;
+  suffix?: string;
+  className?: string;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [display, setDisplay] = useState(0);
+
+  const isDecimal = !Number.isInteger(to);
+
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(0, to, {
+      duration,
+      ease: EASE_LUXE,
+      onUpdate: (v) => setDisplay(v),
+    });
+    return () => controls.stop();
+  }, [inView, to, duration]);
+
+  const formatted = isDecimal
+    ? display.toFixed(1).replace(".", ",")
+    : Math.round(display).toLocaleString("ru-RU");
+
+  return (
+    <span ref={ref} className={className}>
+      {formatted}
+      {suffix}
     </span>
   );
 }

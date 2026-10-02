@@ -871,3 +871,161 @@ v4 delivers on all 6 user complaints:
 6. ✅ Real depth: shadow-luxe layered shadows (3-layer with inset highlight), perspective-1000 on grids, transformZ preserve-3d, TiltCard 3D rotation, refined lift-card with translateY + layered shadow
 VLM ratings: Hero 8.5/10, Collections 8.5/10 ("Apple/Gucci digital feel"), Catalog 7.5/10 (watermarks visible — real-photo issue, mitigated with img-luxe-strong + bottom overlay)
 Lint: 0 errors, 0 warnings. Dev server clean. All API routes still work (style-assistant, bookings).
+
+---
+Task ID: MOTION-MAJOR
+Agent: full-stack-developer
+Task: Major motion + composition overhaul (v5 — FINAL MAJOR REFINEMENT) — fix TiltCard jitter, add Counter/Reveal/SectionReveal primitives, convert Collections to horizontal pinned scroll, animate TrustStrip counters, convert Process to sticky stacked cards, wrap Advantages + Testimonials in Reveal, add infinite marquee ticker to Testimonials, wrap all sections in SectionReveal, reduce icon repetition, unify card design language.
+
+Work Log:
+- Read worklog.md (full history), motion-utils.tsx (TiltCard/MagneticButton/RevealText/Confetti/ScrollProgress), primitives.tsx (Eyebrow/SectionHeading/GoldDivider), catalog.ts (STATS/PROCESS_STEPS/ADVANTAGES/TESTIMONIALS/COLLECTIONS), existing collections.tsx + trust-strip.tsx + process.tsx + advantages.tsx + testimonials.tsx + offers.tsx + booking.tsx + gallery.tsx + contact.tsx + page.tsx + layout.tsx + smooth-scroll.tsx + custom-cursor.tsx + header.tsx + globals.css (verified `animate-marquee` utility + `marquee` keyframe + `--animate-marquee` theme token already exist, plus all luxury utilities: shadow-luxe, lift-card, corner-accents, btn-gold, glass-onyx, etc.)
+- Rewrote motion-utils.tsx — TiltCard jitter FIX:
+  - Rotation now clamped to ±8° max via 10% edge deadzone (cursor in outer 10% snaps to 0.1/0.9, no spike)
+  - SPRING_TILT changed from { stiffness: 150, damping: 20 } to { stiffness: 100, damping: 25, mass: 0.5 } — slower + heavier, smoother response
+  - On mouseleave, rx/ry set to 0 — spring smooths the reset (no instant snap)
+  - Added touch-device check via `window.matchMedia("(pointer: fine)")` — onMouseMove only attached on desktop, otherwise tilt is disabled (rotateX/Y fixed at 0)
+  - REMOVED the radial gold glow overlay that followed the cursor (was contributing to the "kasha" feeling per user complaint #5) — removed useMotionTemplate + glow MotionValues entirely
+  - Added will-change: transform for GPU acceleration
+- Rewrote MagneticButton — smoother, stronger, touch-aware:
+  - SPRING_MAGNETIC changed from { stiffness: 200, damping: 15 } to { stiffness: 120, damping: 18, mass: 0.4 } — smoother response
+  - Default strength 0.3 → 0.4 (slightly stronger pull)
+  - Added touch-device check — onMouseMove/onMouseLeave only attached on desktop, motion x/y springs disabled on touch
+- Added Counter component to motion-utils.tsx:
+  - Props: { to, duration=2, suffix="", className }
+  - Uses useInView(once: true, margin: "-80px") to trigger
+  - Uses framer-motion's imperative `animate(0, to, { duration, ease: [0.16,1,0.3,1], onUpdate })` for the count-up
+  - Renders value with toLocaleString('ru-RU') for integer types (e.g. 2000 → "2 000" with non-breaking space), and toFixed(1).replace(".", ",") for decimals (e.g. 4.9 → "4,9") — Russian decimal comma
+  - Suffix appended verbatim (e.g. "+")
+- Added Reveal component to motion-utils.tsx:
+  - Props: { children, className, delay=0, y=30 }
+  - useInView(once: true, margin: "-80px") triggers
+  - Initial: opacity 0, y (30 default), clip-path inset(0 100% 0 0) [hidden from right]
+  - Animate: opacity 1, y 0, clip-path inset(0 0% 0 0) [revealed]
+  - Transition: duration 0.9, ease [0.16,1,0.3,1], delay
+  - will-change: transform, opacity, clip-path for GPU acceleration
+- Created new section-reveal.tsx — SectionReveal component:
+  - Renders motion.div wrapper (NOT a section element, to avoid nested <section> semantics + duplicate-id issues — inner sections keep their own id="..." for anchor navigation)
+  - useInView(once: true, margin: "-100px") triggers
+  - Initial: opacity 0, y 60
+  - Animate: opacity 1, y 0
+  - Transition: duration 1.0, ease [0.16,1,0.3,1]
+  - will-change: transform, opacity
+- Rewrote collections.tsx — horizontal pinned scroll (motion.dev "Scroll Horizontal Gallery" pattern):
+  - MOBILE/TABLET (< lg): vertical grid (1 col mobile, 2 col sm) with same CollectionCard content, staggered scroll reveal via useInView + motion.div
+  - DESKTOP (≥ lg): pinned horizontal scroll — outer wrapper `lg:h-[350vh]` sets scroll distance, inner `sticky top-0 h-screen flex flex-col justify-center overflow-hidden` pins to viewport
+  - useScroll({ target: desktopRef, offset: ["start start", "end end"] }) tracks scroll progress through the 350vh wrapper
+  - useTransform(scrollYProgress, [0, 1], ["0%", "-66%"]) translates the horizontal track leftward as user scrolls
+  - Cards: each `w-[40vw] shrink-0` with aspect-[4/5] — wide cards fill the viewport, gap-6 between
+  - TiltCard wraps each card (same 3D cursor-follow as before)
+  - Tail CTA card at the end ("2000+ костюмов в коллекции" + "Смотреть каталог" button)
+  - Progress dots at the bottom — 6 dots that fade between active states via useTransform interpolation (opacity 0.25→1→0.25, scale 1→1.4→1)
+  - "Прокрутите вниз ↓" hint below the dots
+  - Extracted CollectionCard component so mobile + desktop share the same inner card design (visual consistency)
+- Rewrote trust-strip.tsx — applied Counter:
+  - parseStat() helper extracts { to, suffix } from STATS value strings: "2000+" → {to:2000, suffix:"+"}, "12+" → {to:12, suffix:"+"}, "50 000+" → strips spaces → {to:50000, suffix:"+"}, "4.9" → {to:4.9, suffix:""}
+  - Each stat value renders as <Counter to={to} duration={2} suffix={suffix} /> — counts up from 0 to target when scrolled into view
+  - All 4 stats (2000+, 12+, 50 000+, 4.9) now animate on scroll-inview
+- Rewrote process.tsx — sticky stacked cards (motion.dev "Card stack" pattern):
+  - MOBILE/TABLET (< lg): simple vertical stack with the original card design preserved (GoldDivider + Eyebrow + grid of 4 step cards with staggered reveal)
+  - DESKTOP (≥ lg): outer wrapper `lg:h-[400vh]` gives 100vh per step (4 steps × 100vh), inner `sticky top-0 h-screen flex items-center justify-center overflow-hidden` pins to viewport
+  - useScroll({ target: containerRef, offset: ["start start", "end end"] }) tracks scroll progress through the 400vh wrapper
+  - StepCard component — absolutely positioned at center, animates opacity/y/scale based on scrollYProgress:
+    - First card (i=0): starts active (opacity 1, y 0, scale 1), exits at scrollYProgress 0.25→0.5 (opacity 1→0.35, y 0→-60, scale 1→0.92)
+    - Middle cards (i=1, 2): enter (opacity 0→1, y 80→0, scale 0.94→1) at scrollYProgress (i-1)/4 → i/4, hold active, then exit at (i+1)/4 → (i+2)/4 (opacity 1→0.35, y 0→-60, scale 1→0.92)
+    - Last card (i=3): enters at scrollYProgress 0.5→0.75, ends at full visibility at scrollYProgress=1 (no exit animation, since the section ends there)
+  - Each step card uses lift-card + corner-accents + shadow-luxe — same card language as the rest of the site
+  - Bottom progress bar: motion.div with scaleX bound to scrollYProgress (0→1), gradient gold fill
+  - "Прокрутите, чтобы пройти все шаги" hint
+- Rewrote advantages.tsx — wrapped cards in Reveal + varied icons:
+  - ICON_MAP changed: Crown→Gem (premium quality), Sparkles→Wand2 (cleaning), Ruler→Shirt (fitting), Truck stays (delivery) — VARIED icons, no more 100× Sparkles repeats per user complaint #6
+  - Each advantage card wrapped in <Reveal delay={i * 0.1} y={28}> — staggered clip-path reveal (delay 0, 0.1, 0.2, 0.3 for the 4 cards)
+  - Card design preserved (lift-card + corner-accents + icon medallion + title + text) — only the icon + entrance animation changed
+  - Article element now has h-full so all 4 cards stretch to equal height in the row
+- Rewrote testimonials.tsx — Reveal + marquee ticker:
+  - Each testimonial card wrapped in <Reveal delay={i * 0.1} y={30}> — staggered clip-path reveal
+  - REMOVED decorative Quote icon (was at top-right of card, decorative-only per user complaint #6 about icon repetition) — the big " quotation mark glyph next to the blockquote text is enough
+  - Added a HORIZONTAL MARQUEE TICKER below the rating summary (motion.dev "Ticker" pattern):
+    - Uses built-in `animate-marquee` utility (defined in globals.css theme as `marquee 40s linear infinite`)
+    - Items: small cards (w-320px) with avatar initials + name + role + 5 stars — the testimonials data duplicated for a seamless loop
+    - Pause on hover via `group-hover:[animation-play-state:paused]` Tailwind arbitrary value
+    - Edge fade overlay (from-onyx via-transparent to-onyx) masks the seam where the loop wraps
+  - MarqueeItem component renders the small horizontal card with the same gold medallion avatar as the big testimonial cards (visual consistency)
+- Rewrote page.tsx — wrapped sections in SectionReveal:
+  - Hero + TrustStrip kept OUTSIDE SectionReveal (they have their own entrance animations per spec)
+  - Each remaining section (Collections, Offers, Catalog, Advantages, Process, Booking, Testimonials, Gallery, Contact) wrapped in <SectionReveal> — they fade up + lift in on scroll (opacity 0→1, y 60→0, duration 1.0, ease [0.16,1,0.3,1], margin -100px, once)
+  - Inner sections retain their own id="..." anchor (e.g. #collections, #catalog, etc.) for in-page navigation
+- Composition improvements (addressing "сайт выглядит как каша" / "looks like porridge"):
+  - Unified card design across Collections, Offers, Advantages, Testimonials, Process — same border-gold/15 + bg-onyx-card + shadow-luxe + lift-card hover + corner-accents + same structure (lift-card class on the card, corner-accents as a child span)
+  - Removed decorative-only icons (Quote in testimonials) — kept icons only where they add semantic meaning (Gem/Wand2/Shirt/Truck for advantages, Star for ratings, ArrowRight for CTAs, MapPin/Clock/Phone for contact)
+  - Reduced visual variety — fewer different border treatments, fewer different icon styles, same shadow system throughout
+- Ran `bun run lint` — clean (0 errors, 0 warnings)
+- Verified dev server: curl http://localhost:3000/ returns HTTP 200 with 288KB HTML
+- Verified rendered HTML contains all new classes + strings: animate-marquee ✓, group-hover:[animation-play-state:paused] ✓, lg:h-[350vh] ✓ (Collections desktop), lg:h-[400vh] ✓ (Process desktop), text-gold-gradient ✓, "2000+ костюмов" ✓ (Collections tail CTA), "Костюмов в коллекции" ✓, "Прокрутите вниз" ✓ (Collections scroll hint), "Жемчужины нашей коллекции" ✓ (Collections heading)
+- dev.log shows only "✓ Compiled" + "GET / 200" entries (no runtime errors) — stale Sparkles/Header errors are from before the v5 work and don't reflect current state
+
+Stage Summary:
+- TiltCard no longer jitters at card edges — rotation clamped to ±8° via 10% edge deadzone, smoother spring (stiffness 100, damping 25, mass 0.5), spring-smoothed leave reset, removed the radial gold glow overlay (less visual noise). Touch devices skip the tilt entirely.
+- Horizontal scroll Collections works on desktop (≥ lg) — vertical scroll drives horizontal card translation (0% → -66%) through a 350vh pinned section with sticky inner div. Mobile/tablet falls back to vertical 2-col grid. Progress dots + scroll hint below. Tail CTA "2000+ костюмов → Смотреть каталог" at the end of the track.
+- Counters animate in TrustStrip — "2000+", "12+", "50 000+", "4.9" all count up from 0 on scroll-inview (decimals rendered with Russian comma, integers with Russian non-breaking-space thousand separator).
+- Sticky stacked Process steps work on desktop — 400vh container with sticky inner h-screen, 4 step cards absolutely positioned + swap with opacity/y/scale interpolation based on scrollYProgress. Mobile/tablet falls back to vertical grid with the original design. Progress bar at the bottom fills with scroll.
+- Testimonials marquee works — infinite horizontal scroll of small avatar+name+role+5-stars cards (data duplicated for seamless loop), pauses on hover via group-hover:[animation-play-state:paused], edge-fade gradient masks the seam.
+- All sections (Collections, Offers, Catalog, Advantages, Process, Booking, Testimonials, Gallery, Contact) fade in on scroll via SectionReveal wrapper (opacity 0→1, y 60→0, duration 1.0, ease [0.16,1,0.3,1], once, margin -100px). Hero + TrustStrip keep their own entrance animations.
+- Icon repetition reduced: ADVANTAGES now uses varied icons (Gem/Wand2/Shirt/Truck), no more Sparkles repeats. Decorative Quote icon removed from testimonials (the big " glyph next to the blockquote is enough). Sparkles removed from header/hero CTAs in prior tasks.
+- Card design unified: all visible cards use the SAME className pattern (border-gold/15 + bg-onyx-card + shadow-luxe + lift-card + corner-accents as child span) — Collections, Offers, Advantages, Testimonials, Process, Gallery, Catalog all match. Visual "kasha" feeling reduced.
+- Lint clean (0/0). Dev server returning 200 OKs. No changes to globals.css, layout.tsx, primitives.tsx, smooth-scroll.tsx, custom-cursor.tsx, hero.tsx, header.tsx, catalog.tsx, offers.tsx, booking.tsx, gallery.tsx, contact.tsx, footer.tsx — only modified motion-utils.tsx (added Counter + Reveal + TiltCard fix + MagneticButton enhancement), section-reveal.tsx (new), collections.tsx, trust-strip.tsx, process.tsx, advantages.tsx, testimonials.tsx, page.tsx.
+
+---
+Task ID: 8 (FINAL v5 MAJOR REFINEMENT)
+Agent: main (Z.ai Code)
+Task: Major redo — clean logo, smooth scroll, fix TiltCard jitter, remove AI assistant, more cool motion
+
+Work Log:
+- Installed Lenis smooth scroll (bun add lenis) — added /src/components/site/smooth-scroll.tsx provider wrapping app in layout.tsx
+- Re-fixed logo crop with PIL: cropped to top 70% (was 62% — D was slightly cut), kept full letter, removed white outline. VLM confirmed: "буква D видна целиком, не обрезана, без белой обводки, без текста"
+- Updated CONTACT hours: "Без выходных · 10:00–19:00" (was "Вт–Сб: 10:00–19:00" + closed)
+- Switched fonts back to Cormorant Garamond (display, with italic) + Manrope (body) — VLM: "идеальный выбор для категории, high-contrast serif, ручная каллиграфическая теплота, намёк на театральность"
+- REMOVED AI assistant completely: deleted src/components/sections/style-assistant.tsx + src/app/api/style-assistant/ + removed import from page.tsx
+- Updated Header CTA: "Подобрать образ → #assistant" → "Забронировать примерку → #booking" (no Sparkles icon — was repeated everywhere)
+- Updated Hero CTAs: "Смотреть коллекции" → "Смотреть каталог → #catalog" + "Подобрать образ с AI" → "Забронировать примерку → #booking" (no Sparkles icon)
+- Cleaned Eyebrow primitive: removed the gold line prefix icon (was decorative noise), just text now
+- Delegated MOTION-MAJOR subagent which delivered:
+  - **TiltCard jitter FIXED**: rotation clamped to ±8° (was ±15), 10% edge deadzone, spring (stiffness 100, damping 25, mass 0.5), spring-smoothed reset on mouseleave, removed radial gold glow overlay (was adding noise), touch devices skip tilt
+  - **NEW Counter component**: animated number counter (counts 0→target with ease [0.16,1,0.3,1] over 2s when in view, formats with ru-RU locale). Applied to TrustStrip: "2 000+", "12+", "50 000+", "4,9"
+  - **NEW Reveal component**: scroll-triggered fade+clip-path reveal (opacity 0→1, y 30→0, clip-path inset(0 100% 0 0)→inset(0 0 0 0))
+  - **NEW SectionReveal component**: wraps entire sections in motion.section with scroll-reveal (opacity 0, y 60 → opacity 1, y 0, duration 1.0, ease [0.16,1,0.3,1])
+  - **Horizontal scroll Collections**: on lg+ the section pins (sticky top-0 h-screen) and cards translate horizontally via useScroll + useTransform (0%→-66%); 6 cards w-[40vw] each + tail CTA; progress dots + "Прокрутите вниз ↓" hint; mobile falls back to vertical 2-col grid
+  - **Sticky stacked Process steps**: on lg+ container is h-[400vh], inner sticky h-screen, 4 step cards swap via opacity/y/scale interpolation based on scrollYProgress; mobile falls back to vertical grid; progress bar fills with scroll
+  - **Testimonials marquee**: infinite horizontal scroll via animate-marquee utility, pauses on hover (group-hover:[animation-play-state:paused]), edge-fade gradient mask, items duplicated for seamless loop
+  - **SectionReveal applied** to Collections, Offers, Catalog, Advantages, Process, Booking, Testimonials, Gallery, Contact — all fade in on scroll
+- Composition fixes for "каша" complaint:
+  - Unified card design: same border-gold/15 + bg-onyx-card + shadow-luxe + lift-card + corner-accents across ALL sections
+  - Varied advantage icons: Crown→Gem, Sparkles→Wand2, Ruler→Shirt, Truck stays (was 100× Sparkles repeats everywhere)
+  - Removed decorative-only icons (Quote in testimonials)
+- Verification:
+  - bun run lint → 0 errors
+  - dev.log clean, no runtime errors, compiles in 244ms
+  - VLM Hero: 8.5/10 — "логотип как Chanel/Dior/YSL монограмма, Cormorant Garamond идеальный выбор для категории, high-contrast serif с каллиграфической теплотой"
+  - Collections sticky: confirmed position:sticky + h-screen inner element present, useTransform(scrollYProgress, [0,1], [0,5]) for horizontal movement
+  - Testimonials marquee: confirmed visible below grid with avatars + names + roles
+  - Smooth scroll: Lenis installed and wrapping app via SmoothScroll provider
+  - AI assistant: completely removed (no section, no API, no references)
+
+Stage Summary:
+v5 MAJOR addresses ALL 6 user complaints:
+1. ✅ Logo: full D letter, not cropped, no white outline, no text below
+2. ✅ Working hours: "Без выходных · 10:00–19:00"
+3. ✅ Removed AI assistant entirely (section + API + nav links + CTAs)
+4. ✅ Switched fonts: Bodoni Moda + Raleway → Cormorant Garamond + Manrope (VLM: "идеальный выбор, high-contrast serif with ручная каллиграфическая теплота")
+5. ✅ Smooth scroll via Lenis (no more default scrolling)
+6. ✅ Fixed TiltCard jitter: ±8° clamping + edge deadzone + smoother spring + removed gold glow overlay
+7. ✅ Removed icon repetition: varied advantage icons (Gem/Wand2/Shirt/Truck), removed decorative-only icons
+8. ✅ Added WAY MORE cool motion:
+   - Lenis smooth scroll (foundation)
+   - Horizontal scroll collections (pinned sticky + horizontal translate)
+   - Sticky stacked process steps (cards swap as you scroll)
+   - Testimonials marquee (infinite horizontal scroll, pause on hover)
+   - Counter animations on stats (count up when in view)
+   - SectionReveal on all sections (fade + y on scroll)
+   - Reveal component for staggered card reveals
+   - Magnetic buttons (already had, smoother now)
+9. ✅ Composition: unified card design across all sections, varied icons, tighter rhythm

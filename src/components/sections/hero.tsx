@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import { useRef } from "react";
-import { Sparkles, ChevronDown, ArrowRight } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
 import { REAL_PHOTOS } from "@/lib/data/catalog";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -103,14 +103,13 @@ export function Hero() {
         style={{ y: yContent, opacity, rotateX: rotX, rotateY: rotY, transformPerspective: 2000 }}
         className="relative z-10 mx-auto flex min-h-[92vh] max-w-7xl flex-col justify-center px-6 py-24 text-ivory"
       >
-        {/* Eyebrow */}
+        {/* Eyebrow — clean text only, no icon line */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EASE }}
-          className="mb-6 inline-flex w-fit items-center gap-2 text-[11px] uppercase tracking-[0.45em] text-gold/80"
+          className="mb-6 text-[11px] uppercase tracking-[0.45em] text-gold/80"
         >
-          <span className="h-px w-8 bg-gold/40" />
           Ателье карнавальных фантазий · с 2013
         </motion.div>
 
@@ -157,13 +156,12 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.65, ease: EASE }}
           className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
         >
-          <a href="#collections" className="btn-gold px-7 py-3.5 text-sm">
-            Смотреть коллекции
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          <a href="#catalog" className="btn-gold px-7 py-3.5 text-sm">
+            Смотреть каталог
+            <ArrowRight className="h-4 w-4" />
           </a>
-          <a href="#assistant" className="btn-outline px-7 py-3.5 text-sm">
-            <Sparkles className="h-4 w-4 text-gold" />
-            Подобрать образ с AI
+          <a href="#booking" className="btn-outline px-7 py-3.5 text-sm">
+            Забронировать примерку
           </a>
         </motion.div>
       </motion.div>

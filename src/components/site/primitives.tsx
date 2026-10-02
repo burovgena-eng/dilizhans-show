@@ -25,7 +25,7 @@ export function GoldDivider({ className, children }: Props) {
   );
 }
 
-/** Eyebrow label above headings — refined, not flashy */
+/** Eyebrow label above headings — clean, refined */
 export function Eyebrow({
   children,
   className,
@@ -36,11 +36,10 @@ export function Eyebrow({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.4em] text-gold/80",
+        "text-[10px] font-medium uppercase tracking-[0.45em] text-gold/80",
         className
       )}
     >
-      <span className="h-px w-5 bg-gold/50" />
       {children}
     </span>
   );

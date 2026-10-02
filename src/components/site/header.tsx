@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, Phone, Sparkles } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { NAV_LINKS, CONTACT } from "@/lib/data/catalog";
 import { cn } from "@/lib/utils";
 import { useScrolled } from "./primitives";
@@ -80,11 +80,10 @@ export function Header() {
           {/* CTA + mobile toggle */}
           <div className="flex items-center gap-2">
             <a
-              href="#assistant"
+              href="#booking"
               className="btn-gold hidden px-5 py-2.5 text-sm sm:inline-flex"
             >
-              <Sparkles className="h-3.5 w-3.5" />
-              Подобрать образ
+              Забронировать примерку
             </a>
             <button
               type="button"
@@ -116,12 +115,11 @@ export function Header() {
               </a>
             ))}
             <a
-              href="#assistant"
+              href="#booking"
               onClick={() => setOpen(false)}
               className="btn-gold mt-2 justify-center px-5 py-3 text-sm"
             >
-              <Sparkles className="h-4 w-4" />
-              Подобрать образ с AI
+              Забронировать примерку
             </a>
           </nav>
         </div>
