@@ -53,11 +53,15 @@ export function Header() {
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-6">
-          {/* Logo */}
+          {/* Logo — original dilizhans-show.ru logo, recolored to gold for dark theme */}
           <a href="#top" className="group flex items-center gap-3">
-            <span className="relative flex h-11 w-11 items-center justify-center rounded-full border border-gold/40 bg-gradient-to-br from-emerald to-emerald-deep text-gold shadow-[inset_0_1px_0_rgba(201,169,97,0.3),0_8px_20px_-8px_rgba(0,0,0,0.6)]">
-              <span className="font-display text-xl leading-none">Д</span>
-              <span className="absolute inset-0 rounded-full bg-gold/0 transition-colors duration-500 group-hover:bg-gold/10" />
+            <span className="relative flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 bg-onyx-soft/60 backdrop-blur-sm overflow-hidden">
+              <img
+                src="/images/logo-gold.png"
+                alt="Дилижанс Шоу"
+                className="h-full w-full object-cover mix-blend-screen"
+                style={{ filter: "contrast(1.1) brightness(1.05)" }}
+              />
             </span>
             <span className="flex flex-col leading-none">
               <span className="font-display text-xl tracking-tight text-ivory">

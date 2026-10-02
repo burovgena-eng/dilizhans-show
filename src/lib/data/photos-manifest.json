@@ -1,0 +1,3951 @@
+{
+  "Новогодние": {
+    "slug": "newyear",
+    "label": "Новогодние",
+    "items": [
+      {
+        "src": "/images/real/newyear_1_ec6292c9.jpg",
+        "title": "Снегурочка бархатная с апликацией",
+        "alt": "",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%A1%D0%BD%D0%B5%D0%B3%D1%83%D1%80%D0%BE%D1%87%D0%BA%D0%B0-%D0%B1%D0%B0%D1%80%D1%85%D0%B0%D1%82%D0%BD%D0%B0%D1%8F-%D1%81-%D0%B0%D0%BF%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B5%D0%B9.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_2_405a636d.jpg",
+        "title": "Снегурочка",
+        "alt": "",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%A1%D0%BD%D0%B5%D0%B3%D1%83%D1%80%D0%BE%D1%87%D0%BA%D0%B0.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_3_7de13806.jpg",
+        "title": "Эльф",
+        "alt": "",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%AD%D0%BB%D1%8C%D1%84.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_4_87ca2a2e.jpg",
+        "title": "03510 Снегурочка \"Евфросиния 01\"",
+        "alt": "03510 Снегурочка &quot;Евфросиния 01&quot;",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3803.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_5_b92e5684.jpg",
+        "title": "03511 Новогодняя эльфийка",
+        "alt": "03511 Новогодняя эльфийка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3801-1.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_6_58ecb8ba.jpg",
+        "title": "3800. Ёлочка",
+        "alt": "3800. Ёлочка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3800.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_7_5cf4f230.jpg",
+        "title": "01373 Принцесса Эльза в голубой накидке",
+        "alt": "01373 Принцесса Эльза в голубой накидке",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3799.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_8_4265384e.jpg",
+        "title": "01373 Принцесса Эльза",
+        "alt": "01373 Принцесса Эльза",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3798-1.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_9_c1df5156.jpg",
+        "title": "3795",
+        "alt": "3795",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3795-1.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_10_8dcf59d1.jpg",
+        "title": "3793",
+        "alt": "3793",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3793.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_11_8ec4acab.jpg",
+        "title": "03514 Снежинка голубая",
+        "alt": "03514 Снежинка голубая",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3790.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_12_f05ec8df.jpg",
+        "title": "03515 Снежинка в накидке",
+        "alt": "03515 Снежинка в накидке",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3787.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_13_e8ff9a5c.jpg",
+        "title": "3785",
+        "alt": "3785",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3785.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_14_0ed5dcdb.jpg",
+        "title": "03517 Зимушка",
+        "alt": "03517 Зимушка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3776-1.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_15_c91aa0ec.jpg",
+        "title": "3773",
+        "alt": "3773",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3773.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_16_4e4ddea7.jpg",
+        "title": "03519 Мисс Санта",
+        "alt": "03519 Мисс Санта",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3770.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_17_41e05380.jpg",
+        "title": "3816. Боярынька",
+        "alt": "3816. Боярынька",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3816-1.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_18_98cf98b8.jpg",
+        "title": "3812",
+        "alt": "3812",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3812-1.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_19_6f5cc289.jpg",
+        "title": "03521 Снегурочка \"Фотинья 03\"",
+        "alt": "03521 Снегурочка &quot;Фотинья 03&quot;",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3811.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_20_e3f2eadd.jpg",
+        "title": "3810",
+        "alt": "3810",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3810.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_21_3f37cbf8.jpg",
+        "title": "3809",
+        "alt": "3809",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3809-1.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_22_64649960.jpg",
+        "title": "3807",
+        "alt": "3807",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3807.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_23_b2fbcfa1.jpg",
+        "title": "3804",
+        "alt": "3804",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3804-1.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_24_9a102dd1.jpg",
+        "title": "02541 Петух",
+        "alt": "02541 Петух",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3806-1.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_25_6299653b.jpg",
+        "title": "03496 Санта Клаус \"SantaClaus03\"",
+        "alt": "03496 Санта Клаус &quot;SantaClaus03&quot;",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3805.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_26_f7e75ea6.jpg",
+        "title": "03497 Новогодний эльф\"Elf01\"",
+        "alt": "03497 Новогодний эльф&quot;Elf01&quot;",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3814.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_27_8034721a.jpg",
+        "title": "03524 Новогодний гном",
+        "alt": "03524 Новогодний гном",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/582.-%D0%B3%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA-%D0%B2-%D1%80%D0%BE%D0%B7%D0%BE%D0%B2%D0%BE%D0%BC.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_28_586bb8a3.jpg",
+        "title": "03525 Гномик в красном",
+        "alt": "03525 Гномик в красном",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/581.-%D0%B3%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA-%D0%B2-%D0%BA%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%BC.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_29_368f9855.jpg",
+        "title": "03526 Снеговик",
+        "alt": "03526 Снеговик",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/608.-%D1%81%D0%BD%D0%B5%D0%B3%D0%BE%D0%B2%D0%B8%D0%BA-%D1%81%D0%B5%D1%80%D0%B5%D0%B1%D1%80%D0%B8%D1%81%D1%82%D1%8B%D0%B9.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      },
+      {
+        "src": "/images/real/newyear_30_d6bd4d93.jpg",
+        "title": "03527 Елочка новогодняя",
+        "alt": "03527 Елочка новогодняя",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/593.-%D0%95%D0%BB%D0%BE%D1%87%D0%BA%D0%B0-%D0%BD%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE%D0%B4%D0%BD%D1%8F%D1%8F.jpg",
+        "category": "Новогодние",
+        "slug": "newyear"
+      }
+    ],
+    "count": 30
+  },
+  "Детские новогодние": {
+    "slug": "children",
+    "label": "Детские новогодние",
+    "items": [
+      {
+        "src": "/images/real/children_1_18c94b04.jpg",
+        "title": "04987 Костюм снегурочки",
+        "alt": "04987 Костюм снегурочки",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04987-%D0%9A%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D1%81%D0%BD%D0%B5%D0%B3%D1%83%D1%80%D0%BE%D1%87%D0%BA%D0%B8.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_2_0480a35c.jpg",
+        "title": "04442 Новогодняя эльфийка",
+        "alt": "04442 Новогодняя эльфийка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2017/03/04442-%D0%9D%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE%D0%B4%D0%BD%D1%8F%D1%8F-%D1%8D%D0%BB%D1%8C%D1%84%D0%B8%D0%B9%D0%BA%D0%B0-1209.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_3_9b4c5970.jpg",
+        "title": "04996 Снежинки",
+        "alt": "04996 Снежинки",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04996-%D0%A1%D0%BD%D0%B5%D0%B6%D0%B8%D0%BD%D0%BA%D0%B8.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_4_ab8c9892.jpg",
+        "title": "04991 Новогодний костюм для девочки в стиле Тик Ток",
+        "alt": "04991 Новогодний костюм для девочки в стиле Тик Ток",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04991-%D0%9D%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE%D0%B4%D0%BD%D0%B8%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B4%D0%BB%D1%8F-%D0%B4%D0%B5%D0%B2%D0%BE%D1%87%D0%BA%D0%B8-%D0%B2-%D1%81%D1%82%D0%B8%D0%BB%D0%B5.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_5_39e69446.jpg",
+        "title": "03861 Снегурочка \"Ганна 02\" (платье + кокошник 1600 руб/ сут)",
+        "alt": "03861 Снегурочка &quot;Ганна 02&quot; (платье + кокошник - 1600 руб/ сут)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2022/10/03861-%D0%A1%D0%BD%D0%B5%D0%B3%D1%83%D1%80%D0%BE%D1%87%D0%BA%D0%B0.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_6_4437039a.jpg",
+        "title": "03859 Снегурочка \"Гжель\" (жакет + юбка + кокошник 1000 руб/сут)",
+        "alt": "03859 Снегурочка &quot;Гжель&quot; (жакет + юбка + кокошник - 1000 руб/сут)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2022/10/03859-%D0%A1%D0%BD%D0%B5%D0%B3%D1%83%D1%80%D0%BE%D1%87%D0%BA%D0%B0.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_7_708384ae.jpg",
+        "title": "01206 Девочка Санта \"SantaGirl\". Платье + блузка + колпак (1000 руб/сут)",
+        "alt": "01206 Девочка Санта &quot;SantaGirl&quot;. Платье + блузка + колпак (1000 руб/сут)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%94%D0%B5%D0%B2%D0%BE%D1%87%D0%BA%D0%B0-%D0%A1%D0%B0%D0%BD%D1%82%D0%B0.%D0%9C%D0%90%D0%BB%D1%8B%D1%88%D0%BA%D0%B0.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_8_5bf9c034.jpg",
+        "title": "01207 Зимушка \"Winter02\". Корсет + юбка + кокошник (1600 руб/сут)",
+        "alt": "01207 Зимушка &quot;Winter02&quot;. Корсет + юбка + кокошник (1600 руб/сут)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%97%D0%B8%D0%BC%D1%83%D1%88%D0%BA%D0%B0-%D0%97%D0%B8%D0%BC%D0%B0.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_9_54cd7c28.jpg",
+        "title": "01208 Зимушка \"Winter03\". Платье + кокошник (1600 руб)",
+        "alt": "01208 Зимушка &quot;Winter03&quot;. Платье + кокошник (1600 руб)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%97%D0%B8%D0%BC%D1%83%D1%88%D0%BA%D0%B0.%D0%9F%D0%BB%D0%B0%D1%82%D1%8C%D0%B5-%D1%81-%D0%B1%D0%B0%D1%81%D0%BE%D1%87%D0%BA%D0%BE%D0%B9.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_10_3e23f241.jpg",
+        "title": "01209 Зимушка \"Winter04\" Корсет + юбка + кокошник (1600 руб/сут)",
+        "alt": "01209 Зимушка &quot;Winter04&quot; Корсет + юбка + кокошник (1600 руб/сут)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%97%D0%B8%D0%BC%D1%83%D1%88%D0%BA%D0%B0-%D0%97%D0%B8%D0%BC%D0%B0-%D0%B2-%D0%B3%D0%BE%D0%BB%D1%83%D0%B1%D0%BE%D0%BC..jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_11_4cf87ddd.jpg",
+        "title": "01210 Зимушка \"Winter01\" Корсет + юбка + кокошник (1600 руб/сут)",
+        "alt": "01210 Зимушка &quot;Winter01&quot; Корсет + юбка + кокошник (1600 руб/сут)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%97%D0%B8%D0%BC%D1%83%D1%88%D0%BA%D0%B0-%D0%97%D0%B8%D0%BC%D0%B0.%D0%9A%D0%BE%D1%80%D1%81%D0%B5%D1%82%D0%BD%D1%8B%D0%B9-%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_12_9b5395e5.jpg",
+        "title": "01212 Нанайская Девочка \"Айога 01\". Платье + фартук + ободок (1000 руб)",
+        "alt": "01212 Нанайская Девочка &quot;Айога 01&quot;. Платье + фартук + ободок (1000 руб)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%9D%D0%B0%D0%BD%D0%B0%D0%B9%D1%81%D0%BA%D0%B0%D1%8F-%D0%94%D0%B5%D0%BE%D1%87%D0%BA%D0%B0.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_13_20e66359.jpg",
+        "title": "01211 Снегурочка \"Яла\". Юбка + шубка + кокошник (1600 руб)",
+        "alt": "01211 Снегурочка &quot;Яла&quot;. Юбка + шубка + кокошник (1600 руб)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%A1%D0%BD%D0%B5%D0%B3%D1%83%D1%80%D0%BE%D1%87%D0%BA%D0%B0-%D0%B2-%D0%BA%D0%BE%D1%80%D0%BE%D1%82%D0%BA%D0%BE%D0%B9-%D1%8E%D0%B1%D0%BE%D1%87%D0%BA%D0%B5.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_14_b4822fce.jpg",
+        "title": "01213 Снежинка. Платье (1000 руб), диадема (200 руб)",
+        "alt": "01213 Снежинка. Платье (1000 руб), диадема (200 руб)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%A1%D0%BD%D0%B5%D0%B6%D0%B8%D0%BD%D0%BA%D0%B0-%D0%B2-%D0%B4%D0%B8%D0%B0%D0%B4%D0%B5%D0%BC%D0%B5.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_15_8ac5028a.jpg",
+        "title": "01214 Снежинка (1000 руб/сут)",
+        "alt": "01214 Снежинка (1000 руб/сут)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%A1%D0%BD%D0%B5%D0%B6%D0%B8%D0%BD%D0%BA%D0%B0.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_16_4bedb3c5.jpg",
+        "title": "1096. Ёлка (временно отсутствует)",
+        "alt": "1096. Ёлка (временно отсутствует)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/31.-%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%B0%D1%8F-%D0%B5%D0%BB%D0%BE%D1%87%D0%BA%D0%B0.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_17_b3355f5c.jpg",
+        "title": "01216 Ёлочка \"04\". Платье + колпак (1000 руб)",
+        "alt": "01216 Ёлочка &quot;04&quot;. Платье + колпак (1000 руб)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/24.-%D0%B5%D0%BB%D0%BE%D1%87%D0%BA%D0%B0-%D0%BC%D0%B0%D0%BB%D1%8B%D1%88%D0%BA%D0%B0.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_18_1444d275.jpg",
+        "title": "01217 Костюм ёлочки. Туника + воротник (1200 руб), колпак (400 руб). Костюм в…",
+        "alt": "01217 Костюм ёлочки. Туника + воротник (1200 руб), колпак (400 руб). Костюм в полной комплектации 1400 руб/сут",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/28.-%D0%BA%D0%B0%D1%80%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%B4%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9-%D0%BD%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE%D0%B4%D0%BD%D0%B8%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D1%91%D0%BB%D0%BE%D1%87%D0%BA%D0%B0..jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_19_d2cc2d2e.jpg",
+        "title": "01219 Ёлочка",
+        "alt": "01219 Ёлочка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2560-%D0%B7%D0%BE%D0%BB%D0%BE%D1%82%D0%B8%D1%81%D1%82%D0%B0%D1%8F-%D0%B5%D0%BB%D0%BE%D1%87%D0%BA%D0%B0.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_20_326f5177.jpg",
+        "title": "01220 Новогодняя ёлка (временно отсутствует)",
+        "alt": "01220 Новогодняя ёлка (временно отсутствует)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2561-%D1%81%D0%B5%D1%80%D0%B5%D0%B1%D1%80%D0%B8%D1%81%D1%82%D0%B0%D1%8F-%D0%B5%D0%BB%D0%BE%D1%87%D0%BA%D0%B0.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_21_7ca9d542.jpg",
+        "title": "01221 Рождественский гном. Туника + воротник (1200 руб), колпак (1000 тг), па…",
+        "alt": "01221 Рождественский гном. Туника + воротник (1200 руб), колпак (1000 тг), парик (400 руб), колпак (400 р) Костюм в полной комплектации 1700 руб/сут",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3.-%D0%B2%D0%B5%D1%81%D0%B5%D0%BB%D1%8B%D0%B9-%D0%B3%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_22_ec53effe.jpg",
+        "title": "01222 Новогодняя принцесса. Туника +воротник (1200 руб), корона (200 руб), па…",
+        "alt": "01222 Новогодняя принцесса. Туника +воротник (1200 руб), корона (200 руб), парик (400 руб). Костюм в полной комплектации 1500 руб/сут.",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/67.-%D1%81%D0%BD%D0%B5%D0%B6%D0%BD%D0%B0%D1%8F-%D0%BF%D1%80%D0%B8%D0%BD%D1%86%D0%B5%D1%81%D1%81%D0%B0.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_23_1c25e1d8.jpg",
+        "title": "01223 Девочка Санта. Туника + воротник (1200 руб), колпак (400 руб), парик (4…",
+        "alt": "01223 Девочка - Санта. Туника + воротник (1200 руб), колпак (400 руб), парик (400 руб) Костюм в полной комплектации 1700 руб/сут",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/7.-%D0%B4%D0%B5%D0%B2%D0%BE%D1%87%D0%BA%D0%B0-%D1%81%D0%B0%D0%BD%D1%82%D0%B0.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_24_fbd87cc9.jpg",
+        "title": "1107. Снеговик серебристый в цилиндре (туника+воротник 1600, цилиндр 400 стои…",
+        "alt": "1107. Снеговик серебристый в цилиндре (туника+воротник 1600, цилиндр 400 стоимость проката за сутки)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/50.-%D1%81%D0%BD%D0%B5%D0%B3%D0%BE%D0%B2%D0%B8%D0%BA-%D1%81%D0%B5%D1%80%D0%B5%D0%B1%D1%80%D0%B8%D1%81%D1%82%D1%8B%D0%B9.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_25_e5dd92a1.jpg",
+        "title": "01226 Снеговик голубой. Туника + воротник (1200 руб), цилиндр (400 руб)",
+        "alt": "01226 Снеговик голубой. Туника + воротник (1200 руб), цилиндр (400 руб)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/11.-%D0%B4%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9-%D0%BD%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE%D0%B4%D0%BD%D0%B8%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D1%81%D0%BD%D0%B5%D0%B3%D0%BE%D0%B2%D0%B8%D0%BA-%D0%BF%D1%80%D0%B0%D0%B7%D0%B4%D0%BD%D0%B8%D1%87%D0%BD%D1%8B%D0%B9.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_26_3283f0cc.jpg",
+        "title": "01227 Снеговик \"Snowman03\". Кофта + шорты + шапка + варежки (1000 руб)",
+        "alt": "01227 Снеговик &quot;Snowman03&quot;. Кофта + шорты + шапка + варежки (1000 руб)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/48.-%D1%81%D0%BD%D0%B5%D0%B3%D0%BE%D0%B2%D0%B8%D0%BA-.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_27_bc136387.jpg",
+        "title": "01228 Снеговик. Кофта + шорты + шапка (1000 руб)",
+        "alt": "01228 Снеговик. Кофта + шорты + шапка (1000 руб)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/51.-%D1%81%D0%BD%D0%B5%D0%B3%D0%BE%D0%B2%D0%B8%D1%87%D0%B5%D0%BA.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_28_d6910796.jpg",
+        "title": "01229 Дед Мороз. Шуба + пояс + шапка, + мешок (1000 руб), борода (400 руб), п…",
+        "alt": "01229 Дед Мороз. Шуба + пояс + шапка, + мешок (1000 руб), борода (400 руб), посох (400 руб)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/8.-%D0%B4%D0%B5%D0%B4-%D0%BC%D0%BE%D1%80%D0%BE%D0%B7.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_29_d3c4c414.jpg",
+        "title": "01230 Дед Мороз. Шуба + пояс + шапка + мешок (1000 руб), борода (400 руб), по…",
+        "alt": "01230 Дед Мороз. Шуба + пояс + шапка + мешок (1000 руб), борода (400 руб), посох (400 руб), парик (400 руб) Костюм в полной комплектации 1800 руб/сут.",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/9.-%D0%B4%D0%B5%D0%B4-%D0%BC%D0%BE%D1%80%D0%BE%D0%B7-2.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      },
+      {
+        "src": "/images/real/children_30_e0573a89.jpg",
+        "title": "01231 Рождественский гном. Рубаха (400 руб), шаровары (200 руб), жилет с мехо…",
+        "alt": "01231 Рождественский гном. Рубаха (400 руб), шаровары (200 руб), жилет с мехом (400 руб), мешок (200 руб), борода (400 руб), колпак (200 руб). Костюм в полной комплектации 1500 руб/сут.",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/6.-%D0%B3%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA-%D0%BD%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE%D0%B4%D0%BD%D0%B8%D0%B9.jpg",
+        "category": "Детские новогодние",
+        "slug": "children"
+      }
+    ],
+    "count": 30
+  },
+  "Ретро и Гэтсби": {
+    "slug": "retro",
+    "label": "Ретро и Гэтсби",
+    "items": [
+      {
+        "src": "/images/real/retro_1_1c256a6b.jpg",
+        "title": "01801 Платье \"Анжелика\" зелёное",
+        "alt": "01801 Платье &quot;Анжелика&quot; зелёное",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33545.-%D0%90%D0%BD%D0%B6%D0%B5%D0%BB%D0%B8%D0%BA%D0%B0-%D0%B7%D0%B5%D0%BB%D1%91%D0%BD%D0%B0%D1%8F1.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_2_36431bdc.jpg",
+        "title": "01802 Платье \"Анжелика\" персиковое",
+        "alt": "01802 Платье &quot;Анжелика&quot; персиковое",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33543.-%D0%90%D0%BD%D0%B6%D0%B5%D0%BB%D0%B8%D0%BA%D0%B0-%D0%B2-%D0%BF%D0%B5%D1%80%D1%81%D0%B8%D0%BA%D0%BE%D0%B2%D0%BE%D0%BC-%D1%86%D0%B2%D0%B5%D1%82%D0%B51.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_3_df347d25.jpg",
+        "title": "01803 Платье \"Анжелика\" персиковое",
+        "alt": "01803 Платье &quot;Анжелика&quot; персиковое",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33548.-%D0%90%D0%BD%D0%B6%D0%B5%D0%BB%D0%B8%D0%BA%D0%B0-%D1%82%D0%B5%D0%BC%D0%BD%D0%BE%D1%81%D0%B8%D0%BD%D1%8F%D1%8F1.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_4_2541ec5d.jpg",
+        "title": "01804 Стиляга в красном пиджаке",
+        "alt": "01804 Стиляга в красном пиджаке",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33484-IMG_3302.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_5_4948ade6.jpg",
+        "title": "01805 Стиляга в цветной жилетке",
+        "alt": "01805 Стиляга в цветной жилетке",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33482-IMG_3286.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_6_e022a327.jpg",
+        "title": "01806 Стиляга",
+        "alt": "01806 Стиляга",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33499-IMG_3448.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_7_efb84ce3.jpg",
+        "title": "01807 Стиляга в желтом галстуке",
+        "alt": "01807 Стиляга в желтом галстуке",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33497-IMG_3434.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_8_d92fbe6a.jpg",
+        "title": "01808 Стиляга",
+        "alt": "01808 Стиляга",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33487-IMG_3338.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_9_15670458.jpg",
+        "title": "01779 Гангстер в красном костюме",
+        "alt": "01779 Гангстер в красном костюме",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33341.-IMG_3265.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_10_29297d8b.jpg",
+        "title": "01778 Джей Гэтсби",
+        "alt": "01778 Джей Гэтсби",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33312.-IMG_3054.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_11_8ea9cb11.jpg",
+        "title": "33396. Джентельмен с тростью",
+        "alt": "33396. Джентельмен с тростью",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33396.-%D0%B4%D0%B6%D0%B5%D0%BD%D1%82%D0%B5%D0%BB%D1%8C%D0%BC%D0%B5%D0%BD-%D1%81-%D1%82%D1%80%D0%BE%D1%81%D1%82%D1%8C%D1%8E.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_12_312cdb86.jpg",
+        "title": "01776 Билли Флин. Адвокат. Чикаго.",
+        "alt": "01776 Билли Флин. Адвокат. Чикаго.",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33394.-%D0%B3%D0%B0%D0%BD%D0%B3%D1%81%D1%82%D0%B5%D1%80.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_13_91a0f644.jpg",
+        "title": "01809 Стиляга в голубых сигаретках",
+        "alt": "01809 Стиляга в голубых сигаретках",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1099.-%D1%87%D1%83%D0%B2%D0%B0%D0%BA-%D0%B2-%D0%BA%D1%80%D1%83%D1%82%D0%BE%D0%BC-%D0%B3%D0%B0%D0%BB%D1%81%D1%82%D1%83%D0%BA%D0%B5.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_14_9e4d0d4e.jpg",
+        "title": "01810 Шляпа для Стиляги",
+        "alt": "01810 Шляпа для Стиляги",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1082.-%D1%81%D1%82%D0%B8%D0%BB%D1%8F%D0%B3%D0%B0-4.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_15_eb2b475b.jpg",
+        "title": "01811 Стиляга в фиолетовых сигаретках",
+        "alt": "01811 Стиляга в фиолетовых сигаретках",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1085.-%D1%81%D1%82%D0%B8%D0%BB%D1%8F%D0%B3%D0%B0-%D0%A1%D1%8D%D0%BC.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_16_9c02fa4e.jpg",
+        "title": "01812 Шляпа для стиляги",
+        "alt": "01812 Шляпа для стиляги",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1098.-%D1%87%D1%83%D0%B2%D0%B0%D0%BA-2.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_17_a6fa2d92.jpg",
+        "title": "01813 Стиляга в пиджаке горчичного цвета",
+        "alt": "01813 Стиляга в пиджаке горчичного цвета",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1097.-%D1%87%D1%83%D0%B2%D0%B0%D0%BA.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_18_ad8caa03.jpg",
+        "title": "01814 Стиляга в желтых сигаретках",
+        "alt": "01814 Стиляга в желтых сигаретках",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1087.-%D1%81%D1%82%D0%B8%D0%BB%D1%8F%D0%B3%D0%B0-%D0%A2%D0%BE%D0%BC.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_19_a9e179dd.jpg",
+        "title": "01815 Стиляга в зеленом галстуке",
+        "alt": "01815 Стиляга в зеленом галстуке",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1080.-%D1%81%D1%82%D0%B8%D0%BB%D1%8F%D0%B3%D0%B0.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_20_11ab2993.jpg",
+        "title": "01816 Стиляга в синих сигаретках",
+        "alt": "01816 Стиляга в синих сигаретках",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1061.-%D0%BA%D1%80%D1%83%D1%82%D0%BE%D0%B9-%D1%87%D1%83%D0%B2%D0%B0%D0%BA.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_21_79db78a4.jpg",
+        "title": "2646. Платье в стиле Диско",
+        "alt": "2646. Платье в стиле Диско",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2720.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_22_c03edfde.jpg",
+        "title": "2645. Платье в стиле Диско",
+        "alt": "2645. Платье в стиле Диско",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2719.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_23_71e55dc4.jpg",
+        "title": "2644. Платье в стиле Диско",
+        "alt": "2644. Платье в стиле Диско",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2721.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_24_e5ccdc18.jpg",
+        "title": "2643. Платье в стиле Диско",
+        "alt": "2643. Платье в стиле Диско",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/27181.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_25_51289b99.jpg",
+        "title": "2636. Платье в ретро стиле (Любовь Орлова)",
+        "alt": "2636. Платье в ретро стиле (Любовь Орлова)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1064.-%D0%9B%D1%8E%D0%B1%D0%BE%D0%B2%D1%8C-%D0%9E%D1%80%D0%BB%D0%BE%D0%B2%D0%B0.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_26_9d71b4e5.jpg",
+        "title": "01822 Стиляги",
+        "alt": "01822 Стиляги",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1055.-%D0%B4%D0%B0%D1%91%D1%88%D1%8C-%D1%80%D0%BE%D0%BA%D0%BD-%D1%80%D0%BE%D0%BB.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_27_7c165439.jpg",
+        "title": "2634 Стиляги",
+        "alt": "2634 Стиляги",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1101.-%D1%8D%D0%BB%D0%BE%D1%87%D0%BA%D0%B0-%D0%BB%D1%8E%D0%B4%D0%BE%D0%B5%D0%B4%D0%BE%D1%87%D0%BA%D0%B0-3.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_28_16e62643.jpg",
+        "title": "2629 Костюм в стиле ретро",
+        "alt": "2629 Костюм в стиле ретро",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1078.-%D1%81%D1%82%D0%B8%D0%BB%D0%B8%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%BE%D0%B5-%D1%81%D1%82%D0%B8%D0%BB%D1%8F%D0%B6%D0%BD%D0%BE%D0%B5.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_29_ac8fdfd2.jpg",
+        "title": "01818 Стиляга",
+        "alt": "01818 Стиляга",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1088.-%D1%81%D1%82%D0%B8%D0%BB%D1%8F%D0%B3%D0%B0-%D1%8F%D1%80%D0%BA%D0%B0%D1%8F-3.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      },
+      {
+        "src": "/images/real/retro_30_ba49e1ce.jpg",
+        "title": "01819 Стиляга",
+        "alt": "01819 Стиляга",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3386.jpg",
+        "category": "Ретро и Гэтсби",
+        "slug": "retro"
+      }
+    ],
+    "count": 30
+  },
+  "Хэллоуин": {
+    "slug": "halloween",
+    "label": "Хэллоуин",
+    "items": [
+      {
+        "src": "/images/real/halloween_1_de232ce9.jpg",
+        "title": "05190 Битлджус",
+        "alt": "05190 Битлджус",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/07/1-66.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_2_2f100cfb.jpg",
+        "title": "04761 Невеста мертвых",
+        "alt": "04761 Невеста мертвых",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04761-%D0%9D%D0%B5%D0%B2%D0%B5%D1%81%D1%82%D0%B0-%D0%BC%D0%B5%D1%80%D1%82%D0%B2%D1%8B%D1%85-015A6707.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_3_7bbe24fe.jpg",
+        "title": "04760 Скелет в белом фраке",
+        "alt": "04760 Скелет в белом фраке",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04760-%D0%A1%D0%BA%D0%B5%D0%BB%D0%B5%D1%82-%D0%B2-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BC-%D1%84%D1%80%D0%B0%D0%BA%D0%B5-%D1%82%D0%B0%D0%B9%D0%BD%D0%B0-%D0%9A%D0%BE%D0%BA%D0%BE-015A6701.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_4_1ab30398.jpg",
+        "title": "04762 Мужской костюм для Хэллоуина",
+        "alt": "04762 Мужской костюм для Хэллоуина",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04762-%D0%9C%D1%83%D0%B6%D1%81%D0%BA%D0%BE%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B4%D0%BB%D1%8F-%D0%A5%D1%8D%D0%BB%D0%BB%D0%BE%D1%83%D0%B8%D0%BD%D0%B0-015A6801.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_5_a99cd9a3.jpg",
+        "title": "05003 Ведьма Хэллоуина",
+        "alt": "05003 Ведьма Хэллоуина",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2025/09/05003-%D0%92%D0%B5%D0%B4%D1%8C%D0%BC%D0%B0-%D0%A5%D1%8D%D0%BB%D0%BB%D0%BE%D1%83%D0%B8%D0%BD%D0%B0.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_6_a85f0961.jpg",
+        "title": "04755 Невеста тьмы",
+        "alt": "04755 Невеста тьмы",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04755-%D0%9D%D0%B5%D0%B2%D0%B5%D1%81%D1%82%D0%B0-%D1%82%D1%8C%D0%BC%D1%8B-015A6648.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_7_70710558.jpg",
+        "title": "04754 Скелет во фраке",
+        "alt": "04754 Скелет во фраке",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04754-%D0%A1%D0%BA%D0%B5%D0%BB%D0%B5%D1%82-%D0%B2%D0%BE-%D1%84%D1%80%D0%B0%D0%BA%D0%B5-015A6645.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_8_710696d7.jpg",
+        "title": "04742 Майкл Майерс",
+        "alt": "04742 Майкл Майерс",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04742-%D0%9C%D0%B0%D0%B9%D0%BA%D0%BB-%D0%9C%D0%B0%D0%B9%D0%B5%D1%80%D1%81-015A6538.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_9_c2641a11.jpg",
+        "title": "04746 Майкл Майерс",
+        "alt": "04746 Майкл Майерс",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04746-%D0%9C%D0%B0%D0%B9%D0%BA%D0%BB-%D0%9C%D0%B0%D0%B9%D0%B5%D1%80%D1%81-015A6555.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_10_3587f1d5.jpg",
+        "title": "05021 Скелеты на Дне всех Святых",
+        "alt": "05021 Скелеты на Дне всех Святых",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2025/09/015A6745.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_11_e35d8086.jpg",
+        "title": "04749 Ганнибал Лектор",
+        "alt": "04749 Ганнибал Лектор",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04749-%D0%93%D0%B0%D0%BD%D0%BD%D0%B8%D0%B1%D0%B0%D0%BB-%D0%9B%D0%B5%D0%BA%D1%82%D0%BE%D1%80-015A6577.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_12_9106986e.jpg",
+        "title": "04764 Белые готы",
+        "alt": "04764 Белые готы",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04764-%D0%91%D0%B5%D0%BB%D1%8B%D0%B5-%D0%B3%D0%BE%D1%82%D1%8B-015A6830.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_13_6e70f659.jpg",
+        "title": "04765 Белый гот",
+        "alt": "04765 Белый гот",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04765-%D0%91%D0%B5%D0%BB%D1%8B%D0%B9-%D0%B3%D0%BE%D1%82-015A6793.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_14_bd024bc8.jpg",
+        "title": "05007 Гот в белом. Белый лебедь . Балерина в белом",
+        "alt": "05007 Гот в белом. Белый лебедь . Балерина в белом",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2025/09/015A6839.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_15_163ff767.jpg",
+        "title": "04938 Готы в черном",
+        "alt": "04938 Готы в черном",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2025/09/015A7670.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_16_adffb4a4.jpg",
+        "title": "04748 Эрнесто де ла Крус, Тайна Коко",
+        "alt": "04748 Эрнесто де ла Крус, Тайна Коко",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04748-%D0%AD%D1%80%D0%BD%D0%B5%D1%81%D1%82%D0%BE-%D0%B4%D0%B5-%D0%BB%D0%B0-%D0%9A%D1%80%D1%83%D1%81-%D0%A2%D0%B0%D0%B9%D0%BD%D0%B0-%D0%9A%D0%BE%D0%BA%D0%BE-015A6574.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_17_807a1dbb.jpg",
+        "title": "04751 Леди Кальявера",
+        "alt": "04751 Леди Кальявера",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04751-%D0%9B%D0%B5%D0%B4%D0%B8-%D0%9A%D0%B0%D0%BB%D1%8C%D1%8F%D0%B2%D0%B5%D1%80%D0%B0-015A6589.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_18_eb613552.jpg",
+        "title": "04763 Санта Муэрте",
+        "alt": "04763 Санта Муэрте",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04763-%D0%A1%D0%B0%D0%BD%D1%82%D0%B0-%D0%9C%D1%83%D1%8D%D1%80%D1%82%D0%B5-015A6844.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_19_547a30a2.jpg",
+        "title": "04753 Вампир",
+        "alt": "04753 Вампир",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04753-%D0%92%D0%B0%D0%BC%D0%BF%D0%B8%D1%80-015A6632.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_20_02d924e1.jpg",
+        "title": "04595 Черный ворон",
+        "alt": "04595 Черный ворон",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04595-%D0%A7%D0%B5%D1%80%D0%BD%D1%8B%D0%B9-%D0%B2%D0%BE%D1%80%D0%BE%D0%BD-405.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_21_a4d6c073.jpg",
+        "title": "04597 Черные вороны",
+        "alt": "04597 Черные вороны",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04597-%D0%A7%D0%B5%D1%80%D0%BD%D1%8B%D0%B5-%D0%B2%D0%BE%D1%80%D0%BE%D0%BD%D1%8B-411.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_22_e4fff85b.jpg",
+        "title": "04596 Черная ворона",
+        "alt": "04596 Черная ворона",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04596-%D0%A7%D0%B5%D1%80%D0%BD%D0%B0%D1%8F-%D0%B2%D0%BE%D1%80%D0%BE%D0%BD%D0%B0-416.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_23_26357053.jpg",
+        "title": "04716 Шаманка",
+        "alt": "04716 Шаманка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04716-%D0%A8%D0%B0%D0%BC%D0%B0%D0%BD%D0%BA%D0%B0.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_24_a4699fc6.jpg",
+        "title": "04728 Шаманка",
+        "alt": "04728 Шаманка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04728-%D0%A8%D0%B0%D0%BC%D0%B0%D0%BD%D0%BA%D0%B0.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_25_b7149b30.jpg",
+        "title": "04717 Шаманы",
+        "alt": "04717 Шаманы",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04717-%D0%A8%D0%B0%D0%BC%D0%B0%D0%BD%D1%8B.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_26_37a18779.jpg",
+        "title": "04358 Шаман",
+        "alt": "04358 Шаман",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04358-%D0%A8%D0%B0%D0%BC%D0%B0%D0%BD-1-675.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_27_e7f17fb7.jpg",
+        "title": "04415 Ведьма",
+        "alt": "04415 Ведьма",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04415-%D0%92%D0%B5%D0%B4%D1%8C%D0%BC%D0%B0-1-758.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_28_fff1a282.jpg",
+        "title": "04074 Уэнздей",
+        "alt": "04074 Уэнздей",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%A3%D1%8D%D0%BD%D0%B7%D0%B4%D0%B5%D0%B9.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_29_191c2a15.jpg",
+        "title": "04079 Гомес Аддамс",
+        "alt": "04079 Гомес Аддамс",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%93%D0%BE%D0%BC%D0%B5%D1%81-%D0%90%D0%B4%D0%B4%D0%B0%D0%BC%D1%81.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      },
+      {
+        "src": "/images/real/halloween_30_36b3e8fc.jpg",
+        "title": "04813 Женский костюм в стиле Фредди Крюгера",
+        "alt": "04813 Женский костюм в стиле Фредди Крюгера",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04813-%D0%96%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B2-%D1%81%D1%82%D0%B8%D0%BB%D0%B5-%D0%A4%D1%80%D0%B5%D0%B4%D0%B4%D0%B8-%D0%9A%D1%80%D1%8E%D0%B3%D0%B5%D1%80%D0%B0.jpg",
+        "category": "Хэллоуин",
+        "slug": "halloween"
+      }
+    ],
+    "count": 30
+  },
+  "Восточные": {
+    "slug": "eastern",
+    "label": "Восточные",
+    "items": [
+      {
+        "src": "/images/real/eastern_1_f59eb5a9.jpg",
+        "title": "05092 Восточный женский костюм",
+        "alt": "05092 Восточный женский костюм",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/04/015A2755.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_2_4b726875.jpg",
+        "title": "01566 Восточный принц (большой размер)",
+        "alt": "01566 Восточный принц (большой размер)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%92%D0%BE%D1%81%D1%82%D0%BE%D1%87%D0%BD%D1%8B%D0%B9-%D0%BF%D1%80%D0%B8%D0%BD%D1%86-.%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9-%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_3_81bb8d91.jpg",
+        "title": "05439 Восточный женский костюм",
+        "alt": "05439 Восточный женский костюм",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/07/1-1949.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_4_fc1f1686.jpg",
+        "title": "01573 Фатиха",
+        "alt": "01573 Фатиха",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5910.-%D0%A4%D0%B0%D1%82%D0%B8%D0%BC%D0%B01.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_5_c9869ee4.jpg",
+        "title": "05440 Принцесса Востока",
+        "alt": "05440 Принцесса Востока",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/07/1-1973.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_6_1e61fdc9.jpg",
+        "title": "01567 Восточный принц в золотой чалме (большой размер)",
+        "alt": "01567 Восточный принц в золотой чалме (большой размер)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%92%D0%BE%D1%81%D1%82%D0%BE%D1%87%D0%BD%D1%8B%D0%B9-%D0%BF%D1%80%D0%B8%D0%BD%D1%86-%D0%B2-%D0%B7%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9-%D1%87%D0%B0%D0%BB%D0%BC%D0%B5.%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9-%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_7_d93c7334.jpg",
+        "title": "01574 Фатиха 03",
+        "alt": "01574 Фатиха 03",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5827.-%D0%97%D0%B5%D0%B9%D0%BD%D0%B0%D0%B11.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_8_effa7f53.jpg",
+        "title": "01568 Султан (большой размер)",
+        "alt": "01568 Султан (большой размер)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%A1%D1%83%D0%BB%D1%82%D0%B0%D0%BD-.%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9-%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_9_da6b6aa8.jpg",
+        "title": "01569 Султан в золотой чалме",
+        "alt": "01569 Султан в золотой чалме",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%A1%D1%83%D0%BB%D1%82%D0%B0%D0%BD-%D0%B2-%D0%B7%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9-%D1%87%D0%B0%D0%BB%D0%BC%D0%B5.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_10_955dd983.jpg",
+        "title": "05428 Восточный женский костюм",
+        "alt": "05428 Восточный женский костюм",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/07/1-1675.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_11_8cc83327.jpg",
+        "title": "01570 Султан в золотой чалме (большой размер)",
+        "alt": "01570 Султан в золотой чалме (большой размер)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%A1%D1%83%D0%BB%D1%82%D0%B0%D0%BD-%D0%B2-%D0%B7%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9-%D1%87%D0%B0%D0%BB%D0%BC%D0%B5.%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9-%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_12_6b145205.jpg",
+        "title": "01582 Красавица Фируза",
+        "alt": "01582 Красавица Фируза",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5855.-%D0%9A%D1%80%D0%B0%D1%81%D0%B0%D1%84%D0%B8%D1%86%D0%B0-%D0%A4%D0%B8%D1%80%D1%8E%D0%B7%D0%B01.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_13_84e04e7e.jpg",
+        "title": "01571 Султан Зураб",
+        "alt": "01571 Султан Зураб",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%A1%D1%83%D0%BB%D1%82%D0%B0%D0%BD-%D0%97%D1%83%D1%80%D0%B0%D0%B1.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_14_f2f9b404.jpg",
+        "title": "05093 Восточный женский костюм",
+        "alt": "05093 Восточный женский костюм",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/04/015A3285.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_15_b54d46b5.jpg",
+        "title": "01572 Шейх Алим",
+        "alt": "01572 Шейх Алим",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%A8%D0%B5%D0%B9%D1%85-%D0%90%D0%BB%D0%B8%D0%BC.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_16_e37c3837.jpg",
+        "title": "01576 Торговка с восточного базара",
+        "alt": "01576 Торговка с восточного базара",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5905.-%D0%A2%D0%BE%D1%80%D0%B3%D0%BE%D0%B2%D0%BA%D0%B0-%D1%81-%D0%B2%D0%BE%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B1%D0%B0%D0%B7%D0%B0%D1%80%D0%B01.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_17_70411e71.jpg",
+        "title": "01576 Султан Сулейман и Хюррем",
+        "alt": "01576 Султан Сулейман и Хюррем",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5901.-%D0%A1%D1%83%D0%BB%D1%82%D0%B0%D0%BD-%D0%A1%D1%83%D0%BB%D0%B5%D0%B9%D0%BC%D0%B0%D0%BD-%D0%B8-%D0%A5%D1%8E%D1%80%D0%B5%D0%BC1.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_18_fd763432.jpg",
+        "title": "05222 Женский образ в стиле \"Великолепный Век\"",
+        "alt": "05222 Женский образ в стиле &quot;Великолепный Век&quot;",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/07/1-1414.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_19_cdb89b6f.jpg",
+        "title": "01577 Султан Сулейман в белом и Хюрем",
+        "alt": "01577 Султан Сулейман в белом и Хюрем",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5900.-%D0%A1%D1%83%D0%BB%D1%82%D0%B0%D0%BD-%D0%A1%D1%83%D0%BB%D0%B5%D0%B9%D0%BC%D0%B0%D0%BD-%D0%B2-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BC-%D0%B8-%D0%A5%D1%8E%D1%80%D0%B5%D0%BC1.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_20_36f6ee74.jpg",
+        "title": "01578 Султан",
+        "alt": "01578 Султан",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5899.-%D0%A1%D1%83%D0%BB%D1%82%D0%B0%D0%BD1.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_21_c92d7c3a.jpg",
+        "title": "01579 Фатиха 04",
+        "alt": "01579 Фатиха 04",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5896.-%D0%A1%D0%B2%D0%B0%D1%85%D0%B01.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_22_7638e720.jpg",
+        "title": "01580 Парные костюмы в восточном стиле",
+        "alt": "01580 Парные костюмы в восточном стиле",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5873.-%D0%9F%D0%B0%D1%80%D0%BD%D1%8B%D0%B5-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC%D1%8B-%D0%B2-%D0%B2%D0%BE%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%BE%D0%BC-%D1%81%D1%82%D0%B8%D0%BB%D0%B51.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_23_360e5845.jpg",
+        "title": "01581 Мальчик с восточного базара",
+        "alt": "01581 Мальчик с восточного базара",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5859.-%D0%9C%D0%B0%D0%BB%D1%8C%D1%87%D0%B8%D0%BA-%D1%81-%D0%B2%D0%BE%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B1%D0%B0%D0%B7%D0%B0%D1%80%D0%B01.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_24_cf379ac1.jpg",
+        "title": "01583 Костюм танцовщицы в красном",
+        "alt": "01583 Костюм танцовщицы в красном",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5850.-%D0%9A%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D1%82%D0%B0%D0%BD%D1%86%D0%BE%D0%B2%D1%89%D0%B8%D1%86%D1%8B-%D0%B2-%D0%BA%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%BC1.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_25_70f290e2.jpg",
+        "title": "01584 Костюм восточной танцовщицы \"Дилия 01\"",
+        "alt": "01584 Костюм восточной танцовщицы &quot;Дилия 01&quot;",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5841.-%D0%9A%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B2%D0%BE%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%BE%D0%B9-%D1%82%D0%B0%D0%BD%D1%86%D0%BE%D0%B2%D1%89%D0%B8%D1%86%D1%8B1.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_26_175fb131.jpg",
+        "title": "01585 Жасмин и Аладдин",
+        "alt": "01585 Жасмин и Аладдин",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5822.-%D0%96%D0%B0%D1%81%D0%BC%D0%B8%D0%BD-%D0%B8-%D0%90%D0%BB%D0%B0%D0%B4%D0%B4%D0%B8%D0%BD.%D0%9F%D0%B0%D1%80%D0%BD%D1%8B%D0%B5-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC%D1%8B1.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_27_3a5a380b.jpg",
+        "title": "01586 Жасмин и Аладдин",
+        "alt": "01586 Жасмин и Аладдин",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5821.-%D0%96%D0%B0%D1%81%D0%BC%D0%B8%D0%BD-%D0%B8-%D0%90%D0%BB%D0%B0%D0%B4%D0%B4%D0%B8%D0%BD1.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_28_ea75f267.jpg",
+        "title": "01587 Восточный базар. Купчиха.",
+        "alt": "01587 Восточный базар. Купчиха.",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5808.-%D0%92%D0%BE%D1%81%D1%82%D0%BE%D1%87%D0%BD%D1%8B%D0%B9-%D0%B1%D0%B0%D0%B7%D0%B0%D1%80.%D0%9A%D1%83%D0%BF%D1%87%D0%B8%D1%85%D0%B01.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_29_8cdc5362.jpg",
+        "title": "01588 Восточная красавица \"Фатиха\" (05) с кувшином",
+        "alt": "01588 Восточная красавица &quot;Фатиха&quot; (05) с кувшином",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5807.-%D0%92%D0%BE%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B0%D1%8F-%D0%BA%D1%80%D0%B0%D1%81%D0%B0%D0%B2%D0%B8%D1%86%D0%B0-%D1%81-%D0%BA%D1%83%D0%B2%D1%88%D0%B8%D0%BD%D0%BE%D0%BC1.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      },
+      {
+        "src": "/images/real/eastern_30_ecf53f19.jpg",
+        "title": "01589 Шейх и восточная принцесса",
+        "alt": "01589 Шейх и восточная принцесса",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5924.-%D0%A8%D0%B5%D0%B9%D1%85-%D0%B8-%D0%B2%D0%BE%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B0%D1%8F-%D0%BF%D1%80%D0%B8%D0%BD%D1%86%D0%B5%D1%81%D1%81%D0%B01.jpg",
+        "category": "Восточные",
+        "slug": "eastern"
+      }
+    ],
+    "count": 30
+  },
+  "Бальные платья": {
+    "slug": "ball",
+    "label": "Бальные платья",
+    "items": [
+      {
+        "src": "/images/real/ball_1_f3cc7966.jpg",
+        "title": "4055. Бальное платье Розовый бутон",
+        "alt": "4055. Бальное платье Розовый бутон",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4055.-%D0%B1%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5-%D0%BF%D0%BB%D0%B0%D1%82%D1%8C%D0%B5-%D0%A0%D0%BE%D0%B7%D0%BE%D0%B2%D1%8B%D0%B9-%D0%B1%D1%83%D1%82%D0%BE%D0%BD1.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_2_cba65bed.jpg",
+        "title": "02866 Вечернее платье Камила 02",
+        "alt": "02866 Вечернее платье Камила 02",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33576.-%D0%9A%D0%B0%D0%BC%D0%B8%D0%BB%D0%B0-%D0%B2-%D0%B3%D0%BE%D0%BB%D1%83%D0%B1%D0%BE%D0%BC1.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_3_58197c89.jpg",
+        "title": "02865 Вечернее платье \"Камила 01\"",
+        "alt": "02865 Вечернее платье &quot;Камила 01&quot;",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33579.-%D0%9A%D0%B0%D0%BC%D0%B8%D0%BB%D0%B0-%D0%B2-%D0%BA%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%BC1.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_4_9da34e46.jpg",
+        "title": "2426. Бальное платье",
+        "alt": "2426. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1411.-8-21.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_5_fdf20d0b.jpg",
+        "title": "00931 Бальное платье \"Антия 02\"",
+        "alt": "00931 Бальное платье &quot;Антия 02&quot;",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2520.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_6_f15ca618.jpg",
+        "title": "2428. Бальное платье",
+        "alt": "2428. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1392.-8-117.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_7_d8935cb4.jpg",
+        "title": "2429. Бальное платье",
+        "alt": "2429. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1423.-8-25.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_8_23cdad2f.jpg",
+        "title": "2430. Бальное платье",
+        "alt": "2430. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1436.-8-28.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_9_7b4f44a1.jpg",
+        "title": "2430. Бальное платье",
+        "alt": "2430. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1466.-IMG_0853.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_10_4803ca4b.jpg",
+        "title": "2431. Бальное платье",
+        "alt": "2431. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1448.-8-6.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_11_7229591e.jpg",
+        "title": "2432. Бальное платье",
+        "alt": "2432. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1455.-8-89.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_12_b6316b4b.jpg",
+        "title": "2433. Бальное платье",
+        "alt": "2433. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1514.-IMG_2360-Edit.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_13_f415a1fa.jpg",
+        "title": "2434. Бальное платье",
+        "alt": "2434. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1522.-IMG_2404-Edit.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_14_99349fd8.jpg",
+        "title": "2435. Бальное платье",
+        "alt": "2435. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1530.-IMG_2551-Edit.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_15_1c1fb0bd.jpg",
+        "title": "2437. Бальное платье",
+        "alt": "2437. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1565.-IMG_9705.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_16_334aeea9.jpg",
+        "title": "2438. Бальное платье",
+        "alt": "2438. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1404.-8-195.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_17_e1aa75bf.jpg",
+        "title": "2439. Бальное платье",
+        "alt": "2439. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1560.-IMG_9685.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_18_0f6dfa1d.jpg",
+        "title": "2440. Бальное платье",
+        "alt": "2440. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1369.-1-182.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_19_b0d093be.jpg",
+        "title": "2441. Бальное платье",
+        "alt": "2441. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2062.-IMG_6036.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_20_79907b29.jpg",
+        "title": "2442. Бальное платье",
+        "alt": "2442. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1398.-8-158.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_21_6883593f.jpg",
+        "title": "2444. Бальное платье",
+        "alt": "2444. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1584.-IMG_9881.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_22_feaad8b6.jpg",
+        "title": "02883 Бальное платье",
+        "alt": "02883 Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1590.-IMG_9915.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_23_c8a3fb00.jpg",
+        "title": "02882 Бальное платье",
+        "alt": "02882 Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1401.-8-17.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_24_c16677d0.jpg",
+        "title": "02881 Бальное платье",
+        "alt": "02881 Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1420.-8-236.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_25_b719515a.jpg",
+        "title": "02884 Вечернее платье",
+        "alt": "02884 Вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1519.-IMG_2376-Edit.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_26_dd06484a.jpg",
+        "title": "02879 Бальное платье",
+        "alt": "02879 Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1521.-IMG_2394-Edit.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_27_2289535c.jpg",
+        "title": "2450. Бальное платье",
+        "alt": "2450. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1458.-IMG_0608.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_28_7290f961.jpg",
+        "title": "2451. Бальное платье",
+        "alt": "2451. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1479.-IMG_2181-Edit.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_29_442fd699.jpg",
+        "title": "2452. Бальное платье",
+        "alt": "2452. Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1534.-IMG_2652-Edit.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      },
+      {
+        "src": "/images/real/ball_30_b25d56b7.jpg",
+        "title": "02880 Бальное платье",
+        "alt": "02880 Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1571.-IMG_9748.jpg",
+        "category": "Бальные платья",
+        "slug": "ball"
+      }
+    ],
+    "count": 30
+  },
+  "Коктейльные платья": {
+    "slug": "cocktail",
+    "label": "Коктейльные платья",
+    "items": [
+      {
+        "src": "/images/real/cocktail_1_590241de.jpg",
+        "title": "33568. Платье Эрика в сером",
+        "alt": "33568. Платье Эрика в сером",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33568.-%D0%97%D1%80%D0%B8%D0%BA%D0%B0-%D0%B2-%D1%81%D0%B5%D1%80%D0%BE%D0%BC1.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_2_0fab3cf5.jpg",
+        "title": "33547. Платье Анжелика темно синяя",
+        "alt": "33547. Платье Анжелика темно-синяя",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33547.-%D0%90%D0%BD%D0%B6%D0%B5%D0%BB%D0%B8%D0%BA%D0%B0-%D1%82%D0%B5%D0%BC%D0%BD%D0%BE%D1%81%D0%B8%D0%BD%D1%8F%D1%8F1.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_3_528920b5.jpg",
+        "title": "33546. Платье Анжелика персикового цвета",
+        "alt": "33546. Платье Анжелика персикового цвета",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33546.-%D0%90%D0%BD%D0%B6%D0%B5%D0%BB%D0%B8%D0%BA%D0%B0-%D0%BF%D0%B5%D1%80%D1%81%D0%B8%D0%BA%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE-%D1%86%D0%B2%D0%B5%D1%82%D0%B01.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_4_890a4103.jpg",
+        "title": "33544. Платье Анжелика зелёная",
+        "alt": "33544. Платье Анжелика зелёная",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33544.-%D0%90%D0%BD%D0%B6%D0%B5%D0%BB%D0%B8%D0%BA%D0%B0-%D0%B7%D0%B5%D0%BB%D1%91%D0%BD%D0%B0%D1%8F1.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_5_ae72e1f5.jpg",
+        "title": "33635. Платье Эрика цвета фуксии",
+        "alt": "33635. Платье Эрика цвета фуксии",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33635.-%D0%AD%D1%80%D0%B8%D0%BA%D0%B0-%D1%86%D0%B2%D0%B5%D1%82%D0%B0-%D1%84%D1%83%D0%BA%D1%81%D0%B8%D0%B81.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_6_f7b746ed.jpg",
+        "title": "33633. Платье Шарлиз",
+        "alt": "33633. Платье Шарлиз",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33633.-%D0%A8%D0%B0%D1%80%D0%BB%D0%B8%D0%B71.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_7_a8d99685.jpg",
+        "title": "33604. Платье Паола",
+        "alt": "33604. Платье Паола",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33604.-%D0%9F%D0%B0%D0%BE%D0%BB%D0%B01.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_8_e7fb7f86.jpg",
+        "title": "33580. Платье Камила в красном",
+        "alt": "33580. Платье Камила в красном",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33580.-%D0%9A%D0%B0%D0%BC%D0%B8%D0%BB%D0%B0-%D0%B2-%D0%BA%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%BC1.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_9_2eefa172.jpg",
+        "title": "33577. Камила в голубом",
+        "alt": "33577. Камила в голубом",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33577.-%D0%9A%D0%B0%D0%BC%D0%B8%D0%BB%D0%B0-%D0%B2-%D0%B3%D0%BE%D0%BB%D1%83%D0%B1%D0%BE%D0%BC1.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_10_5a3317ef.jpg",
+        "title": "2454 вечернее платье",
+        "alt": "2454 вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3306.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_11_3d31e738.jpg",
+        "title": "2455 вечернее платье",
+        "alt": "2455 вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2139.-IMG_5759.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_12_c2ec0407.jpg",
+        "title": "2456 вечернее платье",
+        "alt": "2456 вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3379.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_13_b6c7126f.jpg",
+        "title": "2457 вечернее платье",
+        "alt": "2457 вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1560.-14-1.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_14_e77ad0f9.jpg",
+        "title": "2458 вечернее платье",
+        "alt": "2458 вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2136.-IMG_5695.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_15_50d1d3d5.jpg",
+        "title": "2459 вечернее платье",
+        "alt": "2459 вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1582.-IMG_3416.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_16_17273f9b.jpg",
+        "title": "2460 вечернее платье",
+        "alt": "2460 вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1456.-8-96.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_17_8f016375.jpg",
+        "title": "2461 вечернее платье",
+        "alt": "2461 вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3357.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_18_eae80983.jpg",
+        "title": "02864 Вечернее платье со шлейфом \"Элиа 01\"",
+        "alt": "02864 Вечернее платье со шлейфом &quot;Элиа 01&quot;",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1567.-4-2.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_19_2bad68e2.jpg",
+        "title": "2463 вечернее платье",
+        "alt": "2463 вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1364.-1-137.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_20_ab9b594b.jpg",
+        "title": "02872 Вечернее платье \"Сэнди 01\"",
+        "alt": "02872 Вечернее платье &quot;Сэнди 01&quot;",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3346.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_21_fe0c8fd4.jpg",
+        "title": "2465 вечернее платье",
+        "alt": "2465 вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1393.-8-124.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_22_6c9bd037.jpg",
+        "title": "2466 вечернее платье",
+        "alt": "2466 вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1559.-13-2.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_23_4271ac9e.jpg",
+        "title": "02874 Вечернее платье",
+        "alt": "02874 Вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1562.-2-1.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_24_a59f9f93.jpg",
+        "title": "2468 вечернее платье",
+        "alt": "2468 вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1475.-IMG_1423.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_25_39dc2574.jpg",
+        "title": "02875 Вечернее розовое платье",
+        "alt": "02875 Вечернее розовое платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1569.-5-2.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_26_41d1d2b9.jpg",
+        "title": "2470 вечернее платье",
+        "alt": "2470 вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1557.-12-2.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_27_84646d54.jpg",
+        "title": "2471 вечернее платье",
+        "alt": "2471 вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1520.-IMG_2376-Edit.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_28_b0b5bd01.jpg",
+        "title": "2472 вечернее платье",
+        "alt": "2472 вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1581.-IMG_3305.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_29_345da0cc.jpg",
+        "title": "2473 вечернее платье",
+        "alt": "2473 вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1414.-8-220.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      },
+      {
+        "src": "/images/real/cocktail_30_cb8ae421.jpg",
+        "title": "2474 вечернее платье",
+        "alt": "2474 вечернее платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1581.-IMG_9838.jpg",
+        "category": "Коктейльные платья",
+        "slug": "cocktail"
+      }
+    ],
+    "count": 30
+  },
+  "Свадебные": {
+    "slug": "wedding",
+    "label": "Свадебные",
+    "items": [
+      {
+        "src": "/images/real/wedding_1_771535d1.jpg",
+        "title": "02903 Свадебное платье",
+        "alt": "02903 Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1575.-IMG_9792.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_2_b0e621c3.jpg",
+        "title": "2308. Свадебное платье",
+        "alt": "2308. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1576.-IMG_9797.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_3_b0679951.jpg",
+        "title": "02902 Свадебное платье",
+        "alt": "02902 Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1579.-IMG_9833.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_4_477a6e70.jpg",
+        "title": "2310. Свадебное платье",
+        "alt": "2310. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1580.-IMG_9836.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_5_1c831d24.jpg",
+        "title": "2311. Свадебное платье",
+        "alt": "2311. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1368.-1-168.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_6_fafc43a1.jpg",
+        "title": "2312. Свадебное платье",
+        "alt": "2312. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1371.-1-196.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_7_7d4af795.jpg",
+        "title": "2313. Свадебное платье",
+        "alt": "2313. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1372.-1-197.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_8_599c5bfe.jpg",
+        "title": "2314. Свадебное платье",
+        "alt": "2314. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1374.-1-202.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_9_8501660b.jpg",
+        "title": "2315. Свадебное платье",
+        "alt": "2315. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1476.-IMG_2177-Edit.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_10_75a6d9be.jpg",
+        "title": "2316. Свадебное платье",
+        "alt": "2316. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1415.-8-225.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_11_3d2c78f0.jpg",
+        "title": "02901 Свадебное платье",
+        "alt": "02901 Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1587.-IMG_9895.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_12_b40ca63c.jpg",
+        "title": "2318. Свадебное платье",
+        "alt": "2318. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1588.-IMG_9896.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_13_8a605fa6.jpg",
+        "title": "02900 Свадебное платье",
+        "alt": "02900 Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1577.-IMG_9823.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_14_f8526f74.jpg",
+        "title": "2320. Свадебное платье",
+        "alt": "2320. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1578.-IMG_9827.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_15_6608a35e.jpg",
+        "title": "2321. Свадебное платье",
+        "alt": "2321. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1582.-IMG_9860.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_16_e91d707e.jpg",
+        "title": "2322. Свадебное платье",
+        "alt": "2322. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1583.-IMG_9866.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_17_e298b777.jpg",
+        "title": "02899 Свадебное платье",
+        "alt": "02899 Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1585.-IMG_9888.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_18_b7265ad0.jpg",
+        "title": "2324. Свадебное платье",
+        "alt": "2324. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1586.-IMG_9890.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_19_80a982c6.jpg",
+        "title": "2325. Свадебное платье",
+        "alt": "2325. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1362.-1-131.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_20_9ec0c10d.jpg",
+        "title": "2326. Свадебное платье",
+        "alt": "2326. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1363.-1-133.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_21_79f69eb8.jpg",
+        "title": "2327. Свадебное платье",
+        "alt": "2327. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1370.-1-182.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_22_9b5c65d3.jpg",
+        "title": "2327. Свадебное платье",
+        "alt": "2327. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1375.-1-208.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_23_45720a9c.jpg",
+        "title": "2328. Свадебное платье",
+        "alt": "2328. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1376.-1-210.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_24_366b4b58.jpg",
+        "title": "2328. Свадебное платье",
+        "alt": "2328. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1377.-1-211.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_25_d127d6b9.jpg",
+        "title": "2328. Свадебное платье",
+        "alt": "2328. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1399.-8-162.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_26_454e4384.jpg",
+        "title": "2330. Свадебное платье",
+        "alt": "2330. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1400.-8-163.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_27_3f8ee3f5.jpg",
+        "title": "02895 Свадебное платье",
+        "alt": "02895 Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1405.-8-195.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_28_fb8c970b.jpg",
+        "title": "2330. Свадебное платье",
+        "alt": "2330. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1406.-8-198.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_29_c615a7ba.jpg",
+        "title": "2330. Свадебное платье",
+        "alt": "2330. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1409.-8-208.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      },
+      {
+        "src": "/images/real/wedding_30_d0e8487f.jpg",
+        "title": "2333. Свадебное платье",
+        "alt": "2333. Свадебное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1410.-8-209.jpg",
+        "category": "Свадебные",
+        "slug": "wedding"
+      }
+    ],
+    "count": 30
+  },
+  "Смокинги и фраки": {
+    "slug": "tuxedo",
+    "label": "Смокинги и фраки",
+    "items": [
+      {
+        "src": "/images/real/tuxedo_1_d994d2f9.jpg",
+        "title": "04819 Классический костюм для сцены",
+        "alt": "04819 Классический костюм для сцены",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04819-%D0%9A%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B4%D0%BB%D1%8F-%D1%81%D1%86%D0%B5%D0%BD%D1%8B.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_2_30f40e08.jpg",
+        "title": "04820 Мужской сценический костюм",
+        "alt": "04820 Мужской сценический костюм",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04820-%D0%9C%D1%83%D0%B6%D1%81%D0%BA%D0%BE%D0%B9-%D1%81%D1%86%D0%B5%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_3_5778be55.jpg",
+        "title": "01970 Двубортный белый костюм в полоску (MM75)",
+        "alt": "01970 Двубортный белый костюм в полоску (MM75)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%94%D0%B2%D1%83%D1%85%D0%B1%D0%BE%D1%80%D1%82%D0%BD%D1%8B%D0%B9-%D0%B1%D0%B5%D0%BB%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B2-%D0%BF%D0%BE%D0%BB%D0%BE%D1%81%D0%BA%D1%83.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_4_63defa7c.jpg",
+        "title": "01971 Двубортный костюм черный в полоску (KAO8Y 20 48)",
+        "alt": "01971 Двубортный костюм черный в полоску (KAO8Y 20-48)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%94%D0%B2%D1%83%D1%85%D0%B1%D0%BE%D1%80%D1%82%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D1%87%D0%B5%D1%80%D0%BD%D1%8B%D0%B9-%D0%B2-%D0%BF%D0%BE%D0%BB%D0%BE%D1%81%D0%BA%D1%83.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_5_4a64b9d4.jpg",
+        "title": "01972 Мужской классический костюм с рисунком",
+        "alt": "01972 Мужской классический костюм с рисунком",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%9C%D1%83%D0%B6.-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D1%81-%D1%80%D0%B8%D1%81%D1%83%D0%BD%D0%BA%D0%BE%D0%BC.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_6_9634ef42.jpg",
+        "title": "01973 Мужской классический костюм тройка",
+        "alt": "01973 Мужской классический костюм тройка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%9C%D1%83%D0%B6.-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_7_88f92564.jpg",
+        "title": "01974 Двубортный костюм тройка в полоску",
+        "alt": "01974 Двубортный костюм тройка в полоску",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%9C%D1%83%D0%B6.-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B4%D0%B2%D1%83%D1%85%D0%B1%D0%BE%D1%80%D1%82%D0%BD%D1%8B%D0%B9-%D1%81-%D0%B6%D0%B8%D0%BB%D0%B5%D1%82%D0%BE%D0%BC.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_8_a6d38ef3.jpg",
+        "title": "01975 Красный костюм двойка",
+        "alt": "01975 Красный костюм двойка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%9C%D1%83%D0%B6.-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_9_63af0d2c.jpg",
+        "title": "01976 Яркий костюм двойка",
+        "alt": "01976 Яркий костюм двойка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%BC%D1%83%D1%83%D0%B6.%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_10_1aaa726e.jpg",
+        "title": "01978 Смокинг бордовый с рисунком",
+        "alt": "01978 Смокинг бордовый с рисунком",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8%D0%BD%D0%B3-%D0%B1%D0%BE%D1%80%D0%B4%D0%BE%D0%B2%D1%8B%D0%B9-%D1%81-%D1%80%D0%B8%D1%81%D1%83%D0%BD%D0%BA%D0%BE%D0%BC.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_11_2b16c30c.jpg",
+        "title": "01979 Смокинг синий с рисунком",
+        "alt": "01979 Смокинг синий с рисунком",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8%D0%BD%D0%B3-%D1%81%D0%B8%D0%BD%D0%B8%D0%B9-%D1%81-%D1%80%D0%B8%D1%81%D1%83%D0%BD%D0%BA%D0%BE%D0%BC.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_12_ddb855ff.jpg",
+        "title": "01980 Смокинг черный с рисунком",
+        "alt": "01980 Смокинг черный с рисунком",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8%D0%BD%D0%B3-%D1%87%D0%B5%D1%80%D0%BD%D1%8B%D0%B9-%D1%81-%D1%80%D0%B8%D1%81%D1%83%D0%BD%D0%BA%D0%BE%D0%BC.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_13_2e9229d6.jpg",
+        "title": "01981 Фиолетовый смокинг",
+        "alt": "01981 Фиолетовый смокинг",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8%D0%BD%D0%B3.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_14_d928ab8f.jpg",
+        "title": "01982 Бежевый костюм тройка",
+        "alt": "01982 Бежевый костюм тройка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5958.-SB-651.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_15_e168d50f.jpg",
+        "title": "01983 Костюм тройка в клетку",
+        "alt": "01983 Костюм тройка в клетку",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5957.-SB-471.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_16_1a18a064.jpg",
+        "title": "01985 Мужской костюм тройка синий",
+        "alt": "01985 Мужской костюм тройка синий",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5955.-SB-371.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_17_1bba6fe2.jpg",
+        "title": "01987 Мужские классические костюмы",
+        "alt": "01987 Мужские классические костюмы",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5953.-SB-281.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_18_b331a112.jpg",
+        "title": "01990 Костюм тройка в клетку",
+        "alt": "01990 Костюм тройка в клетку",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5950.-SB-2641.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_19_1a64c6ca.jpg",
+        "title": "01992 Костюм тройка в клетку синий",
+        "alt": "01992 Костюм тройка в клетку синий",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5948.-SB-2591.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_20_4dafdb1e.jpg",
+        "title": "01997 Классические костюмы и смокинги для свадьбы",
+        "alt": "01997 Классические костюмы и смокинги для свадьбы",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5943.-SB-1822.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_21_1cc39aa0.jpg",
+        "title": "02000 Серый костюм тройка в клетку",
+        "alt": "02000 Серый костюм тройка в клетку",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5940.-SB-1582.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_22_d9f77438.jpg",
+        "title": "02003 Мужские классические костюмы",
+        "alt": "02003 Мужские классические костюмы",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5937.-SB-1292.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_23_84be989b.jpg",
+        "title": "02005 Костюм тройка",
+        "alt": "02005 Костюм тройка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5935.-SB-1182.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_24_9ec8be84.jpg",
+        "title": "02007 Костюм тройка в клетку",
+        "alt": "02007 Костюм тройка в клетку",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5933.-SB-1021.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_25_20375234.jpg",
+        "title": "02008 Черный фрак",
+        "alt": "02008 Черный фрак",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5932.-IMG_55142.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_26_4bdb77eb.jpg",
+        "title": "02010 Костюм тройка в клетку",
+        "alt": "02010 Костюм тройка в клетку",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5930.-IMG_51262.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_27_717c170e.jpg",
+        "title": "02011 Белый смокинг",
+        "alt": "02011 Белый смокинг",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5929.-IMG_51162.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_28_48f27631.jpg",
+        "title": "02012 Мужской классический костюм с рисунком",
+        "alt": "02012 Мужской классический костюм с рисунком",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5928.-IMG_50492.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_29_0dd2d542.jpg",
+        "title": "02013 Серый костюм тройка",
+        "alt": "02013 Серый костюм тройка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5927.-IMG_49822.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      },
+      {
+        "src": "/images/real/tuxedo_30_91b934b2.jpg",
+        "title": "02014 Коричневый костюм тройка",
+        "alt": "02014 Коричневый костюм тройка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5926.-IMG_49642.jpg",
+        "category": "Смокинги и фраки",
+        "slug": "tuxedo"
+      }
+    ],
+    "count": 30
+  },
+  "Для мальчиков": {
+    "slug": "boys",
+    "label": "Для мальчиков",
+    "items": [
+      {
+        "src": "/images/real/boys_1_0e08971e.jpg",
+        "title": "03870 Костюм солдата из Игры в Кальмара",
+        "alt": "03870 Костюм солдата из Игры в Кальмара",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2022/10/03870-%D0%9A%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D1%81%D0%BE%D0%BB%D0%B4%D0%B0%D1%82%D0%B0-%D0%B8%D0%B7-%D0%98%D0%B3%D1%80%D1%8B-%D0%B2-%D0%9A%D0%B0%D0%BB%D1%8C%D0%BC%D0%B0%D1%80%D0%B0.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_2_09054851.jpg",
+        "title": "03862 Карнавальный костюм Бумажный дом",
+        "alt": "03862 Карнавальный костюм Бумажный дом",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2022/10/03862-%D0%9A%D0%B0%D1%80%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%91%D1%83%D0%BC%D0%B0%D0%B6%D0%BD%D1%8B%D0%B9-%D0%B4%D0%BE%D0%BC.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_3_55f4eef1.jpg",
+        "title": "04027 Костюм Итачи Учиха",
+        "alt": "04027 Костюм Итачи Учиха",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%9A%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%98%D1%82%D0%B0%D1%87%D0%B8-%D0%A3%D1%87%D0%B8%D1%85%D0%B0.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_4_a26bcd47.jpg",
+        "title": "03867 Плащ Акацуки из Наруто",
+        "alt": "03867 Плащ Акацуки из Наруто",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2022/10/03867-%D0%9F%D0%BB%D0%B0%D1%89-%D0%90%D0%BA%D0%B0%D1%86%D1%83%D0%BA%D0%B8-%D0%B8%D0%B7-%D0%9D%D0%B0%D1%80%D1%83%D1%82%D0%BE.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_5_d8cdd9cf.jpg",
+        "title": "04028 Наруто",
+        "alt": "04028 Наруто",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%9D%D0%B0%D1%80%D1%83%D1%82%D0%BE.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_6_45831d64.jpg",
+        "title": "00257 Русский богатырь Добрыня",
+        "alt": "00257 Русский богатырь Добрыня",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5477.-%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9-%D0%B1%D0%BE%D0%B3%D0%B0%D1%82%D1%8B%D1%80%D1%8C-%D0%94%D0%BE%D0%B1%D1%80%D1%8B%D0%BD%D1%8F-%D0%9D%D0%B8%D0%BA%D0%B8%D1%82%D0%B8%D1%87.1.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_7_dfc87e1d.jpg",
+        "title": "04704 Рыцарь",
+        "alt": "04704 Рыцарь",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04704-%D0%A0%D1%8B%D1%86%D0%B0%D1%80%D1%8C.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_8_87f4c09f.jpg",
+        "title": "00258 Нолик 02",
+        "alt": "00258 Нолик 02",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5454.-%D0%9D%D0%BE%D0%BB%D0%B8%D0%BA.%D0%A4%D0%B8%D0%BA%D1%81%D0%B8%D0%BA%D0%B8.1.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_9_1da882fe.jpg",
+        "title": "00259 Кай. Снежная королева.",
+        "alt": "00259 Кай. Снежная королева.",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5415.-%D0%9A%D0%B0%D0%B9.%D0%A1%D0%BD%D0%B5%D0%B6%D0%BD%D0%B0%D1%8F-%D0%BA%D0%BE%D1%80%D0%BE%D0%BB%D0%B5%D0%B2%D0%B01.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_10_373af3d8.jpg",
+        "title": "00261 Щелкунчик",
+        "alt": "00261 Щелкунчик",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33533-%D1%89%D0%B5%D0%BB%D0%BA%D1%83%D0%BD%D1%87%D0%B8%D0%BA.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_11_330ffa72.jpg",
+        "title": "00262 Нолик 01",
+        "alt": "00262 Нолик 01",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33529-%D1%84%D0%B8%D0%BA%D1%81%D0%B8%D0%BA%D0%B8-%D0%BD%D0%BE%D0%BB%D0%B8%D0%BA.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_12_1a263835.jpg",
+        "title": "00264 Пьеро 02",
+        "alt": "00264 Пьеро 02",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33523-%D0%BF%D1%8C%D0%B5%D1%80%D0%BE-%D1%81-%D0%B7%D0%BE%D0%BB%D0%BE%D1%82%D1%8B%D0%BC-%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D0%BA%D0%BE%D0%BC.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_13_d08809ed.jpg",
+        "title": "00265 Дедушка",
+        "alt": "00265 Дедушка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2170.-2-2.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_14_b6eaa2cf.jpg",
+        "title": "00266 Кот в сапогах 01",
+        "alt": "00266 Кот в сапогах 01",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2626.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_15_b8e26b79.jpg",
+        "title": "00267 Буратино (ASS02)",
+        "alt": "00267 Буратино (ASS02)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4069.-%D0%91%D1%83%D1%80%D0%B0%D1%82%D0%B8%D0%BD%D0%BE-%D1%81-%D0%B7%D0%BE%D0%BB%D0%BE%D1%82%D1%8B%D0%BC-%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D0%BA%D0%BE%D0%BC1.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_16_2eb8f358.jpg",
+        "title": "00268 Карабас Барабас 01",
+        "alt": "00268 Карабас Барабас 01",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1678.-%D0%9A%D0%B0%D1%80%D0%B0%D0%B1%D0%B0%D1%81-%D0%91%D0%B0%D1%80%D0%B0%D0%B1%D0%B0%D1%81.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_17_54a96093.jpg",
+        "title": "00253 Пьеро 01",
+        "alt": "00253 Пьеро 01",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/382.-%D0%BF%D1%8C%D0%B5%D1%80%D0%BE.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_18_b153e230.jpg",
+        "title": "00269 Буратино (ASS01)",
+        "alt": "00269 Буратино (ASS01)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2167.-1-2.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_19_0a04efa1.jpg",
+        "title": "00270 Колобок",
+        "alt": "00270 Колобок",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/350.-%D0%BA%D0%BE%D0%BB%D0%BE%D0%B1%D0%BE%D0%BA.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_20_88a028f2.jpg",
+        "title": "00271 Инопланетянин \"NLO 01\"",
+        "alt": "00271 Инопланетянин &quot;NLO 01&quot;",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1676.-%D0%B8%D0%BD%D0%BE%D0%BF%D0%BB%D0%B0%D0%BD%D0%B5%D1%82%D1%8F%D0%BD%D0%B8%D0%BD.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_21_9d22b651.jpg",
+        "title": "00272 Инопланетянин \"NLO 01\" (01)",
+        "alt": "00272 Инопланетянин &quot;NLO 01&quot; (01)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1677.-%D0%B8%D0%BD%D0%BE%D0%BF%D0%BB%D0%B0%D0%BD%D0%B5%D1%82%D1%8F%D0%BD%D0%B8%D0%BD-1.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_22_be5c046d.jpg",
+        "title": "00273 Робот",
+        "alt": "00273 Робот",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1683.-%D1%80%D0%BE%D0%B1%D0%BE%D1%82.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_23_d07715a4.jpg",
+        "title": "04025 Гном",
+        "alt": "04025 Гном",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%B3%D0%BD%D0%BE%D0%BC.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_24_7d359300.jpg",
+        "title": "00274 Гном",
+        "alt": "00274 Гном",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4080.-%D0%93%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA-%D0%B2-%D0%B6%D0%B5%D0%BB%D1%82%D0%BE%D0%B9-%D0%BA%D1%83%D1%80%D1%82%D0%BE%D1%87%D0%BA%D0%B51.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_25_7f3cac07.jpg",
+        "title": "00275 Гном 02",
+        "alt": "00275 Гном 02",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4081.-%D0%93%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA1.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_26_65f28787.jpg",
+        "title": "00276 Гном 03",
+        "alt": "00276 Гном 03",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1674.-%D0%B3%D0%BD%D0%BE%D0%BC.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_27_914bbcdb.jpg",
+        "title": "00277 Гном 04",
+        "alt": "00277 Гном 04",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/329.-%D0%B3%D0%BD%D0%BE%D0%BC.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_28_7ec4c528.jpg",
+        "title": "00282 Рыцарь в доспехах",
+        "alt": "00282 Рыцарь в доспехах",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/390.-%D1%80%D1%8B%D1%86%D0%B0%D1%80%D1%8C-%D0%B2-%D0%B4%D0%BE%D1%81%D0%BF%D0%B5%D1%85%D0%B0%D1%85.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_29_e0554475.jpg",
+        "title": "04032 Рыцарь",
+        "alt": "04032 Рыцарь",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%A0%D1%8B%D1%86%D0%B0%D1%80%D1%8C.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      },
+      {
+        "src": "/images/real/boys_30_783ccf8b.jpg",
+        "title": "00288 Пётр I",
+        "alt": "00288 Пётр I",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1681.-%D0%9F%D1%91%D1%82%D1%80.jpg",
+        "category": "Для мальчиков",
+        "slug": "boys"
+      }
+    ],
+    "count": 30
+  },
+  "Для девочек": {
+    "slug": "girls",
+    "label": "Для девочек",
+    "items": [
+      {
+        "src": "/images/real/girls_1_27b286f9.jpg",
+        "title": "05372 Костюм в стиле \"Бриджертоны\" на девочку",
+        "alt": "05372 Костюм в стиле &quot;Бриджертоны&quot; на девочку",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/07/1-1729.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_2_f429d926.jpg",
+        "title": "04992 Неоновый костюм для девочки в рейв стиле",
+        "alt": "04992 Неоновый костюм для девочки в рейв-стиле",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04992-%D0%9D%D0%B5%D0%BE%D0%BD%D0%BE%D0%B2%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B4%D0%BB%D1%8F-%D0%B4%D0%B5%D0%B2%D0%BE%D1%87%D0%BA%D0%B8-%D0%B2-%D1%80%D0%B5%D0%B9%D0%B2-%D1%81%D1%82%D0%B8%D0%BB%D0%B5.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_3_c43a4042.jpg",
+        "title": "04988 Карнавальный костюм в стиле к поп",
+        "alt": "04988 Карнавальный костюм в стиле к-поп",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04988-%D0%9A%D0%B0%D1%80%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B2-%D1%81%D1%82%D0%B8%D0%BB%D0%B5-%D0%BA-%D0%BF%D0%BE%D0%BF.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_4_049c3de0.jpg",
+        "title": "04993 Костюм Китти",
+        "alt": "04993 Костюм Китти",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04993-%D0%9A%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%9A%D0%B8%D1%82%D1%82%D0%B8.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_5_b8848407.jpg",
+        "title": "05172 Девочка клоун",
+        "alt": "05172 Девочка клоун",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/05/015A1936.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_6_9a1a8277.jpg",
+        "title": "04994 Сценический костюм Звезда Тик тока",
+        "alt": "04994 Сценический костюм Звезда Тик-тока",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04994-%D0%A1%D1%86%D0%B5%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%97%D0%B2%D0%B5%D0%B7%D0%B4%D0%B0-%D0%A2%D0%B8%D0%BA-%D1%82%D0%BE%D0%BA%D0%B0.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_7_335adf06.jpg",
+        "title": "04990 Стилизованный костюм тролля Розочки",
+        "alt": "04990 Стилизованный костюм тролля Розочки",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04990-%D0%A1%D1%82%D0%B8%D0%BB%D0%B8%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D1%8F-%D0%A0%D0%BE%D0%B7%D0%BE%D1%87%D0%BA%D0%B8.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_8_5546dbb7.jpg",
+        "title": "04989 Клоунесса",
+        "alt": "04989 Клоунесса",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04989-%D0%9A%D0%BB%D0%BE%D1%83%D0%BD%D0%B5%D1%81%D1%81%D0%B0.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_9_900f371a.jpg",
+        "title": "04993 Стилизованный костюм соника для девочки",
+        "alt": "04993 Стилизованный костюм соника для девочки",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04993-%D0%A1%D1%82%D0%B8%D0%BB%D0%B8%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D1%81%D0%BE%D0%BD%D0%B8%D0%BA%D0%B0-%D0%B4%D0%BB%D1%8F-%D0%B4%D0%B5%D0%B2%D0%BE%D1%87%D0%BA%D0%B8.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_10_7132b945.jpg",
+        "title": "03998 Конфетка",
+        "alt": "03998 Конфетка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%9A%D0%B0%D1%80%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%BA%D0%BE%D0%BD%D1%84%D0%B5%D1%82%D0%BA%D0%B8.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_11_366d8a6f.jpg",
+        "title": "03856 Гермиона (мантия + колпак 1000, галстук 200, шарф 400, рубашка 400, юбк…",
+        "alt": "03856 Гермиона (мантия + колпак 1000, галстук 200, шарф 400, рубашка 400, юбка 400, палочка 200, распределительная шляпа 1000 руб стоимость проката за сутки)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2022/10/03856-%D0%93%D0%B5%D1%80%D0%BC%D0%B8%D0%BE%D0%BD%D0%B0.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_12_2108c5dc.jpg",
+        "title": "04440 Барби",
+        "alt": "04440 Барби",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2017/03/04440-%D0%91%D0%B0%D1%80%D0%B1%D0%B8-977.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_13_925d63a8.jpg",
+        "title": "00171 Костюм «Angry Birds 01» (1000 руб стоимость проката за сутки)",
+        "alt": "00171 Костюм «Angry Birds 01» (1000 руб стоимость проката за сутки)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/D-963.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_14_baff89fb.jpg",
+        "title": "00172 Красная шапочка «LRRH01» (платье + шапочка 1000, венок 400, корзина 400…",
+        "alt": "00172 Красная шапочка «LRRH01» (платье + шапочка 1000, венок 400, корзина 400 руб стоимость проката за сутки)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%B0%D1%8F-%D1%88%D0%B0%D0%BF%D0%BE%D1%87%D0%BA%D0%B0.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_15_0702bd01.jpg",
+        "title": "00173 Принцесса Ночь «Night 01». (платье 800, головной убор 400)",
+        "alt": "00173 Принцесса Ночь «Night 01». (платье 800, головной убор 400)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%9F%D1%80%D0%B8%D0%BD%D1%86%D0%B5%D1%81%D1%81%D0%B0-%D0%9D%D0%BE%D1%87%D1%8C..jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_16_7ed8d22c.jpg",
+        "title": "00174 Принцесса Ночь «Night 02» (нет в наличии)",
+        "alt": "00174 Принцесса Ночь «Night 02» (нет в наличии)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%9F%D1%80%D0%B8%D0%BD%D1%86%D0%B5%D1%81%D1%81%D0%B0-%D0%9D%D0%BE%D1%87%D1%8C.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_17_6d1463e8.jpg",
+        "title": "Фея «Трифейна 01».(платье 800, крылья 400, колпак 400 руб. стоимость проката…",
+        "alt": "Фея «Трифейна 01».(платье 800, крылья 400, колпак 400 руб. стоимость проката за сутки)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3348.-.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_18_645897d5.jpg",
+        "title": "00176 Фея «Трифейна» (платье 800, крылья 400, колпак 400 руб. стоимость прока…",
+        "alt": "00176 Фея «Трифейна» (платье 800, крылья 400, колпак 400 руб. стоимость проката за сутки)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3336.-.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_19_9f5cb358.jpg",
+        "title": "00177 Принцесса «Августа 02» (платье + корона 1000 руб., стоимость проката за…",
+        "alt": "00177 Принцесса «Августа 02» (платье + корона 1000 руб., стоимость проката за сутки)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/26661.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_20_46cf4eb6.jpg",
+        "title": "00178 Фея 01 (юбка 800, топ 400, парик 400, крылья 400 руб. стоимость проката…",
+        "alt": "00178 Фея 01 (юбка 800, топ 400, парик 400, крылья 400 руб. стоимость проката за сутки)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5280.-5080.-%D0%A4%D0%B5%D1%8F-%D0%B1%D0%B0%D0%B1%D0%BE%D1%87%D0%BA%D0%B01.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_21_e1a33e70.jpg",
+        "title": "00179 Принцесса «Лорэйн 03». (платье 1400, парик 400, плащ 600 руб стоимость…",
+        "alt": "00179 Принцесса «Лорэйн 03». (платье 1400, парик 400, плащ 600 руб стоимость проката за сутки) Цвет костюма может отличаться.",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5100.-IMG_95561.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_22_a981c371.jpg",
+        "title": "00180 Принцесса ночи (платье 1600/2000, зависит от выбранного размера, головн…",
+        "alt": "00180 Принцесса ночи (платье 1600/2000, зависит от выбранного размера, головной убор 1000, перчатки 400 руб. стоимость проката за сутки)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5667.-%D0%9F%D1%80%D0%B8%D0%BD%D1%86%D0%B5%D1%81%D1%81%D0%B0-%D0%BD%D0%BE%D1%87%D0%B8.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_23_f46b55c2.jpg",
+        "title": "00181 Фея в розовом. (Платье «Лорейн01» 1400, парик 400, крылья + палочка 400…",
+        "alt": "00181 Фея в розовом. (Платье «Лорейн01» 1400, парик 400, крылья + палочка 400 руб. стоимость проката за сутки)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5099.-IMG_95411.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_24_6ec05bfd.jpg",
+        "title": "00182 Принцесса в розовом платье (платье «Лорейн01» 1400, парик 400 руб. стои…",
+        "alt": "00182 Принцесса в розовом платье (платье «Лорейн01» 1400, парик 400 руб. стоимость проката за сутки)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5098.-IMG_95241.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_25_a1734930.jpg",
+        "title": "00184 Королева \"Золотая\" (платье + мантия + корона 1600, парик 400 руб. стоим…",
+        "alt": "00184 Королева &quot;Золотая&quot; (платье + мантия + корона 1600, парик 400 руб. стоимость проката за сутки)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2511-%D0%BA%D0%BE%D1%80%D0%BE%D0%BB%D0%B5%D0%B2%D0%BD%D0%B0-2.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_26_2f055478.jpg",
+        "title": "00187 Принцесса \"Августа 03\" (платье + корона 1000 руб., стоимость проката за…",
+        "alt": "00187 Принцесса &quot;Августа 03&quot; (платье + корона 1000 руб., стоимость проката за сутки)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/235.-%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%B0%D1%8F-%D0%BA%D0%BE%D1%80%D0%BE%D0%BB%D0%B5%D0%B2%D0%B0..jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_27_1d8e71fc.jpg",
+        "title": "00188 Принцесса \"Августа 01\"(платье + корона 1000 руб., стоимость проката за…",
+        "alt": "00188 Принцесса &quot;Августа 01&quot;(платье + корона 1000 руб., стоимость проката за сутки)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/156.-%D0%B1%D0%B0%D1%80%D0%B0%D0%BD%D0%B5%D1%81%D1%81%D0%B0.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_28_ba3bf524.jpg",
+        "title": "00189 Принцесса в фиолетовом платье \"Клауди 01\" (нет в наличии)",
+        "alt": "00189 Принцесса в фиолетовом платье &quot;Клауди 01&quot; (нет в наличии)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33434-IMG_2982.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_29_5bfe7bb5.jpg",
+        "title": "00190 Принцесса. Платье «Клауди 02» (нет в наличии)",
+        "alt": "00190 Принцесса. Платье «Клауди 02» (нет в наличии)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33438-IMG_2997.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      },
+      {
+        "src": "/images/real/girls_30_187fda68.jpg",
+        "title": "00191 Королева \"Иоанна01\" (платье + корона 1000, парик 400 руб. стоимость про…",
+        "alt": "00191 Королева &quot;Иоанна01&quot; (платье + корона 1000, парик 400 руб. стоимость проката за сутки)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/224.-%D0%BA%D0%BE%D1%80%D0%BE%D0%BB%D0%B5%D0%B2%D0%BD%D0%B0-%D0%B2-%D0%B7%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%BC.jpg",
+        "category": "Для девочек",
+        "slug": "girls"
+      }
+    ],
+    "count": 30
+  },
+  "Сказочные животные": {
+    "slug": "animals",
+    "label": "Сказочные животные",
+    "items": [
+      {
+        "src": "/images/real/animals_1_9a102dd1.jpg",
+        "title": "02541 Петух",
+        "alt": "02541 Петух",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3806-1.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_2_200f6f95.jpg",
+        "title": "00115 Обезьяна \"MK04\". Жилет, юбка, шапочка (800 руб.)",
+        "alt": "00115 Обезьяна &quot;MK04&quot;. Жилет, юбка, шапочка (800 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3340.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_3_5d46bf91.jpg",
+        "title": "00116 Обезьяна \"MK03\". Жилет, шорты, шапочка (800 руб.)",
+        "alt": "00116 Обезьяна &quot;MK03&quot;. Жилет, шорты, шапочка (800 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3297.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_4_71fbed48.jpg",
+        "title": "00117 Обезьяна (1000 руб.)",
+        "alt": "00117 Обезьяна (1000 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/26091.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_5_e5e40ae4.jpg",
+        "title": "00119 Обезьяна. Комбинезон (1000 руб.), Маска (600 руб.), дубинка (200 руб.)",
+        "alt": "00119 Обезьяна. Комбинезон (1000 руб.), Маска (600 руб.), дубинка (200 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/26071.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_6_403ac004.jpg",
+        "title": "00120 Мартышка. Шорты, жилет, парик (1400 руб.)",
+        "alt": "00120 Мартышка. Шорты, жилет, парик (1400 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/26081.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_7_5f88901a.jpg",
+        "title": "00121 Обезьяна. Юбка, блузка, жилет, ободок (1200 руб.)",
+        "alt": "00121 Обезьяна. Юбка, блузка, жилет, ободок (1200 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/26101.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_8_7e0e2939.jpg",
+        "title": "00122 Обезьяна (800 руб.)",
+        "alt": "00122 Обезьяна (800 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3363.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_9_15085543.jpg",
+        "title": "00123 Заяц. Комбинезон, головной убор (800 руб.)",
+        "alt": "00123 Заяц. Комбинезон, головной убор (800 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2569-%D0%97%D0%B0%D0%B9%D0%BA%D0%B0-.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_10_59cbe405.jpg",
+        "title": "0557. Заяц",
+        "alt": "0557. Заяц",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/425.-%D0%B7%D0%B0%D0%B9%D1%87%D0%B8%D0%BA.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_11_3a5c5fe2.jpg",
+        "title": "0867 7. Кролик",
+        "alt": "0867-7. Кролик",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/438.-%D0%BC%D1%8B%D1%88%D0%BE%D0%BD%D0%BE%D0%BA.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_12_eb2e18b0.jpg",
+        "title": "00126 Заяц белый. Комбинезон, головной убор (800 руб.)",
+        "alt": "00126 Заяц белый. Комбинезон, головной убор (800 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2376.-%D0%97%D0%B0%D0%B9%D0%BA%D0%B0-%D0%B1%D0%B5%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%B8%D0%B9.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_13_b5aa01bf.jpg",
+        "title": "00127 Заяц. Комбинезон, головной убор (800 руб.)",
+        "alt": "00127 Заяц. Комбинезон, головной убор (800 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3313.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_14_81bf1dc0.jpg",
+        "title": "00128. Медведь \"Bear01\". Комбинезон, головной убор (8000 руб.)",
+        "alt": "00128. Медведь &quot;Bear01&quot;. Комбинезон, головной убор (8000 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2605.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_15_3420db3e.jpg",
+        "title": "0796 7. Конь огонь",
+        "alt": "0796-7. Конь-огонь",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/428.-%D0%BA%D0%BE%D0%BD%D1%8C-%D0%BE%D0%B3%D0%BE%D0%BD%D1%8C.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_16_ca6eca58.jpg",
+        "title": "0567 7. Лошадь коричневая",
+        "alt": "0567-7. Лошадь коричневая",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/433.-%D0%BB%D0%BE%D1%88%D0%B0%D0%B4%D0%BA%D0%B0.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_17_fe34d6d8.jpg",
+        "title": "0873 3. Корова (Бурёнка)",
+        "alt": "0873-3. Корова (Бурёнка)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/419.-%D0%91%D1%83%D1%80%D0%B5%D0%BD%D0%BA%D0%B0.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_18_ea949f3a.jpg",
+        "title": "00132 Осёл (800 руб.)",
+        "alt": "00132 Осёл (800 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2607.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_19_cbc36f22.jpg",
+        "title": "00133 Волк (800 руб.)",
+        "alt": "00133 Волк (800 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3384.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_20_d40a028e.jpg",
+        "title": "0876 7. Волк (ну погоди)",
+        "alt": "0876-7. Волк (ну-погоди)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/420.-%D0%B2%D0%BE%D0%BB%D0%BA-%D0%BD%D1%83-%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B8.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_21_03cba220.jpg",
+        "title": "00135 Пингвин (800 руб.)",
+        "alt": "00135 Пингвин (800 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2378.-%D0%9A%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%9F%D0%B8%D0%BD%D0%B3%D0%B2%D0%B8%D0%BD%D0%B0.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_22_1f6edf9a.jpg",
+        "title": "00136 Цыпленок (800 руб.)",
+        "alt": "00136 Цыпленок (800 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2606.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_23_aab3b164.jpg",
+        "title": "00137 Цыплёнок (800 руб.)",
+        "alt": "00137 Цыплёнок (800 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2377.-%D0%9A%D0%B0%D1%80%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D1%86%D1%8B%D0%BF%D0%BB%D0%B5%D0%BD%D0%BE%D0%BA.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_24_05efdf39.jpg",
+        "title": "00138 Попугай (800 руб.)",
+        "alt": "00138 Попугай (800 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2379.-%D0%9F%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B9.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_25_54c2ef04.jpg",
+        "title": "00139 Сова (800 руб.)",
+        "alt": "00139 Сова (800 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3374.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_26_ffeb1c37.jpg",
+        "title": "00140 Мышь (800 руб.)",
+        "alt": "00140 Мышь (800 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3328.-.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_27_9cd5d197.jpg",
+        "title": "0883 3. Мышонок",
+        "alt": "0883-3. Мышонок",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/437.-%D0%BC%D1%8B%D1%88%D0%BA%D0%B0.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_28_60c5379e.jpg",
+        "title": "0885 5. Муравей",
+        "alt": "0885-5. Муравей",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/436.-%D0%BC%D1%83%D1%80%D0%B0%D0%B2%D0%B5%D0%B9.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_29_4d3c6816.jpg",
+        "title": "00143 Муравей (800 руб.)",
+        "alt": "00143 Муравей (800 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3352.-.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      },
+      {
+        "src": "/images/real/animals_30_4ae8a1df.jpg",
+        "title": "00144 Кузнечик (800 руб.)",
+        "alt": "00144 Кузнечик (800 руб.)",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3341.-.jpg",
+        "category": "Сказочные животные",
+        "slug": "animals"
+      }
+    ],
+    "count": 30
+  },
+  "Испанские": {
+    "slug": "spanish",
+    "label": "Испанские",
+    "items": [
+      {
+        "src": "/images/real/spanish_1_c3c0b2a3.jpg",
+        "title": "02266 Испанский костюм женский",
+        "alt": "02266 Испанский костюм женский",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1162.-DSC_8654.jpg",
+        "category": "Испанские",
+        "slug": "spanish"
+      },
+      {
+        "src": "/images/real/spanish_2_5bdb6bac.jpg",
+        "title": "02267 Испанский костюм женский",
+        "alt": "02267 Испанский костюм женский",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1164.-DSC_8694.jpg",
+        "category": "Испанские",
+        "slug": "spanish"
+      },
+      {
+        "src": "/images/real/spanish_3_85d2b80d.jpg",
+        "title": "02268 Испанский костюм женский",
+        "alt": "02268 Испанский костюм женский",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1184.-IMG_2425-Edit.jpg",
+        "category": "Испанские",
+        "slug": "spanish"
+      },
+      {
+        "src": "/images/real/spanish_4_31f24415.jpg",
+        "title": "02269 Испанский костюм женский",
+        "alt": "02269 Испанский костюм женский",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1185.-IMG_2462-Edit.jpg",
+        "category": "Испанские",
+        "slug": "spanish"
+      },
+      {
+        "src": "/images/real/spanish_5_2ae826b2.jpg",
+        "title": "02270 Испанский костюм женский",
+        "alt": "02270 Испанский костюм женский",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1197.-IMG_8751.jpg",
+        "category": "Испанские",
+        "slug": "spanish"
+      },
+      {
+        "src": "/images/real/spanish_6_1ff98f0a.jpg",
+        "title": "02271 Испанский костюм женский",
+        "alt": "02271 Испанский костюм женский",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1198.-IMG_8759.jpg",
+        "category": "Испанские",
+        "slug": "spanish"
+      },
+      {
+        "src": "/images/real/spanish_7_fafcb49d.jpg",
+        "title": "02272 Испанский костюм женский",
+        "alt": "02272 Испанский костюм женский",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1199.-IMG_8760.jpg",
+        "category": "Испанские",
+        "slug": "spanish"
+      },
+      {
+        "src": "/images/real/spanish_8_cf0b299f.jpg",
+        "title": "02273 Испанский костюм женский",
+        "alt": "02273 Испанский костюм женский",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1202.-IMG_8771.jpg",
+        "category": "Испанские",
+        "slug": "spanish"
+      }
+    ],
+    "count": 8
+  },
+  "Японские": {
+    "slug": "japanese",
+    "label": "Японские",
+    "items": [
+      {
+        "src": "/images/real/japanese_1_ad104774.jpg",
+        "title": "02476 Японское кимоно \"Амэя 01\"",
+        "alt": "02476 Японское кимоно &quot;Амэя 01&quot;",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33642.-%D1%8F%D0%BF%D0%BE%D0%BD%D1%81%D0%BA%D0%BE%D0%B5-%D0%BA%D0%B8%D0%BC%D0%BE%D0%BD%D0%BE-%D0%B2-%D1%82%D0%B5%D0%BC%D0%BD%D1%8B%D1%85-%D1%82%D0%BE%D0%BD%D0%B0%D1%851.jpg",
+        "category": "Японские",
+        "slug": "japanese"
+      },
+      {
+        "src": "/images/real/japanese_2_a56a785a.jpg",
+        "title": "02477 Японское кимоно \"Амэя 02\"",
+        "alt": "02477 Японское кимоно &quot;Амэя 02&quot;",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33646.-%D1%8F%D0%BF%D0%BE%D0%BD%D1%81%D0%BA%D0%BE%D0%B5-%D0%BA%D0%B8%D0%BC%D0%BE%D0%BD%D0%BE1.jpg",
+        "category": "Японские",
+        "slug": "japanese"
+      },
+      {
+        "src": "/images/real/japanese_3_4319bc6b.jpg",
+        "title": "02478 Японское кимоно \"Амэя 03\"",
+        "alt": "02478 Японское кимоно &quot;Амэя 03&quot;",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33645.-%D1%8F%D0%BF%D0%BE%D0%BD%D1%81%D0%BA%D0%BE%D0%B5-%D0%BA%D0%B8%D0%BC%D0%BE%D0%BD%D0%BE-%D0%B3%D0%BE%D0%BB%D1%83%D0%B1%D0%BE%D0%B51.jpg",
+        "category": "Японские",
+        "slug": "japanese"
+      },
+      {
+        "src": "/images/real/japanese_4_a06a93d8.jpg",
+        "title": "02479 Японское кимоно",
+        "alt": "02479 Японское кимоно",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2518.jpg",
+        "category": "Японские",
+        "slug": "japanese"
+      }
+    ],
+    "count": 4
+  },
+  "Арабские": {
+    "slug": "arabic",
+    "label": "Арабские",
+    "items": [
+      {
+        "src": "/images/real/arabic_1_6c515ab6.jpg",
+        "title": "02486 Мужской национальный арабский костюм",
+        "alt": "02486 Мужской национальный арабский костюм",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1225.-IMG_9906.jpg",
+        "category": "Арабские",
+        "slug": "arabic"
+      },
+      {
+        "src": "/images/real/arabic_2_5b891376.jpg",
+        "title": "02487 Женский арабский костюм",
+        "alt": "02487 Женский арабский костюм",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1245.-%D0%90%D1%80%D0%B0%D0%B1%D1%81%D0%BA%D0%B8%D0%B9-%D1%87%D0%B5%D1%80%D0%BD%D1%8B%D0%B9.jpg",
+        "category": "Арабские",
+        "slug": "arabic"
+      },
+      {
+        "src": "/images/real/arabic_3_679bacb9.jpg",
+        "title": "02488 Женский арабский костюм",
+        "alt": "02488 Женский арабский костюм",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1244.-%D0%90%D1%80%D0%B0%D0%B1%D1%81%D0%BA%D0%B8%D0%B9-%D1%81%D0%B8%D0%BD%D0%B8%D0%B9.jpg",
+        "category": "Арабские",
+        "slug": "arabic"
+      }
+    ],
+    "count": 3
+  },
+  "Цыганские": {
+    "slug": "gypsy",
+    "label": "Цыганские",
+    "items": [
+      {
+        "src": "/images/real/gypsy_1_93d2c5f3.jpg",
+        "title": "01641 Цыганский мужской костюм",
+        "alt": "01641 Цыганский мужской костюм",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33479-IMG_3263.jpg",
+        "category": "Цыганские",
+        "slug": "gypsy"
+      },
+      {
+        "src": "/images/real/gypsy_2_9da76b78.jpg",
+        "title": "01640 Цыганское платье \"Эйш\"",
+        "alt": "01640 Цыганское платье &quot;Эйш&quot;",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33495-IMG_3424.jpg",
+        "category": "Цыганские",
+        "slug": "gypsy"
+      },
+      {
+        "src": "/images/real/gypsy_3_9696c5b9.jpg",
+        "title": "01633 Цыганский костюм мужской",
+        "alt": "01633 Цыганский костюм мужской",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1540.-IMG_3279.jpg",
+        "category": "Цыганские",
+        "slug": "gypsy"
+      },
+      {
+        "src": "/images/real/gypsy_4_2b4ab8cb.jpg",
+        "title": "01637 Цыганский национальный костюм мужской",
+        "alt": "01637 Цыганский национальный костюм мужской",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1531.-2-3.jpg",
+        "category": "Цыганские",
+        "slug": "gypsy"
+      },
+      {
+        "src": "/images/real/gypsy_5_513fbb93.jpg",
+        "title": "01636 Цыганский костюм \"Надья\" 03",
+        "alt": "01636 Цыганский костюм &quot;Надья&quot; 03",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1537.-IMG_3212.jpg",
+        "category": "Цыганские",
+        "slug": "gypsy"
+      },
+      {
+        "src": "/images/real/gypsy_6_100aa408.jpg",
+        "title": "01639 Цыганский костюм \"Флорика\" 03",
+        "alt": "01639 Цыганский костюм &quot;Флорика&quot; 03",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1534.-IMG_3137.jpg",
+        "category": "Цыганские",
+        "slug": "gypsy"
+      },
+      {
+        "src": "/images/real/gypsy_7_d58e87a4.jpg",
+        "title": "2281 цыганский национальный костюм женский",
+        "alt": "2281 цыганский национальный костюм женский",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1532.-3-1.jpg",
+        "category": "Цыганские",
+        "slug": "gypsy"
+      },
+      {
+        "src": "/images/real/gypsy_8_d1277984.jpg",
+        "title": "01634 Цыганский костюм \"Надья\"",
+        "alt": "01634 Цыганский костюм &quot;Надья&quot;",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1527.-1-1.jpg",
+        "category": "Цыганские",
+        "slug": "gypsy"
+      },
+      {
+        "src": "/images/real/gypsy_9_5db4bee0.jpg",
+        "title": "01635 Цыганский костюм \"Надья\"",
+        "alt": "01635 Цыганский костюм &quot;Надья&quot;",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1530.-2-2.jpg",
+        "category": "Цыганские",
+        "slug": "gypsy"
+      },
+      {
+        "src": "/images/real/gypsy_10_c407bbc3.jpg",
+        "title": "01632 Цыганский костюм женский",
+        "alt": "01632 Цыганский костюм женский",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1539.-IMG_3261.jpg",
+        "category": "Цыганские",
+        "slug": "gypsy"
+      },
+      {
+        "src": "/images/real/gypsy_11_69a7cf78.jpg",
+        "title": "01631 Цыганский костюм \"Флорика\" 05",
+        "alt": "01631 Цыганский костюм &quot;Флорика&quot; 05",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1200.-IMG_8762.jpg",
+        "category": "Цыганские",
+        "slug": "gypsy"
+      },
+      {
+        "src": "/images/real/gypsy_12_ed650010.jpg",
+        "title": "01630 Цыганский костюм \"Флорика\" 04",
+        "alt": "01630 Цыганский костюм &quot;Флорика&quot; 04",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/1201.-IMG_8769.jpg",
+        "category": "Цыганские",
+        "slug": "gypsy"
+      }
+    ],
+    "count": 12
+  },
+  "Исторические": {
+    "slug": "historical",
+    "label": "Исторические",
+    "items": [
+      {
+        "src": "/images/real/historical_1_76895aec.jpg",
+        "title": "05449 Король",
+        "alt": "05449 Король",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/07/1-1293.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_2_4bc4eb25.jpg",
+        "title": "05227 Рыцарь",
+        "alt": "05227 Рыцарь",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/07/1-1725.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_3_39ce96d0.jpg",
+        "title": "05281 Анна Каренина. Аристократка XIX века",
+        "alt": "05281 Анна Каренина. Аристократка XIX века",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/07/1-2127.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_4_b7c2fea3.jpg",
+        "title": "05216 Паж. Придворный. Принц",
+        "alt": "05216 Паж. Придворный. Принц",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/07/1-846.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_5_fdca73c5.jpg",
+        "title": "04410 Средневековый костюм женский",
+        "alt": "04410 Средневековый костюм женский",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04410-%D0%A1%D1%80%D0%B5%D0%B4%D0%BD%D0%B5%D0%B2%D0%B5%D0%BA%D0%BE%D0%B2%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B6%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9-1-1251.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_6_ff948068.jpg",
+        "title": "05454 Принц",
+        "alt": "05454 Принц",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/07/1-1576.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_7_fd6decfd.jpg",
+        "title": "02925 Средневековое платье",
+        "alt": "02925 Средневековое платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/D-165.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_8_905d8223.jpg",
+        "title": "02926 Средневековое платье блио",
+        "alt": "02926 Средневековое платье блио",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/D-331.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_9_5576866b.jpg",
+        "title": "02927 Средневековый костюм",
+        "alt": "02927 Средневековый костюм",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/D-1149.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_10_12094f9a.jpg",
+        "title": "05455 Ромео",
+        "alt": "05455 Ромео",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/07/1-1593.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_11_4730d2e6.jpg",
+        "title": "02928 Средневековое платье блио",
+        "alt": "02928 Средневековое платье блио",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/D-1216.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_12_041fd79b.jpg",
+        "title": "02929 Принц Карл",
+        "alt": "02929 Принц Карл",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%BF%D1%80%D0%B8%D0%BD%D1%86-%D0%9A%D0%B0%D1%80%D0%BB.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_13_d579fa6d.jpg",
+        "title": "02556 Учитель танцев",
+        "alt": "02556 Учитель танцев",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/%D0%A3%D1%87%D0%B8%D1%82%D0%B5%D0%BB%D1%8C-%D1%82%D0%B0%D0%BD%D1%86%D0%B5%D0%B2-1.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_14_83b2579f.jpg",
+        "title": "02935 Мужской костюм придворного",
+        "alt": "02935 Мужской костюм придворного",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4680.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_15_e19d3bcd.jpg",
+        "title": "04603 Леди. Женский костюм в викторианском стиле",
+        "alt": "04603 Леди. Женский костюм в викторианском стиле",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/04603-%D0%96%D0%B5%D0%BD%D1%81%D0%BA%D0%BE%D0%B5-%D0%BF%D0%BB%D0%B0%D1%82%D1%8C%D0%B5-%D0%B2-%D0%B2%D0%B8%D0%BA%D1%82%D0%BE%D1%80%D0%B8%D0%B0%D0%BD%D1%81%D0%BA%D0%BE%D0%BC-%D1%81%D1%82%D0%B8%D0%BB%D0%B5-358.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_16_14ed0531.jpg",
+        "title": "02936 Мужской костюм придворного",
+        "alt": "02936 Мужской костюм придворного",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4664.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_17_ef49e881.jpg",
+        "title": "05396 Французский женский костюм",
+        "alt": "05396 Французский женский костюм",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/07/1-407.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_18_1968da7b.jpg",
+        "title": "02938 Женский исторический костюм",
+        "alt": "02938 Женский исторический костюм",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4578.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_19_2fef85e7.jpg",
+        "title": "02947 Костюм в викторианском стиле",
+        "alt": "02947 Костюм в викторианском стиле",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5249.-5049.-%D0%9A%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B2-%D0%B2%D0%B8%D0%BA%D1%82%D0%BE%D1%80%D0%B8%D0%B0%D0%BD%D1%81%D0%BA%D0%BE%D0%BC-%D1%81%D1%82%D0%B8%D0%BB%D0%B51.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_20_3c002cfe.jpg",
+        "title": "02789 Исторический",
+        "alt": "02789 Исторический",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3414.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_21_a74c4627.jpg",
+        "title": "02786 Бальное платье",
+        "alt": "02786 Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3417.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_22_bd8c992f.jpg",
+        "title": "02788 Бальное платье",
+        "alt": "02788 Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3420.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_23_b479dd66.jpg",
+        "title": "02787 Бальное платье",
+        "alt": "02787 Бальное платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/3401.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_24_3a315af2.jpg",
+        "title": "02950 Маркиза",
+        "alt": "02950 Маркиза",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33599.-%D0%9C%D0%B0%D1%80%D0%BA%D0%B8%D0%B7%D0%B01.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_25_77eb992e.jpg",
+        "title": "02951 Маркиза в сиреневом",
+        "alt": "02951 Маркиза в сиреневом",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33597.-%D0%9C%D0%B0%D1%80%D0%BA%D0%B8%D0%B7%D0%B0-%D0%B2-%D1%81%D0%B8%D1%80%D0%B5%D0%BD%D0%B5%D0%B2%D0%BE%D0%BC1.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_26_989ea6df.jpg",
+        "title": "02952 Маркиза в серебре",
+        "alt": "02952 Маркиза в серебре",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33596.-%D0%9C%D0%B0%D1%80%D0%BA%D0%B8%D0%B7%D0%B0-%D0%B2-%D1%81%D0%B5%D1%80%D0%B5%D0%B1%D1%80%D0%B51.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_27_b63e27ca.jpg",
+        "title": "02953 Маркиза в золотом платье",
+        "alt": "02953 Маркиза в золотом платье",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33595.-%D0%9C%D0%B0%D1%80%D0%BA%D0%B8%D0%B7%D0%B0-%D0%B2-%D0%B7%D0%BE%D0%BB%D0%BE%D1%82%D0%B5-%D1%81-%D0%B1%D0%B0%D0%BB%D0%B5%D1%80%D0%BE1.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_28_22e7db44.jpg",
+        "title": "02954 Маркиза в серебре",
+        "alt": "02954 Маркиза в серебре",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/33594.-%D0%9C%D0%B0%D1%80%D0%BA%D0%B8%D0%B7%D0%B0-%D0%B2-%D1%81%D0%B5%D1%80%D0%B5%D0%B1%D1%80%D0%B5-%D1%81-%D0%B1%D0%B0%D0%BB%D0%B5%D1%80%D0%BE1.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_29_ec1f3eb5.jpg",
+        "title": "05451 Бард",
+        "alt": "05451 Бард",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/07/1-1326.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      },
+      {
+        "src": "/images/real/historical_30_874d8ad7.jpg",
+        "title": "03837 Ромео",
+        "alt": "03837 Ромео",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2016/12/03837-%D0%9F%D1%80%D0%B8%D0%BD%D1%86.jpg",
+        "category": "Исторические",
+        "slug": "historical"
+      }
+    ],
+    "count": 30
+  },
+  "Осенний бал": {
+    "slug": "autumn",
+    "label": "Осенний бал",
+    "items": [
+      {
+        "src": "/images/real/autumn_1_3888db20.jpg",
+        "title": "05375 Осень",
+        "alt": "05375 Осень",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2026/07/1-1935.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_2_b4de806f.jpg",
+        "title": "03735 Костюм осени",
+        "alt": "03735 Костюм осени",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/03735-%D0%9A%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%BE%D1%81%D0%B5%D0%BD%D0%B8.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_3_10ffdc2d.jpg",
+        "title": "03734 Костюм мисс осень",
+        "alt": "03734 Костюм мисс осень",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/03734-%D0%9A%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%BC%D0%B8%D1%81%D1%81-%D0%BE%D1%81%D0%B5%D0%BD%D1%8C.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_4_c1d8caf0.jpg",
+        "title": "01001 Лето",
+        "alt": "01001 Лето",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4139.-%D0%9B%D0%B5%D1%82%D0%BE1.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_5_950dc0b4.jpg",
+        "title": "01002 Костюмы для осеннего бала. Арбуз, Яблоко, Осень",
+        "alt": "01002 Костюмы для осеннего бала. Арбуз, Яблоко, Осень",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5619.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_6_0f5c019c.jpg",
+        "title": "00999 Осень",
+        "alt": "00999 Осень",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4189.-%D0%9E%D1%81%D0%B5%D0%BD%D1%8C1.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_7_d81881bd.jpg",
+        "title": "01009 Золотая осень",
+        "alt": "01009 Золотая осень",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4188.-%D0%9E%D1%81%D0%B5%D0%BD%D1%8C-%D0%B7%D0%BE%D0%BB%D0%BE%D1%82%D0%B0%D1%8F1.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_8_6819bb2a.jpg",
+        "title": "01012 Репка",
+        "alt": "01012 Репка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4206.-%D0%A0%D0%B5%D0%BF%D0%BA%D0%B01.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_9_17447899.jpg",
+        "title": "01013 Абрикос",
+        "alt": "01013 Абрикос",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4048.-%D0%90%D0%B1%D1%80%D0%B8%D0%BA%D0%BE%D1%81%D0%B8%D0%BA1.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_10_61bd1b1a.jpg",
+        "title": "01014 Помидорка",
+        "alt": "01014 Помидорка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4202.-%D0%9F%D0%BE%D0%BC%D0%B8%D0%B4%D0%BE%D1%80%D0%BA%D0%B01.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_11_77da3702.jpg",
+        "title": "01015 Тыковка",
+        "alt": "01015 Тыковка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4252.-%D0%A2%D1%8B%D0%BA%D0%BE%D0%B2%D0%BA%D0%B01.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_12_a3163c00.jpg",
+        "title": "01016 Свеколка",
+        "alt": "01016 Свеколка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4234.-%D0%A1%D0%B2%D0%B5%D0%BA%D0%BE%D0%BB%D0%BA%D0%B01.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_13_2b25027c.jpg",
+        "title": "01017 Свекла",
+        "alt": "01017 Свекла",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4230.-%D0%A1%D0%B2%D0%B5%D0%BA%D0%BB%D0%B01.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_14_3555cfe1.jpg",
+        "title": "01018 Капустка",
+        "alt": "01018 Капустка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4114.-%D0%9A%D0%B0%D0%BF%D1%83%D1%81%D1%82%D0%BA%D0%B01.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_15_c75ff67d.jpg",
+        "title": "01010 Осень",
+        "alt": "01010 Осень",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4184.-%D0%9E%D1%81%D0%B5%D0%BD%D1%8C-%D0%B2-%D0%BE%D1%80%D0%B0%D0%BD%D0%B6%D0%B5%D0%B2%D0%BE%D0%BC-%D0%BD%D0%B0%D1%80%D1%8F%D0%B4%D0%B51.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_16_479d5280.jpg",
+        "title": "0585. Ромашка",
+        "alt": "0585. Ромашка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/25751.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_17_46821d5e.jpg",
+        "title": "01022 Осень",
+        "alt": "01022 Осень",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/147.-%D0%BE%D1%81%D0%B5%D0%BD%D1%8C..jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_18_2a4528e1.jpg",
+        "title": "01023 Мисс Осень",
+        "alt": "01023 Мисс Осень",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/27091.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_19_db919857.jpg",
+        "title": "01029 Мак",
+        "alt": "01029 Мак",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/135.-%D0%BC%D0%B0%D0%BA.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_20_b84f8c1a.jpg",
+        "title": "01030 Осенний листок",
+        "alt": "01030 Осенний листок",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/138.-%D0%BE%D1%81%D0%B5%D0%BD%D0%BD%D0%B8%D0%B9-%D0%BB%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%B5%D0%BA.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_21_f014d8a1.jpg",
+        "title": "4073. Венок для осени",
+        "alt": "4073. Венок для осени",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/4073.-%D0%92%D0%B5%D0%BD%D0%BE%D0%BA-%D0%B4%D0%BB%D1%8F-%D0%BE%D1%81%D0%B5%D0%BD%D0%B81.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_22_9ca595fb.jpg",
+        "title": "01031 Золотая осень",
+        "alt": "01031 Золотая осень",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/141.-%D0%BE%D1%81%D0%B5%D0%BD%D1%8C-%D0%B2-%D0%BA%D1%80%D0%B0%D1%81-%D0%BD%D0%BE%D0%BC-%D0%B2%D0%B5%D0%BD%D0%BA%D0%B5.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_23_61c52005.jpg",
+        "title": "01035 Красная осень",
+        "alt": "01035 Красная осень",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/146.-%D0%BE%D1%81%D0%B5%D0%BD%D1%8C-%D0%BA%D1%80%D0%B0%D1%81%D0%BD%D0%B0%D1%8F.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_24_27f65276.jpg",
+        "title": "01036 Костюм для осеннего бала",
+        "alt": "01036 Костюм для осеннего бала",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2296.-IMG_6388.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_25_4bab0a4c.jpg",
+        "title": "01037 Костюм для осеннего бала.",
+        "alt": "01037 Костюм для осеннего бала.",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2215.-IMG_5817.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_26_6da79261.jpg",
+        "title": "01039 Костюм для осеннего бала",
+        "alt": "01039 Костюм для осеннего бала",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2217.-IMG_5833.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_27_47386e1c.jpg",
+        "title": "01041 Костюм для осеннего бала",
+        "alt": "01041 Костюм для осеннего бала",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2219.-IMG_5891.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_28_43f0e9e2.jpg",
+        "title": "01043 Костюм для осеннего бала",
+        "alt": "01043 Костюм для осеннего бала",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2224.-IMG_5965.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_29_704509bd.jpg",
+        "title": "01045 Костюм для осеннего бала",
+        "alt": "01045 Костюм для осеннего бала",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2204.-2-2.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      },
+      {
+        "src": "/images/real/autumn_30_09e88ffc.jpg",
+        "title": "01047 Костюм для осеннего бала",
+        "alt": "01047 Костюм для осеннего бала",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2210.-IMG_5743.jpg",
+        "category": "Осенний бал",
+        "slug": "autumn"
+      }
+    ],
+    "count": 30
+  },
+  "Овощи и фрукты": {
+    "slug": "vegetables",
+    "label": "Овощи и фрукты",
+    "items": [
+      {
+        "src": "/images/real/vegetables_1_0a4a1210.jpg",
+        "title": "03720 Карнавальный костюм ананаса",
+        "alt": "03720 Карнавальный костюм ананаса",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/03720-%D0%9A%D0%B0%D1%80%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B0%D0%BD%D0%B0%D0%BD%D0%B0%D1%81%D0%B0.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_2_09febde9.jpg",
+        "title": "03721 Карнавальный костюм Виноград",
+        "alt": "03721 Карнавальный костюм Виноград",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/03721-%D0%9A%D0%B0%D1%80%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%92%D0%B8%D0%BD%D0%BE%D0%B3%D1%80%D0%B0%D0%B4.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_3_9d08dc79.jpg",
+        "title": "03722 Карнавальный костюм горошка",
+        "alt": "03722 Карнавальный костюм горошка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/03722-%D0%9A%D0%B0%D1%80%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B3%D0%BE%D1%80%D0%BE%D1%88%D0%BA%D0%B0.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_4_a767d35c.jpg",
+        "title": "03723 Карнавальный костюм груша",
+        "alt": "03723 Карнавальный костюм груша",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/03723-%D0%9A%D0%B0%D1%80%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B3%D1%80%D1%83%D1%88%D0%B0.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_5_ebb1b7f5.jpg",
+        "title": "03724 Карнавальный костюм кукурузы",
+        "alt": "03724 Карнавальный костюм кукурузы",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/03724-%D0%9A%D0%B0%D1%80%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%BA%D1%83%D0%BA%D1%83%D1%80%D1%83%D0%B7%D1%8B.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_6_6503a17e.jpg",
+        "title": "03725 Карнавальный костюм огурца",
+        "alt": "03725 Карнавальный костюм огурца",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/03725-%D0%9A%D0%B0%D1%80%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%BE%D0%B3%D1%83%D1%80%D1%86%D0%B0.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_7_9add8271.jpg",
+        "title": "03726 Карнавальный костюм подсолнуха",
+        "alt": "03726 Карнавальный костюм подсолнуха",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/03726-%D0%9A%D0%B0%D1%80%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%BF%D0%BE%D0%B4%D1%81%D0%BE%D0%BB%D0%BD%D1%83%D1%85%D0%B0.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_8_642f7ceb.jpg",
+        "title": "03727 Карнавальный костюм свеклы",
+        "alt": "03727 Карнавальный костюм свеклы",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/03727-%D0%9A%D0%B0%D1%80%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D1%81%D0%B2%D0%B5%D0%BA%D0%BB%D1%8B.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_9_c1fc7216.jpg",
+        "title": "03728 Костюм вишня для девочки",
+        "alt": "03728 Костюм вишня для девочки",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/03728-%D0%9A%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B2%D0%B8%D1%88%D0%BD%D1%8F-%D0%B4%D0%BB%D1%8F-%D0%B4%D0%B5%D0%B2%D0%BE%D1%87%D0%BA%D0%B8.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_10_3dc3241d.jpg",
+        "title": "03729 Костюм вишня для мальчика",
+        "alt": "03729 Костюм вишня для мальчика",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/03729-%D0%9A%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B2%D0%B8%D1%88%D0%BD%D1%8F-%D0%B4%D0%BB%D1%8F-%D0%BC%D0%B0%D0%BB%D1%8C%D1%87%D0%B8%D0%BA%D0%B0.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_11_5728e3b1.jpg",
+        "title": "03730 Костюм гриб боровик детский",
+        "alt": "03730 Костюм гриб боровик детский",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/03730-%D0%9A%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B3%D1%80%D0%B8%D0%B1-%D0%B1%D0%BE%D1%80%D0%BE%D0%B2%D0%B8%D0%BA-%D0%B4%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_12_165ad17a.jpg",
+        "title": "03731 Костюм гриб",
+        "alt": "03731 Костюм гриб",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/03731-%D0%9A%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B3%D1%80%D0%B8%D0%B1.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_13_80c679f4.jpg",
+        "title": "03732 Костюм мухомора детский",
+        "alt": "03732 Костюм мухомора детский",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/03732-%D0%9A%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%BC%D1%83%D1%85%D0%B0%D0%BC%D0%BE%D1%80-%D0%B4%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_14_58fe3244.jpg",
+        "title": "01054 Фото для семейной фотосессии в осеннем стиле. Свекла. Яблоко. Принцесса…",
+        "alt": "01054 Фото для семейной фотосессии в осеннем стиле. Свекла. Яблоко. Принцесса Осень.",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5616.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_15_1ac5851b.jpg",
+        "title": "01055 Редька",
+        "alt": "01055 Редька",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5620.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_16_8392eb3d.jpg",
+        "title": "01056 Костюмы для семейной фотосессии",
+        "alt": "01056 Костюмы для семейной фотосессии",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/5618.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_17_5e034be3.jpg",
+        "title": "01057 Тыква",
+        "alt": "01057 Тыква",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2373.-%D0%9A%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%A2%D1%8B%D0%BA%D0%B2%D0%BE%D1%87%D0%BA%D0%B8.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_18_78cc3fa9.jpg",
+        "title": "01058 Чеснок",
+        "alt": "01058 Чеснок",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2753.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_19_a8fee968.jpg",
+        "title": "01059 Картошка",
+        "alt": "01059 Картошка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2371.-%D0%94%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%BA%D0%B0%D1%80%D1%82%D0%BE%D1%88%D0%B5%D1%87%D0%BA%D0%B8.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_20_5fdffadd.jpg",
+        "title": "01060 Дыня",
+        "alt": "01060 Дыня",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2368.-%D0%94%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9-%D0%BA%D0%B0%D1%80%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%94%D1%8B%D0%BD%D0%B8.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_21_425e5b8f.jpg",
+        "title": "01061 Морковь",
+        "alt": "01061 Морковь",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2374.-%D0%9C%D0%BE%D1%80%D0%BA%D0%BE%D0%B2%D1%8C-%D0%B4%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_22_7de29d92.jpg",
+        "title": "01062 Помидор",
+        "alt": "01062 Помидор",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2372.-%D0%9A%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%BF%D0%BE%D0%BC%D0%B8%D0%B4%D0%BE%D1%80%D1%87%D0%B8%D0%BA%D0%B0.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_23_faf5456b.jpg",
+        "title": "01063 Помидор",
+        "alt": "01063 Помидор",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2751.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_24_ac62652e.jpg",
+        "title": "01064 Груша",
+        "alt": "01064 Груша",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2746.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_25_e0ae903a.jpg",
+        "title": "01065 Баклажан",
+        "alt": "01065 Баклажан",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2367.-%D0%91%D0%B0%D0%BA%D0%BB%D0%B0%D0%B6%D0%B0%D0%BD-%D0%B4%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9-%D0%BA%D0%B0%D1%80%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_26_3d2ddc0f.jpg",
+        "title": "01066 Редиска",
+        "alt": "01066 Редиска",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2749.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_27_c957be51.jpg",
+        "title": "01075 Пугало огородное",
+        "alt": "01075 Пугало огородное",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/131.-%D0%BF%D1%83%D0%B3%D0%B0%D0%BB%D0%BE-%D0%BE%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%BD%D0%BE%D0%B5.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_28_49419f42.jpg",
+        "title": "01076 Клубничка",
+        "alt": "01076 Клубничка",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/2748.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_29_c54505ca.jpg",
+        "title": "01078 Гриб Мухомор",
+        "alt": "01078 Гриб Мухомор",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/119.-%D0%BA%D0%B0%D1%80%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%BC%D1%83%D1%85%D0%BE%D0%BC%D0%BE%D1%80.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      },
+      {
+        "src": "/images/real/vegetables_30_5462a797.jpg",
+        "title": "01079 Гриб",
+        "alt": "01079 Гриб",
+        "sourceUrl": "https://dilizhans-show.ru/wp-content/uploads/2013/12/107.-%D0%BA%D0%B0%D1%80%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC-%D0%B3%D1%80%D0%B8%D0%B1%D0%BE%D0%BA.jpg",
+        "category": "Овощи и фрукты",
+        "slug": "vegetables"
+      }
+    ],
+    "count": 30
+  }
+}

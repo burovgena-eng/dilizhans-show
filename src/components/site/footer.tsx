@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
   MapPin,
   Clock,
@@ -44,6 +45,13 @@ const FOOTER_EYEBROW_CLASS =
 export function Footer() {
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState("");
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  // Subtle vertical parallax on the brand column as the footer scrolls by.
+  const yBrand = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
   function onSubscribe(e: React.FormEvent) {
     e.preventDefault();
@@ -61,9 +69,23 @@ export function Footer() {
   }
 
   return (
-    <footer className="mt-auto bg-onyx text-ivory">
-      {/* Top decorative gold gradient border */}
-      <div className="divider-gold-fade w-full" />
+    <motion.footer
+      ref={ref}
+      className="mt-auto bg-onyx text-ivory"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {/* Top decorative gold gradient border — animates width 0 → 100% on view */}
+      <motion.div
+        className="divider-gold-fade w-full"
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+        style={{ transformOrigin: "left" }}
+      />
 
       {/* Soft grain overlay */}
       <div
@@ -73,8 +95,8 @@ export function Footer() {
 
       <div className="relative mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {/* === Column 1 — Brand === */}
-          <div className="flex flex-col gap-4">
+          {/* === Column 1 — Brand (with subtle scroll parallax) === */}
+          <motion.div style={{ y: yBrand }} className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
               <span className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 bg-gradient-to-br from-emerald to-emerald-deep text-gold shadow-inner">
                 <span className="font-display text-2xl leading-none">Д</span>
@@ -102,7 +124,7 @@ export function Footer() {
                 850+ отзывов
               </span>
             </div>
-          </div>
+          </motion.div>
 
           {/* === Column 2 — Навигация === */}
           <nav className="flex flex-col gap-4">
@@ -224,6 +246,6 @@ export function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

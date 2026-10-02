@@ -328,7 +328,7 @@ export const GALLERY: GalleryItem[] = [
 
 export const NAV_LINKS = [
   { title: "Коллекции", href: "#collections" },
-  { title: "Категории", href: "#categories" },
+  { title: "Каталог", href: "#catalog" },
   { title: "Спецпредложения", href: "#offers" },
   { title: "Как мы работаем", href: "#process" },
   { title: "Галерея", href: "#gallery" },

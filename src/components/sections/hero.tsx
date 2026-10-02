@@ -91,14 +91,41 @@ export function Hero() {
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.1 }}
           className="max-w-4xl font-display text-5xl leading-[0.95] tracking-tight md:text-7xl lg:text-8xl"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            visible: { transition: { staggerChildren: 0.15, delayChildren: 0.2 } },
+          }}
         >
-          Карнавал
-          <br />
-          <span className="text-gold-gradient italic">без компромиссов</span>
+          {/* Line 1 — "Карнавал" */}
+          <span className="block overflow-hidden pb-[0.08em]">
+            <motion.span
+              variants={{ hidden: { y: "110%" }, visible: { y: 0 } }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              className="inline-block"
+            >
+              Карнавал
+            </motion.span>
+          </span>
+          {/* Line 2 — "без компромиссов" (italic + gold gradient, split into 2 words) */}
+          <span className="block overflow-hidden pb-[0.08em] italic">
+            {["без", "компромиссов"].map((word, i, arr) => (
+              <span
+                key={word}
+                className="inline-block overflow-hidden align-bottom"
+              >
+                <motion.span
+                  variants={{ hidden: { y: "110%" }, visible: { y: 0 } }}
+                  transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-gold-gradient inline-block"
+                >
+                  {word}
+                </motion.span>
+                {i < arr.length - 1 ? "\u00A0" : null}
+              </span>
+            ))}
+          </span>
         </motion.h1>
 
         <motion.p

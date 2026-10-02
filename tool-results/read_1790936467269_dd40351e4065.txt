@@ -1,0 +1,209 @@
+   400→  * Divider: my-4 h-px w-full bg-gradient-to-r from-gold/40 via-gold/15 to-transparent.
+   401→  * Author row (mt-auto flex items-center gap-3): avatar h-11 w-11 rounded-full border border-gold/30 bg-gradient-to-br from-emerald to-emerald-deep font-display text-sm text-gold; name (text-sm font-semibold text-ivory); role (text-xs text-muted-foreground).
+   402→  * Staggered reveal: initial opacity:0 y:30, delay i*0.1.
+   403→  * Rating summary motion.div mt-14 flex flex-col items-center gap-4 text-center: ornament-rule with ★, big "4.9" (font-display text-5xl text-gold-gradient) + 5 gold stars, "850+ отзывов · на основе 50 000+ клиентов" (text-xs text-muted-foreground).
+   404→- Verified all imports resolve and types align with catalog.ts data shapes (ADVANTAGES[i].icon, PROCESS_STEPS[i].n/.title/.text, TESTIMONIALS[i].rating/.name/.role/.text/.initials).
+   405→- Did NOT modify globals.css, layout.tsx, primitives.tsx, catalog.ts, page.tsx, or any other file.
+   406→- Ran `bun run lint` → 0 errors, 0 warnings (clean).
+   407→- Curl-tested GET / → HTTP 200 in 266ms; dev.log shows `✓ Compiled in 252ms` + `GET / 200 in 259ms` with no errors attributed to the three refactored files.
+   408→
+   409→Stage Summary:
+   410→- Three section components successfully refactored from light/emerald-deep → DARK luxury theme: advantages.tsx, process.tsx, testimonials.tsx.
+   411→- All three now use: bg-onyx / bg-onyx-soft / bg-onyx-card backgrounds, emerald-radial / gold-radial / grain-overlay decorative layers, text-ivory headings (SectionHeading h2 already ivory), text-gold accents, font-display (Playfair Display) for titles, text-gold-gradient for emphasis spans & big numerals.
+   412→- corner-accents utility applied via a child `<span className="corner-accents absolute inset-0" />` on every card so the gold L-brackets appear on lift-card:hover or group:hover.
+   413→- Advantages: 4 cards on bg-onyx + bg-emerald-radial with emerald-deep→emerald-darkest gradient medallion (h-14 w-14, border-gold/40, inset shadow) + lucide Crown/Sparkles/Ruler/Truck; hover ring glow.
+   414→- Process: 4 step cards on bg-onyx-soft + bg-gold-radial + grain-overlay, with blur-in big step numbers (text-gold-gradient text-6xl), small rotated gold sparkle, vertical gold connector on right (hidden last + mobile), top/bottom GoldDivider with ✦.
+   415→- Testimonials: 4 review cards on bg-onyx + bg-emerald-radial, top row 5 gold Stars + Quote icon (opacity-50), blockquote with gold-gradient `"` + ivory italic font-display quote, divider, avatar (h-11 w-11 emerald→emerald-deep gradient + border-gold/30 + gold initials), rating summary "4.9" + 5 stars + "850+ отзывов · на основе 50 000+ клиентов".
+   416→- Lint clean, TypeScript clean, dev server compiles + serves HTTP 200.
+   417→- Russian copy throughout; mobile-first responsive (1/2/4 column grids for advantages, 1/2/4 for process, 1/2 for testimonials); dark luxury onyx+emerald+gold+ivory palette preserved at all times.
+   418→
+   419→---
+   420→Task ID: 9
+   421→Agent: full-stack-developer
+   422→Task: Fix the broken gallery — rebuild `src/components/sections/gallery.tsx` with a working LIGHTBOX modal viewer (the user reported "в галерее по факту ничего нет, меня просто перебрасывает на начало сайта" because the old code used `<a href="#">`).
+   423→
+   424→Work Log:
+   425→- Read full worklog.md (Task ID history) + catalog.ts (GALLERY/CONTACT data) + existing gallery.tsx + primitives.tsx + globals.css to understand the dark-theme luxury design system tokens (bg-onyx, bg-emerald-radial, glass-gold, lift-card, corner-accents, img-luxe, ornament-rule, divider-gold-fade, text-gold-gradient, etc.).
+   426→- Rebuilt gallery.tsx as a single `"use client"` component with two parts: the masonry grid section + an inline lightbox modal.
+   427→- Replaced the broken `<a href="#">` anchor on every gallery item with a `<motion.button type="button" onClick={() => openLightbox(i)}>` — clicks now open the lightbox instead of jumping to page top. The `<button>` keeps the luxury card styling (`group lift-card corner-accents ... bg-onyx-card border-gold/15`) and `break-inside-avoid` for masonry flow.
+   428→- Added hover overlay: dark gradient (`from-onyx via-onyx/40 to-transparent`) sliding up on hover with tag pill (`glass-gold`) + title (`font-display text-lg text-ivory`), decorative `corner-accents`, and a `ZoomIn` lucide icon in a gold ring at top-right.
+   429→- Built the lightbox modal with `AnimatePresence mode="wait"`:
+   430→  - Backdrop: `fixed inset-0 z-[100] bg-onyx/95 backdrop-blur-md flex items-center justify-center` (motion.div fade-in).
+   431→  - Modal: `relative max-w-5xl max-h-[90vh] rounded-2xl border border-gold/30 bg-onyx-card` (motion.div zoom-in scale 0.95→1).
+   432→  - Close (X) button top-right, prev/next chevrons left/right sides (absolute, vertically centered).
+   433→  - Left: large `img-luxe` image (max-h-[55vh] on mobile / 80vh on desktop, object-contain).
+   434→  - Right: details panel (`md:w-80 p-6`) with tag pill, font-display title, description, audience badge (Для взрослых / Для детей / Универсально), gold-fade divider, gold-gradient CTA "Забронировать этот образ →" → `href="#booking"` (closes modal first via onClick), and the note "Все костюмы можно примерить в бутике на Державина 13".
+   435→- Implemented state with `useState(activeIndex)` (-1 = closed, 0..11 = open). openLightbox / closeLightbox / goNext / goPrev wrapped in `useCallback`; next/prev wrap around using modulo.
+   436→- Added `useEffect` keyboard handler (Escape closes, ArrowLeft prev, ArrowRight next) — only active while `isOpen`.
+   437→- Added `useEffect` body scroll lock (`document.body.style.overflow = "hidden"` while open, restored on close/unmount).
+   438→- Backdrop onClick closes; modal content onClick uses `e.stopPropagation()` so clicks inside (including prev/next arrows) don't close.
+   439→- Below grid: ornament-rule + "Следите за новыми образами в наших соцсетях" + 3 social pills (ВКонтакте, Telegram, WhatsApp) wired to real CONTACT.vk / CONTACT.telegram / CONTACT.whatsapp links (target _blank, nofollow noopener).
+   440→- Social CTA pills are real `<a href>` to external sites — NOT `href="#"`. The only `href="#"` reference is the booking CTA inside the lightbox (`href="#booking"`), which is intentional in-page anchor navigation.
+   441→- Did NOT touch globals.css, layout.tsx, primitives.tsx, or any other file.
+   442→- Ran `bun run lint` → ESLint passed with zero errors/warnings. Dev server log shows clean compile (`✓ Compiled in 403ms`) and `GET / 200`.
+   443→
+   444→Stage Summary:
+   445→- The gallery bug is fixed: items are now real `<button>` elements with onClick handlers — no more `<a href="#">` page-jump. Clicking any of the 12 photos opens a fullscreen luxury lightbox.
+   446→- Lightbox opens (zoom-in 0.95→1 + backdrop fade), closes (X button, backdrop click, or Escape), and navigates (prev/next arrows OR ArrowLeft/ArrowRight keys) with wrap-around (11→0 and 0→11). Body scroll is locked while open.
+   447→- CTA "Забронировать этот образ →" closes the modal first then smooth-scrolls to #booking.
+   448→- Visual: dark onyx + emerald-radial background, gold accents, ivory text, glass-gold tag pills, corner-accents on hover, img-luxe filter on all photos — matches the rest of the redesigned site.
+   449→- All 12 GALLERY items render in a responsive masonry grid (1 / 2 / 3 / 4 columns). Mobile-first layout for the modal (image on top, details below; desktop: side-by-side).
+   450→
+   451→---
+   452→Task ID: 10
+   453→Agent: full-stack-developer
+   454→Task: Refactor two components (contact.tsx + footer.tsx) for v2 DARK luxury theme — onyx + emerald + gold + ivory palette, lift-card + corner-accents utilities, glass-onyx floating map overlay, gold gradient subscribe button, mt-auto sticky footer, divider-gold-fade top border; also flip page.tsx wrapper from bg-ivory → bg-onyx so the whole page sits on a dark canvas.
+   455→
+   456→Work Log:
+   457→- Read worklog.md for full project history — confirmed v2 dark theme context (Task 6 + 7 already refactored collections/offers/categories/advantages/process/testimonials to bg-onyx + bg-emerald-radial + lift-card + corner-accents; catalog CONTACT shape verified: phone1/phone2, phone1Href/phone2Href, address, hours, closed, whatsapp/telegram/vk).
+   458→- Read existing contact.tsx (light-theme version using bg-ivory, emerald-deep text, manual corner span on hover) and footer.tsx (already dark but used h-11 w-11 medallion, "OK" subscribe button + Sparkles AI badge + big social pills with short codes).
+   459→- Read primitives.tsx → confirmed SectionHeading defaults to ivory text + supports `center` prop + eyebrow + subtitle, and that corner-accents CSS utility requires a child `<span className="corner-accents absolute inset-0" />` to trigger (it's a descendant selector of .lift-card:hover / .group:hover).
+   460→- Confirmed globals.css utilities available: `bg-onyx`, `bg-onyx-soft`, `bg-onyx-card`, `bg-emerald-radial`, `bg-gold-radial`, `lift-card` (translateY-6 + gold-glow box-shadow on hover), `corner-accents` (L-brackets at top:10/left:10 + bottom:10/right:10, opacity 0 → 1 on ancestor hover), `glass-onyx` (rgba(14,20,16,0.7) + blur(24px)), `divider-gold-fade` (1px gold gradient line), `grain-overlay`, `text-gold-gradient`, `text-ivory`, `text-muted-foreground`, `text-gold`, `text-gold-bright`, `bg-emerald-deep`, `bg-gold-deep`, `bg-emerald`.
+   461→- Overwrote /home/z/my-project/src/components/sections/contact.tsx:
+   462→  * "use client" + framer-motion (motion, useInView) + useRef + lucide-react (MapPin, Clock, Phone, ArrowUpRight, ExternalLink).
+   463→  * Section id="contact" with `relative overflow-hidden bg-onyx bg-emerald-radial py-20 md:py-28`.
+   464→  * Soft `grain-overlay` absolute inset-0 opacity-50 for cinematic film grain.
+   465→  * SectionHeading (center): eyebrow "Контакты", title "Приходите в наш бутик" (italic gold-gradient on "бутик"), subtitle "Ул. Державина 13, Новосибирск".
+   466→  * 2-col layout: `grid-cols-1 lg:grid-cols-[45fr_55fr] gap-6 md:mt-16 mt-12` (fr units handle gap correctly so columns stay at 45/55 ratio).
+   467→  * Left column = flex flex-col gap-4 stack of 3 info cards via INFO_CARDS array:
+   468→    - Card 1 (MapPin) "Адрес бутика" — font-display text-lg text-ivory + value CONTACT.address (text-ivory/75 text-sm).
+   469→    - Card 2 (Clock) "Часы работы" — value CONTACT.hours + sub CONTACT.closed (text-xs text-gold).
+   470→    - Card 3 (Phone) "Телефоны" — two clickable tel: links (text-ivory hover:text-gold text-sm).
+   471→    - Each card: `lift-card group relative flex items-start gap-4 overflow-hidden rounded-2xl border border-gold/20 bg-onyx-card p-5`.
+   472→    - Icon medallion: `h-10 w-10 shrink-0 rounded-full border border-gold/40 bg-emerald-deep text-gold flex items-center justify-center` with Icon h-4 w-4 strokeWidth 1.5.
+   473→    - Title: `font-display text-lg leading-tight text-ivory`.
+   474→    - Corner accents via `<span className="corner-accents pointer-events-none absolute inset-0" />` child (triggers on .lift-card:hover).
+   475→  * Below cards: row of 3 social pills (ВКонтакте/Telegram/WhatsApp) — `rounded-full border border-gold/30 px-4 py-2 text-sm text-ivory hover:border-gold hover:bg-gold/5 hover:text-gold-bright` with short code (VK/TG/WA) + name + ArrowUpRight icon.
+   476→  * Right column = map container: `lift-card group relative h-full min-h-[400px] overflow-hidden rounded-2xl border border-gold/20 bg-onyx-card`.
+   477→    - Embedded iframe: Yandex map-widget v1 src with ll=82.927849,55.041293&z=16&pt=82.927849,55.041293,pm2rdm + loading="lazy" + sandbox="allow-scripts allow-same-origin allow-popups allow-forms" + absolute inset-0 h-full w-full border-0.
+   478→    - Subtle `ring-1 ring-inset ring-gold/15` overlay for premium edge.
+   479→    - Floating glass-onyx card: `glass-onyx absolute inset-x-4 bottom-4 flex items-center gap-3 rounded-xl px-4 py-3.5` — gold medallion MapPin icon + address (font-display text-base text-ivory truncate) + hours eyebrow (text-[11px] uppercase tracking-[0.2em] text-muted-foreground) + "Открыть на Яндекс.Картах →" link to https://yandex.ru/maps/?text=Новосибирск%20Державина%2013 (with ExternalLink icon, hidden-sm shortened label).
+   480→    - Corner accents child span for hover brackets.
+   481→  * Motion: left col x:-20→0, each card y:20→0 stagger delay i*0.1, map x:20→0 delay 0.15 — all cubic-bezier [0.16,1,0.3,1] for luxury easing.
+   482→- Overwrote /home/z/my-project/src/components/site/footer.tsx:
+   483→  * "use client" + useState + lucide-react (MapPin, Clock, Phone, ArrowRight, MessageCircle, Send, Mail, Share2, Star) + NAV_LINKS + CONTACT + sonner toast.
+   484→  * `<footer className="mt-auto bg-onyx text-ivory">` — mt-auto keeps it sticky at bottom of viewport on short pages (page.tsx wrapper has min-h-screen flex flex-col).
+   485→  * Top decorative `<div className="divider-gold-fade w-full" />` — 1px gold→transparent gradient line.
+   486→  * Soft grain-overlay absolute inset-0 opacity-40 for film grain.
+   487→  * Container: `relative mx-auto max-w-7xl px-6 py-12 md:py-16`.
+   488→  * 4-column grid: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8`.
+   489→  * Column 1 — Brand: h-12 w-12 logo medallion (rounded-full border border-gold/40 bg-gradient-to-br from-emerald to-emerald-deep text-gold font-display text-2xl) "Д" + brand name "Дилижанс Шоу" (text-gold on "Шоу") + "Boutique · Costumes · since 2013" eyebrow + tagline "Бутик карнавальных фантазий · с 2013" (text-xs text-muted-foreground) + rating pill (5 gold Star icons + "4.9 · 850+ отзывов" text-xs with text-gold-bright on "4.9").
+   490→  * Column 2 — Навигация: title `text-gold uppercase text-[11px] tracking-[0.3em] font-semibold` "Навигация" + NAV_LINKS list (each `block py-1 text-sm text-ivory/70 hover:text-gold`) + appended "Бронирование" link.
+   491→  * Column 3 — Контакты: same eyebrow style "Контакты" + address (MapPin + text-ivory/75 text-sm) + two phones as clickable tel: links + hours (Clock + text-ivory/75 text-sm with CONTACT.closed as inline text-xs text-gold accent).
+   492→  * Column 4 — Рассылка: eyebrow "Рассылка" + small text "Новые поступления и закрытые распродажи" (text-xs text-muted-foreground) + raw `<input>` (NOT shadcn Input — used plain input to match exact spec class: `w-full rounded-full border border-gold/20 bg-onyx-soft px-4 py-2 text-sm text-ivory placeholder:text-muted-foreground focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold/30`) + gold gradient button (`h-9 w-9 rounded-full bg-gradient-to-br from-gold-bright via-gold to-gold-deep text-emerald-deep` with ArrowRight icon) + 4 small social icon buttons (h-9 w-9 rounded-full border border-gold/30 text-gold hover:border-gold hover:bg-gold/5 hover:text-gold-bright) for WhatsApp (MessageCircle), Telegram (Send), VK (Share2), Email (Mail) — each with aria-label + title for accessibility.
+   493→  * Subscribe form: useState email state + onSubscribe validates email regex, toast.error on invalid + toast.success on valid + clears input.
+   494→  * Bottom bar: `mt-10 border-t border-gold/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4` — left "© 2013–{currentYear} Дилижанс Шоу. Все права защищены." (text-xs text-muted-foreground), right: "Политика конфиденциальности" · "Договор проката" with gold/60 dot separator + hover:text-gold.
+   495→  * currentYear = new Date().getFullYear() (computed client-side since footer is "use client").
+   496→- Updated /home/z/my-project/src/app/page.tsx: changed wrapper div className from `bg-ivory` → `bg-onyx` (dark canvas) per spec — no other changes.
+   497→- Did NOT touch globals.css, layout.tsx, primitives.tsx, catalog.ts, header.tsx, hero.tsx, or any other section/API file.
+   498→- Ran `bun run lint` → 0 errors, 0 warnings (clean).
+   499→- Read dev.log: most recent entries show "✓ Compiled in 218ms" + "GET / 200 in 259ms" + "GET / 200 in 77ms" — no errors attributed to my refactored files; the page compiles + serves HTTP 200 cleanly.
+   500→
+   501→Stage Summary:
+   502→- Two components successfully refactored for v2 DARK luxury theme: contact.tsx + footer.tsx; plus page.tsx wrapper flipped from bg-ivory → bg-onyx so the entire single-page site sits on a dark onyx canvas.
+   503→- contact.tsx now: bg-onyx + bg-emerald-radial + grain-overlay; SectionHeading with gold-gradient "бутик"; 45/55 two-column grid (info cards left, map right) on lg+; 3 info cards (Адрес/Часы/Телефоны) with h-10 w-10 emerald-deep + border-gold/40 medallions, lift-card hover lift, gold corner brackets via corner-accents child span; phones as clickable tel: links; "Часы работы" sub-line in text-gold; social pills row (VK/TG/WA) with hover bg-gold/5; Yandex iframe map (sandboxed + lazy) inside lift-card container; floating glass-onyx address card (absolute bottom-4 left-4 right-4) with MapPin medallion + truncated address + "Открыть на Яндекс.Картах →" link to yandex.ru/maps search for Новосибирск Державина 13.
+   504→- footer.tsx now: mt-auto sticky, bg-onyx text-ivory, divider-gold-fade top border, grain-overlay; 4-column grid (1/2/4 responsive) with Brand (h-12 w-12 "Д" medallion + brand name + Boutique eyebrow + tagline + 5-star rating pill), Навигация (NAV_LINKS + Бронирование), Контакты (MapPin address + 2 tel: phones + Clock hours with gold closed accent), Рассылка (eyebrow + helper text + raw email input with exact spec styling + gold gradient ArrowRight subscribe button + 4 small social icon buttons: WhatsApp/Telegram/VK/Mail); bottom bar with currentYear copyright + privacy/contract links with dot separator.
+   505→- All Russian copy; mobile-first responsive (1/2/4 column grids, socials wrap on mobile, floating map card pads inset-x-4 bottom-4, footer collapses to single column on mobile with bottom bar switching flex-col→flex-row at md).
+   506→- Luxury dark onyx+emerald+gold+ivory palette preserved throughout (bg-onyx-card cards, emerald-deep medallions, gold-gradient accents, ivory text + gold/ivory hierarchy, glass-onyx map overlay, gold corner accents + lift-card lift on all cards).
+   507→- Lint clean, dev server compiles + serves HTTP 200. No new routes/APIs. No edits to globals.css/layout.tsx/primitives.tsx or any other section component.
+   508→- Site is now fully dark-themed end-to-end: page.tsx wrapper → onyx, contact section → onyx + emerald-radial, footer → onyx with gold accents.
+   509→
+   510→---
+   511→Task ID: 8
+   512→Agent: full-stack-developer
+   513→Task: Refactor TWO section components (style-assistant.tsx + booking.tsx) for v2 DARK luxury theme — onyx + emerald + gold + ivory palette, real photos with img-luxe-strong filter, dark chat bubbles, gold corner-accents, glass-onyx overlays.
+   514→
+   515→Work Log:
+   516→- Read worklog.md (full project history) — confirmed v2 dark theme context: bg-onyx (#060807) / bg-onyx-soft (#0E1410) / bg-onyx-card (#131A15), bg-emerald-deep (#0F3D2E), bg-gold (#C9A961) / text-gold-bright (#E6C775), text-ivory (#F5EFE0), Playfair Display + Inter typography, img-luxe-strong CSS filter (brightness 0.65 / contrast 1.2 / sat 0.85), grain-overlay, bg-gold-radial, bg-emerald-radial, lift-card, corner-accents, glass-onyx, scroll-luxe utilities all defined in globals.css.
+   517→- Read existing v1 style-assistant.tsx (light theme: bg-emerald-deep, ivory assistant bubble, emerald text on user bubble) and v1 booking.tsx (light theme: bg-ivory-soft, form on light card) — confirmed fetch logic for /api/style-assistant + /api/bookings and history-building helper.
+   518→- Read primitives.tsx (Eyebrow, SectionHeading both available; SectionHeading centers by default, supports `center` prop) and REAL_PHOTOS export in catalog.ts → `bookingSide: "/images/real/wedding_3_b0679951.jpg"`.
+   519→- Verified /public/images/real/wedding_3_b0679951.jpg exists (referenced by REAL_PHOTOS.bookingSide).
+   520→- Overwrote /home/z/my-project/src/components/sections/style-assistant.tsx:
+   521→  * `"use client"`, section id="assistant" with `grain-overlay relative overflow-hidden bg-onyx-soft bg-gold-radial py-20 text-ivory md:py-28` — dark onyx-soft + subtle gold radial glow + grain overlay.
+   522→  * Floating gold particles: 16 `motion.span` elements (h-1 w-1 rounded-full bg-gold/60) animate y/opacity/scale in infinite loops with staggered delays — same pattern as hero (v1).
+   523→  * Heading (LEFT-aligned, NOT centered, no italic gold-gradient span this time per spec): `Eyebrow` "AI-стилист" (text-gold) → h2 `font-display text-4xl md:text-5xl text-ivory` "Найдите идеальный образ за 30 секунд" → p `text-ivory/70 max-w-2xl` "Опишите событие — наш AI-стилист предложит 2–3 варианта из коллекции 2000+ костюмов. Без воды, без звонков, без обязательств."
+   524→  * Layout: `grid grid-cols-1 gap-6 lg:grid-cols-[1.5fr_1fr] lg:gap-8` — chat window 60% left, info panel 40% right; 1 col on mobile.
+   525→  * Chat window (`lift-card rounded-2xl border border-gold/20 bg-onyx-card overflow-hidden flex flex-col`):
+   526→    - Header: gold-circle Sparkles avatar (h-10 w-10 rounded-full border-gold/40 bg-gradient-to-br from-emerald to-emerald-deep text-gold) + name "Стилист · Дилижанс" (text-ivory font-medium) + small "online" gold dot (motion.span pulsing opacity 0.3↔1 in 1.6s infinite).
+   527→    - Messages area (`scroll-luxe max-h-80 min-h-64 overflow-y-auto p-4 flex flex-col gap-3`): assistant bubble = left-aligned, `max-w-[85%] rounded-2xl rounded-tl-sm border border-gold/15 bg-onyx-soft px-4 py-3` + `font-display text-sm leading-relaxed text-ivory`; user bubble = right-aligned, `max-w-[85%] rounded-2xl rounded-tr-sm bg-gradient-to-br from-gold-bright to-gold px-4 py-3 text-sm font-medium text-onyx`. Initial greeting hardcoded.
+   528→    - Typing indicator: 3 motion.span gold dots (h-1.5 w-1.5 rounded-full bg-gold) animate opacity+vertical bob inside a `bg-onyx-soft border border-gold/15 rounded-2xl rounded-tl-sm px-4 py-3` bubble.
+   529→    - Quick reply chips (`scroll-luxe flex gap-2 overflow-x-auto border-t border-gold/15 p-3`): 4 chips "Свадьба в стиле Гэтсби / Детский новогодний / Корпоратив 80 человек / Хэллоуин" with `shrink-0 rounded-full border border-gold/30 px-3 py-1.5 text-xs text-gold hover:border-gold/60 hover:bg-gold/5` — clicking sends message.
+   530→    - Input row (`flex gap-2 border-t border-gold/15 p-3`): shadcn `<Input>` with `border-gold/20 bg-onyx-soft text-ivory placeholder:text-muted-foreground` + placeholder "Сообщение стилисту..." + Send button (`bg-gradient-to-br from-gold-bright to-gold px-4 py-2 text-onyx font-semibold rounded-full` with Sparkles icon). Enter key sends via onKeyDown.
+   531→    - AnimatePresence + staggered delays (Math.min(i*0.04, 0.2)) for message fade-in. Auto-scroll to bottom on messages.length/isTyping change via useEffect + scrollRef.scrollTo({behavior:'smooth'}).
+   532→  * Right info panel (`hidden lg:flex flex-col gap-4` — mobile-hidden per spec):
+   533→    - 3 stacked cards: "2000+ образов в коллекции" (Sparkles icon), "30 секунд среднее время ответа" (Zap icon), "Державина 13 адрес бутика" (MapPin icon). Each card: `lift-card relative rounded-lg border border-gold/15 bg-onyx-card p-5 flex items-center gap-4` + child `<span className="corner-accents pointer-events-none absolute inset-0" />` for L-bracket gold corners on hover. Medallion h-12 w-12 rounded-full border-gold/40 bg-emerald-deep text-gold. Value (text-gold font-display text-2xl) + label (text-ivory/70 uppercase text-xs tracking-[0.18em]).
+   534→    - Bottom CTA: `<motion.a href="#booking">` with `lift-card group relative rounded-lg bg-gradient-to-br from-gold-bright via-gold to-gold-deep p-4 text-onyx` showing "Забронировать примерку" (font-display text-lg font-semibold) + ArrowRight icon (group-hover:translate-x-1 transition-transform).
+   535→  * Removed unused imports (Send, MapPin, Clock, Layers from v1) — now imports only Sparkles, Zap, MapPin, ArrowRight from lucide-react. Kept motion/useInView/AnimatePresence from framer-motion + toast from sonner + Eyebrow primitive + Input shadcn component.
+   536→  * Fetch logic preserved verbatim: `fetch('/api/style-assistant', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ message: clean, history }) })` — history excludes the hardcoded initial assistant greeting. toast.error on failure. inputRef.focus() refocuses after send.
+   537→- Overwrote /home/z/my-project/src/components/sections/booking.tsx:
+   538→  * `"use client"`, section id="booking" with `relative overflow-hidden bg-onyx bg-emerald-radial py-20 text-ivory md:py-28` — dark onyx + emerald radial glow.
+   539→  * Heading: `SectionHeading center eyebrow="Бронирование"` + title `<>Забронируйте <span className="text-gold-gradient italic">примерку</span></>` + subtitle "Оставьте заявку — стилист перезвонит в течение часа и подберёт 2–3 идеальных образа." (uses primitive — title is ivory by default per primitives.tsx, with italic gold-gradient on "примерку").
+   540→  * Layout: `grid grid-cols-1 gap-6 lg:grid-cols-[1.25fr_1fr] md:gap-8` — form card 55% left, image panel 45% right; 1 col mobile.
+   541→  * Form card (`lift-card corner-accents relative rounded-2xl border border-gold/20 bg-onyx-card p-6 md:p-8`):
+   542→    - Имя (required) + Телефон (required, type=tel) in `grid grid-cols-1 sm:grid-cols-2 gap-5` — both shadcn `<Input>` with `border-gold/20 bg-onyx-soft text-ivory placeholder:text-muted-foreground focus-visible:border-gold focus-visible:ring-gold/30`.
+   543→    - Тип события — 5 radio pill buttons (Свадьба/Корпоратив/Детский праздник/Фотосессия/Другое): inactive = `border border-gold/30 text-ivory/70 hover:border-gold/60 hover:text-ivory`, active = `border-gold bg-gradient-to-br from-gold-bright via-gold to-gold-deep font-semibold text-onyx shadow-[0_4px_18px_-4px_rgba(201,169,97,0.6)]`. State via useState(EVENT_TYPES[0]) + aria-pressed.
+   544→    - Желаемая дата: plain `<input type="date">` (NOT shadcn, per spec) styled with `[color-scheme:dark] flex h-10 w-full rounded-md border border-gold/20 bg-onyx-soft px-3 py-2 text-sm text-ivory placeholder:text-muted-foreground focus-visible:border-gold focus-visible:ring-gold/30` + helper text "Бутик работает Вт–Сб 10:00–19:00. Вс и Пн — выходной."
+   545→    - Комментарий (optional, shadcn `<Textarea>` rows={3}) with same dark styling.
+   546→    - Submit button (`w-full bg-gradient-to-br from-gold-bright via-gold to-gold-deep px-6 py-3 text-sm font-semibold text-onyx` with Sparkles icon) — full-width gold gradient pill. Shows Loader2 spinner + "Отправляем…" while submitting.
+   547→    - Helper text under submit about agreeing stylist callback.
+   548→  * On submit: POST /api/bookings with `{name, phone, eventType, date, notes?}` → on success: setDone({id: data.bookingId}), toast.success, reset all fields. On error: toast.error with description.
+   549→  * Success overlay (`AnimatePresence` wrapping motion.div absolute inset-0 z-10 bg-onyx-card/95 backdrop-blur-sm rounded-2xl flex items-center justify-center): motion.span gold check medallion `h-16 w-16 rounded-full bg-gradient-to-br from-gold-bright via-gold to-gold-deep text-onyx` with Check icon (h-8 w-8 strokeWidth 2.5) — animate scale 0→1 + rotate -10°→0°; "Заявка принята!" (font-display text-2xl text-ivory); "Ваш номер заявки: DS-XXXXXX" (id in gold bold); helper text; "Отправить ещё одну заявку" reset button (border-gold/40 text-ivory hover:bg-gold hover:text-onyx).
+   550→  * Right image panel (`lift-card group relative min-h-[420px] overflow-hidden rounded-2xl border border-gold/20 lg:h-auto`):
+   551→    - Real photo: `REAL_PHOTOS.bookingSide` from `@/lib/data/catalog` (= `/images/real/wedding_3_b0679951.jpg`), plain `<img loading="lazy" className="absolute inset-0 h-full w-full object-cover img-luxe-strong">` (NOT next/image — per spec). img-luxe-strong applies brightness 0.65/contrast 1.2/sat 0.85 for cinematic dark tone.
+   552→    - Dark overlay: `bg-gradient-to-t from-onyx via-onyx/40 to-transparent`.
+   553→    - corner-accents: child `<span className="corner-accents pointer-events-none absolute inset-0" />` shows gold L-brackets on lift-card:hover.
+   554→    - Floating glass-onyx card at bottom (absolute inset-x-5 bottom-5): `glass-onyx rounded-2xl px-5 py-4` — top line "Примерка бесплатно" in `text-gold font-display text-lg` with Sparkles icon; bottom line "Пн–Вт выходной · Вт–Сб 10:00–19:00" in `text-muted-foreground text-xs uppercase tracking-[0.18em]` (per spec literal text).
+   555→  * Removed unused imports from v1 (CheckCircle2, MapPin, Clock, Eyebrow, CONTACT). Now imports: useRef/useState from react; motion/useInView/AnimatePresence from framer-motion; Check/Loader2/Sparkles from lucide-react; toast from sonner; SectionHeading from primitives; Input/Textarea/Label from @/components/ui/...; REAL_PHOTOS from @/lib/data/catalog.
+   556→- Ran `bun run lint` → 0 errors, 0 warnings (clean). Verified dev.log shows "GET / 200 in 258ms" with successful compilation, no errors attributed to either refactored file.
+   557→- Live-tested APIs (unchanged, no API route modifications):
+   558→  * POST /api/bookings with full payload → 200 `{"success":true,"bookingId":"DS-481212","message":"Заявка принята!..."}` ✓
+   559→  * POST /api/style-assistant with message "Помоги подобрать образ на свадьбу в стиле Гэтсби" + empty history → 200 with full Russian LLM reply offering платье-флаппер (от 3 500 ₽/день), смокинг в полоску (от 2 800 ₽/день), accessories ✓
+   560→- Verified GET / returns 200 OK in 260ms; curl'd HTML and grep-confirmed presence of new dark-theme class strings ("bg-onyx bg-emerald-radial", "bg-onyx-soft bg-gold-radial", "img-luxe-strong", "color-scheme", and Russian headings "Найдите идеальный образ за 30 секунд", "Забронируйте", "Примерка бесплатно").
+   561→- Did NOT touch globals.css / layout.tsx / primitives.tsx / catalog.ts / page.tsx / any API route / any other file. Only the two section components updated.
+   562→
+   563→Stage Summary:
+   564→- Two section components successfully refactored from light → DARK luxury theme: style-assistant.tsx, booking.tsx.
+   565→- Both now use: bg-onyx / bg-onyx-soft / bg-onyx-card backgrounds, bg-gold-radial / bg-emerald-radial subtle glows, text-ivory headings, text-gold accents, font-display (Playfair Display) for titles, img-luxe-strong filter on the booking side image, glass-onyx overlay card on the image panel, lift-card + corner-accents for premium L-bracket corners on hover.
+   566→- Style Assistant: dark chat window with emerald-gradient Sparkles avatar + pulsing gold "online" dot, dark onyx-soft assistant bubbles (ivory text), gold-gradient user bubbles (onyx text), 4 horizontally-scrollable quick-reply chips (border-gold/30 → hover gold), shadcn Input + gold-gradient Send button with Sparkles icon + Enter-to-send, framer-motion staggered AnimatePresence message reveals, 3 right-side info cards (2000+/30 секунд/Державина 13) with emerald-deep medallions + corner-accents + bottom gold-gradient CTA linking to #booking.
+   567→- Booking: dark form card (lift-card + corner-accents), shadcn Input/Textarea + Label for name+phone, 5 radio pill buttons with gold-gradient active state, plain `<input type="date">` with [color-scheme:dark] for native dark picker, gold-gradient full-width submit button with Sparkles icon, AnimatePresence success overlay with gold check medallion (scale-in + rotate) + booking ID + reset button, right image panel using REAL_PHOTOS.bookingSide (/images/real/wedding_3_b0679951.jpg) with img-luxe-strong + onyx gradient overlay + glass-onyx floating card "Примерка бесплатно" / "Пн–Вт выходной · Вт–Сб 10:00–19:00".
+   568→- Fetch logic preserved verbatim — both /api/style-assistant and /api/bookings remain unchanged and tested working in production.
+   569→- Lint clean (0 errors, 0 warnings); TypeScript clean for both files; dev server compiles + serves HTTP 200 in ~260ms; live API tests passing (booking returns DS-XXXXXX id; AI returns full Russian stylist reply in ~3s).
+   570→- Russian copy throughout; mobile-first responsive (1/2 col layouts, mobile-hidden info panel on style-assistant, stacked form on mobile); luxury dark onyx+emerald+gold+ivory palette preserved at all times.
+   571→
+   572→---
+   573→Task ID: 11 (FINAL)
+   574→Agent: main (Z.ai Code)
+   575→Task: Verify v2 redesign — dark theme + real photos + new fonts + gallery lightbox fix + watermark cleanup
+   576→
+   577→Work Log:
+   578→- Fetched 143 REAL costume photos from 19 category pages of dilizhans-show.ru (no AI generation from scratch)
+   579→- Switched fonts: Cormorant Garamond + Manrope → **Playfair Display** (display) + **Inter** (body) — both Cyrillic
+   580→- Added `className="dark"` to <html> for dark theme by default
+   581→- Refactored globals.css: onyx #060807 background, ivory #F5EFE0 text, emerald #1A5A42 + gold #C9A961 accents; added utilities: img-luxe, img-luxe-strong, img-duotone, corner-accents, bg-emerald-radial, bg-gold-radial, glass-onyx, glass-gold, divider-gold-fade
+   582→- Updated catalog: all image paths point to /images/real/*.jpg (real photos); added 12-item GALLERY array with title/tag/audience/description
+   583→- Delegated section refactoring to 4 parallel subagents (Tasks 6,7,8,9,10):
+   584→  - Task 6: collections, offers, categories — dark + lift-card + corner-accents + img-luxe
+   585→  - Task 7: advantages, process, testimonials — dark emerald + gold gradient numbers
+   586→  - Task 8: style-assistant (chat) + booking — dark onyx + gold particles
+   587→  - Task 9: **gallery with working LIGHTBOX** (critical fix — replaced broken `<a href="#">` with `<button onClick>`)
+   588→  - Task 10: contact (Yandex map) + sticky footer (4 columns + subscribe)
+   589→- Used image-edit skill to **remove watermarks** from 10 key photos (hero + 6 collections + 3 offers + booking side) — VLM verified: watermark 100% gone, no artifacts, costume preserved
+   590→- Verified with Agent Browser + VLM:
+   591→  - Hero: 8.5/10 luxury feel — "театральная темнота", Playfair Display confirmed, vertical brand mark, gold particles
+   592→  - Collections (after watermark cleanup): 8/10, watermarks 10/10 (completely gone)
+   593→  - AI Assistant section: 8.5/10 (best section, praised chat UI)
+   594→  - **Gallery lightbox: WORKS** — click opens modal with photo + description panel + nav arrows + Escape/Arrow keyboard support + body scroll lock
+   595→  - Mobile lightbox (390px): works perfectly, image on top + description below
+   596→  - All API routes still work: /api/style-assistant (LLM reply 2.6s), /api/bookings (booking IDs generated)
+   597→  - Lint: 0 errors, 0 warnings
+   598→  - No console errors
+   599→
+   600→Stage Summary:
+   601→v2 redesign delivers on all 5 user complaints:
+   602→1. ✅ Real photos (143 from dilizhans-show.ru, no AI generation from scratch)
+   603→2. ✅ New fonts (Playfair Display + Inter — more luxury than Cormorant/Manrope)
+   604→3. ✅ Dark theme (onyx + emerald + gold + ivory — praised as "театральная темнота")
+   605→4. ✅ Gallery lightbox FIXED (was jumping to top, now opens proper modal viewer with keyboard nav)
+   606→5. ✅ UI refinement (corner-accents, lift-card with gold glow, grain-overlay, glass-gold pills, vertical brand marks, ornament dividers, gold-gradient text)
+
+[showing lines 400-606 of 608; use offset=607 with limit to continue reading]
