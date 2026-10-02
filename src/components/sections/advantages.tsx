@@ -19,15 +19,17 @@ export function Advantages() {
   const inView = useInView(ref, { once: true, margin: "-120px" });
 
   return (
-    <section id="advantages" className="relative bg-ivory-soft py-20 md:py-28">
-      {/* Decorative gold ornament at section top */}
-      <div className="mx-auto mb-2 flex max-w-7xl justify-center px-6">
-        <div className="ornament-rule w-full max-w-md">
-          <span className="text-gold text-xs tracking-[0.4em]">◆</span>
-        </div>
-      </div>
+    <section
+      id="advantages"
+      className="relative overflow-hidden bg-onyx bg-emerald-radial py-20 md:py-28"
+    >
+      {/* Soft emerald glow top-right */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-emerald/40 blur-[140px]"
+      />
 
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="relative mx-auto max-w-7xl px-6">
         {/* Heading */}
         <SectionHeading
           center
@@ -46,7 +48,7 @@ export function Advantages() {
         {/* Cards grid */}
         <div
           ref={ref}
-          className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 md:gap-8"
+          className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
         >
           {ADVANTAGES.map((a, i) => {
             const Icon = ICON_MAP[a.icon] ?? Crown;
@@ -55,12 +57,22 @@ export function Advantages() {
                 key={a.icon}
                 initial={{ opacity: 0, y: 28 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="group lift-card relative flex flex-col items-start overflow-hidden rounded-2xl border border-border bg-card p-6 transition-colors duration-500 hover:border-gold/45"
+                transition={{
+                  duration: 0.6,
+                  delay: i * 0.1,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="group lift-card relative flex flex-col items-start overflow-hidden rounded-lg border border-gold/15 bg-onyx-card p-6 transition-colors duration-500 hover:border-gold/45"
               >
+                {/* Decorative gold corner accents on hover */}
+                <span className="corner-accents pointer-events-none absolute inset-0" />
+
                 {/* Icon medallion */}
-                <span className="relative flex h-16 w-16 items-center justify-center rounded-full border border-gold/45 bg-emerald-deep text-gold shadow-[inset_0_0_0_3px_rgba(250,246,238,0.05)] transition-colors duration-500 group-hover:text-gold-bright">
-                  <Icon className="h-7 w-7" strokeWidth={1.5} />
+                <span
+                  className="relative flex h-14 w-14 items-center justify-center rounded-full border border-gold/40 bg-gradient-to-br from-emerald-deep to-emerald-darkest text-gold shadow-[inset_0_1px_0_rgba(201,169,97,0.3)] transition-colors duration-500 group-hover:text-gold-bright"
+                  aria-hidden="true"
+                >
+                  <Icon className="h-6 w-6" strokeWidth={1.5} />
                   {/* Subtle gold ring glow on hover */}
                   <span
                     className="pointer-events-none absolute inset-0 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -68,20 +80,15 @@ export function Advantages() {
                       boxShadow:
                         "0 0 0 1px rgba(201,169,97,0.45), 0 0 24px -4px rgba(201,169,97,0.55)",
                     }}
-                    aria-hidden="true"
                   />
                 </span>
 
-                <h3 className="mt-6 font-display text-2xl leading-tight text-emerald-deep">
+                <h3 className="mt-5 font-display text-xl leading-tight text-ivory">
                   {a.title}
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                   {a.text}
                 </p>
-
-                {/* Decorative gold corner accent on hover */}
-                <span className="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <span className="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </motion.article>
             );
           })}

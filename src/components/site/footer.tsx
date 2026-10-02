@@ -5,20 +5,41 @@ import {
   MapPin,
   Clock,
   Phone,
-  Sparkles,
+  ArrowRight,
+  MessageCircle,
   Send,
-  ArrowUpRight,
+  Mail,
+  Share2,
   Star,
 } from "lucide-react";
 import { NAV_LINKS, CONTACT } from "@/lib/data/catalog";
 import { toast } from "sonner";
-import { Input } from "@/components/ui/input";
 
-const SOCIALS = [
-  { title: "ВКонтакте", short: "VK", href: CONTACT.vk },
-  { title: "Telegram", short: "TG", href: CONTACT.telegram },
-  { title: "WhatsApp", short: "WA", href: CONTACT.whatsapp },
-];
+const SOCIAL_ICONS = [
+  {
+    title: "WhatsApp",
+    href: CONTACT.whatsapp,
+    Icon: MessageCircle,
+  },
+  {
+    title: "Telegram",
+    href: CONTACT.telegram,
+    Icon: Send,
+  },
+  {
+    title: "ВКонтакте",
+    href: CONTACT.vk,
+    Icon: Share2,
+  },
+  {
+    title: "E-mail",
+    href: "mailto:info@dilizhans-show.ru",
+    Icon: Mail,
+  },
+] as const;
+
+const FOOTER_EYEBROW_CLASS =
+  "text-[11px] font-semibold uppercase tracking-[0.3em] text-gold";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -41,56 +62,57 @@ export function Footer() {
 
   return (
     <footer className="mt-auto bg-onyx text-ivory">
-      {/* Decorative gold top border with gradient */}
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-gold to-transparent" />
+      {/* Top decorative gold gradient border */}
+      <div className="divider-gold-fade w-full" />
 
       {/* Soft grain overlay */}
-      <div className="grain-overlay pointer-events-none absolute inset-0 opacity-40" aria-hidden="true" />
+      <div
+        className="grain-overlay pointer-events-none absolute inset-0 opacity-40"
+        aria-hidden="true"
+      />
 
-      <div className="relative mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-          {/* === Brand column === */}
-          <div className="flex flex-col gap-5">
+      <div className="relative mx-auto max-w-7xl px-6 py-12 md:py-16">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {/* === Column 1 — Brand === */}
+          <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-gold/40 bg-gradient-to-br from-emerald to-emerald-deep text-gold shadow-inner">
-                <span className="font-display text-xl leading-none">Д</span>
+              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 bg-gradient-to-br from-emerald to-emerald-deep text-gold shadow-inner">
+                <span className="font-display text-2xl leading-none">Д</span>
               </span>
-              <span className="flex flex-col leading-none">
-                <span className="font-display text-xl tracking-tight text-ivory">
+              <span className="flex flex-col leading-tight">
+                <span className="font-display text-xl text-ivory">
                   Дилижанс<span className="text-gold"> Шоу</span>
                 </span>
-                <span className="mt-0.5 text-[9px] uppercase tracking-[0.35em] text-ivory/45">
+                <span className="mt-1 text-[9px] uppercase tracking-[0.35em] text-muted-foreground">
                   Boutique · Costumes · since 2013
                 </span>
               </span>
             </div>
-            <p className="text-sm leading-relaxed text-ivory/65">
-              Бутик карнавальных фантазий · с 2013 года
+            <p className="text-xs text-muted-foreground">
+              Бутик карнавальных фантазий · с 2013
             </p>
-            <div className="inline-flex items-center gap-2 self-start rounded-full border border-gold/30 bg-emerald-deep/40 px-3.5 py-1.5">
+            <div className="inline-flex items-center gap-2 self-start rounded-full border border-gold/30 bg-emerald-deep/30 px-3.5 py-1.5">
               <span className="flex">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} className="h-3 w-3 fill-gold text-gold" />
                 ))}
               </span>
               <span className="text-xs text-ivory/75">
-                <span className="font-semibold text-gold-bright">4.9</span> на
-                основе 850+ отзывов
+                <span className="font-semibold text-gold-bright">4.9</span> ·
+                850+ отзывов
               </span>
             </div>
           </div>
 
-          {/* === Navigation === */}
+          {/* === Column 2 — Навигация === */}
           <nav className="flex flex-col gap-4">
-            <h3 className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
-              Навигация
-            </h3>
-            <ul className="flex flex-col gap-2.5">
+            <h3 className={FOOTER_EYEBROW_CLASS}>Навигация</h3>
+            <ul className="flex flex-col">
               {NAV_LINKS.map((l) => (
                 <li key={l.href}>
                   <a
                     href={l.href}
-                    className="text-sm text-ivory/70 transition-colors hover:text-gold"
+                    className="block py-1 text-sm text-ivory/70 transition-colors hover:text-gold"
                   >
                     {l.title}
                   </a>
@@ -99,7 +121,7 @@ export function Footer() {
               <li>
                 <a
                   href="#booking"
-                  className="text-sm text-ivory/70 transition-colors hover:text-gold"
+                  className="block py-1 text-sm text-ivory/70 transition-colors hover:text-gold"
                 >
                   Бронирование
                 </a>
@@ -107,118 +129,95 @@ export function Footer() {
             </ul>
           </nav>
 
-          {/* === Contacts === */}
+          {/* === Column 3 — Контакты === */}
           <div className="flex flex-col gap-4">
-            <h3 className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
-              Контакты
-            </h3>
-            <ul className="flex flex-col gap-3 text-sm text-ivory/70">
-              <li className="flex items-start gap-2.5">
+            <h3 className={FOOTER_EYEBROW_CLASS}>Контакты</h3>
+            <ul className="flex flex-col gap-3">
+              <li className="flex items-start gap-2 text-sm text-ivory/75">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                 <span>{CONTACT.address}</span>
               </li>
-              <li className="flex items-start gap-2.5">
-                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+              <li className="flex flex-col gap-1">
+                <a
+                  href={`tel:${CONTACT.phone1Href}`}
+                  className="text-sm text-ivory transition-colors hover:text-gold"
+                >
+                  {CONTACT.phone1}
+                </a>
+                <a
+                  href={`tel:${CONTACT.phone2Href}`}
+                  className="text-sm text-ivory transition-colors hover:text-gold"
+                >
+                  {CONTACT.phone2}
+                </a>
+              </li>
+              <li className="flex items-center gap-2 text-sm text-ivory/75">
+                <Clock className="h-4 w-4 shrink-0 text-gold" />
                 <span>
                   {CONTACT.hours}
-                  <br />
-                  <span className="text-ivory/45">{CONTACT.closed}</span>
-                </span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                <span className="flex flex-col gap-1">
-                  <a
-                    href={`tel:${CONTACT.phone1Href}`}
-                    className="transition-colors hover:text-gold"
-                  >
-                    {CONTACT.phone1}
-                  </a>
-                  <a
-                    href={`tel:${CONTACT.phone2Href}`}
-                    className="transition-colors hover:text-gold"
-                  >
-                    {CONTACT.phone2}
-                  </a>
+                  <span className="ml-2 text-xs text-gold">{CONTACT.closed}</span>
                 </span>
               </li>
             </ul>
           </div>
 
-          {/* === Socials + subscribe === */}
-          <div className="flex flex-col gap-5">
-            <h3 className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
-              Соцсети и подписка
-            </h3>
-            <div className="flex flex-wrap gap-2.5">
-              {SOCIALS.map((s) => (
+          {/* === Column 4 — Рассылка + соцсети === */}
+          <div className="flex flex-col gap-4">
+            <h3 className={FOOTER_EYEBROW_CLASS}>Рассылка</h3>
+            <p className="text-xs text-muted-foreground">
+              Новые поступления и закрытые распродажи
+            </p>
+            <form onSubmit={onSubscribe} className="flex items-center gap-2">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                aria-label="E-mail для подписки"
+                className="w-full rounded-full border border-gold/20 bg-onyx-soft px-4 py-2 text-sm text-ivory placeholder:text-muted-foreground focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold/30"
+              />
+              <button
+                type="submit"
+                aria-label="Подписаться"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-gold-bright via-gold to-gold-deep text-emerald-deep shadow-[0_8px_24px_-8px_rgba(201,169,97,0.6)] transition-transform hover:scale-105"
+              >
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </form>
+            <div className="flex flex-wrap gap-2">
+              {SOCIAL_ICONS.map(({ title, href, Icon }) => (
                 <a
-                  key={s.title}
-                  href={s.href}
+                  key={title}
+                  href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-emerald-deep/40 px-3.5 py-1.5 text-xs font-medium text-ivory transition-colors hover:border-gold hover:bg-gold/15 hover:text-gold-bright"
+                  aria-label={title}
+                  title={title}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-gold/30 text-gold transition-colors hover:border-gold hover:bg-gold/5 hover:text-gold-bright"
                 >
-                  <span className="font-semibold tracking-wider text-gold group-hover:text-emerald-deep">
-                    {s.short}
-                  </span>
-                  {s.title}
-                  <ArrowUpRight className="h-3 w-3 opacity-60 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <Icon className="h-4 w-4" strokeWidth={1.5} />
                 </a>
               ))}
             </div>
-
-            <div className="flex flex-col gap-2">
-              <p className="text-sm text-ivory/65">
-                Подпишитесь на новости о новых коллекциях:
-              </p>
-              <form onSubmit={onSubscribe} className="flex items-center gap-2">
-                <Input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@example.com"
-                  aria-label="E-mail для подписки"
-                  className="border-gold/25 bg-emerald-deep/40 text-ivory placeholder:text-ivory/40 focus-visible:border-gold focus-visible:ring-gold/30"
-                />
-                <button
-                  type="submit"
-                  aria-label="Подписаться"
-                  className="flex h-10 shrink-0 items-center gap-1.5 rounded-full bg-gradient-to-br from-gold-bright via-gold to-gold-deep px-4 text-sm font-semibold text-emerald-deep shadow-[0_8px_24px_-8px_rgba(201,169,97,0.6)] transition-transform hover:scale-[1.03]"
-                >
-                  <Send className="h-3.5 w-3.5" />
-                  <span className="hidden sm:inline">OK</span>
-                </button>
-              </form>
-            </div>
-
-            {/* Mini AI badge */}
-            <a
-              href="#assistant"
-              className="inline-flex items-center gap-2 self-start rounded-full border border-gold/30 bg-onyx-soft/40 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-gold transition-colors hover:border-gold hover:bg-gold/10"
-            >
-              <Sparkles className="h-3 w-3" />
-              Подобрать образ с AI
-            </a>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col items-center gap-4 border-t border-ivory/10 pt-6 text-center md:flex-row md:justify-between md:text-left">
-          <p className="text-xs text-ivory/50">
+        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-gold/10 pt-6 md:flex-row">
+          <p className="text-xs text-muted-foreground">
             © 2013–{currentYear} Дилижанс Шоу. Все права защищены.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 text-xs">
+          <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-muted-foreground">
             <a
               href="#"
-              className="text-ivory/50 transition-colors hover:text-gold"
+              className="transition-colors hover:text-gold"
             >
               Политика конфиденциальности
             </a>
-            <span className="hidden h-3 w-px bg-ivory/15 sm:inline-block" />
+            <span aria-hidden className="text-gold/60">·</span>
             <a
               href="#"
-              className="text-ivory/50 transition-colors hover:text-gold"
+              className="transition-colors hover:text-gold"
             >
               Договор проката
             </a>

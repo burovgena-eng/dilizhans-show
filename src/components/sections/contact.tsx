@@ -2,81 +2,74 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { MapPin, Clock, Phone, ArrowUpRight, Navigation } from "lucide-react";
-import { Eyebrow } from "@/components/site/primitives";
+import { MapPin, Clock, Phone, ArrowUpRight, ExternalLink } from "lucide-react";
+import { SectionHeading } from "@/components/site/primitives";
 import { CONTACT } from "@/lib/data/catalog";
+
+const MAPS_LINK = "https://yandex.ru/maps/?text=Новосибирск%20Державина%2013";
 
 const INFO_CARDS = [
   {
     icon: MapPin,
-    title: "Адрес",
-    lines: [CONTACT.address, "Новосибирск, Центральный район"],
+    title: "Адрес бутика",
+    value: CONTACT.address,
+    sub: null as string | null,
+    isPhone: false,
   },
   {
     icon: Clock,
     title: "Часы работы",
-    lines: [CONTACT.hours, CONTACT.closed],
+    value: CONTACT.hours,
+    sub: CONTACT.closed,
+    isPhone: false,
   },
   {
     icon: Phone,
     title: "Телефоны",
-    lines: [CONTACT.phone1, CONTACT.phone2],
+    value: null as string | null,
+    sub: null as string | null,
+    isPhone: true,
   },
-];
+] as const;
 
 const SOCIALS = [
-  {
-    title: "ВКонтакте",
-    href: CONTACT.vk,
-    short: "VK",
-  },
-  {
-    title: "Telegram",
-    href: CONTACT.telegram,
-    short: "TG",
-  },
-  {
-    title: "WhatsApp",
-    href: CONTACT.whatsapp,
-    short: "WA",
-  },
+  { title: "ВКонтакте", short: "VK", href: CONTACT.vk },
+  { title: "Telegram", short: "TG", href: CONTACT.telegram },
+  { title: "WhatsApp", short: "WA", href: CONTACT.whatsapp },
 ];
-
-const MAPS_LINK =
-  "https://yandex.ru/maps/?text=Новосибирск%20Державина%2013";
 
 export function Contact() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-120px" });
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-ivory py-20 md:py-28">
-      {/* Decorative gold ornament at top */}
-      <div className="ornament-rule mx-auto mb-10 w-full max-w-md">
-        <span className="text-gold text-sm tracking-[0.4em]">✦</span>
-      </div>
+    <section
+      id="contact"
+      className="relative overflow-hidden bg-onyx bg-emerald-radial py-20 md:py-28"
+    >
+      {/* Soft grain overlay */}
+      <div
+        className="grain-overlay pointer-events-none absolute inset-0 opacity-50"
+        aria-hidden="true"
+      />
 
-      <div ref={ref} className="mx-auto max-w-7xl px-6">
+      <div ref={ref} className="relative mx-auto max-w-7xl px-6">
         {/* Heading */}
-        <div className="flex flex-col items-center gap-4 text-center">
-          <Eyebrow>Контакты</Eyebrow>
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-3xl font-display text-4xl leading-[1.05] text-emerald-deep md:text-5xl lg:text-6xl"
-          >
-            Приходите в наш{" "}
-            <span className="text-gold-gradient italic">бутик</span>
-          </motion.h2>
-          <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            {CONTACT.address}
-          </p>
-        </div>
+        <SectionHeading
+          center
+          eyebrow="Контакты"
+          title={
+            <>
+              Приходите в наш{" "}
+              <span className="text-gold-gradient italic">бутик</span>
+            </>
+          }
+          subtitle="Ул. Державина 13, Новосибирск"
+        />
 
-        {/* 2-col layout: info cards left / map right */}
-        <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2 md:gap-8">
-          {/* === Info cards === */}
+        {/* 2-col layout: info cards left (45%) / map right (55%) */}
+        <div className="mt-12 grid grid-cols-1 gap-6 md:mt-16 lg:grid-cols-[45fr_55fr]">
+          {/* === Left: info cards + socials === */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -85,7 +78,6 @@ export function Contact() {
           >
             {INFO_CARDS.map((c, i) => {
               const Icon = c.icon;
-              const isPhone = c.title === "Телефоны";
               return (
                 <motion.article
                   key={c.title}
@@ -96,114 +88,119 @@ export function Contact() {
                     delay: i * 0.1,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className="lift-card group relative flex items-start gap-4 overflow-hidden rounded-2xl border border-gold/30 bg-card p-5 transition-colors hover:border-gold/55 md:p-6"
+                  className="lift-card group relative flex items-start gap-4 overflow-hidden rounded-2xl border border-gold/20 bg-onyx-card p-5"
                 >
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/45 bg-emerald-deep text-gold">
-                    <Icon className="h-5 w-5" strokeWidth={1.5} />
+                  {/* Icon medallion */}
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-emerald-deep text-gold">
+                    <Icon className="h-4 w-4" strokeWidth={1.5} />
                   </span>
+
                   <div className="flex flex-col gap-1">
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                    <h3 className="font-display text-lg leading-tight text-ivory">
                       {c.title}
-                    </span>
-                    {c.lines.map((l, j) => {
-                      // Make phone lines clickable.
-                      const href = isPhone
-                        ? `tel:${
-                            j === 0 ? CONTACT.phone1Href : CONTACT.phone2Href
-                          }`
-                        : undefined;
-                      return href ? (
+                    </h3>
+                    {c.isPhone ? (
+                      <div className="flex flex-col gap-0.5">
                         <a
-                          key={j}
-                          href={href}
-                          className="font-display text-lg leading-tight text-emerald-deep underline-offset-4 transition-colors hover:text-gold"
+                          href={`tel:${CONTACT.phone1Href}`}
+                          className="text-sm text-ivory transition-colors hover:text-gold"
                         >
-                          {l}
+                          {CONTACT.phone1}
                         </a>
-                      ) : (
-                        <span
-                          key={j}
-                          className="font-display text-lg leading-tight text-emerald-deep"
+                        <a
+                          href={`tel:${CONTACT.phone2Href}`}
+                          className="text-sm text-ivory transition-colors hover:text-gold"
                         >
-                          {l}
-                        </span>
-                      );
-                    })}
+                          {CONTACT.phone2}
+                        </a>
+                      </div>
+                    ) : (
+                      <>
+                        <p className="text-sm leading-relaxed text-ivory/75">
+                          {c.value}
+                        </p>
+                        {c.sub ? (
+                          <p className="text-xs text-gold">{c.sub}</p>
+                        ) : null}
+                      </>
+                    )}
                   </div>
-                  {/* Decorative gold corner */}
-                  <span className="pointer-events-none absolute right-3 top-3 h-3 w-3 border-r border-t border-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                  {/* Corner accents */}
+                  <span className="corner-accents pointer-events-none absolute inset-0" />
                 </motion.article>
               );
             })}
 
             {/* Social pills */}
             <div className="mt-2 flex flex-wrap items-center gap-3">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-                Мы в соцсетях:
-              </span>
               {SOCIALS.map((s) => (
                 <a
                   key={s.title}
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-ivory-soft/60 px-3.5 py-1.5 text-xs font-medium text-emerald-deep transition-colors hover:border-gold hover:bg-gold/15 hover:text-gold"
+                  className="group inline-flex items-center gap-2 rounded-full border border-gold/30 px-4 py-2 text-sm text-ivory transition-colors hover:border-gold hover:bg-gold/5 hover:text-gold-bright"
                 >
-                  <span className="font-semibold tracking-wider text-gold group-hover:text-emerald-deep">
+                  <span className="font-semibold tracking-wider text-gold">
                     {s.short}
                   </span>
-                  {s.title}
+                  <span>{s.title}</span>
                   <ArrowUpRight className="h-3 w-3 opacity-60 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
               ))}
             </div>
           </motion.div>
 
-          {/* === Map / map placeholder === */}
+          {/* === Right: map === */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="lift-card relative overflow-hidden rounded-2xl border border-gold/30 bg-emerald-deep shadow-[0_20px_60px_-30px_rgba(15,61,46,0.4)]"
+            className="lift-card group relative h-full min-h-[400px] overflow-hidden rounded-2xl border border-gold/20 bg-onyx-card"
           >
-            <div className="relative h-[360px] md:h-[440px] lg:h-full lg:min-h-[440px]">
-              <iframe
-                src="https://yandex.ru/map-widget/v1/?ll=82.927849%2C55.041293&z=16&pt=82.927849,55.041293,pm2rdm"
-                title="Карта: Дилижанс Шоу, Державина 13, Новосибирск"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                sandbox="allow-scripts allow-same-origin allow-popups"
-                className="absolute inset-0 h-full w-full border-0"
-              />
-              {/* Soft gold gradient border accent */}
-              <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-gold/20" />
+            <iframe
+              src="https://yandex.ru/map-widget/v1/?ll=82.927849%2C55.041293&z=16&pt=82.927849,55.041293,pm2rdm"
+              title="Карта: Дилижанс Шоу, Державина 13, Новосибирск"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+              className="absolute inset-0 h-full w-full border-0"
+            />
 
-              {/* Floating address overlay card */}
-              <div className="absolute inset-x-4 bottom-4">
-                <div className="glass-ivory flex items-center gap-3 rounded-2xl px-5 py-4 shadow-[0_20px_60px_-25px_rgba(15,61,46,0.6)]">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-gold-bright to-gold-deep text-emerald-deep shadow-[0_4px_18px_-4px_rgba(201,169,97,0.6)]">
-                    <MapPin className="h-5 w-5" />
+            {/* Subtle gold ring overlay */}
+            <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-gold/15" />
+
+            {/* Floating glass-onyx address card */}
+            <div className="absolute inset-x-4 bottom-4">
+              <div className="glass-onyx flex items-center gap-3 rounded-xl px-4 py-3.5">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-emerald-deep text-gold">
+                  <MapPin className="h-4 w-4" strokeWidth={1.5} />
+                </span>
+                <div className="flex min-w-0 flex-col">
+                  <span className="truncate font-display text-base leading-tight text-ivory">
+                    {CONTACT.address}
                   </span>
-                  <div className="flex flex-col">
-                    <span className="font-display text-base leading-tight text-emerald-deep">
-                      {CONTACT.address}
-                    </span>
-                    <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                      {CONTACT.hours}
-                    </span>
-                  </div>
-                  <a
-                    href={MAPS_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-gold/40 px-3.5 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-emerald-deep transition-colors hover:bg-gold hover:text-emerald-deep"
-                  >
-                    <Navigation className="h-3 w-3" />
-                    Яндекс.Карты
-                  </a>
+                  <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                    {CONTACT.hours}
+                  </span>
                 </div>
+                <a
+                  href={MAPS_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ml-auto inline-flex shrink-0 items-center gap-1.5 rounded-full border border-gold/30 px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-gold transition-colors hover:border-gold hover:bg-gold/10 hover:text-gold-bright"
+                >
+                  <ExternalLink className="h-3 w-3" />
+                  <span className="hidden sm:inline">Открыть на Яндекс.Картах</span>
+                  <span className="sm:hidden">Картах</span>
+                  <span aria-hidden>→</span>
+                </a>
               </div>
             </div>
+
+            {/* Corner accents on hover */}
+            <span className="corner-accents pointer-events-none absolute inset-0" />
           </motion.div>
         </div>
       </div>

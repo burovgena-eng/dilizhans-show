@@ -39,7 +39,7 @@ export function Eyebrow({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-gold",
+        "inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.4em] text-gold",
         className
       )}
     >
@@ -72,13 +72,13 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-      <h2 className="font-display text-4xl leading-[1.05] text-emerald-deep md:text-5xl lg:text-6xl">
+      <h2 className="font-display text-4xl leading-[1.05] text-ivory md:text-5xl lg:text-6xl">
         {title}
       </h2>
       {subtitle ? (
         <p
           className={cn(
-            "max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg",
+            "max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base",
             center ? "mx-auto" : ""
           )}
         >

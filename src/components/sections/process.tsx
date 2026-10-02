@@ -3,7 +3,10 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { PROCESS_STEPS } from "@/lib/data/catalog";
-import { Eyebrow } from "@/components/site/primitives";
+import {
+  Eyebrow,
+  GoldDivider,
+} from "@/components/site/primitives";
 
 export function Process() {
   const ref = useRef<HTMLDivElement>(null);
@@ -12,21 +15,13 @@ export function Process() {
   return (
     <section
       id="process"
-      className="relative overflow-hidden bg-emerald-deep py-20 text-ivory md:py-28"
+      className="grain-overlay relative overflow-hidden bg-onyx-soft bg-gold-radial py-20 text-ivory md:py-28"
     >
-      {/* Film grain texture */}
-      <div className="grain-overlay absolute inset-0 opacity-60" aria-hidden="true" />
-      {/* Soft radial gold glow */}
-      <div
-        className="pointer-events-none absolute -top-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-gold/10 blur-[120px]"
-        aria-hidden="true"
-      />
-
       <div className="relative mx-auto max-w-7xl px-6">
         {/* Top ornamental divider */}
-        <div className="ornament-rule mb-10 w-full max-w-2xl mx-auto">
+        <GoldDivider className="mx-auto mb-10 w-full max-w-2xl">
           <span className="text-gold text-xs tracking-[0.4em]">✦</span>
-        </div>
+        </GoldDivider>
 
         {/* Heading */}
         <div className="flex flex-col items-center gap-4 text-center">
@@ -44,7 +39,7 @@ export function Process() {
         {/* Step cards grid */}
         <div
           ref={ref}
-          className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 md:gap-6"
+          className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
         >
           {PROCESS_STEPS.map((s, i) => {
             const isLast = i === PROCESS_STEPS.length - 1;
@@ -53,61 +48,66 @@ export function Process() {
                 key={s.n}
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.65, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative flex flex-col"
+                transition={{
+                  duration: 0.65,
+                  delay: i * 0.12,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="group lift-card relative flex flex-col overflow-hidden rounded-lg border border-gold/15 bg-onyx-card p-6 transition-colors duration-500 hover:border-gold/45"
               >
-                {/* Large gold step number */}
-                <span className="font-display text-6xl leading-none text-gold md:text-7xl lg:text-8xl">
-                  <motion.span
-                    initial={{ opacity: 0, filter: "blur(8px)" }}
-                    animate={
-                      inView
-                        ? { opacity: 1, filter: "blur(0px)" }
-                        : {}
-                    }
-                    transition={{
-                      duration: 0.7,
-                      delay: i * 0.12 + 0.15,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    className="block"
-                  >
-                    {s.n}
-                  </motion.span>
-                </span>
+                {/* Decorative gold corner accents on hover */}
+                <span className="corner-accents pointer-events-none absolute inset-0" />
+
+                {/* Big step number */}
+                <motion.span
+                  initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                  animate={
+                    inView
+                      ? { opacity: 1, y: 0, filter: "blur(0px)" }
+                      : {}
+                  }
+                  transition={{
+                    duration: 0.7,
+                    delay: i * 0.12 + 0.15,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className="block font-display text-6xl leading-none text-gold-gradient"
+                >
+                  {s.n}
+                </motion.span>
+
+                {/* Small gold dot / sparkle under number */}
+                <span
+                  aria-hidden="true"
+                  className="mt-3 h-1.5 w-1.5 rotate-45 bg-gold shadow-[0_0_12px_rgba(201,169,97,0.6)]"
+                />
 
                 {/* Title */}
-                <h3 className="mt-5 font-display text-2xl leading-tight text-ivory">
+                <h3 className="mt-4 font-display text-xl leading-tight text-ivory">
                   {s.title}
                 </h3>
 
                 {/* Text */}
-                <p className="mt-2.5 text-sm leading-relaxed text-ivory/70">
+                <p className="mt-2 text-sm leading-relaxed text-ivory/65">
                   {s.text}
                 </p>
 
-                {/* Decorative gold vertical line connector on the right */}
+                {/* Vertical gold line connector on the right (hidden on last + mobile) */}
                 {!isLast ? (
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute -right-3 top-2 hidden h-24 w-px bg-gradient-to-b from-gold/60 via-gold/30 to-transparent lg:block md:-right-4 md:h-32"
+                    className="pointer-events-none absolute right-0 top-1/2 hidden h-px w-8 -translate-y-1/2 bg-gradient-to-r from-gold/40 to-transparent lg:block"
                   />
                 ) : null}
-
-                {/* Tiny gold dot under the number — appears on hover */}
-                <span
-                  className="mt-5 h-1 w-10 rounded-full bg-gold/30 transition-all duration-500 group-hover:w-16 group-hover:bg-gold"
-                  aria-hidden="true"
-                />
               </motion.article>
             );
           })}
         </div>
 
         {/* Bottom ornamental divider */}
-        <div className="ornament-rule mt-14 w-full max-w-2xl mx-auto">
+        <GoldDivider className="mx-auto mt-14 w-full max-w-2xl">
           <span className="text-gold text-xs tracking-[0.4em]">✦</span>
-        </div>
+        </GoldDivider>
       </div>
     </section>
   );

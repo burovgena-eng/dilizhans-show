@@ -1,21 +1,8 @@
 // Central catalog data for the Dilizhans Show luxury redesign
-// Preserves original categories from dilizhans-show.ru
+// All images are REAL photos scraped from dilizhans-show.ru category pages
+// (no AI-generated content — every costume is actually in the boutique's collection)
 
 export type Audience = "children" | "adults" | "all";
-
-export type Costume = {
-  id: string;
-  title: string;
-  audience: Audience;
-  category: string;
-  tags: string[];
-  price: number; // ₽/day
-  image: string;
-  available: boolean;
-  isNew?: boolean;
-  isExclusive?: boolean;
-  description: string;
-};
 
 export type Collection = {
   id: string;
@@ -31,69 +18,69 @@ export type Collection = {
 export const COLLECTIONS: Collection[] = [
   {
     id: "newyear",
-    title: "Новый год",
+    title: "Новогодние",
     subtitle: "Символы года · Дед Мороз · Снегурочка",
     description:
-      "Блестящие новогодние образы для детских утренников и взрослых корпоративов: символы года, Деды Морозы, Снегурочки и маскарадные костюмы.",
-    image: "/images/collections/newyear.jpg",
+      "Блестящие новогодние образы для детских утренников и взрослых корпоративов: символы года, Деды Морозы, Снегурочки, эльфы и гномики.",
+    image: "/images/real/newyear_2_clean.jpg",
     count: 240,
     audience: "all",
     tags: ["сезон", "дети", "взрослые"],
   },
   {
-    id: "gatsby",
+    id: "retro",
     title: "Ретро · Гэтсби",
     subtitle: "Чикаго · Стиляги · Диско 80-х",
     description:
       "Вечеринки в стиле Гэтсби, ретро 20-30-х, Чикаго и стиляг. Платья с бахромой, боа, мундштуки и перья — атмосфера джазовой эпохи.",
-    image: "/images/collections/gatsby.jpg",
+    image: "/images/real/retro_1_clean.jpg",
     count: 180,
     audience: "all",
     tags: ["ретро", "вечеринка"],
   },
   {
-    id: "superhero",
-    title: "Супергерои",
-    subtitle: "Marvel · DC · Фэнтези",
+    id: "historical",
+    title: "Исторические",
+    subtitle: "Театральные · Древний мир · Средневековье",
     description:
-      "Костюмы супергероев Marvel и DC, Хогвартс, фэнтези-образы для детских праздников и косплея: Человек-паук, Бэтмен, Капитан Америка и другие.",
-    image: "/images/collections/superhero.jpg",
-    count: 150,
+      "Исторические и театральные костюмы: Древний Египет, Рим, Греция, Средневековье, Возрождение — для постановок, фотосессий и тематических вечеров.",
+    image: "/images/real/historical_5_clean.jpg",
+    count: 95,
     audience: "all",
-    tags: ["дети", "фэнтези"],
+    tags: ["театр", "фото"],
   },
   {
     id: "national",
     title: "Народы мира",
-    subtitle: "Русские · Казахские · Восточные",
+    subtitle: "Русские · Восточные · Цыганские",
     description:
-      "Национальные костюмы народов мира: русские, казахские, кавказские, индийские, азиатские и европейские наряды для концертных номеров и фотосессий.",
-    image: "/images/collections/national.jpg",
+      "Национальные костюмы народов мира: русские, цыганские, испанские, японские, арабские и восточные наряды для концертных номеров и фотосессий.",
+    image: "/images/real/spanish_1_clean.jpg",
     count: 320,
     audience: "all",
     tags: ["фольклор", "концерт"],
   },
   {
-    id: "evening",
-    title: "Вечерние платья",
-    subtitle: "Бальные · Свадебные · Коктейль",
+    id: "ball",
+    title: "Бальные платья",
+    subtitle: "Вечерние · Свадебные · Коктейль",
     description:
-      "Вечерние, бальные и свадебные наряды премиум-класса: шёлк, бархат, ручная вышивка и кружево для самых торжественных случаев.",
-    image: "/images/collections/evening.jpg",
+      "Бальные, вечерние, коктейльные и свадебные наряды премиум-класса: шёлк, фатин, ручная вышивка и кринолины для самых торжественных случаев.",
+    image: "/images/real/ball_1_clean.jpg",
     count: 210,
     audience: "all",
     tags: ["вечер", "свадебное"],
   },
   {
-    id: "steampunk",
-    title: "Стимпанк",
-    subtitle: "Викторианская эпоха · Механизмы",
+    id: "halloween",
+    title: "Хэллоуин",
+    subtitle: "Мистика · Фэнтези · Стимпанк",
     description:
-      "Стимпанк-образы с медными и латунными механизмами, викторианскими корсетами и гогглами. Идеально для фотосессий и тематических вечеринок.",
-    image: "/images/collections/steampunk.jpg",
-    count: 75,
-    audience: "adults",
-    tags: ["фэшн", "фото"],
+      "Хэллоуин-образы: ведьмы, вампиры, демоны и стимпанк-костюмы. Самая большая в городе мистическая коллекция для тематических вечеринок.",
+    image: "/images/real/halloween_1_clean.jpg",
+    count: 130,
+    audience: "all",
+    tags: ["мистика", "вечеринка"],
   },
 ];
 
@@ -103,29 +90,29 @@ export const OFFERS = [
     title: "Вечеринка в стиле Гэтсби",
     excerpt:
       "Долой серость и посредственность! Платья с бахромой, боа, перья и мундштуки — всё для атмосферы джазовой эпохи 20-х.",
-    image: "/images/offers/offer-gatsby.jpg",
+    image: "/images/real/retro_2_clean.jpg",
     badge: "Хит сезона",
     tag: "Ретро · 20-е",
     priceFrom: 2500,
   },
   {
     id: "o2",
-    title: "Русские народные посиделки",
+    title: "Цыганский табор",
     excerpt:
-      "Народные костюмы для праздников — это не только красочные наряды, но и настоящее искусство, передающее дух древних времён.",
-    image: "/images/offers/offer-russian.jpg",
+      "Яркие цыганские костюмы с вышивкой, монистами и широкими юбками — для фольклорных выступлений и тематических праздников.",
+    image: "/images/real/gypsy_2_clean.jpg",
     badge: "Эксклюзив",
     tag: "Фольклор",
     priceFrom: 1800,
   },
   {
     id: "o3",
-    title: "Диско 80-х — 90-х",
+    title: "Восточная сказка",
     excerpt:
-      "Пора мечты воплощать в реальность. Большой выбор костюмов для диско-вечеринки: блёстки, неон, легинсы и массивные плечи.",
-    image: "/images/offers/offer-disco.jpg",
+      "Арабские, японские и восточные костюмы — для интерактивных программ, танцев и обрядов. Богатые ткани и ручная отделка.",
+    image: "/images/real/eastern_6_clean.jpg",
     badge: "Новая коллекция",
-    tag: "Ретро · 80-е",
+    tag: "Восток",
     priceFrom: 2200,
   },
 ];
@@ -243,15 +230,100 @@ export const ADVANTAGES = [
   },
 ];
 
-export const GALLERY = [
-  { src: "/images/gallery/gal-1.jpg", title: "Венецианская маска", tag: "Аксессуары" },
-  { src: "/images/collections/gatsby.jpg", title: "Платье Гэтсби", tag: "Ретро" },
-  { src: "/images/gallery/gal-2.jpg", title: "Пират-капитан", tag: "Театр" },
-  { src: "/images/collections/newyear.jpg", title: "Новогодний образ", tag: "Сезон" },
-  { src: "/images/gallery/gal-3.jpg", title: "Детский наряд", tag: "Дети" },
-  { src: "/images/collections/steampunk.jpg", title: "Стимпанк", tag: "Фэшн" },
-  { src: "/images/gallery/gal-4.jpg", title: "Хогвартс", tag: "Фэнтези" },
-  { src: "/images/collections/national.jpg", title: "Народный костюм", tag: "Фольклор" },
+export type GalleryItem = {
+  src: string;
+  title: string;
+  tag: string;
+  audience: Audience;
+  description: string;
+};
+
+// 12 real photos from across the collection — clickable → opens lightbox
+export const GALLERY: GalleryItem[] = [
+  {
+    src: "/images/real/ball_1_clean.jpg",
+    title: "Бальное платье",
+    tag: "Вечерние",
+    audience: "adults",
+    description: "Пышное бальное платье в пол — для выпускного, свадьбы или фотосессии.",
+  },
+  {
+    src: "/images/real/children_6_4437039a.jpg",
+    title: "Снегурочка",
+    tag: "Новый год",
+    audience: "children",
+    description: "Детский костюм Снегурочки в стиле гжель с белыми косами.",
+  },
+  {
+    src: "/images/real/historical_7_fd6decfd.jpg",
+    title: "Средневековый наряд",
+    tag: "Исторические",
+    audience: "adults",
+    description: "Средневековое платье с корсетом на шнуровке и белым чепцом.",
+  },
+  {
+    src: "/images/real/wedding_2_b0e621c3.jpg",
+    title: "Свадебное платье",
+    tag: "Свадебные",
+    audience: "adults",
+    description: "Пышное свадебное платье бального кроя с многоярусной юбкой из фатина.",
+  },
+  {
+    src: "/images/real/spanish_2_5bdb6bac.jpg",
+    title: "Испанский костюм",
+    tag: "Народы мира",
+    audience: "adults",
+    description: "Традиционный испанский наряд с рюшами и кружевом — для фольклорных программ.",
+  },
+  {
+    src: "/images/real/eastern_8_effa7f53.jpg",
+    title: "Восточный наряд",
+    tag: "Восточные",
+    audience: "adults",
+    description: "Богатый восточный костюм с золотой вышивкой и накидкой.",
+  },
+  {
+    src: "/images/real/retro_3_df347d25.jpg",
+    title: "Ретро-образ",
+    tag: "Ретро",
+    audience: "adults",
+    description: "Ретро-костюм в стиле 20-х годов с перьями и боа.",
+  },
+  {
+    src: "/images/real/gypsy_5_513fbb93.jpg",
+    title: "Цыганский костюм",
+    tag: "Народы мира",
+    audience: "adults",
+    description: "Яркий цыганский наряд с монистами и широкой юбкой.",
+  },
+  {
+    src: "/images/real/tuxedo_1_d994d2f9.jpg",
+    title: "Смокинг",
+    tag: "Мужские",
+    audience: "adults",
+    description: "Классический мужской смокинг для торжественных случаев.",
+  },
+  {
+    src: "/images/real/girls_5_b8848407.jpg",
+    title: "Детский наряд",
+    tag: "Детские",
+    audience: "children",
+    description: "Элегантное детское платье для праздника или фотосессии.",
+  },
+  {
+    src: "/images/real/japanese_1_ad104774.jpg",
+    title: "Японский кимоно",
+    tag: "Народы мира",
+    audience: "adults",
+    description: "Традиционный японский костюм с поясом-оби.",
+  },
+  {
+    src: "/images/real/vegetables2_2_b4de806f.jpg",
+    title: "Осенний бал",
+    tag: "Сезонные",
+    audience: "children",
+    description: "Костюм для осеннего бала — овощи, фрукты, грибы и ягоды.",
+  },
 ];
 
 export const NAV_LINKS = [
@@ -275,4 +347,10 @@ export const CONTACT = {
   whatsapp: "https://wa.me/79607959369",
   telegram: "https://t.me/dilizhanshow",
   vk: "https://vk.com/dilizhans_show",
+};
+
+// All real photo paths — used by gallery + collections + offers
+export const REAL_PHOTOS = {
+  hero: "/images/real/ball_1_clean.jpg",
+  bookingSide: "/images/real/wedding_3_clean.jpg",
 };

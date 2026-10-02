@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { Sparkles, Send, MapPin, Clock, Layers } from "lucide-react";
+import { Sparkles, Zap, MapPin, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 import { Eyebrow } from "@/components/site/primitives";
 import { Input } from "@/components/ui/input";
@@ -22,19 +22,19 @@ const QUICK_REPLIES = [
 
 const INFO_CARDS = [
   {
-    icon: Layers,
-    title: "2000+ образов",
-    sub: "детские и взрослые",
+    icon: Sparkles,
+    value: "2000+",
+    label: "образов в коллекции",
   },
   {
-    icon: Clock,
-    title: "Ответ за 30 секунд",
-    sub: "быстрый подбор под событие",
+    icon: Zap,
+    value: "30 секунд",
+    label: "среднее время ответа",
   },
   {
     icon: MapPin,
-    title: "Державина, 13",
-    sub: "Новосибирск · Вт–Сб 10–19",
+    value: "Державина 13",
+    label: "адрес бутика",
   },
 ];
 
@@ -57,7 +57,7 @@ export function StyleAssistant() {
     if (el) {
       el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
     }
-  }, [messages, isTyping]);
+  }, [messages.length, isTyping]);
 
   async function send(text: string) {
     const clean = text.trim();
@@ -90,9 +90,7 @@ export function StyleAssistant() {
       setMessages((m) => [...m, { role: "assistant", content: reply }]);
     } catch (e) {
       const msg = e instanceof Error ? e.message : "Неизвестная ошибка";
-      toast.error("Стилист недоступен", {
-        description: msg,
-      });
+      toast.error("Стилист недоступен", { description: msg });
     } finally {
       setIsTyping(false);
       inputRef.current?.focus();
@@ -109,10 +107,13 @@ export function StyleAssistant() {
   return (
     <section
       id="assistant"
-      className="relative overflow-hidden bg-emerald-deep py-20 text-ivory md:py-28"
+      className="grain-overlay relative overflow-hidden bg-onyx-soft bg-gold-radial py-20 text-ivory md:py-28"
     >
-      {/* Decorative gold particle field (like hero) */}
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+      {/* Floating gold particle field */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        aria-hidden="true"
+      >
         {Array.from({ length: 16 }).map((_, i) => (
           <motion.span
             key={i}
@@ -136,36 +137,25 @@ export function StyleAssistant() {
         ))}
       </div>
 
-      {/* Subtle gold radial glow */}
-      <div
-        className="pointer-events-none absolute -top-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-gold/10 blur-[120px]"
-        aria-hidden="true"
-      />
-      <div className="grain-overlay absolute inset-0 opacity-50" aria-hidden="true" />
-
       <div
         ref={ref}
-        className="relative mx-auto max-w-7xl px-6"
+        className="relative z-10 mx-auto max-w-7xl px-6"
       >
-        {/* Heading */}
-        <div className="flex flex-col items-center gap-4 text-center">
+        {/* Heading (left-aligned) */}
+        <div className="flex flex-col items-start gap-4">
           <Eyebrow className="text-gold">AI-стилист</Eyebrow>
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-3xl font-display text-4xl leading-[1.05] text-ivory md:text-5xl lg:text-6xl"
+            className="max-w-3xl font-display text-4xl leading-[1.05] text-ivory md:text-5xl"
           >
-            Найдите идеальный образ{" "}
-            <span className="text-gold-gradient italic">за 30 секунд</span>
+            Найдите идеальный образ за 30 секунд
           </motion.h2>
           <p className="max-w-2xl text-base leading-relaxed text-ivory/70 md:text-lg">
-            Персональный AI-стилист подберёт 2–3 варианта из 2000+ костюмов под
-            ваше событие, повод и бюджет.
+            Опишите событие — наш AI-стилист предложит 2–3 варианта из коллекции
+            2000+ костюмов. Без воды, без звонков, без обязательств.
           </p>
-          <div className="ornament-rule mt-2 w-full max-w-md">
-            <span className="text-gold text-xs tracking-[0.4em]">★</span>
-          </div>
         </div>
 
         {/* Layout: 2 cols (chat 60% / info 40%) on desktop */}
@@ -175,22 +165,27 @@ export function StyleAssistant() {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="lift-card relative flex flex-col overflow-hidden rounded-2xl border border-gold/25 bg-onyx/50 backdrop-blur-md"
+            className="lift-card relative flex flex-col overflow-hidden rounded-2xl border border-gold/20 bg-onyx-card"
           >
             {/* Header */}
-            <div className="flex items-center gap-3 border-b border-gold/15 bg-emerald-deep/60 px-5 py-4">
-              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-gold-bright to-gold-deep text-emerald-deep shadow-[0_4px_18px_-4px_rgba(201,169,97,0.7)]">
-                <Sparkles className="h-5 w-5" />
+            <div className="flex items-center gap-3 border-b border-gold/15 bg-emerald-deep/40 px-5 py-4">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 bg-gradient-to-br from-emerald to-emerald-deep text-gold">
+                <Sparkles className="h-5 w-5" strokeWidth={1.5} />
               </span>
               <div className="flex flex-col">
-                <span className="font-display text-lg leading-tight text-ivory">
+                <span className="font-medium leading-tight text-ivory">
                   Стилист · Дилижанс
                 </span>
                 <span className="flex items-center gap-1.5 text-[11px] uppercase tracking-[0.2em] text-ivory/55">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-60" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-gold-bright" />
-                  </span>
+                  <motion.span
+                    className="block h-2 w-2 rounded-full bg-gold"
+                    animate={{ opacity: [0.3, 1, 0.3] }}
+                    transition={{
+                      duration: 1.6,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
                   online
                 </span>
               </div>
@@ -199,7 +194,7 @@ export function StyleAssistant() {
             {/* Messages area */}
             <div
               ref={scrollRef}
-              className="scroll-luxe max-h-80 min-h-64 flex-1 space-y-4 overflow-y-auto bg-gradient-to-b from-onyx/20 to-emerald-deep/30 px-4 py-5 md:px-5"
+              className="scroll-luxe flex max-h-80 min-h-64 flex-col gap-3 overflow-y-auto p-4"
             >
               <AnimatePresence initial={false}>
                 {messages.map((m, i) => (
@@ -208,24 +203,25 @@ export function StyleAssistant() {
                     layout
                     initial={{ opacity: 0, y: 8, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{
+                      duration: 0.35,
+                      delay: Math.min(i * 0.04, 0.2),
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
                     className={
-                      m.role === "user" ? "flex justify-end" : "flex justify-start"
+                      m.role === "user"
+                        ? "flex justify-end"
+                        : "flex justify-start"
                     }
                   >
                     {m.role === "assistant" ? (
-                      <div className="flex max-w-[85%] items-start gap-2.5">
-                        <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gold/45 bg-emerald-deep text-gold">
-                          <Sparkles className="h-3.5 w-3.5" />
-                        </span>
-                        <div className="rounded-2xl rounded-tl-sm border border-gold/40 bg-ivory px-4 py-2.5 text-sm leading-relaxed text-emerald-deep shadow-[0_4px_18px_-8px_rgba(15,61,46,0.4)]">
-                          <p className="whitespace-pre-wrap font-display text-[0.95rem]">
-                            {m.content}
-                          </p>
-                        </div>
+                      <div className="max-w-[85%] rounded-2xl rounded-tl-sm border border-gold/15 bg-onyx-soft px-4 py-3">
+                        <p className="whitespace-pre-wrap font-display text-sm leading-relaxed text-ivory">
+                          {m.content}
+                        </p>
                       </div>
                     ) : (
-                      <div className="max-w-[85%] rounded-2xl rounded-tr-sm bg-gradient-to-br from-gold-bright via-gold to-gold-deep px-4 py-2.5 text-sm font-medium leading-relaxed text-emerald-deep shadow-[0_8px_24px_-8px_rgba(201,169,97,0.6)]">
+                      <div className="max-w-[85%] rounded-2xl rounded-tr-sm bg-gradient-to-br from-gold-bright to-gold px-4 py-3 text-sm font-medium leading-relaxed text-onyx shadow-[0_8px_24px_-8px_rgba(201,169,97,0.6)]">
                         <p className="whitespace-pre-wrap">{m.content}</p>
                       </div>
                     )}
@@ -240,12 +236,9 @@ export function StyleAssistant() {
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -4 }}
-                    className="flex items-start gap-2.5"
+                    className="flex items-center gap-2"
                   >
-                    <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gold/45 bg-emerald-deep text-gold">
-                      <Sparkles className="h-3.5 w-3.5" />
-                    </span>
-                    <div className="flex items-center gap-1.5 rounded-2xl rounded-tl-sm border border-gold/30 bg-ivory/85 px-4 py-3">
+                    <div className="flex items-center gap-1.5 rounded-2xl rounded-tl-sm border border-gold/15 bg-onyx-soft px-4 py-3">
                       {[0, 1, 2].map((d) => (
                         <motion.span
                           key={d}
@@ -266,14 +259,14 @@ export function StyleAssistant() {
             </div>
 
             {/* Quick reply chips */}
-            <div className="flex flex-wrap gap-2 border-t border-gold/10 bg-onyx/30 px-4 py-3">
+            <div className="scroll-luxe flex gap-2 overflow-x-auto border-t border-gold/15 p-3 pb-2">
               {QUICK_REPLIES.map((q) => (
                 <button
                   key={q}
                   type="button"
                   disabled={isTyping}
                   onClick={() => send(q)}
-                  className="rounded-full border border-gold/40 bg-ivory/5 px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-[0.12em] text-ivory transition-colors hover:border-gold hover:bg-gold/15 hover:text-gold-bright disabled:cursor-not-allowed disabled:opacity-50"
+                  className="shrink-0 rounded-full border border-gold/30 px-3 py-1.5 text-xs text-gold transition-colors hover:border-gold/60 hover:bg-gold/5 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {q}
                 </button>
@@ -281,42 +274,42 @@ export function StyleAssistant() {
             </div>
 
             {/* Input row */}
-            <div className="flex items-center gap-2 border-t border-gold/10 bg-emerald-deep/40 px-4 py-3">
+            <div className="flex gap-2 border-t border-gold/15 p-3">
               <Input
                 ref={inputRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={onKeyDown}
                 disabled={isTyping}
-                placeholder="Опишите ваше событие…"
+                placeholder="Сообщение стилисту..."
                 aria-label="Сообщение стилисту"
-                className="border-gold/25 bg-onyx/40 text-ivory placeholder:text-ivory/40 focus-visible:border-gold focus-visible:ring-gold/30"
+                className="border-gold/20 bg-onyx-soft text-ivory placeholder:text-muted-foreground focus-visible:border-gold focus-visible:ring-gold/30"
               />
               <button
                 type="button"
                 onClick={() => send(input)}
                 disabled={isTyping || !input.trim()}
                 aria-label="Отправить сообщение"
-                className="flex h-10 shrink-0 items-center gap-1.5 rounded-full bg-gradient-to-br from-gold-bright via-gold to-gold-deep px-4 text-sm font-semibold text-emerald-deep shadow-[0_8px_24px_-8px_rgba(201,169,97,0.6)] transition-transform hover:scale-[1.04] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
+                className="flex shrink-0 items-center gap-1.5 rounded-full bg-gradient-to-br from-gold-bright to-gold px-4 py-2 text-sm font-semibold text-onyx shadow-[0_8px_24px_-8px_rgba(201,169,97,0.6)] transition-transform hover:scale-[1.04] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
               >
-                <Send className="h-4 w-4" />
+                <Sparkles className="h-4 w-4" strokeWidth={1.75} />
                 <span className="hidden sm:inline">Отправить</span>
               </button>
             </div>
           </motion.div>
 
-          {/* === Info panel === */}
+          {/* === Right info panel (hidden on mobile) === */}
           <motion.aside
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col gap-4"
+            className="hidden flex-col gap-4 lg:flex"
           >
             {INFO_CARDS.map((c, i) => {
               const Icon = c.icon;
               return (
                 <motion.article
-                  key={c.title}
+                  key={c.value}
                   initial={{ opacity: 0, x: 16 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{
@@ -324,49 +317,42 @@ export function StyleAssistant() {
                     delay: 0.25 + i * 0.1,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className="lift-card group relative flex items-center gap-4 overflow-hidden rounded-2xl border border-gold/25 bg-onyx/40 px-5 py-4 backdrop-blur-sm transition-colors hover:border-gold/55"
+                  className="lift-card relative flex items-center gap-4 overflow-hidden rounded-lg border border-gold/15 bg-onyx-card p-5"
                 >
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/45 bg-emerald-deep text-gold">
+                  {/* corner-accents — L brackets appear on lift-card:hover */}
+                  <span className="corner-accents pointer-events-none absolute inset-0" />
+
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-emerald-deep text-gold">
                     <Icon className="h-5 w-5" strokeWidth={1.5} />
                   </span>
                   <div className="flex flex-col">
-                    <span className="font-display text-xl leading-tight text-ivory">
-                      {c.title}
+                    <span className="font-display text-2xl leading-tight text-gold">
+                      {c.value}
                     </span>
-                    <span className="text-xs uppercase tracking-[0.18em] text-ivory/55">
-                      {c.sub}
+                    <span className="text-xs uppercase tracking-[0.18em] text-ivory/70">
+                      {c.label}
                     </span>
                   </div>
-                  {/* Decorative gold corner */}
-                  <span className="pointer-events-none absolute right-3 top-3 h-3 w-3 border-r border-t border-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 </motion.article>
               );
             })}
 
-            {/* Bottom CTA card */}
-            <motion.div
+            {/* Bottom gold CTA card */}
+            <motion.a
+              href="#booking"
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.55 }}
-              className="relative mt-2 overflow-hidden rounded-2xl border border-gold/40 bg-gradient-to-br from-emerald to-emerald-deep p-6"
+              className="lift-card group relative flex items-center justify-between overflow-hidden rounded-lg bg-gradient-to-br from-gold-bright via-gold to-gold-deep p-4 text-onyx"
             >
-              <div
-                className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gold/20 blur-3xl"
-                aria-hidden="true"
-              />
-              <p className="relative font-display text-2xl leading-tight text-ivory">
-                Не нашли свой образ?
-              </p>
-              <p className="relative mt-2 text-sm leading-relaxed text-ivory/70">
-                Позвоните стилисту — подберём индивидуально из 2000+ костюмов.
-              </p>
-              <a
-                href="#booking"
-                className="relative mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-br from-gold-bright to-gold-deep px-5 py-2.5 text-sm font-semibold text-emerald-deep shadow-[0_8px_24px_-8px_rgba(201,169,97,0.6)] transition-transform hover:scale-[1.03]"
-              >
+              <span className="font-display text-lg font-semibold leading-tight">
                 Забронировать примерку
-              </a>
-            </motion.div>
+              </span>
+              <ArrowRight
+                className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+                strokeWidth={2}
+              />
+            </motion.a>
           </motion.aside>
         </div>
       </div>
