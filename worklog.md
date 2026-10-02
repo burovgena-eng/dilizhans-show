@@ -1029,3 +1029,31 @@ v5 MAJOR addresses ALL 6 user complaints:
    - Reveal component for staggered card reveals
    - Magnetic buttons (already had, smoother now)
 9. ✅ Composition: unified card design across all sections, varied icons, tighter rhythm
+
+---
+Task ID: 9 (PROCESS BUG FIX)
+Agent: main (Z.ai Code)
+Task: Fix broken "Process" section — empty space under first step when scrolling
+
+Work Log:
+- Diagnosed the bug: Process section was using motion.dev "Card stack" pattern with `lg:h-[400vh]` container + sticky `lg:h-screen` inner + absolutely-positioned step cards swapping based on scrollYProgress. The cards were centered (top-1/2 left-1/2 -translate-x/y-1/2) in a 440px area inside the sticky h-screen container. When user scrolled through the 400vh section, the sticky stayed pinned but only ONE card was visible at a time, centered with LOTS of empty space above (after heading) and below (before progress bar) — exactly the "поле под первым шагом пусто" complaint.
+- Rewrote process.tsx completely:
+  - Removed the lg:h-[400vh] sticky-stack approach entirely (was the root cause of empty space)
+  - Replaced with a clean reliable layout: normal section height + horizontal connecting timeline + 4-card grid (sm:grid-cols-2, lg:grid-cols-4)
+  - Added scroll-tied gold progress line (width 0→100% via useScroll + useTransform) connecting all 4 step dots
+  - Each step dot animates in with staggered delay (scale 0→1, opacity 0→1)
+  - Step cards: equal height via `lg:items-stretch` + `flex h-full flex-col` + `flex-1` on text + step indicator pushed to bottom — bottom edges aligned
+  - Step number uses blur-in animation (filter: blur(10px)→blur(0px))
+  - Step cards reveal with stagger (opacity 0→1, y 30→0, delay i*0.12)
+- Verification:
+  - bun run lint → 0 errors
+  - VLM desktop: 8/10 — "все 4 карточки полностью видны, нижний край на одном уровне, выравнивание выполнено корректно"
+  - The empty-space bug is GONE — all 4 steps always visible in a horizontal grid, no more 400vh of empty scrolling
+  - Mobile: shows first ~1.5 steps at top of viewport — normal mobile behavior (user scrolls to see more)
+
+Stage Summary:
+Process section bug FIXED:
+- Was: 400vh sticky-stacked with empty space under centered cards when scrolling
+- Now: clean horizontal grid (1/2/4 cols) with all 4 steps always visible, equal heights, scroll-tied connecting line animation, staggered reveals
+- Removed: lg:h-[400vh] sticky-stacked absolute-positioned StepCard component (root cause of bug)
+- Kept: motion (blur-in number, staggered card reveals, scroll-tied timeline line, gold dot animations)
