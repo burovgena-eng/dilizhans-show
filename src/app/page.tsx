@@ -12,7 +12,6 @@ import { Advantages } from "@/components/sections/advantages";
 import { Process } from "@/components/sections/process";
 import { Booking } from "@/components/sections/booking";
 import { Testimonials } from "@/components/sections/testimonials";
-import { Gallery } from "@/components/sections/gallery";
 import { Contact } from "@/components/sections/contact";
 
 export default function Home() {
@@ -47,9 +46,6 @@ export default function Home() {
         </SectionReveal>
         <SectionReveal>
           <Testimonials />
-        </SectionReveal>
-        <SectionReveal>
-          <Gallery />
         </SectionReveal>
         <SectionReveal>
           <Contact />

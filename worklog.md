@@ -1057,3 +1057,36 @@ Process section bug FIXED:
 - Now: clean horizontal grid (1/2/4 cols) with all 4 steps always visible, equal heights, scroll-tied connecting line animation, staggered reveals
 - Removed: lg:h-[400vh] sticky-stacked absolute-positioned StepCard component (root cause of bug)
 - Kept: motion (blur-in number, staggered card reveals, scroll-tied timeline line, gold dot animations)
+
+---
+Task ID: 10 (PROCESS 9/10 + GALLERY REMOVED)
+Agent: main (Z.ai Code)
+Task: Push Process to 9-10/10, remove "Образы наших клиентов" section entirely
+
+Work Log:
+- Removed Gallery section completely:
+  - Deleted /src/components/sections/gallery.tsx
+  - Removed `<Gallery />` and its `<SectionReveal>` wrapper from page.tsx
+  - Removed Gallery import from page.tsx
+  - Removed "Галерея" link from NAV_LINKS in catalog.ts
+- Also deleted unused /src/components/sections/categories.tsx (was orphaned after catalog replaced it)
+- Improved PROCESS_STEPS data in catalog.ts:
+  - Added `icon` field per step: PhoneCall, Shirt, FileSignature, PackageCheck (meaningful, not decorative)
+  - Balanced text lengths (each step ~140 chars now vs 90-130 before — visual equilibrium)
+  - Texts made more descriptive: "без обязательств с вашей стороны", "никто другой его не займёт", "Профессиональная чистка и отпаривание уже включены в стоимость"
+- Redesigned process.tsx — pushed from 8/10 to 9/10:
+  - NEW: Icon medallion per step at top-left (h-12 w-12 rounded-full, emerald-deep→emerald-darkest gradient, gold border, inset highlight shadow). Animates in with scale 0.7→1 + rotate -10→0.
+  - Layout: top row has icon medallion (left) + step number (right) side-by-side
+  - Kept: gold dot under top row, title (font-display), text (flex-1, fills space), step indicator at bottom
+  - NEW: progress dots at bottom-right of each card — active card has wider gold dot, others are smaller gold/20
+  - Kept: connecting timeline line (animated width 0→100%), staggered card reveals (i*0.12), blur-in step numbers
+  - Equal height preserved: `lg:items-stretch` + `flex h-full flex-col` + `flex-1` on text
+
+Stage Summary:
+- Gallery section FULLY REMOVED (file deleted, import removed, nav link removed, also cleaned up orphaned categories.tsx)
+- Process section improved from 8/10 to **9/10** per VLM:
+  - "все 4 шага видны в ряду" ✓
+  - "у каждой карточки есть своя уникальная иконка (телефон, футболка, документ, коробка)" ✓
+  - "карточки выровнены по высоте" ✓
+  - "композиция симметричная, сбалансированная, с чёткой визуальной иерархией, подчёркивающая премиальность" ✓
+- Lint clean, dev server compiles in 147ms, no runtime errors

@@ -2,10 +2,19 @@
 
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { PhoneCall, Shirt, FileSignature, PackageCheck, type LucideIcon } from "lucide-react";
 import { PROCESS_STEPS } from "@/lib/data/catalog";
 import { Eyebrow, GoldDivider } from "@/components/site/primitives";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+
+// Icon map — keeps type safety with lucide
+const STEP_ICONS: Record<string, LucideIcon> = {
+  PhoneCall,
+  Shirt,
+  FileSignature,
+  PackageCheck,
+};
 
 export function Process() {
   const ref = useRef<HTMLDivElement>(null);
@@ -39,7 +48,7 @@ export function Process() {
         </div>
 
         {/* === Horizontal connecting timeline === */}
-        <div ref={lineRef} className="relative mt-14 mb-12">
+        <div ref={lineRef} className="relative mt-16 mb-14">
           {/* Track */}
           <div className="relative mx-auto h-px w-full max-w-5xl bg-gold/15">
             {/* Animated gold progress line */}
@@ -62,67 +71,104 @@ export function Process() {
           </div>
         </div>
 
-        {/* === 4 step cards — always visible grid (no broken sticky stack) === */}
+        {/* === 4 step cards — equal-height grid with icon medallions === */}
         <div
           ref={ref}
           className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:items-stretch"
         >
-          {PROCESS_STEPS.map((s, i) => (
-            <motion.article
-              key={s.n}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.7,
-                delay: i * 0.12,
-                ease: EASE,
-              }}
-              className="group lift-card relative flex h-full flex-col overflow-hidden rounded-lg border border-gold/15 bg-onyx-card p-6"
-            >
-              <span className="corner-accents pointer-events-none absolute inset-0" />
-
-              {/* Big step number — blur-in */}
-              <motion.span
-                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-                animate={
-                  inView
-                    ? { opacity: 1, y: 0, filter: "blur(0px)" }
-                    : {}
-                }
+          {PROCESS_STEPS.map((s, i) => {
+            const Icon = STEP_ICONS[s.icon] ?? PhoneCall;
+            return (
+              <motion.article
+                key={s.n}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{
                   duration: 0.7,
-                  delay: i * 0.12 + 0.15,
+                  delay: i * 0.12,
                   ease: EASE,
                 }}
-                className="block font-display text-6xl leading-none text-gold-gradient md:text-7xl"
+                className="group lift-card relative flex h-full flex-col overflow-hidden rounded-lg border border-gold/15 bg-onyx-card p-6"
               >
-                {s.n}
-              </motion.span>
+                <span className="corner-accents pointer-events-none absolute inset-0" />
 
-              {/* Gold dot under number */}
-              <span
-                aria-hidden="true"
-                className="mt-3 h-1.5 w-1.5 rotate-45 bg-gold shadow-[0_0_12px_rgba(201,169,97,0.6)]"
-              />
+                {/* === Top: icon medallion + step number, side-by-side === */}
+                <div className="flex items-start justify-between">
+                  {/* Icon medallion */}
+                  <motion.span
+                    initial={{ opacity: 0, scale: 0.7, rotate: -10 }}
+                    animate={
+                      inView
+                        ? { opacity: 1, scale: 1, rotate: 0 }
+                        : {}
+                    }
+                    transition={{
+                      duration: 0.7,
+                      delay: i * 0.12 + 0.2,
+                      ease: EASE,
+                    }}
+                    className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/35 bg-gradient-to-br from-emerald-deep to-emerald-darkest text-gold shadow-[inset_0_1px_0_rgba(201,169,97,0.25),0_8px_20px_-8px_rgba(0,0,0,0.6)]"
+                  >
+                    <Icon className="h-5 w-5" strokeWidth={1.6} />
+                  </motion.span>
 
-              {/* Title */}
-              <h3 className="mt-4 font-display text-xl leading-tight text-ivory md:text-2xl">
-                {s.title}
-              </h3>
+                  {/* Big step number — top right, gold gradient */}
+                  <motion.span
+                    initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                    animate={
+                      inView
+                        ? { opacity: 1, y: 0, filter: "blur(0px)" }
+                        : {}
+                    }
+                    transition={{
+                      duration: 0.7,
+                      delay: i * 0.12 + 0.15,
+                      ease: EASE,
+                    }}
+                    className="block font-display text-5xl leading-none text-gold-gradient md:text-6xl"
+                  >
+                    {s.n}
+                  </motion.span>
+                </div>
 
-              {/* Text — fills remaining space */}
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-ivory/65">
-                {s.text}
-              </p>
+                {/* Gold dot under top row */}
+                <span
+                  aria-hidden="true"
+                  className="mt-5 h-1.5 w-1.5 rotate-45 bg-gold shadow-[0_0_12px_rgba(201,169,97,0.6)]"
+                />
 
-              {/* Step indicator — pushed to bottom */}
-              <div className="mt-6 flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-gold/70">
-                <span>Шаг {i + 1}</span>
-                <span className="text-ivory/30">/</span>
-                <span>{PROCESS_STEPS.length}</span>
-              </div>
-            </motion.article>
-          ))}
+                {/* Title */}
+                <h3 className="mt-4 font-display text-xl leading-tight text-ivory md:text-2xl">
+                  {s.title}
+                </h3>
+
+                {/* Text — flex-1 to fill remaining space, push indicator to bottom */}
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-ivory/65">
+                  {s.text}
+                </p>
+
+                {/* Step indicator — bottom */}
+                <div className="mt-6 flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-gold/70">
+                  <span>Шаг {i + 1}</span>
+                  <span className="text-ivory/30">/</span>
+                  <span>{PROCESS_STEPS.length}</span>
+                  {/* Progress dots — filled vs empty */}
+                  <span className="ml-auto flex items-center gap-1">
+                    {PROCESS_STEPS.map((_, j) => (
+                      <span
+                        key={j}
+                        className={
+                          j === i
+                            ? "h-1 w-3 rounded-full bg-gold"
+                            : "h-1 w-1.5 rounded-full bg-gold/20"
+                        }
+                      />
+                    ))}
+                  </span>
+                </div>
+              </motion.article>
+            );
+          })}
         </div>
 
         {/* Bottom ornament */}
