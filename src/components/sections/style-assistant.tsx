@@ -290,7 +290,7 @@ export function StyleAssistant() {
                 onClick={() => send(input)}
                 disabled={isTyping || !input.trim()}
                 aria-label="Отправить сообщение"
-                className="flex shrink-0 items-center gap-1.5 rounded-full bg-gradient-to-br from-gold-bright to-gold px-4 py-2 text-sm font-semibold text-onyx shadow-[0_8px_24px_-8px_rgba(201,169,97,0.6)] transition-transform hover:scale-[1.04] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
+                className="btn-gold shrink-0 px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <Sparkles className="h-4 w-4" strokeWidth={1.75} />
                 <span className="hidden sm:inline">Отправить</span>

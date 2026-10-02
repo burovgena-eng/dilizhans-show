@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, Phone, Clock, Sparkles, MapPin } from "lucide-react";
+import { Menu, X, Phone, Sparkles } from "lucide-react";
 import { NAV_LINKS, CONTACT } from "@/lib/data/catalog";
 import { cn } from "@/lib/utils";
 import { useScrolled } from "./primitives";
@@ -12,19 +12,12 @@ export function Header() {
 
   return (
     <>
-      {/* === Top announcement bar === */}
-      <div className="relative z-50 hidden border-b border-gold/15 bg-onyx-soft/80 text-ivory/70 backdrop-blur-sm md:block">
-        <div className="mx-auto flex h-9 max-w-7xl items-center justify-between px-6 text-[11px] tracking-wide">
-          <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5">
-              <Clock className="h-3 w-3 text-gold" />
-              {CONTACT.hours} · {CONTACT.closed}
-            </span>
-            <span className="flex items-center gap-1.5">
-              <MapPin className="h-3 w-3 text-gold" />
-              {CONTACT.address}
-            </span>
-          </div>
+      {/* === Top announcement bar — minimal === */}
+      <div className="relative z-50 hidden border-b border-gold/10 bg-onyx-soft/60 text-ivory/60 backdrop-blur-sm md:block">
+        <div className="mx-auto flex h-8 max-w-7xl items-center justify-between px-6 text-[11px] tracking-wide">
+          <span>
+            {CONTACT.hours} · {CONTACT.closed} · {CONTACT.address}
+          </span>
           <div className="flex items-center gap-6">
             <a
               href={`tel:${CONTACT.phone1Href}`}
@@ -48,21 +41,18 @@ export function Header() {
         className={cn(
           "sticky top-0 z-50 w-full transition-all duration-500",
           scrolled
-            ? "glass-onyx border-b border-gold/15 py-2 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.9)]"
-            : "bg-gradient-to-b from-onyx to-transparent py-4"
+            ? "glass-onyx border-b border-gold/10 py-2.5 shadow-luxe"
+            : "bg-gradient-to-b from-onyx/80 to-transparent py-4"
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-6">
-          {/* Logo — original dilizhans-show.ru logo, recolored to gold for dark theme */}
+          {/* Logo — clean D letter from original dilizhans-show.ru, gold recolor */}
           <a href="#top" className="group flex items-center gap-3">
-            <span className="relative flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 bg-onyx-soft/60 backdrop-blur-sm overflow-hidden">
-              <img
-                src="/images/logo-gold.png"
-                alt="Дилижанс Шоу"
-                className="h-full w-full object-cover mix-blend-screen"
-                style={{ filter: "contrast(1.1) brightness(1.05)" }}
-              />
-            </span>
+            <img
+              src="/images/logo-clean.png"
+              alt="Дилижанс Шоу"
+              className="h-10 w-10 object-contain transition-transform duration-500 group-hover:scale-105"
+            />
             <span className="flex flex-col leading-none">
               <span className="font-display text-xl tracking-tight text-ivory">
                 Дилижанс<span className="text-gold"> Шоу</span>
@@ -79,7 +69,7 @@ export function Header() {
               <a
                 key={l.href}
                 href={l.href}
-                className="group relative rounded-md px-3 py-2 text-sm text-ivory/75 transition-colors hover:text-ivory"
+                className="group relative rounded-md px-3 py-2 text-sm text-ivory/70 transition-colors hover:text-ivory"
               >
                 {l.title}
                 <span className="pointer-events-none absolute inset-x-3 bottom-1 h-px origin-left scale-x-0 bg-gradient-to-r from-gold to-transparent transition-transform duration-300 group-hover:scale-x-100" />
@@ -91,16 +81,16 @@ export function Header() {
           <div className="flex items-center gap-2">
             <a
               href="#assistant"
-              className="group relative hidden items-center gap-2 overflow-hidden rounded-full bg-gradient-to-br from-gold-bright via-gold to-gold-deep px-5 py-2.5 text-sm font-semibold text-onyx shadow-[0_8px_24px_-8px_rgba(201,169,97,0.5),inset_0_1px_0_rgba(255,255,255,0.25)] transition-transform duration-300 hover:scale-[1.03] sm:flex"
+              className="btn-gold hidden px-5 py-2.5 text-sm sm:inline-flex"
             >
-              <Sparkles className="h-4 w-4" />
+              <Sparkles className="h-3.5 w-3.5" />
               Подобрать образ
             </a>
             <button
               type="button"
               aria-label="Меню"
               onClick={() => setOpen((v) => !v)}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-gold/30 text-ivory lg:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/25 text-ivory lg:hidden"
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -114,7 +104,7 @@ export function Header() {
             open ? "max-h-[600px]" : "max-h-0"
           )}
         >
-          <nav className="mx-4 mt-2 flex flex-col gap-1 rounded-2xl border border-gold/15 bg-onyx-card p-3 shadow-xl">
+          <nav className="mx-4 mt-2 flex flex-col gap-1 rounded-2xl border border-gold/10 bg-onyx-card p-3 shadow-luxe">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
@@ -128,17 +118,10 @@ export function Header() {
             <a
               href="#assistant"
               onClick={() => setOpen(false)}
-              className="mt-2 flex items-center justify-center gap-2 rounded-full bg-gradient-to-br from-gold-bright via-gold to-gold-deep px-5 py-3 text-sm font-semibold text-onyx"
+              className="btn-gold mt-2 justify-center px-5 py-3 text-sm"
             >
               <Sparkles className="h-4 w-4" />
-              Подобрать образ с AI-стилистом
-            </a>
-            <a
-              href={`tel:${CONTACT.phone1Href}`}
-              className="flex items-center justify-center gap-2 px-5 py-3 text-sm text-ivory"
-            >
-              <Phone className="h-4 w-4 text-gold" />
-              {CONTACT.phone1}
+              Подобрать образ с AI
             </a>
           </nav>
         </div>

@@ -10,11 +10,11 @@ import {
   ExternalLink,
   Maximize2,
   Search,
-  Sparkles,
   X,
 } from "lucide-react";
-import { SectionHeading } from "@/components/site/primitives";
+import { Eyebrow, SectionHeading } from "@/components/site/primitives";
 import { Input } from "@/components/ui/input";
+import { TiltCard } from "@/components/site/motion-utils";
 import photosManifest from "@/lib/data/photos-manifest.json";
 
 /* ============================================================
@@ -50,13 +50,13 @@ const TOTAL_COUNT = ALL_ITEMS.length;
 /** Page size for "load more" pagination. */
 const PAGE_SIZE = 24;
 
+/** Luxury easing curve — matches motion-utils EASE_LUXE. */
+const EASE_LUXE = [0.16, 1, 0.3, 1] as const;
+
 /* ============================================================
  *  Catalog section component
  * ============================================================ */
 export function Catalog() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-120px" });
-
   /* selectedCategory holds the category LABEL ("Новогодние" etc.) or "all" */
   const [selectedCategory, setSelectedCategory] = useState<string>(
     CATEGORIES[0]?.label ?? "all"
@@ -71,9 +71,7 @@ export function Catalog() {
   const items = useMemo<ManifestItem[]>(() => {
     if (isSearching) {
       const q = searchQuery.trim().toLowerCase();
-      return ALL_ITEMS.filter((it) =>
-        it.title.toLowerCase().includes(q)
-      );
+      return ALL_ITEMS.filter((it) => it.title.toLowerCase().includes(q));
     }
     if (selectedCategory === "all") return ALL_ITEMS;
     const cat = CATEGORIES.find((c) => c.label === selectedCategory);
@@ -89,6 +87,12 @@ export function Catalog() {
   const handleSelectCategory = useCallback((label: string) => {
     setSearchQuery("");
     setSelectedCategory(label);
+    setVisibleCount(PAGE_SIZE);
+  }, []);
+
+  const handleResetFilters = useCallback(() => {
+    setSearchQuery("");
+    setSelectedCategory(CATEGORIES[0]?.label ?? "all");
     setVisibleCount(PAGE_SIZE);
   }, []);
 
@@ -151,10 +155,12 @@ export function Catalog() {
       ? `Все категории · ${items.length} образов`
       : `${selectedCategory} · ${items.length} образов`;
 
+  /* Show per-card category tag only when browsing the "all" view. */
+  const showCategoryTag = selectedCategory === "all" && !isSearching;
+
   return (
     <section
       id="catalog"
-      ref={ref}
       className="relative overflow-hidden bg-onyx bg-emerald-radial py-20 text-ivory md:py-28"
     >
       <div className="mx-auto max-w-7xl px-6">
@@ -182,7 +188,7 @@ export function Catalog() {
               value={searchQuery}
               onChange={handleSearchChange}
               placeholder="Поиск по названию…"
-              className="h-10 rounded-full border-gold/20 bg-onyx-soft pl-9 text-ivory placeholder:text-muted-foreground focus-visible:border-gold focus-visible:ring-gold/30"
+              className="h-10 rounded-full border-gold/15 bg-onyx-soft pl-9 text-ivory placeholder:text-muted-foreground focus-visible:border-gold focus-visible:ring-gold/30"
             />
           </div>
           <div className="scroll-luxe -mx-6 flex gap-2 overflow-x-auto px-6 pb-2">
@@ -210,58 +216,64 @@ export function Catalog() {
         <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-[280px_1fr]">
           {/* === Sidebar (desktop only) === */}
           <aside className="hidden lg:block">
-            <div className="sticky top-24 flex flex-col gap-4">
-              {/* Search */}
-              <div className="relative">
-                <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                <Input
-                  type="search"
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                  placeholder="Поиск по названию…"
-                  className="h-10 rounded-full border-gold/20 bg-onyx-soft pl-9 text-ivory placeholder:text-muted-foreground focus-visible:border-gold focus-visible:ring-gold/30"
-                />
-                {isSearching && (
-                  <button
-                    type="button"
-                    onClick={() =>
-                      handleSearchChange({
-                        target: { value: "" },
-                      } as unknown as ChangeEvent<HTMLInputElement>)
-                    }
-                    aria-label="Очистить поиск"
-                    className="absolute right-2 top-1/2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full text-muted-foreground transition hover:bg-gold/10 hover:text-gold"
-                  >
-                    <X className="h-3.5 w-3.5" />
-                  </button>
-                )}
-              </div>
-
-              {/* Category list */}
-              <div className="scroll-luxe max-h-[60vh] overflow-y-auto pr-1">
-                <CategoryButton
-                  label="Все категории"
-                  count={TOTAL_COUNT}
-                  active={!isSearching && selectedCategory === "all"}
-                  onClick={() => handleSelectCategory("all")}
-                />
-                {CATEGORIES.map((c) => (
-                  <CategoryButton
-                    key={c.label}
-                    label={c.label}
-                    count={c.items.length}
-                    active={!isSearching && selectedCategory === c.label}
-                    data-slug={c.slug}
-                    onClick={() => handleSelectCategory(c.label)}
+            <div className="sticky top-24">
+              <div className="glass-onyx shadow-luxe flex flex-col gap-5 rounded-2xl p-4">
+                {/* Search */}
+                <div className="relative">
+                  <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    type="search"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    placeholder="Поиск по названию…"
+                    className="h-10 rounded-full border-gold/15 bg-onyx-soft pl-9 text-ivory placeholder:text-muted-foreground focus-visible:border-gold focus-visible:ring-gold/30"
                   />
-                ))}
-              </div>
+                  {isSearching && (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        handleSearchChange({
+                          target: { value: "" },
+                        } as unknown as ChangeEvent<HTMLInputElement>)
+                      }
+                      aria-label="Очистить поиск"
+                      className="absolute right-2 top-1/2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full text-muted-foreground transition hover:bg-gold/10 hover:text-gold"
+                    >
+                      <X className="h-3.5 w-3.5" />
+                    </button>
+                  )}
+                </div>
 
-              {/* Hint under sidebar */}
-              <p className="px-2 text-[11px] leading-relaxed text-muted-foreground">
-                477 реальных фотографий костюмов из бутика «Дилижанс Шоу».
-                Кликните на образ, чтобы рассмотреть в деталях.
-              </p>
+                {/* Categories label */}
+                <div className="px-1">
+                  <Eyebrow>Категории</Eyebrow>
+                </div>
+
+                {/* Category list */}
+                <div className="scroll-luxe max-h-[60vh] overflow-y-auto pr-1">
+                  <CategoryButton
+                    label="Все категории"
+                    count={TOTAL_COUNT}
+                    active={!isSearching && selectedCategory === "all"}
+                    onClick={() => handleSelectCategory("all")}
+                  />
+                  {CATEGORIES.map((c) => (
+                    <CategoryButton
+                      key={c.label}
+                      label={c.label}
+                      count={c.items.length}
+                      active={!isSearching && selectedCategory === c.label}
+                      onClick={() => handleSelectCategory(c.label)}
+                    />
+                  ))}
+                </div>
+
+                {/* Hint under sidebar */}
+                <p className="px-1 text-[11px] leading-relaxed text-muted-foreground">
+                  {TOTAL_COUNT} реальных фотографий костюмов из бутика «Дилижанс Шоу».
+                  Кликните на образ, чтобы рассмотреть в деталях.
+                </p>
+              </div>
             </div>
           </aside>
 
@@ -273,9 +285,7 @@ export function Catalog() {
                 {isSearching ? (
                   <>
                     Найдено{" "}
-                    <span className="text-gold-gradient">
-                      {items.length}
-                    </span>{" "}
+                    <span className="text-gold-gradient">{items.length}</span>{" "}
                     образов по запросу «{searchQuery.trim()}»
                   </>
                 ) : (
@@ -291,10 +301,10 @@ export function Catalog() {
 
             {/* Empty state */}
             {items.length === 0 ? (
-              <div className="flex min-h-[300px] flex-col items-center justify-center gap-3 rounded-2xl border border-gold/15 bg-onyx-card p-8 text-center">
-                <Search className="h-8 w-8 text-gold/50" />
-                <p className="font-display text-xl text-ivory">
-                  Образы не найдены
+              <div className="flex min-h-[300px] flex-col items-center justify-center gap-4 rounded-2xl border border-gold/15 bg-onyx-card p-8 text-center shadow-luxe">
+                <Search className="h-7 w-7 text-gold/40" />
+                <p className="font-display text-2xl text-ivory/50">
+                  Ничего не найдено
                 </p>
                 <p className="max-w-sm text-sm text-muted-foreground">
                   Попробуйте изменить запрос или выбрать другую категорию из
@@ -302,64 +312,27 @@ export function Catalog() {
                 </p>
                 <button
                   type="button"
-                  onClick={() => {
-                    setSearchQuery("");
-                    setSelectedCategory(CATEGORIES[0]?.label ?? "all");
-                  }}
-                  className="mt-2 inline-flex items-center gap-2 rounded-full border border-gold/40 px-4 py-2 text-sm text-gold transition hover:bg-gold hover:text-onyx"
+                  onClick={handleResetFilters}
+                  className="btn-outline px-4 py-2 text-sm"
                 >
-                  <Sparkles className="h-3.5 w-3.5" />
                   Сбросить фильтры
                 </button>
               </div>
             ) : (
               <>
-                {/* Grid */}
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
-                  {visibleItems.map((item, i) => (
-                    <motion.button
-                      key={`${item.src}-${i}`}
-                      type="button"
-                      onClick={() => openLightbox(i)}
-                      initial={{ opacity: 0, y: 24 }}
-                      animate={inView ? { opacity: 1, y: 0 } : {}}
-                      transition={{
-                        duration: 0.45,
-                        delay: Math.min(i * 0.03, 0.4),
-                        ease: [0.16, 1, 0.3, 1],
-                      }}
-                      aria-label={`Открыть образ: ${item.title}`}
-                      className="group lift-card corner-accents relative aspect-[3/4] overflow-hidden rounded-lg border border-gold/15 bg-onyx-card text-left"
-                    >
-                      {/* Image */}
-                      <img
-                        src={item.src}
-                        alt={item.title}
-                        loading="lazy"
-                        className="img-luxe h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110"
+                {/* Grid — perspective-1000 + transform-gpu for 3D depth + HW accel */}
+                <div className="perspective-1000 transform-gpu grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
+                  <AnimatePresence mode="popLayout">
+                    {visibleItems.map((item, i) => (
+                      <CatalogCard
+                        key={item.src}
+                        item={item}
+                        index={i}
+                        showCategory={showCategoryTag}
+                        onOpen={() => openLightbox(i)}
                       />
-
-                      {/* Bottom dark gradient overlay (always visible, stronger on hover) */}
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-onyx via-onyx/40 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
-
-                      {/* Top-right zoom pill on hover */}
-                      <span className="glass-gold pointer-events-none absolute right-2.5 top-2.5 flex h-8 w-8 items-center justify-center rounded-full text-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                        <Maximize2 className="h-3.5 w-3.5" />
-                      </span>
-
-                      {/* Bottom content */}
-                      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col gap-1 p-3">
-                        {selectedCategory === "all" && !isSearching && (
-                          <span className="text-[10px] font-medium uppercase tracking-wider text-gold/80">
-                            {item.category}
-                          </span>
-                        )}
-                        <span className="line-clamp-2 font-display text-sm leading-snug text-ivory">
-                          {item.title}
-                        </span>
-                      </div>
-                    </motion.button>
-                  ))}
+                    ))}
+                  </AnimatePresence>
                 </div>
 
                 {/* Load more */}
@@ -367,13 +340,11 @@ export function Catalog() {
                   <div className="mt-8 flex flex-col items-center gap-3">
                     <button
                       type="button"
-                      onClick={() =>
-                        setVisibleCount((c) => c + PAGE_SIZE)
-                      }
-                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-bright to-gold px-6 py-3 text-sm font-semibold uppercase tracking-wider text-onyx transition hover:from-gold hover:to-gold-deep"
+                      onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
+                      className="btn-gold px-6 py-3 text-sm font-semibold uppercase tracking-wider"
                     >
                       Показать ещё
-                      <span className="text-xs font-normal normal-case tracking-normal text-onyx/70">
+                      <span className="text-xs font-normal normal-case tracking-normal opacity-70">
                         (+{Math.min(PAGE_SIZE, items.length - visibleCount)})
                       </span>
                     </button>
@@ -406,9 +377,9 @@ export function Catalog() {
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.97, y: 6 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.3, ease: EASE_LUXE }}
               onClick={(e) => e.stopPropagation()}
-              className="relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-y-auto rounded-2xl border border-gold/30 bg-onyx-card md:flex-row md:overflow-hidden"
+              className="shadow-luxe relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-y-auto rounded-2xl border border-gold/15 bg-onyx-card md:flex-row md:overflow-hidden"
             >
               {/* Close */}
               <button
@@ -480,7 +451,7 @@ export function Catalog() {
                 <a
                   href="#booking"
                   onClick={closeLightbox}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold-bright to-gold px-5 py-3 text-sm font-semibold uppercase tracking-wider text-onyx transition hover:from-gold hover:to-gold-deep"
+                  className="btn-gold px-5 py-3 text-sm uppercase tracking-wider"
                 >
                   Забронировать этот образ
                   <ArrowRight className="h-4 w-4" />
@@ -500,6 +471,87 @@ export function Catalog() {
 }
 
 /* ============================================================
+ *  Single catalog card — TiltCard 3D tilt + clip-path image
+ *  reveal + staggered entry. Each card owns its useInView so
+ *  the clip-path animation triggers per-card on scroll.
+ * ============================================================ */
+function CatalogCard({
+  item,
+  index,
+  showCategory,
+  onOpen,
+}: {
+  item: ManifestItem;
+  index: number;
+  showCategory: boolean;
+  onOpen: () => void;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+  /* Stagger delay — capped at 12 items so a 4-col x 3-row grid completes
+     its stagger in 0.44s, then loops for cards beyond the first row. */
+  const delay = (index % 12) * 0.04;
+
+  return (
+    <motion.div
+      ref={ref}
+      layout
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      exit={{ opacity: 0, y: 10 }}
+      transition={{ duration: 0.6, ease: EASE_LUXE, delay }}
+    >
+      <TiltCard>
+        <button
+          type="button"
+          onClick={onOpen}
+          aria-label={`Открыть образ: ${item.title}`}
+          className="group lift-card shadow-luxe relative block aspect-[3/4] w-full overflow-hidden rounded-lg border border-gold/15 bg-onyx-card text-left"
+        >
+          {/* Image with clip-path reveal — wipes in from top to bottom */}
+          <motion.img
+            src={item.src}
+            alt={item.title}
+            loading="lazy"
+            initial={{ clipPath: "inset(0 0 100% 0)" }}
+            animate={inView ? { clipPath: "inset(0 0 0% 0)" } : {}}
+            transition={{ duration: 0.8, ease: EASE_LUXE }}
+            className="img-luxe-strong h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+          />
+
+          {/* Dark gradient overlay — strong at bottom to hide watermarks + for text legibility */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-onyx via-onyx/50 to-transparent" />
+          {/* Extra bottom band to mask watermarks (usually bottom-center of photos) */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-onyx/80 to-transparent" />
+
+          {/* Top-right zoom pill on hover */}
+          <span className="glass-gold pointer-events-none absolute right-2.5 top-2.5 flex h-8 w-8 items-center justify-center rounded-full text-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+            <Maximize2 className="h-3.5 w-3.5" />
+          </span>
+
+          {/* Bottom content */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col gap-1 p-3">
+            <span className="line-clamp-2 font-display text-sm leading-snug text-ivory">
+              {item.title}
+            </span>
+            {showCategory && (
+              <span className="text-[10px] font-medium uppercase tracking-wider text-gold/70">
+                {item.category}
+              </span>
+            )}
+          </div>
+
+          {/* Corner accents — gold L-brackets appear on hover.
+              Must be a descendant of .lift-card / .group for the
+              hover pseudo-selector to trigger per globals.css. */}
+          <span className="corner-accents pointer-events-none absolute inset-0" aria-hidden />
+        </button>
+      </TiltCard>
+    </motion.div>
+  );
+}
+
+/* ============================================================
  *  Sidebar category button (desktop)
  * ============================================================ */
 function CategoryButton({
@@ -507,37 +559,25 @@ function CategoryButton({
   count,
   active,
   onClick,
-  "data-slug": slug,
 }: {
   label: string;
   count: number;
   active: boolean;
   onClick: () => void;
-  "data-slug"?: string;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      data-slug={slug}
       className={
-        "flex w-full items-center justify-between rounded-lg border px-3 py-2.5 text-left text-sm transition " +
+        "flex w-full items-center rounded-lg border px-3 py-2.5 text-left text-sm transition " +
         (active
-          ? "border-gold/40 bg-gold/10 text-gold"
+          ? "border-gold/30 bg-gold/10 text-gold"
           : "border-transparent text-ivory/70 hover:bg-onyx-card hover:text-ivory")
       }
     >
       <span className="truncate">{label}</span>
-      <span
-        className={
-          "ml-2 shrink-0 rounded-full px-2 py-0.5 text-[11px] font-medium " +
-          (active
-            ? "bg-gold/20 text-gold-bright"
-            : "bg-onyx-soft text-muted-foreground")
-        }
-      >
-        {count}
-      </span>
+      <span className="ml-auto text-[10px] text-muted-foreground">{count}</span>
     </button>
   );
 }
@@ -564,20 +604,11 @@ function CategoryChip({
         "inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-3.5 py-2 text-xs font-medium transition " +
         (active
           ? "border-gold bg-gold/10 text-gold"
-          : "border-gold/25 text-ivory/70 hover:border-gold/50 hover:text-ivory")
+          : "border-gold/15 text-ivory/70 hover:border-gold/40 hover:text-ivory")
       }
     >
       <span>{label}</span>
-      <span
-        className={
-          "rounded-full px-1.5 py-0.5 text-[10px] " +
-          (active
-            ? "bg-gold/20 text-gold-bright"
-            : "bg-onyx-soft text-muted-foreground")
-        }
-      >
-        {count}
-      </span>
+      <span className="text-[10px] text-muted-foreground">{count}</span>
     </button>
   );
 }

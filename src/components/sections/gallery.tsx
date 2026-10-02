@@ -260,7 +260,7 @@ export function Gallery() {
                 <a
                   href="#booking"
                   onClick={closeLightbox}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold-bright to-gold px-5 py-3 text-sm font-semibold uppercase tracking-wider text-onyx transition hover:from-gold hover:to-gold-deep"
+                  className="btn-gold px-5 py-3 text-sm"
                 >
                   Забронировать этот образ
                   <ArrowRight className="h-4 w-4" />

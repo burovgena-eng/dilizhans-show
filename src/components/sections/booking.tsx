@@ -209,7 +209,7 @@ export function Booking() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-br from-gold-bright via-gold to-gold-deep px-6 py-3 text-sm font-semibold text-onyx shadow-[0_10px_40px_-10px_rgba(201,169,97,0.7)] transition-transform duration-300 hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="btn-gold w-full px-6 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {submitting ? (
                     <>

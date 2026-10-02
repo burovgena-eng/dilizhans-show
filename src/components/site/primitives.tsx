@@ -12,23 +12,20 @@ type Props = {
 export function GoldDivider({ className, children }: Props) {
   return (
     <div className={cn("flex items-center justify-center gap-4", className)}>
-      <span className="h-px w-16 bg-gradient-to-r from-transparent to-gold/60 md:w-24" />
-      <span className="text-gold">
+      <span className="h-px w-16 bg-gradient-to-r from-transparent to-gold/40 md:w-24" />
+      <span className="text-gold/80">
         {children ?? (
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path
-              d="M7 0L9 5L14 7L9 9L7 14L5 9L0 7L5 5L7 0Z"
-              fill="currentColor"
-            />
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+            <path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4L5 0Z" fill="currentColor" />
           </svg>
         )}
       </span>
-      <span className="h-px w-16 bg-gradient-to-l from-transparent to-gold/60 md:w-24" />
+      <span className="h-px w-16 bg-gradient-to-l from-transparent to-gold/40 md:w-24" />
     </div>
   );
 }
 
-/** Eyebrow label above headings */
+/** Eyebrow label above headings — refined, not flashy */
 export function Eyebrow({
   children,
   className,
@@ -39,11 +36,11 @@ export function Eyebrow({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.4em] text-gold",
+        "inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.4em] text-gold/80",
         className
       )}
     >
-      <span className="h-px w-6 bg-gold/60" />
+      <span className="h-px w-5 bg-gold/50" />
       {children}
     </span>
   );
@@ -72,7 +69,7 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-      <h2 className="font-display text-4xl leading-[1.05] text-ivory md:text-5xl lg:text-6xl">
+      <h2 className="font-display text-4xl leading-[1.05] text-ivory md:text-5xl lg:text-[3.5rem]">
         {title}
       </h2>
       {subtitle ? (
