@@ -64,8 +64,9 @@ function Logo3DMesh() {
 
     const cursorDist = Math.sqrt(smoothMouse.current.x ** 2 + smoothMouse.current.y ** 2);
     const proximity = Math.max(0, 1.0 - cursorDist);
-    const MIN_INTENSITY = 5;
-    const MAX_INTENSITY = 18;
+    // Higher base intensity + larger boost range — logo stays clearly visible even without cursor
+    const MIN_INTENSITY = 24;
+    const MAX_INTENSITY = 60;
     const spotIntensity = MIN_INTENSITY + proximity * (MAX_INTENSITY - MIN_INTENSITY);
 
     if (spotRef.current) {
@@ -83,31 +84,32 @@ function Logo3DMesh() {
       <mesh ref={meshRef}>
         <planeGeometry args={[3, 3, 200, 200]} />
         <meshStandardMaterial
-          color="#D4AF37"
-          metalness={0.72}
-          roughness={0.18}
+          color="#FFD56B"
+          metalness={0.55}
+          roughness={0.32}
           roughnessMap={textures.roughMap}
           normalMap={textures.normalMap}
-          normalScale={new THREE.Vector2(4.0, 4.0)}
+          normalScale={new THREE.Vector2(3.0, 3.0)}
           displacementMap={textures.heightMap}
-          displacementScale={0.5}
+          displacementScale={0.45}
           alphaMap={textures.alphaMap}
           transparent
           side={THREE.DoubleSide}
-          emissive={"#5A4520"}
-          emissiveIntensity={0.28}
+          emissive={"#C8961F"}
+          emissiveIntensity={0.55}
         />
       </mesh>
 
+      {/* Key spotlight — warm, follows cursor */}
       <spotLight
         ref={spotRef}
         position={[0, 2.8, 3.2]}
-        angle={0.35}
-        penumbra={0.2}
-        intensity={15}
-        color="#FFE8B0"
-        distance={10}
-        decay={1.5}
+        angle={0.5}
+        penumbra={0.4}
+        intensity={30}
+        color="#FFF1C8"
+        distance={14}
+        decay={0.8}
       />
       <primitive ref={spotTargetRef} object={new THREE.Object3D()} position={[0, 0, 0]} />
       <primitive
@@ -115,7 +117,10 @@ function Logo3DMesh() {
         ref={(obj: THREE.Object3D | null) => { if (obj && spotRef.current) spotRef.current.target = obj; }}
       />
 
-      <ambientLight intensity={0.3} color="#FFF8E0" />
+      {/* Fill lights — guarantee logo is always well-lit, even before cursor moves */}
+      <ambientLight intensity={0.7} color="#FFF4D6" />
+      <hemisphereLight args={["#FFE9A8", "#3A2A14", 0.6]} />
+      <directionalLight position={[2, 3, 4]} intensity={1.2} color="#FFE8B0" />
     </>
   );
 }

@@ -1393,3 +1393,29 @@ Work Log:
 
 Stage Summary:
 All 7 reverted files restored to their latest intended state (btn-gold onyx+gold, motion-utils clipPath-free, catalog portal+sequential reveal, booking without eventType, advantages with new icon set + Russian copy, footer with ticker marquee, collections with full 3D Coverflow). Lint + tsc clean, dev server serving 200, pushed to GitHub.
+
+---
+Task ID: logo-brightness
+Agent: main
+Task: 3D-логотип в шапке слишком тёмный — пользователь сообщил "да, но она очень затемнённая, её не видно практически". Сделать логотип ярким и читаемым.
+
+Work Log:
+- Прочитал worklog и src/components/three/logo-3d.tsx, src/components/site/header.tsx
+- Проанализировал текстуры: alphamap покрывал только 2.58% площади (только самые яркие блики), поэтому силуэт буквы «D» был почти невидим. roughmap среднее 212 (высокая шероховатость → матовый). heightmap покрывал только 18%.
+- Перегенерировал все 4 карты из оригинала public/images/old-logo.png (127x127):
+  - alphamap: силуэт по теплым пикселям + сглаживание гауссом → покрытие 35% (с 2.58%)
+  - heightmap: red channel теплых пикселей + гаусс → покрытие 18.33%
+  - roughmap: 255-luma + шум → среднее 224.8
+  - normalmap: пересчитан из нового heightmap (Sobel) → среднее 169.4
+- Обновил src/components/three/logo-3d.tsx:
+  - Material: color #D4AF37 → #FFD56B (ярче), metalness 0.72→0.55, roughness 0.18→0.32, emissive #5A4520→#C8961F, emissiveIntensity 0.28→0.55, normalScale 4→3
+  - SpotLight: intensity 15→30, angle 0.35→0.5, penumbra 0.2→0.4, distance 10→14, decay 1.5→0.8, color #FFE8B0→#FFF1C8
+  - useFrame: MIN_INTENSITY 5→24, MAX_INTENSITY 18→60 (логотип виден даже без курсора)
+  - Добавил hemisphereLight (золотой/тёмный, 0.6), directionalLight (1.2) и поднял ambientLight 0.3→0.7 — fill-свет гарантирует, что логотип всегда хорошо освещён
+- Lint: bun run lint → exit 0 (чисто)
+- Dev-сервер: GET / 200, компиляция успешна, без runtime-ошибк
+- Agent Browser: открыл http://localhost:3000/, сделал скриншот. VLM (glm-5v-turbo) подтвердил: "золотой 3D-логотип (буква D) хорошо виден в левой части хедера, яркий, контрастный"
+- Console: только устаревшие warning THREE.Clock (не критично), ошибок нет
+
+Stage Summary:
+Логотип теперь яркий и читаемый: alphamap с 2.58% → 35% покрытия (плотный силуэт), emissiveIntensity 0.28→0.55 (базовое свечение), добавлены fill-светы (hemisphere + directional + ambient 0.7), spotlight base 5→24 (виден без курсора). VLM подтвердил видимость. Файл logo-3d.tsx изменён, 4 текстуры перегенерированы в public/images/.
