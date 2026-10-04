@@ -4,19 +4,19 @@ import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import { RealisticCosmos } from "@/components/three/realistic-cosmos";
-import { TheaterCurtain } from "@/components/sections/theater-curtain";
+import { VideoCurtain } from "@/components/sections/video-curtain";
 
 /* ============================================================================
  * Cinematic Hero — Bolshoi Theater Edition
  *
- * 220vh tall section. The first 100vh shows the hero overlay (title + CTAs)
+ * 400vh tall section. The first 100vh shows the hero overlay (title + CTAs)
  * with the velvet curtain closed behind the title. As the user scrolls:
  *   0.00-0.10  Curtain opens, revealing the cosmic space behind it
  *   0.10-0.85  Camera flies through space (past 3 planets + gas giant + nebulae)
  *   0.85-1.00  Approaches the final star; the star "swallows" the screen as a
- *              portal into the rest of the site
+ *              portal into the SubHero section (which emerges from the star)
  *
- * No HUD / phase labels (per user request). No streaks, no god rays.
+ * No HUD / phase labels. No streaks, no god rays.
  * ============================================================================ */
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -34,25 +34,25 @@ export function CinematicHero() {
     scrollRef.current = v;
   });
 
-  // Hero overlay (title + CTA): full at start, fades out by 5% scroll
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.04, 0.08], [1, 1, 0]);
-  const overlayY = useTransform(scrollYProgress, [0, 0.08], ["0%", "-25%"]);
-  const titleScale = useTransform(scrollYProgress, [0, 0.08], [1, 0.92]);
+  // Hero overlay (title + CTA): full at start, fades out by 8% scroll
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.05, 0.10], [1, 1, 0]);
+  const overlayY = useTransform(scrollYProgress, [0, 0.10], ["0%", "-25%"]);
+  const titleScale = useTransform(scrollYProgress, [0, 0.10], [1, 0.92]);
 
   // Scroll hint fades out instantly
-  const hintOpacity = useTransform(scrollYProgress, [0, 0.025], [1, 0]);
+  const hintOpacity = useTransform(scrollYProgress, [0, 0.03], [1, 0]);
 
   // Final "portal" flash — gradual warm gold at first, then white as we
-  // crash through the star surface (scroll 0.85..1.0)
-  const portalGlow = useTransform(scrollYProgress, [0.75, 0.95], [0, 0.7]);
-  const portalWhite = useTransform(scrollYProgress, [0.90, 1.0], [0, 1]);
+  // crash through the star surface
+  const portalGlow = useTransform(scrollYProgress, [0.70, 0.95], [0, 0.85]);
+  const portalWhite = useTransform(scrollYProgress, [0.88, 1.0], [0, 1]);
 
   return (
     <section
       id="top"
       ref={sectionRef}
       className="relative w-full"
-      style={{ height: "500vh" }}
+      style={{ height: "400vh" }}
     >
       {/* === Sticky canvas — covers viewport for the whole journey === */}
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-onyx">
@@ -62,15 +62,15 @@ export function CinematicHero() {
         </div>
 
         {/* Ambient gradient overlays */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-onyx/40 via-transparent to-onyx/50" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-onyx/30 via-transparent to-onyx/40" />
 
-        {/* === Theater curtain — opens on scroll 0..0.12 === */}
-        <TheaterCurtain scrollYProgress={scrollYProgress} />
+        {/* === Video theater curtain — opens on scroll 0..0.10 === */}
+        <VideoCurtain scrollYProgress={scrollYProgress} />
 
         {/* === Hero overlay (title + CTA) — fades out early === */}
         <motion.div
           style={{ opacity: overlayOpacity, y: overlayY }}
-          className="pointer-events-none absolute inset-0 z-40 flex items-center justify-center"
+          className="pointer-events-none absolute inset-0 z-50 flex items-center justify-center"
         >
           <div className="mx-auto flex max-w-7xl flex-col items-center px-6 py-24 text-center text-ivory">
             <motion.div
@@ -145,7 +145,7 @@ export function CinematicHero() {
         {/* === Scroll hint (top of journey) === */}
         <motion.div
           style={{ opacity: hintOpacity }}
-          className="absolute bottom-7 left-1/2 z-40 -translate-x-1/2"
+          className="absolute bottom-7 left-1/2 z-50 -translate-x-1/2"
         >
           <motion.div
             animate={{ y: [0, 6, 0] }}
@@ -160,20 +160,18 @@ export function CinematicHero() {
         {/* === Portal glow — warm gold halo as we approach the star === */}
         <motion.div
           style={{ opacity: portalGlow }}
-          className="pointer-events-none absolute inset-0 z-50"
+          className="pointer-events-none absolute inset-0 z-[60]"
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,200,100,0.45)_0%,rgba(255,150,80,0.2)_30%,transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,200,100,0.55)_0%,rgba(255,150,80,0.25)_30%,transparent_65%)]" />
         </motion.div>
 
         {/* === Final white flash — portal into the rest of the site === */}
         <motion.div
           style={{ opacity: portalWhite }}
-          className="pointer-events-none absolute inset-0 z-[60] bg-white"
+          className="pointer-events-none absolute inset-0 z-[70] bg-white"
         />
-
-        {/* Vignette for cinematic finish */}
-        <div className="pointer-events-none absolute inset-0 z-30 mix-blend-overlay bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.7)_100%)]" />
       </div>
     </section>
   );
 }
+

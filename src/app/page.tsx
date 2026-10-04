@@ -4,6 +4,7 @@ import { ScrollProgress } from "@/components/site/motion-utils";
 import { CustomCursor } from "@/components/site/custom-cursor";
 import { SectionReveal } from "@/components/site/section-reveal";
 import { CinematicHero } from "@/components/sections/cinematic-hero";
+import { SubHero } from "@/components/sections/sub-hero";
 import { TrustStrip } from "@/components/sections/trust-strip";
 import { Collections } from "@/components/sections/collections";
 import { Offers } from "@/components/sections/offers";
@@ -20,9 +21,12 @@ export default function Home() {
       <ScrollProgress />
       <Header />
       <main className="flex-1">
-        {/* CinematicHero: 250vh scroll-jacked 3D cosmic journey, ends in a
-            white flash that hands off to the next section. */}
+        {/* CinematicHero: scroll-jacked 3D cosmic journey, ends in a
+            white flash portal that hands off to SubHero. */}
         <CinematicHero />
+        {/* SubHero: emerges from the star portal — bridges cosmic intro
+            to the rest of the site (TrustStrip, Collections, etc.). */}
+        <SubHero />
         <TrustStrip />
 
         {/* The remaining sections fade + lift in via SectionReveal. Each inner

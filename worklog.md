@@ -1593,3 +1593,49 @@ Work Log:
 
 Stage Summary:
 Полная переделка космической сцены: бархатный театральный занавес (с золотыми кисточками, складками, колышется) открывается при скролле → за ним реалистичный космос с 3 earth-like планетами (полноценные с континентами/океанами/облаками/атмосферой), 1 газовым гигантом с кольцами, 2 туманностями, 60k звёзд, финальная звезда-солнце с плазменной поверхностью и короной → камера приближается к ней → white flash портал → TrustStrip (статистика). VLM: 9/10 кинематографичность, 7/10 реалистичность. Нет streaks, нет GodRays, нет HUD, нет мигания. Высота Hero 500vh для плавной анимации.
+
+---
+Task ID: video-curtain-subhero
+Agent: main
+Task: Переработка: использовать видео-занавес (green screen), звезда = портал в sub-hero секцию (не обычный скролл), убрать красный артефакт, вернуть туманности (видимые), улучшить освещение.
+
+Work Log:
+- Скопировал video (vecteezy_red-curtain-opening-green-screen, 2.2MB, 6.58s, 2560x1440, H.264) в public/videos/curtain-green-screen.mp4
+- Попытка конвертации в WebM с alpha (chroma key) через libvpx-vp9 и libvpx — pix_fmt получился yuv420p без alpha (libvpx не сохраняет alpha через CLI). Удалил промежуточные файлы.
+- Решение: SVG feColorMatrix filter для chroma key в браузере (на лету). Создал src/components/sections/video-curtain.tsx:
+  - SVG filter #green-screen-key с feColorMatrix (matrix: -0.6 R -1.4 G -0.6 B → alpha 0 для зелёного), feGaussianBlur stdDeviation 0.6, feComponentTransfer (slope 1.4 intercept -0.05 для re-threshold)
+  - <video> элемент с filter: url(#green-screen-key), object-cover, h-full w-full
+  - requestAnimationFrame: синхронизирует video.currentTime с scrollYProgress (0..0.10 → 0..video.duration)
+  - motion.div обёртка с curtainX (0→-110%) и opacity (1→0 к 0.10 scroll)
+- Создал src/components/sections/sub-hero.tsx:
+  - Появляется после CinematicHero (400vh)
+  - Золотой radial glow сверху (имитация света из звезды-портала), fades 1.0→0.1 по scrollYProgress
+  - Вращающиеся декоративные кольца (orbital motion)
+  - Контент: иконка Sparkles в круге, заголовок "Добро пожаловать в ателье", текст, "Дальше" стрелка
+  - Parallax reveal: contentY 80→-20, opacity 0→1
+  - Bottom fade-into-site (to-onyx)
+- Обновил src/components/sections/cinematic-hero.tsx:
+  - Высота 500vh → 400vh (более контролируемо)
+  - Заменил TheaterCurtain на VideoCurtain
+  - Скорректировал тайминги: overlayOpacity [0,0.05,0.10], hintOpacity [0,0.03], portalGlow [0.70,0.95]→0.85, portalWhite [0.88,1.0]→1
+  - z-index: VideoCurtain z-40, overlay z-50, portalGlow z-60, portalWhite z-70
+- Улучшил 3D-сцену в realistic-cosmos.tsx:
+  - Mars-like планета: ocean #5A2A18→#7A4818 (менее красный), atmosphere #D8784A→#E8A878 (более тёплый, не красный)
+  - Добавил третью туманность: [-60,-20,-240] colors gold/orange/brown, opacity 1.6, fadeRange [0.30,0.98]
+  - Увеличил opacity туманностей: 1.4→2.2, 1.0→1.8 (теперь VLM их видит)
+  - Расширил fadeRange: [0.10,0.85]→[0.05,0.92], [0.20,0.90]→[0.15,0.95]
+  - Добавил освещение: ambientLight 0.5 #FFF4D6, hemisphereLight (gold/brown, 0.6), directionalLight [10,8,5] 0.8 #FFF1C8
+- Добавил SubHero в src/app/page.tsx между CinematicHero и TrustStrip
+- Lint: чисто
+- VLM-анализ 8 кадров (0/5/15/30/55/85/98%/SubHero):
+  - ✅ Занавес (видео красного бархата) открывается
+  - ✅ Chroma-key сработал идеально — нет зелёного фона
+  - ✅ Планеты видны (газовый гигант с кольцами, голубая типа Нептун)
+  - ✅ Туманности видны (3 шт, разные цвета)
+  - ✅ Финальная звезда растёт
+  - ✅ Белая вспышка в 98% (засветление снизу)
+  - ✅ SubHero появляется после вспышки с золотым glow сверху
+  - Оценка: 8.5/10 кинематографичность, 7/10 реалистичность
+
+Stage Summary:
+Полная переработка: видео-занавес с SVG chroma-key фильтром (на лету, без предварительной конвертации), 3D космос с улучшенным освещением и 3 туманностями (теперь видимыми), SubHero секция появляется из финальной звезды как портал в остальной контент. Структура: CinematicHero (400vh, видео-занавес → космос → звезда-портал) → SubHero (золотой glow + "Добро пожаловать в ателье" + стрелка дальше) → TrustStrip → обычные секции. Mars-планета перекрашена (менее красная). VLM подтвердил 8.5/10.

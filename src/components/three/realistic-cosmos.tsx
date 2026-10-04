@@ -77,12 +77,12 @@ const PLANETS: PlanetConfig[] = [
     },
     cloudOpacity: 0.6,
   },
-  // Mars-like (red/orange) — middle-right
+  // Mars-like (warm orange) — middle-right, but reduce red intensity
   {
     pos: [85, -22, -20], radius: 6.5, seed: 0.42,
     colors: {
-      ocean: "#5A2A18", shore: "#8A3A20", land: "#C8602A",
-      mountain: "#8A5030", ice: "#F0E8D8", atmosphere: "#D8784A",
+      ocean: "#7A4818", shore: "#B06028", land: "#D8782A",
+      mountain: "#A05030", ice: "#F0E8D8", atmosphere: "#E8A878",
     },
     cloudOpacity: 0.18,
   },
@@ -438,21 +438,34 @@ function CosmicScene({ scrollRef }: { scrollRef: React.MutableRefObject<number> 
       <Nebula
         position={[-30, 25, -60]}
         colors={{ a: "#C9A961", b: "#1A5A42", c: "#3D2410" }}
-        opacity={1.4}
+        opacity={2.2}
         scrollRef={scrollRef}
-        fadeRange={[0.10, 0.85]}
+        fadeRange={[0.05, 0.92]}
       />
       <Nebula
         position={[80, -40, -150]}
-        colors={{ a: "#7A4A8A", b: "#3A2A60", c: "#1A1030" }}
-        opacity={1.0}
+        colors={{ a: "#9A6AAA", b: "#4A3A70", c: "#2A1040" }}
+        opacity={1.8}
         scrollRef={scrollRef}
-        fadeRange={[0.20, 0.90]}
+        fadeRange={[0.15, 0.95]}
+      />
+      <Nebula
+        position={[-60, -20, -240]}
+        colors={{ a: "#D4A04A", b: "#7A4818", c: "#3A1808" }}
+        opacity={1.6}
+        scrollRef={scrollRef}
+        fadeRange={[0.30, 0.98]}
       />
       {PLANETS.map((p, i) => (
         <Planet key={i} config={p} />
       ))}
       <FinalStar />
+
+      {/* Lighting — hemisphere + directional for ambient fill on any
+          standard-material meshes (planet shaders do their own lighting) */}
+      <ambientLight intensity={0.5} color="#FFF4D6" />
+      <hemisphereLight args={["#FFE9A8", "#1A0F08", 0.6]} />
+      <directionalLight position={[10, 8, 5]} intensity={0.8} color="#FFF1C8" />
 
       <EffectComposer multisampling={8}>
         <Bloom
