@@ -1,6 +1,6 @@
 "use client";
 
-import { MotionValue, useMotionValueEvent } from "framer-motion";
+import { motion, MotionValue, useMotionValueEvent, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
 /* ============================================================================
@@ -32,6 +32,11 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
   const [ready, setReady] = useState(false);
+
+  // Fade out the video after the curtain is fully open so the floor + cosmos
+  // become fully visible. The video ends with the curtain partially visible
+  // at the bottom (≈10% of pixels), so we fade it to hide that remnant.
+  const videoOpacity = useTransform(scrollYProgress, [0, 0.13, 0.20, 0.25], [1, 1, 0.6, 0]);
 
   // Helper: get scroll position from multiple sources. In some preview
   // iframes, window.scrollY is always 0 — we fall back to other sources.
@@ -279,8 +284,14 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
       </svg>
 
       {/* Video stays in place — its currentTime drives the curtain open/close.
-          No translateX, no opacity transform. */}
-      <div className={`absolute inset-0 z-40 pointer-events-none ${ready ? "" : "opacity-0"}`}>
+          After the curtain is fully open (scroll > 0.15), the video fades
+          out so the floor + cosmos become fully visible. The video ends
+          with the curtain partially visible at the bottom (≈10% of pixels),
+          so we fade it out to hide that remnant. */}
+      <motion.div
+        className="absolute inset-0 z-40 pointer-events-none"
+        style={{ opacity: videoOpacity }}
+      >
         <video
           ref={videoRef}
           src="/videos/curtain-green-screen.mp4"
@@ -288,10 +299,10 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
           playsInline
           preload="auto"
           autoPlay={false}
-          className="h-full w-full object-cover"
+          className={`h-full w-full object-cover ${ready ? "" : "opacity-0"}`}
           style={{ filter: "url(#green-screen-key)" }}
         />
-      </div>
+      </motion.div>
 
       {/* Debug badge — visible bottom-left. When you scroll, the numbers
           should change. If they don't, scroll events aren't reaching this
