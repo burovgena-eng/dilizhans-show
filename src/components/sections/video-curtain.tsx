@@ -27,6 +27,18 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
   const sectionRef = useRef<HTMLElement | null>(null);
   const [ready, setReady] = useState(false);
 
+  // Helper: get scroll position from multiple sources. In some preview
+  // iframes, window.scrollY is always 0 — we fall back to other sources.
+  const getScrollY = (): number => {
+    return Math.max(
+      window.scrollY || 0,
+      window.pageYOffset || 0,
+      document.documentElement?.scrollTop || 0,
+      document.body?.scrollTop || 0,
+      document.scrollingElement?.scrollTop || 0,
+    );
+  };
+
   // Helper: set video.currentTime from a 0..1 progress value.
   // Lower threshold (0.01) for smoother scrubbing — every scroll tick
   // nudges the video forward by a tiny amount instead of waiting for big jumps.
@@ -88,7 +100,9 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
     seekTo(latest / VIDEO_PLAY_RANGE);
   });
 
-  // Fallback sync: window scroll listener (in case framer-motion lags)
+  // Fallback sync: window scroll listener (in case framer-motion lags).
+  // Also listens on `window.parent` in case the preview iframe itself is
+  // not the scroll container (the parent window scrolls instead).
   useEffect(() => {
     const onScroll = () => {
       const section = sectionRef.current;
@@ -98,14 +112,28 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
       const vh = window.innerHeight;
       const total = sectionHeight - vh;
       if (total <= 0) return;
-      // Use window.scrollY directly so progress starts from the very first
-      // scroll pixel (not after the sticky header has been scrolled past).
-      const p = Math.max(0, Math.min(1, window.scrollY / total));
+      // Multi-source scrollY (preview iframe safety)
+      const p = Math.max(0, Math.min(1, getScrollY() / total));
       seekTo(p / VIDEO_PLAY_RANGE);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    document.addEventListener("scroll", onScroll, { passive: true });
+    // Try parent window (preview iframe case)
+    try {
+      if (window.parent && window.parent !== window) {
+        window.parent.addEventListener("scroll", onScroll, { passive: true });
+      }
+    } catch { /* cross-origin parent — skip */ }
     onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("scroll", onScroll);
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.removeEventListener("scroll", onScroll);
+        }
+      } catch {}
+    };
   }, []);
 
   // Backup RAF loop — guarantees currentTime updates every frame. Uses
@@ -125,7 +153,7 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
       const vh = window.innerHeight;
       const total = sectionHeight - vh;
       if (total <= 0) return;
-      const p = Math.max(0, Math.min(1, window.scrollY / total));
+      const p = Math.max(0, Math.min(1, getScrollY() / total));
       const targetTime = (p / VIDEO_PLAY_RANGE) * v.duration;
       if (Math.abs(v.currentTime - targetTime) > 0.01) {
         try { v.currentTime = Math.min(targetTime, v.duration); } catch {}
@@ -149,12 +177,31 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
       const vh = window.innerHeight;
       const total = sectionHeight - vh;
       if (total <= 0) return;
-      const p = Math.max(0, Math.min(1, window.scrollY / total));
+      const p = Math.max(0, Math.min(1, getScrollY() / total));
       const targetTime = (p / VIDEO_PLAY_RANGE) * v.duration;
       if (Math.abs(v.currentTime - targetTime) > 0.01) {
         try { v.currentTime = Math.min(targetTime, v.duration); } catch {}
       }
     }, 16); // ~60fps
+    return () => window.clearInterval(id);
+  }, []);
+
+  // Visual debug badge — shows scrollY and videoTime in real-time.
+  // Tiny, fixed bottom-left, only visible during dev. Helps diagnose
+  // whether scroll events reach the component and whether video scrubbing
+  // works in the preview iframe.
+  const [debugInfo, setDebugInfo] = useState("");
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      const v = videoRef.current;
+      const section = document.getElementById("top");
+      const sy = getScrollY();
+      const ct = v ? v.currentTime.toFixed(2) : "?";
+      const sh = section ? section.offsetHeight : 0;
+      const vh = window.innerHeight;
+      const p = sh > vh ? Math.max(0, Math.min(1, sy / (sh - vh))) : 0;
+      setDebugInfo(`scroll=${sy} t=${ct}/${v?.duration?.toFixed(1) ?? "?"} p=${(p * 100).toFixed(0)}%`);
+    }, 100);
     return () => window.clearInterval(id);
   }, []);
 
@@ -199,6 +246,16 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
           className="h-full w-full object-cover"
           style={{ filter: "url(#green-screen-key)" }}
         />
+      </div>
+
+      {/* Debug badge — visible bottom-left. When you scroll, the numbers
+          should change. If they don't, scroll events aren't reaching this
+          component (preview iframe sandbox issue). */}
+      <div
+        className="fixed bottom-2 left-2 z-[100] rounded bg-black/80 px-2 py-1 font-mono text-[10px] text-emerald-400 pointer-events-none"
+        aria-hidden
+      >
+        {debugInfo || "loading..."}
       </div>
     </>
   );
