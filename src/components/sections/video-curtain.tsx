@@ -48,6 +48,9 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
       setReady(true);
       // Initialize: curtain closed at start
       seekTo(0);
+      // Console marker — visible in browser DevTools so the user can confirm
+      // that JS executed and the VideoCurtain mounted properly.
+      console.log("[VideoCurtain] video loaded, ready, time=0");
     };
 
     if (v.readyState >= 2) {
@@ -57,6 +60,15 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
       v.addEventListener("canplay", onLoaded, { once: true });
     }
     try { v.load(); } catch {}
+
+    // Try play() + pause() to force the browser to load the first frame.
+    // Some browsers won't render frame 0 of a video without a play attempt.
+    v.play().then(() => {
+      v.pause();
+      try { v.currentTime = 0; } catch {}
+    }).catch(() => {
+      // Autoplay blocked — that's fine, we drive currentTime manually
+    });
 
     return () => {
       v.removeEventListener("loadeddata", onLoaded);
@@ -75,6 +87,10 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
       el = el.parentElement;
     }
     sectionRef.current = el as HTMLElement | null;
+    // Also try by id — CinematicHero section has id="top"
+    if (!sectionRef.current) {
+      sectionRef.current = document.getElementById("top") as HTMLElement | null;
+    }
   }, []);
 
   // Primary sync: react to framer-motion scrollYProgress changes
@@ -102,24 +118,23 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Backup RAF loop — guarantees currentTime updates every frame, even if
-  // motion value events are throttled or batched. Uses window.scrollY
-  // directly (not rect.top) so progress starts at the FIRST scroll pixel,
-  // not after the sticky header has scrolled past.
+  // Backup RAF loop — guarantees currentTime updates every frame. Uses
+  // window.scrollY directly so progress starts at the FIRST scroll pixel,
+  // not after the sticky header has scrolled past. Resilient to any
+  // framer-motion / React state issues — pure DOM measurement.
   useEffect(() => {
     let raf = 0;
     const tick = () => {
       raf = requestAnimationFrame(tick);
-      const section = sectionRef.current;
       const v = videoRef.current;
-      if (!section || !v || !v.duration || !isFinite(v.duration)) return;
+      if (!v || !v.duration || !isFinite(v.duration)) return;
+      // Find Hero section — use document.getElementById for reliability
+      const section = sectionRef.current || document.getElementById("top");
+      if (!section) return;
       const sectionHeight = section.offsetHeight;
       const vh = window.innerHeight;
       const total = sectionHeight - vh;
       if (total <= 0) return;
-      // window.scrollY starts at 0 when page is at top, regardless of
-      // sticky-header offset. This makes the curtain open from the very
-      // first scroll wheel tick.
       const p = Math.max(0, Math.min(1, window.scrollY / total));
       const targetTime = (p / VIDEO_PLAY_RANGE) * v.duration;
       if (Math.abs(v.currentTime - targetTime) > 0.03) {
