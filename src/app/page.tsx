@@ -3,7 +3,7 @@ import { Footer } from "@/components/site/footer";
 import { ScrollProgress } from "@/components/site/motion-utils";
 import { CustomCursor } from "@/components/site/custom-cursor";
 import { SectionReveal } from "@/components/site/section-reveal";
-import { Hero } from "@/components/sections/hero";
+import { CinematicHero } from "@/components/sections/cinematic-hero";
 import { TrustStrip } from "@/components/sections/trust-strip";
 import { Collections } from "@/components/sections/collections";
 import { Offers } from "@/components/sections/offers";
@@ -20,8 +20,9 @@ export default function Home() {
       <ScrollProgress />
       <Header />
       <main className="flex-1">
-        {/* Hero + TrustStrip keep their own entrance animations. */}
-        <Hero />
+        {/* CinematicHero: 250vh scroll-jacked 3D cosmic journey, ends in a
+            white flash that hands off to the next section. */}
+        <CinematicHero />
         <TrustStrip />
 
         {/* The remaining sections fade + lift in via SectionReveal. Each inner
