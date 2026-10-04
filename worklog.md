@@ -1419,3 +1419,21 @@ Work Log:
 
 Stage Summary:
 Логотип теперь яркий и читаемый: alphamap с 2.58% → 35% покрытия (плотный силуэт), emissiveIntensity 0.28→0.55 (базовое свечение), добавлены fill-светы (hemisphere + directional + ambient 0.7), spotlight base 5→24 (виден без курсора). VLM подтвердил видимость. Файл logo-3d.tsx изменён, 4 текстуры перегенерированы в public/images/.
+
+---
+Task ID: logo-2d-revert
+Agent: main
+Task: Пользователь попросил отказаться от 3D-логотипа и вернуть старый 2D дизайн логотипа.
+
+Work Log:
+- Удалил импорт Logo3D из src/components/site/header.tsx
+- Создал public/images/logo-2d.png: на основе logo-gold.png (1024x1024, RGB), добавил alpha-канал (luma<25 → прозрачный), сгладил гауссом → покрытие 37% (прозрачный фон, только золотой символ D с градиентом и декоративным крылом)
+- Заменил <Logo3D /> в header.tsx на <img src="/images/logo-2d.png"> с h-14 w-14, drop-shadow чёрный + золотое свечение (filter drop-shadow rgba(212,175,55,0.35))
+- Lint: bun run lint → exit 0 (чисто)
+- Dev-сервер: GET / 200, компиляция успешна
+- Agent Browser + VLM: буква D чётко видна, яркий золотой градиент, контрастный на тёмном фоне
+- Console: без ошибок
+- Файл src/components/three/logo-3d.tsx оставлен (больше не импортируется, можно удалить позже)
+
+Stage Summary:
+3D-логотип заменён на 2D-версию: <img> с logo-2d.png (прозрачный PNG с золотой буквой D и градиентом). VLM подтвердил чёткую видимость и хорошую контрастность. 3D-компонент logo-3d.tsx больше не используется (оставлен в дереве, не импортируется).

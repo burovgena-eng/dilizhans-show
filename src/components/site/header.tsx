@@ -5,7 +5,6 @@ import { Menu, X, Phone } from "lucide-react";
 import { NAV_LINKS, CONTACT } from "@/lib/data/catalog";
 import { cn } from "@/lib/utils";
 import { useScrolled } from "./primitives";
-import { Logo3D } from "@/components/three/logo-3d";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -47,10 +46,17 @@ export function Header() {
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-6">
-          {/* Logo — 3D relief of original stylized D + spotlight */}
+          {/* Logo — 2D gold emblem */}
           <a href="#top" className="group flex items-center gap-3">
             <div className="flex h-14 w-14 items-center justify-center transition-transform duration-500 group-hover:scale-105">
-              <Logo3D />
+              <img
+                src="/images/logo-2d.png"
+                alt="Дилижанс Шоу — логотип"
+                width={56}
+                height={56}
+                className="h-14 w-14 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
+                style={{ filter: "drop-shadow(0 0 12px rgba(212,175,55,0.35))" }}
+              />
             </div>
             <span className="flex flex-col leading-none">
               <span className="font-display text-xl tracking-tight text-ivory">
