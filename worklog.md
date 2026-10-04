@@ -1547,3 +1547,49 @@ Work Log:
 
 Stage Summary:
 Создана полноценная кинематографическая 3D-сцена космического полёта при скролле: 50k звёзд + 1500 line-segment streaks + объёмная туманность (fbm noise shader) + финальная звезда (fresnel) + GodRays + Bloom + ChromaticAberration + Vignette + ACES ToneMapping. Камера движется по CatmullRom path из 7 точек, FOV изменяется в hyperspace. Финальная белая вспышка (0.82-1.0 scroll) "поглощает" экран и переходит в следующий раздел. VLM подтвердил 8/10 кинематографичности, видит streaks, туманность, финальную вспышку.
+
+---
+Task ID: cinematic-curtain-cosmos
+Agent: main
+Task: Переработать кинематографическую 3D-сцену: Hero с театральным занавесом (как в Большом театре), который открывается при скролле; за ним — реалистичный космос с полноценными планетами (не кружками); полёт к одной из звёзд; в финале звезда = портал в остальные секции; убрать streaks гиперпрыжка и надписи фаз внизу; увеличить качество рендера; исправить мигание.
+
+Work Log:
+- Создал src/components/three/planet-shaders.ts — 6 полноценных шейдеров:
+  1. Planet surface: fbm continents + oceans + mountains + ice caps + cloud layer + atmosphere fresnel + star lighting + city lights на ночной стороне
+  2. Gas giant: banded atmosphere (Jupiter/Saturn) with storm swirls + fresnel atmosphere
+  3. Star surface: hot plasma surface with fbm + corona fresnel (emissive, не тонмаппится)
+  4. Atmosphere shell: back-side additive halo glow around planet
+  5. Ring system: annulus disk с polar coords, Cassini-style gaps, banded color
+  6. Realistic starfield: 60k points, sphere distribution, soft twinkle (low amplitude, no flicker), depth glow
+  7. Nebula: volumetric gas cloud with fbm 6 octaves, gold/emerald/purple variants
+- Создал src/components/three/realistic-cosmos.tsx:
+  - 3 earth-like planets: blue/green, mars-orange, ice world
+  - 1 gas giant with ring system (gold/amber, position near final approach)
+  - 1 final star with plasma surface + corona + atmosphere halo
+  - 2 nebulae (gold-emerald + purple-violet)
+  - 60k starfield
+  - Camera CatmullRom path из 8 точек (z: 280 → -340)
+  - FOV widens at end (-8°), mouse parallax (subtle)
+  - Post: Bloom (intensity 1.3, kernel HUGE, mipmapBlur), Vignette, SMAA, ACES ToneMapping
+  - dpr [1, 2.5], multisampling 8
+  - Нет streaks, нет GodRays (по требованию пользователя)
+- Создал src/components/sections/theater-curtain.tsx:
+  - Velvet curtain: 2 halves (left+right) с pleated repeating-linear-gradient (20 pleats)
+  - Velvet sheen overlay (light edge)
+  - Gold tassel cord at leading edge с 12 tassels
+  - Top valance (pelmet) с scalloped bottom + 14 gold fringe tassels
+  - Bottom hem с gold trim
+  - Sway motion (requestAnimationFrame, sin*0.6) — занавес колышется
+  - Открытие: scroll 0..0.08 → translateX 0→±101% (полностью открыт)
+  - Valance и hem исчезают одновременно
+- Переписал src/components/sections/cinematic-hero.tsx:
+  - Hero section height: 500vh (увеличил с 220vh — давало слишком быстро)
+  - Сценарий: 0..0.04 занавес закрыт с заголовком, 0.04..0.08 занавес открывается (заголовок исчезает), 0.08..0.95 полёт через космос, 0.75..0.95 warm gold portalGlow, 0.90..1.0 white portal flash → TrustStrip
+  - Нет HUD / phase labels (по требованию)
+  - scroll hint "Открыть занавес"
+  - Vignette + gradient overlays
+- Lint: bun run lint → exit 0 (чисто)
+- Dev: 200 OK, без runtime errors
+
+Stage Summary:
+Полная переделка космической сцены: бархатный театральный занавес (с золотыми кисточками, складками, колышется) открывается при скролле → за ним реалистичный космос с 3 earth-like планетами (полноценные с континентами/океанами/облаками/атмосферой), 1 газовым гигантом с кольцами, 2 туманностями, 60k звёзд, финальная звезда-солнце с плазменной поверхностью и короной → камера приближается к ней → white flash портал → TrustStrip (статистика). VLM: 9/10 кинематографичность, 7/10 реалистичность. Нет streaks, нет GodRays, нет HUD, нет мигания. Высота Hero 500vh для плавной анимации.

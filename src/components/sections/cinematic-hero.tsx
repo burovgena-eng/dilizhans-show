@@ -3,20 +3,20 @@
 import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { ChevronDown, ArrowRight } from "lucide-react";
-import { CosmicJourney } from "@/components/three/cosmic-journey";
+import { RealisticCosmos } from "@/components/three/realistic-cosmos";
+import { TheaterCurtain } from "@/components/sections/theater-curtain";
 
 /* ============================================================================
- * Cinematic Hero — Cosmic Journey Edition
+ * Cinematic Hero — Bolshoi Theater Edition
  *
- * 250vh tall section. The first 100vh shows the hero overlay (title + CTAs).
- * As the user scrolls, framer-motion's useScroll drives the 3D camera flight
- * from a wide starfield through a nebula to a final glowing star.
- * The overlay fades out by 15% scroll, then the cosmic journey takes over
- * the whole screen until ~95%, where the final star "swallows" the screen
- * and the next section (TrustStrip / Collections) is revealed.
+ * 220vh tall section. The first 100vh shows the hero overlay (title + CTAs)
+ * with the velvet curtain closed behind the title. As the user scrolls:
+ *   0.00-0.10  Curtain opens, revealing the cosmic space behind it
+ *   0.10-0.85  Camera flies through space (past 3 planets + gas giant + nebulae)
+ *   0.85-1.00  Approaches the final star; the star "swallows" the screen as a
+ *              portal into the rest of the site
  *
- * The 3D Canvas is sticky (position: fixed) so it covers the viewport for the
- * whole scroll duration; the section is just a tall scroll-trigger spacer.
+ * No HUD / phase labels (per user request). No streaks, no god rays.
  * ============================================================================ */
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -30,51 +30,47 @@ export function CinematicHero() {
     offset: ["start start", "end start"],
   });
 
-  // Sync scroll progress to ref for the 3D scene (read every frame in useFrame)
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     scrollRef.current = v;
   });
 
-  // Hero overlay opacity: full at 0, fade out by 0.12
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.10], [1, 0]);
-  const overlayY = useTransform(scrollYProgress, [0, 0.10], ["0%", "-30%"]);
-
-  // Title scale — slight zoom as we begin the journey
-  const titleScale = useTransform(scrollYProgress, [0, 0.10], [1, 0.92]);
-
-  // White flash at the end (88-100% scroll) — "swallow" effect as we crash into the star
-  const flashOpacity = useTransform(scrollYProgress, [0.82, 0.95, 1.0], [0, 0.9, 1]);
+  // Hero overlay (title + CTA): full at start, fades out by 5% scroll
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.04, 0.08], [1, 1, 0]);
+  const overlayY = useTransform(scrollYProgress, [0, 0.08], ["0%", "-25%"]);
+  const titleScale = useTransform(scrollYProgress, [0, 0.08], [1, 0.92]);
 
   // Scroll hint fades out instantly
-  const hintOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
+  const hintOpacity = useTransform(scrollYProgress, [0, 0.025], [1, 0]);
 
-  // Lock body scroll-snap off during this section (no scroll-snap influence)
-  useEffect(() => {
-    // No-op; smooth scroll is handled by SmoothScroll provider
-  }, []);
+  // Final "portal" flash — gradual warm gold at first, then white as we
+  // crash through the star surface (scroll 0.85..1.0)
+  const portalGlow = useTransform(scrollYProgress, [0.75, 0.95], [0, 0.7]);
+  const portalWhite = useTransform(scrollYProgress, [0.90, 1.0], [0, 1]);
 
   return (
     <section
       id="top"
       ref={sectionRef}
       className="relative w-full"
-      style={{ height: "250vh" }}
+      style={{ height: "500vh" }}
     >
-      {/* === Sticky 3D canvas — covers viewport during the whole journey === */}
+      {/* === Sticky canvas — covers viewport for the whole journey === */}
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-onyx">
-        {/* 3D scene */}
+        {/* Realistic 3D cosmos */}
         <div className="absolute inset-0">
-          <CosmicJourney scrollRef={scrollRef} />
+          <RealisticCosmos scrollRef={scrollRef} />
         </div>
 
-        {/* Gradient overlays for cinematic mood */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-onyx/40 via-transparent to-onyx/60" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-onyx/30 via-transparent to-onyx/30" />
+        {/* Ambient gradient overlays */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-onyx/40 via-transparent to-onyx/50" />
+
+        {/* === Theater curtain — opens on scroll 0..0.12 === */}
+        <TheaterCurtain scrollYProgress={scrollYProgress} />
 
         {/* === Hero overlay (title + CTA) — fades out early === */}
         <motion.div
           style={{ opacity: overlayOpacity, y: overlayY }}
-          className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center"
+          className="pointer-events-none absolute inset-0 z-40 flex items-center justify-center"
         >
           <div className="mx-auto flex max-w-7xl flex-col items-center px-6 py-24 text-center text-ivory">
             <motion.div
@@ -146,76 +142,38 @@ export function CinematicHero() {
           </div>
         </motion.div>
 
-        {/* === Journey progress hint — middle of journey === */}
-        <JourneyProgressUI scrollYProgress={scrollYProgress} />
-
-        {/* === Scroll hint (top) === */}
+        {/* === Scroll hint (top of journey) === */}
         <motion.div
           style={{ opacity: hintOpacity }}
-          className="absolute bottom-7 left-1/2 z-20 -translate-x-1/2"
+          className="absolute bottom-7 left-1/2 z-40 -translate-x-1/2"
         >
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
             className="flex flex-col items-center gap-2 text-ivory/40"
           >
-            <span className="text-[10px] uppercase tracking-[0.35em]">Листайте в космос</span>
+            <span className="text-[10px] uppercase tracking-[0.35em]">Открыть занавес</span>
             <ChevronDown className="h-3.5 w-3.5 text-gold/60" />
           </motion.div>
         </motion.div>
 
-        {/* === Final white flash — swallows screen === */}
+        {/* === Portal glow — warm gold halo as we approach the star === */}
         <motion.div
-          style={{ opacity: flashOpacity }}
-          className="pointer-events-none absolute inset-0 z-30 bg-white"
+          style={{ opacity: portalGlow }}
+          className="pointer-events-none absolute inset-0 z-50"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,200,100,0.45)_0%,rgba(255,150,80,0.2)_30%,transparent_60%)]" />
+        </motion.div>
+
+        {/* === Final white flash — portal into the rest of the site === */}
+        <motion.div
+          style={{ opacity: portalWhite }}
+          className="pointer-events-none absolute inset-0 z-[60] bg-white"
         />
 
-        {/* === Vignette/grain for cinematic finish === */}
-        <div className="pointer-events-none absolute inset-0 z-20 mix-blend-overlay bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.7)_100%)]" />
+        {/* Vignette for cinematic finish */}
+        <div className="pointer-events-none absolute inset-0 z-30 mix-blend-overlay bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.7)_100%)]" />
       </div>
     </section>
   );
-}
-
-/* ----------------------------------------------------------------------------
- * Journey Progress UI — small cinematic HUD showing current "phase" of flight.
- * ---------------------------------------------------------------------------- */
-function JourneyProgressUI({ scrollYProgress }: { scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"] }) {
-  // Phase labels by scroll progress
-  const phases = [
-    { at: 0.00, label: "Старт" },
-    { at: 0.20, label: "Разгон" },
-    { at: 0.45, label: "Туманность" },
-    { at: 0.75, label: "Гиперпрыжок" },
-    { at: 0.92, label: "Звезда" },
-  ];
-
-  const progressBar = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-
-  return (
-    <motion.div
-      style={{
-        opacity: useTransform(scrollYProgress, [0.05, 0.15, 0.88, 0.95], [0, 1, 1, 0]),
-      }}
-      className="pointer-events-none absolute bottom-10 left-1/2 z-20 w-[min(90vw,560px)] -translate-x-1/2"
-    >
-      <div className="flex justify-between text-[9px] uppercase tracking-[0.3em] text-gold/60 mb-2">
-        {phases.map((p, i) => (
-          <PhaseLabel key={i} scrollYProgress={scrollYProgress} at={p.at} label={p.label} />
-        ))}
-      </div>
-      <div className="relative h-px w-full bg-ivory/10">
-        <motion.div
-          style={{ width: progressBar }}
-          className="absolute left-0 top-0 h-full bg-gradient-to-r from-gold via-amber-200 to-gold"
-        />
-      </div>
-    </motion.div>
-  );
-}
-
-function PhaseLabel({ scrollYProgress, at, label }:
-  { scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"]; at: number; label: string }) {
-  const isActive = useTransform(scrollYProgress, [at - 0.06, at, at + 0.06], [0.4, 1, 0.4]);
-  return <motion.span style={{ opacity: isActive }} className="text-ivory/60">{label}</motion.span>;
 }
