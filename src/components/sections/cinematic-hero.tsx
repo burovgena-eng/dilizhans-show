@@ -34,13 +34,13 @@ export function CinematicHero() {
     scrollRef.current = v;
   });
 
-  // Hero overlay (title + CTA): full at start, fades out by 8% scroll
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.05, 0.10], [1, 1, 0]);
-  const overlayY = useTransform(scrollYProgress, [0, 0.10], ["0%", "-25%"]);
-  const titleScale = useTransform(scrollYProgress, [0, 0.10], [1, 0.92]);
+  // Hero overlay (title + CTA): full while curtain closed, fades as curtain opens
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.08, 0.15], [1, 1, 0]);
+  const overlayY = useTransform(scrollYProgress, [0, 0.15], ["0%", "-25%"]);
+  const titleScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.92]);
 
-  // Scroll hint fades out instantly
-  const hintOpacity = useTransform(scrollYProgress, [0, 0.03], [1, 0]);
+  // Scroll hint fades out as curtain begins to open
+  const hintOpacity = useTransform(scrollYProgress, [0, 0.04], [1, 0]);
 
   // Final "portal" flash — gradual warm gold at first, then white as we
   // crash through the star surface
