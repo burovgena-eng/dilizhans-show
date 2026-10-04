@@ -1716,3 +1716,27 @@ Work Log:
 
 Stage Summary:
 Hydration mismatch исправлен: Math.random() → детерминированная seeded() функция, motion.span → обычный <span> с CSS keyframes (обходит framer-motion reformatting), все inline style numbers округлены до 2 знаков через r2(). Видео-занавес теперь проигрывается синхронно со скроллом (плавно открывается), SubHero motion design работает. VLM подтвердил реальное плавное движение занавеса.
+
+---
+Task ID: video-curtain-scroll-fix
+Agent: main
+Task: Пользователь: "все еще просто картинка занавеса и скрол вниз а не внутрь" — видео не синхронизировано со скроллом, и 3D-сцена/камера не двигается (просто прокручивается вниз).
+
+Work Log:
+- Debug: проверил video element — readyState=4, duration=6.583, currentTime=0.083 (старт), paused=true ✓
+- Проверил scroll sync: при scroll 0/2.5/5% currentTime остаётся 0.083 (не обновляется!), только на 10%+ начинает двигаться
+- Нашёл корень проблемы: использовал useScroll с offset ["start start", "end start"] — это даёт scrollYProgress=0 ПОКА section.top не достигнет viewport.top. Из-за sticky-header (который занимает ~127px места в normal flow), первые ~127px скролла не двигают scrollYProgress → видео не открывается
+- Переписал src/components/sections/cinematic-hero.tsx:
+  - Убрал `useScroll` с target
+  - Создал `const scrollYProgress = useMotionValue(0)` вручную
+  - useEffect с window.addEventListener("scroll", ...) обновляет scrollYProgress через `window.scrollY / (sectionHeight - viewportHeight)` — начинается с ПЕРВОГО пикселя скролла
+  - Также обновляет scrollRef.current (для RealisticCosmos)
+- Переписал src/components/sections/video-curtain.tsx:
+  - RAF backup loop теперь использует `window.scrollY` напрямую (не rect.top)
+  - Fallback scroll listener тоже использует window.scrollY
+  - Использует useMotionValueEvent для немедленной реакции на изменения framer-motion MotionValue
+- Тест: 0%→0.083s, 2.5%→1.48s, 5%→2.93s, 10%→5.89s, 15%→6.625s (полное открытие)
+- VLM: "На 4-х кадрах чётко видна плавная анимация открытия театральных занавесов, привязанная к скроллу. 0% — закрыт, 5% — начало раскрытия, 10% — середина, 15% — полностью открыт. Движение реальное, плавное и интерактивное — пользователь контролирует скорость открытия занавеса прокруткой колёса мыши"
+
+Stage Summary:
+Видео-занавес теперь синхронизирован со скроллом с ПЕРВОГО пикселя (не ждёт, пока sticky-header проскроллится). Аналогично, RealisticCosmos (3D-сцена с космосом) тоже теперь реагирует на scroll с первого пикселя — камера начнёт лететь через космос сразу после открытия занавеса. VLM подтвердил реальное движение занавеса.

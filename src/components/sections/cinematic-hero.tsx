@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import { RealisticCosmos } from "@/components/three/realistic-cosmos";
 import { VideoCurtain } from "@/components/sections/video-curtain";
@@ -16,7 +16,11 @@ import { VideoCurtain } from "@/components/sections/video-curtain";
  *   0.85-1.00  Approaches the final star; the star "swallows" the screen as a
  *              portal into the SubHero section (which emerges from the star)
  *
- * No HUD / phase labels. No streaks, no god rays.
+ * Scroll progress is computed manually from window.scrollY (NOT from
+ * useScroll with `target`) so that progress starts at the FIRST scroll
+ * pixel. Using useScroll with target + offset ["start start", "end start"]
+ * gives scrollYProgress=0 until the sticky header (which sits above Hero in
+ * normal flow) has been scrolled past, making the curtain appear static.
  * ============================================================================ */
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -24,15 +28,30 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 export function CinematicHero() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef(0);
+  // Manual scroll progress MotionValue (starts at 0 at the very first scroll
+  // pixel, regardless of sticky-header offset).
+  const scrollYProgress = useMotionValue(0);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-
-  useMotionValueEvent(scrollYProgress, "change", (v) => {
-    scrollRef.current = v;
-  });
+  useEffect(() => {
+    const onScroll = () => {
+      const section = sectionRef.current;
+      if (!section) return;
+      const sectionHeight = section.offsetHeight;
+      const vh = window.innerHeight;
+      const total = sectionHeight - vh;
+      if (total <= 0) return;
+      const p = Math.max(0, Math.min(1, window.scrollY / total));
+      scrollYProgress.set(p);
+      scrollRef.current = p;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [scrollYProgress]);
 
   // Hero overlay (title + CTA): full while curtain closed, fades as curtain opens
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.08, 0.15], [1, 1, 0]);
