@@ -1,34 +1,49 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useSyncExternalStore } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import { ImageCurtain } from "@/components/sections/image-curtain";
+import { TheaterScene3D } from "@/components/three/theater-scene";
 
 /* ============================================================================
  * Cinematic Hero — Bolshoi Theater Edition
  *
- * 400vh tall section. The first 100vh shows the hero overlay (title + CTAs)
- * with the velvet curtain closed behind the title. As the user scrolls:
+ * 800vh tall section. Timeline:
  *   0.00-0.15  Curtain opens (158 pre-rendered WebP frames, 60fps scrubbing)
  *   0.15-0.20  Pause (curtain fully open)
- *   0.20-0.45  3D fly-through: camera flies past/through the curtain
- *   0.45-0.50  Video fades out — hands off to SubHero section
+ *   0.20-0.40  3D fly-through: camera flies past/through the curtain
+ *   0.40-0.45  Image curtain fades out → theater 3D scene begins
+ *   0.45-1.00  Theater 3D scene:
+ *     0.45-0.50  Camera approaches the stage from above (angle ~42°)
+ *     0.50-0.55  4 spotlights ignite sequentially (warm gold)
+ *     0.55-0.70  Camera approaches costume #1 (left screen, info right)
+ *     0.70-0.80  Camera moves to costume #2
+ *     0.80-0.90  Camera moves to costume #3
+ *     0.90-1.00  Camera moves to costume #4
  *
- * Scroll progress is computed manually from window.scrollY (NOT from
- * useScroll with `target`) so that progress starts at the FIRST scroll
- * pixel. Using useScroll with target + offset ["start start", "end start"]
- * gives scrollYProgress=0 until the sticky header (which sits above Hero in
- * normal flow) has been scrolled past, making the curtain appear static.
+ * The theater scene uses its own scrollRef that maps 0.45..1.0 of the
+ * Hero scroll to 0..1 of the scene's internal timeline.
  * ============================================================================ */
+
+function subscribe() { return () => {}; }
+function getSnapshot() { return true; }
+function getServerSnapshot() { return false; }
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
+// Theater scene scroll range within Hero
+const THEATER_START = 0.45;
+const THEATER_END = 1.0;
+
 export function CinematicHero() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  // Manual scroll progress MotionValue (starts at 0 at the very first scroll
-  // pixel, regardless of sticky-header offset).
   const scrollYProgress = useMotionValue(0);
+  // Separate ref for the theater scene — maps 0.45..1.0 to 0..1
+  const theaterScrollRef = useRef(0);
+
+  // Mount gate for the 3D Canvas (only mount when we're past the curtain)
+  const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   useEffect(() => {
     const onScroll = () => {
@@ -40,6 +55,9 @@ export function CinematicHero() {
       if (total <= 0) return;
       const p = Math.max(0, Math.min(1, window.scrollY / total));
       scrollYProgress.set(p);
+      // Map Hero progress to theater scene progress
+      const theaterP = Math.max(0, Math.min(1, (p - THEATER_START) / (THEATER_END - THEATER_START)));
+      theaterScrollRef.current = theaterP;
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
@@ -58,21 +76,22 @@ export function CinematicHero() {
   // Scroll hint fades out as curtain begins to open
   const hintOpacity = useTransform(scrollYProgress, [0, 0.04], [1, 0]);
 
-  // Portal glow removed — no SubHero to hand off to on the clean slate.
-  // (The archive branch has portalGlow + portalWhite for the star-portal
-  // transition into SubHero.)
-
   return (
     <section
       id="top"
       ref={sectionRef}
       className="relative w-full"
-      style={{ height: "400vh" }}
+      style={{ height: "800vh" }}
     >
       {/* === Sticky canvas — covers viewport for the whole journey === */}
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-onyx">
         {/* Ambient gradient overlays */}
         <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-b from-onyx/30 via-transparent to-onyx/40" />
+
+        {/* === 3D Theater scene — appears after curtain fly-through === */}
+        <div className="absolute inset-0 z-10">
+          {mounted && <TheaterScene3D scrollRef={theaterScrollRef} />}
+        </div>
 
         {/* === Image curtain — 2K quality, 60fps scrubbing === */}
         <ImageCurtain scrollYProgress={scrollYProgress} />
@@ -158,4 +177,3 @@ export function CinematicHero() {
     </section>
   );
 }
-
