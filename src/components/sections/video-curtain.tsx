@@ -28,6 +28,12 @@ const VIDEO_PLAY_RANGE = 0.15;
 // ffprobe duration=6.583333
 const FALLBACK_DURATION = 6.583333;
 
+// Some browsers (Chrome, Edge) support VideoElement.fastSeek — non-blocking
+// seek that lets the browser pick the nearest keyframe for smoother scrub.
+interface VideoElementWithFastSeek extends HTMLVideoElement {
+  fastSeek?: (time: number) => void;
+}
+
 export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -74,14 +80,20 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
   };
 
   // Helper: set video.currentTime from a 0..1 progress value.
-  // Lower threshold (0.01) for smoother scrubbing — every scroll tick
-  // nudges the video forward by a tiny amount instead of waiting for big jumps.
+  // Uses fastSeek if available (non-blocking, smoother) or currentTime as
+  // fallback. Skips the seek if the video is already seeking — prevents
+  // queue buildup that causes 200ms+ latency per seek.
   const seekTo = (t01: number) => {
     const v = videoRef.current;
-    if (!v) return;
+    if (!v || v.seeking) return; // wait for current seek to finish
     const duration = getDuration();
     const targetTime = Math.min(Math.max(t01, 0), 1) * duration;
     if (Math.abs(v.currentTime - targetTime) > 0.01) {
+      // fastSeek is non-blocking and lets the browser pick the nearest
+      // keyframe — much smoother than currentTime for scrubbing.
+      if (typeof (v as VideoElementWithFastSeek).fastSeek === "function") {
+        try { (v as VideoElementWithFastSeek).fastSeek(targetTime); return; } catch {}
+      }
       try { v.currentTime = targetTime; } catch { /* seeking */ }
     }
   };
@@ -108,32 +120,14 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
       v.addEventListener("loadeddata", onLoaded, { once: true });
       v.addEventListener("canplay", onLoaded, { once: true });
     }
-    try { v.load(); } catch {}
-
-    // Force-retry: some preview iframes fail to load metadata on first try
-    // (e.g. Range request blocked). Retry every 500ms up to 5 times.
-    let retries = 0;
-    const retryId = window.setInterval(() => {
-      retries++;
-      if (v.readyState >= 1 || v.duration > 0 && isFinite(v.duration)) {
-        window.clearInterval(retryId);
-        onLoaded();
-        return;
-      }
-      if (retries > 5) {
-        window.clearInterval(retryId);
-        // Even without metadata, allow sync (using FALLBACK_DURATION)
-        setReady(true);
-        return;
-      }
-      try { v.load(); } catch {}
-    }, 500);
+    // DO NOT call v.load() repeatedly — it resets the video element and
+    // forces re-download, causing huge scrubbing latency (200ms+ per seek).
+    // The browser loads the video automatically thanks to preload="auto".
 
     return () => {
       v.removeEventListener("loadedmetadata", onLoaded);
       v.removeEventListener("loadeddata", onLoaded);
       v.removeEventListener("canplay", onLoaded);
-      window.clearInterval(retryId);
     };
   }, []);
 
@@ -159,54 +153,18 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
     seekTo(latest / VIDEO_PLAY_RANGE);
   });
 
-  // Fallback sync: window scroll listener (in case framer-motion lags).
-  // Also listens on `window.parent` in case the preview iframe itself is
-  // not the scroll container (the parent window scrolls instead).
-  useEffect(() => {
-    const onScroll = () => {
-      const section = sectionRef.current;
-      const v = videoRef.current;
-      if (!section || !v) return;
-      const sectionHeight = section.offsetHeight;
-      const vh = window.innerHeight;
-      const total = sectionHeight - vh;
-      if (total <= 0) return;
-      // Multi-source scrollY (preview iframe safety)
-      const p = Math.max(0, Math.min(1, getScrollY() / total));
-      seekTo(p / VIDEO_PLAY_RANGE);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    document.addEventListener("scroll", onScroll, { passive: true });
-    // Try parent window (preview iframe case)
-    try {
-      if (window.parent && window.parent !== window) {
-        window.parent.addEventListener("scroll", onScroll, { passive: true });
-      }
-    } catch { /* cross-origin parent — skip */ }
-    onScroll();
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      document.removeEventListener("scroll", onScroll);
-      try {
-        if (window.parent && window.parent !== window) {
-          window.parent.removeEventListener("scroll", onScroll);
-        }
-      } catch {}
-    };
-  }, []);
-
-  // Backup RAF loop — guarantees currentTime updates every frame. Uses
-  // window.scrollY directly so progress starts at the FIRST scroll pixel,
-  // not after the sticky header has scrolled past. Resilient to any
-  // framer-motion / React state issues — pure DOM measurement.
+  // Single RAF loop for sync — drives video.currentTime from window.scrollY
+  // every frame. Uses window.scrollY directly so progress starts at the
+  // FIRST scroll pixel, not after the sticky header has scrolled past.
+  // Resilient to any framer-motion / React state issues — pure DOM measurement.
+  // The `v.seeking` check inside seekTo prevents queue buildup (which was
+  // causing 200ms+ latency per seek).
   useEffect(() => {
     let raf = 0;
     const tick = () => {
       raf = requestAnimationFrame(tick);
       const v = videoRef.current;
-      if (!v) return;
-      const duration = getDuration();
-      // Find Hero section — use document.getElementById for reliability
+      if (!v || v.seeking) return; // wait for current seek to finish
       const section = sectionRef.current || document.getElementById("top");
       if (!section) return;
       const sectionHeight = section.offsetHeight;
@@ -214,37 +172,10 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
       const total = sectionHeight - vh;
       if (total <= 0) return;
       const p = Math.max(0, Math.min(1, getScrollY() / total));
-      const targetTime = (p / VIDEO_PLAY_RANGE) * duration;
-      if (Math.abs(v.currentTime - targetTime) > 0.01) {
-        try { v.currentTime = Math.min(targetTime, duration); } catch {}
-      }
+      seekTo(p / VIDEO_PLAY_RANGE);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, []);
-
-  // setInterval fallback — also drives video sync at 60Hz regardless of
-  // React lifecycle. Belt-and-suspenders: even if RAF is throttled by the
-  // browser (background tab), or HMR keeps reloading the component, this
-  // interval keeps the curtain scrub-locked to scroll.
-  useEffect(() => {
-    const id = window.setInterval(() => {
-      const v = videoRef.current;
-      if (!v) return;
-      const duration = getDuration();
-      const section = document.getElementById("top");
-      if (!section) return;
-      const sectionHeight = section.offsetHeight;
-      const vh = window.innerHeight;
-      const total = sectionHeight - vh;
-      if (total <= 0) return;
-      const p = Math.max(0, Math.min(1, getScrollY() / total));
-      const targetTime = (p / VIDEO_PLAY_RANGE) * duration;
-      if (Math.abs(v.currentTime - targetTime) > 0.01) {
-        try { v.currentTime = Math.min(targetTime, duration); } catch {}
-      }
-    }, 16); // ~60fps
-    return () => window.clearInterval(id);
   }, []);
 
   // Visual debug badge — shows scrollY and videoTime in real-time.
@@ -319,14 +250,16 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
         >
         <video
           ref={videoRef}
-          src="/videos/curtain-green-screen.mp4"
           muted
           playsInline
           preload="auto"
           autoPlay={false}
           className={`h-full w-full object-cover ${ready ? "" : "opacity-0"}`}
           style={{ filter: "url(#green-screen-key)" }}
-        />
+        >
+          <source src="/videos/curtain-green-screen.webm" type="video/webm" />
+          <source src="/videos/curtain-green-screen.mp4" type="video/mp4" />
+        </video>
         </motion.div>
       </motion.div>
 
