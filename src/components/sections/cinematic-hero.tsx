@@ -58,10 +58,9 @@ export function CinematicHero() {
   // Scroll hint fades out as curtain begins to open
   const hintOpacity = useTransform(scrollYProgress, [0, 0.04], [1, 0]);
 
-  // Final "portal" flash — gradual warm gold at first, then white as we
-  // crash through the star surface
-  const portalGlow = useTransform(scrollYProgress, [0.70, 0.95], [0, 0.85]);
-  const portalWhite = useTransform(scrollYProgress, [0.88, 1.0], [0, 1]);
+  // Portal glow removed — no SubHero to hand off to on the clean slate.
+  // (The archive branch has portalGlow + portalWhite for the star-portal
+  // transition into SubHero.)
 
   return (
     <section
@@ -155,20 +154,6 @@ export function CinematicHero() {
             <ChevronDown className="h-3.5 w-3.5 text-gold/60" />
           </div>
         </motion.div>
-
-        {/* === Portal glow — warm gold halo as we approach the star === */}
-        <motion.div
-          style={{ opacity: portalGlow }}
-          className="pointer-events-none absolute inset-0 z-[60]"
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,200,100,0.55)_0%,rgba(255,150,80,0.25)_30%,transparent_65%)]" />
-        </motion.div>
-
-        {/* === Final white flash — portal into the rest of the site === */}
-        <motion.div
-          style={{ opacity: portalWhite }}
-          className="pointer-events-none absolute inset-0 z-[70] bg-white"
-        />
       </div>
     </section>
   );
