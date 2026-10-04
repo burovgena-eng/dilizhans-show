@@ -22,6 +22,12 @@ import { useRef, useEffect, useState } from "react";
 // Range of scroll progress over which the video plays from closed → open.
 const VIDEO_PLAY_RANGE = 0.15;
 
+// Hardcoded duration fallback — used if video.metadata doesn't load
+// (which happens in some preview iframes where Range requests are
+// blocked). Known from the source file:
+// ffprobe duration=6.583333
+const FALLBACK_DURATION = 6.583333;
+
 export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -39,13 +45,26 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
     );
   };
 
+  // Helper: get effective duration. If the video metadata hasn't loaded
+  // (duration=Infinity or NaN — happens in some preview iframes where
+  // Range requests are blocked), use the hardcoded fallback so the curtain
+  // still scrubs.
+  const getDuration = (): number => {
+    const v = videoRef.current;
+    if (!v) return FALLBACK_DURATION;
+    const d = v.duration;
+    if (!d || !isFinite(d) || d <= 0) return FALLBACK_DURATION;
+    return d;
+  };
+
   // Helper: set video.currentTime from a 0..1 progress value.
   // Lower threshold (0.01) for smoother scrubbing — every scroll tick
   // nudges the video forward by a tiny amount instead of waiting for big jumps.
   const seekTo = (t01: number) => {
     const v = videoRef.current;
-    if (!v || !v.duration || !isFinite(v.duration)) return;
-    const targetTime = Math.min(Math.max(t01, 0), 1) * v.duration;
+    if (!v) return;
+    const duration = getDuration();
+    const targetTime = Math.min(Math.max(t01, 0), 1) * duration;
     if (Math.abs(v.currentTime - targetTime) > 0.01) {
       try { v.currentTime = targetTime; } catch { /* seeking */ }
     }
@@ -64,17 +83,41 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
       seekTo(0);
     };
 
-    if (v.readyState >= 2) {
+    // loadedmetadata fires earlier than loadeddata/canplay — gives us
+    // duration sooner so we can start scrubbing even before all frames load.
+    if (v.readyState >= 1) {
       onLoaded();
     } else {
+      v.addEventListener("loadedmetadata", onLoaded, { once: true });
       v.addEventListener("loadeddata", onLoaded, { once: true });
       v.addEventListener("canplay", onLoaded, { once: true });
     }
     try { v.load(); } catch {}
 
+    // Force-retry: some preview iframes fail to load metadata on first try
+    // (e.g. Range request blocked). Retry every 500ms up to 5 times.
+    let retries = 0;
+    const retryId = window.setInterval(() => {
+      retries++;
+      if (v.readyState >= 1 || v.duration > 0 && isFinite(v.duration)) {
+        window.clearInterval(retryId);
+        onLoaded();
+        return;
+      }
+      if (retries > 5) {
+        window.clearInterval(retryId);
+        // Even without metadata, allow sync (using FALLBACK_DURATION)
+        setReady(true);
+        return;
+      }
+      try { v.load(); } catch {}
+    }, 500);
+
     return () => {
+      v.removeEventListener("loadedmetadata", onLoaded);
       v.removeEventListener("loadeddata", onLoaded);
       v.removeEventListener("canplay", onLoaded);
+      window.clearInterval(retryId);
     };
   }, []);
 
@@ -145,7 +188,8 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
     const tick = () => {
       raf = requestAnimationFrame(tick);
       const v = videoRef.current;
-      if (!v || !v.duration || !isFinite(v.duration)) return;
+      if (!v) return;
+      const duration = getDuration();
       // Find Hero section — use document.getElementById for reliability
       const section = sectionRef.current || document.getElementById("top");
       if (!section) return;
@@ -154,9 +198,9 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
       const total = sectionHeight - vh;
       if (total <= 0) return;
       const p = Math.max(0, Math.min(1, getScrollY() / total));
-      const targetTime = (p / VIDEO_PLAY_RANGE) * v.duration;
+      const targetTime = (p / VIDEO_PLAY_RANGE) * duration;
       if (Math.abs(v.currentTime - targetTime) > 0.01) {
-        try { v.currentTime = Math.min(targetTime, v.duration); } catch {}
+        try { v.currentTime = Math.min(targetTime, duration); } catch {}
       }
     };
     raf = requestAnimationFrame(tick);
@@ -170,7 +214,8 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
   useEffect(() => {
     const id = window.setInterval(() => {
       const v = videoRef.current;
-      if (!v || !v.duration || !isFinite(v.duration)) return;
+      if (!v) return;
+      const duration = getDuration();
       const section = document.getElementById("top");
       if (!section) return;
       const sectionHeight = section.offsetHeight;
@@ -178,9 +223,9 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
       const total = sectionHeight - vh;
       if (total <= 0) return;
       const p = Math.max(0, Math.min(1, getScrollY() / total));
-      const targetTime = (p / VIDEO_PLAY_RANGE) * v.duration;
+      const targetTime = (p / VIDEO_PLAY_RANGE) * duration;
       if (Math.abs(v.currentTime - targetTime) > 0.01) {
-        try { v.currentTime = Math.min(targetTime, v.duration); } catch {}
+        try { v.currentTime = Math.min(targetTime, duration); } catch {}
       }
     }, 16); // ~60fps
     return () => window.clearInterval(id);

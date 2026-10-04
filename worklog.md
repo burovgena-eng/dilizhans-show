@@ -1832,3 +1832,29 @@ Work Log:
 
 Stage Summary:
 Добавлен визуальный debug badge (fixed bottom-left, зелёный). Пользователь должен сделать hard refresh превью и посмотреть на badge — если числа меняются при скролле, мой код работает. Если scroll=0 всегда — iframe блокирует scroll events (нужно чинить превью, не код).
+
+---
+Task ID: duration-infinity-fix
+Agent: main
+Task: Пользователь: "картинка все еще статична" + скриншот — debug badge показал `t=0.00/infinity p=0%`. Это значит video.duration=Infinity — видео не загружает metadata в превью!
+
+Work Log:
+- VLM анализ скриншота пользователя: debug badge показывает "t=0.00/infinity" — video.duration = Infinity
+- Корень проблемы: видео не загружает metadata в превью iframe. Возможные причины:
+  1. Range requests блокируются прокси превью
+  2. mp4 слишком большой (2.2MB)
+  3. CORS блокировка
+- В моём коде was: `if (!v.duration || !isFinite(v.duration)) return;` — это exit early когда duration=Infinity, и seekTo() НИКОГДА не вызывается → занавес статичен
+- Решение:
+  1. Добавил FALLBACK_DURATION = 6.583333 (захардкожено из ffprobe)
+  2. Создал getDuration() helper: если v.duration invalid (Infinity/NaN/0), возвращает FALLBACK_DURATION
+  3. Заменил все проверки `!v.duration || !isFinite(v.duration)` в seekTo, RAF, setInterval на `getDuration()` вызовы
+  4. Добавил `loadedmetadata` event (раньше, чем loadeddata) для более быстрой инициализации
+  5. Добавил retry loop: каждые 500ms до 5 раз пытается вызвать v.load() если metadata не загрузилась
+  6. Если после 5 retries metadata не загрузилась, всё равно setReady(true) и позволяет sync через FALLBACK_DURATION
+- Локальный тест: 0px→scroll=0 t=0.08, 200px→scroll=200 t=5.10, 500px→scroll=500 t=6.63 — синхронизация работает
+- Lint: чисто
+- Сервер: mp4 отдаётся с правильными headers (Content-Type: video/mp4, Accept-Ranges: bytes, Content-Length: 2202355)
+
+Stage Summary:
+Корень проблемы — video.duration=Infinity в превью iframe (metadata не загружается). Захардкодил FALLBACK_DURATION=6.583333 и создал getDuration() helper, который возвращает fallback если duration invalid. Все 3 sync механизма (RAF, setInterval, scroll listener) теперь используют getDuration(). Добавил loadedmetadata event + retry loop (5 раз с 500ms интервалом). Теперь занавес будет синхронизирован со скроллом даже если видео metadata не загрузилось.
