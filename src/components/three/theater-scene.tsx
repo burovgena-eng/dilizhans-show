@@ -44,38 +44,62 @@ function angleToPos(angle: number, radius: number, y: number = 0): [number, numb
   return [Math.cos(angle) * radius, y, Math.sin(angle) * radius];
 }
 
-// Camera path — stage far → approach at 20-25° → 4 costume close-ups
-// For each costume: camera FARTHER back (costume fits fully in screen),
-// 10-15° below horizon, offset right so costume appears on LEFT.
-// More keyframes per costume = longer dwell time.
-const CAMERA_PATH_POINTS: [number, number, number][] = [
-  // Stage far away after curtain — high and distant (20-25° angle)
-  [0, 22, 55],          // very far
-  [0, 18, 42],          // approaching
-  [0, 14, 32],          // closer
-  [0, 11, 24],          // arrival — spotlights ignite
-  // Costume 1 (front, angle=0°) — profile view, full body in screen
-  // Camera farther back (dist ~7) so full costume fits
-  [5, 4, 9],            // approach
-  [4.5, 3.5, 8],        // settle — costume on left, profile
-  [4.5, 3.5, 8],        // dwell (duplicate = longer pause)
-  [4.5, 3.5, 8],        // dwell
-  // Costume 2 (right, angle=90°)
-  [9, 4, 3],            // move
-  [8.5, 3.5, 2],        // settle
-  [8.5, 3.5, 2],        // dwell
-  [8.5, 3.5, 2],        // dwell
-  // Costume 3 (back, angle=180°)
-  [4, 4, -5],            // move
-  [3.5, 3.5, -6],        // settle
-  [3.5, 3.5, -6],        // dwell
-  [3.5, 3.5, -6],        // dwell
-  // Costume 4 (left, angle=270°)
-  [-3, 4, -1],          // move
-  [-3.5, 3.5, 0],       // settle
-  [-3.5, 3.5, 0],       // dwell
-  [-3.5, 3.5, 0],        // dwell
+// Camera path — explicit phases: approach → 4 costumes with dwell
+// For each costume: camera offset RIGHT (costume appears LEFT in frame).
+// lookTarget = costume position (NOT offset) so costume is on left side.
+//
+// Phase boundaries (theater scene scroll 0..1):
+//   0.00-0.28  Approach (4 points, smooth)
+//   0.28-0.42  Costume 1 (dwell at fixed position)
+//   0.42-0.56  Costume 2
+//   0.56-0.70  Costume 3
+//   0.70-1.00  Costume 4 (longer final dwell)
+
+const APPROACH_END = 0.28;
+const COSTUME_PHASES = [
+  { start: 0.28, end: 0.42 },  // costume 0
+  { start: 0.42, end: 0.56 },  // costume 1
+  { start: 0.56, end: 0.70 },  // costume 2
+  { start: 0.70, end: 1.00 },  // costume 3
 ];
+
+// Camera positions for each costume — offset to the RIGHT of costume
+// so costume appears on LEFT of screen. LookTarget = costume itself.
+const COSTUME_CAMERA_POSITIONS: [number, number, number][] = [
+  // Costume 0 (front, angle=0°, pos=[7, 0.2, 0])
+  // Camera right-front, slightly above (10-15° below horizon)
+  [10, 3, 7],
+  // Costume 1 (right, angle=90°, pos=[0, 0.2, 7])
+  // Camera right side
+  [7, 3, 10],
+  // Costume 2 (back, angle=180°, pos=[-7, 0.2, 0])
+  // Camera right-back
+  [-4, 3, 7],
+  // Costume 3 (left, angle=270°, pos=[0, 0.2, -7])
+  // Camera right-left
+  [4, 3, -4],
+];
+
+// Approach camera positions (4 points)
+const APPROACH_POSITIONS: [number, number, number][] = [
+  [0, 22, 55],   // very far
+  [0, 16, 38],   // approaching
+  [0, 12, 28],   // closer
+  [0, 9, 20],    // arrival (spotlights ignite here)
+];
+
+function lerpVec3(a: [number, number, number], b: [number, number, number], t: number): THREE.Vector3 {
+  return new THREE.Vector3(
+    a[0] + (b[0] - a[0]) * t,
+    a[1] + (b[1] - a[1]) * t,
+    a[2] + (b[2] - a[2]) * t,
+  );
+}
+
+function smoothstep01(t: number): number {
+  t = Math.max(0, Math.min(1, t));
+  return t * t * (3 - 2 * t);
+}
 
 // ---------------- Stage ----------------
 
@@ -174,12 +198,26 @@ function CostumePlaceholder({ index, scrollRef }: {
   const intensityRef = useRef(0);
 
   useFrame(() => {
-    // Profile view: fixed rotation (no spinning)
     if (groupRef.current) {
       groupRef.current.rotation.y = angle + Math.PI / 2;
     }
     const t = scrollRef.current;
-    intensityRef.current = THREE.MathUtils.smoothstep(t, igniteStart, igniteEnd);
+
+    if (t < igniteEnd) {
+      // Ignition phase — spotlight fades in
+      intensityRef.current = THREE.MathUtils.smoothstep(t, igniteStart, igniteEnd);
+    } else {
+      // After ignition — current costume full, others dimmed
+      const costumeT = (t - APPROACH_END) / (1 - APPROACH_END);
+      const currentIdx = Math.min(3, Math.floor(costumeT * 4));
+      if (index === currentIdx) {
+        // Current costume — full bright spotlight
+        intensityRef.current = 1.0;
+      } else {
+        // Not current — dimmed to 20%
+        intensityRef.current = 0.2;
+      }
+    }
   });
 
   const spotPos = angleToPos(angle, SPOTLIGHT_RING_RADIUS, SPOTLIGHT_HEIGHT);
@@ -196,17 +234,17 @@ function CostumePlaceholder({ index, scrollRef }: {
         <meshStandardMaterial color="#D4AF37" metalness={0.85} roughness={0.25} />
       </mesh>
 
-      {/* Costume placeholder — BIG bright box for visibility testing */}
+      {/* Costume placeholder — bright red box, guaranteed visible */}
       <mesh ref={groupRef} position={[0, 3.0, 0]} castShadow>
-        <boxGeometry args={[1.5, 4.0, 0.8]} />
+        <boxGeometry args={[2.0, 4.0, 1.0]} />
         <meshStandardMaterial
-          color="#FFD700"
-          metalness={0.5}
-          roughness={0.3}
-          emissive="#FFD700"
-          emissiveIntensity={1.0}
+          color="#FF3030"
+          emissive="#FF0000"
+          emissiveIntensity={2.0}
         />
       </mesh>
+      {/* Point light on costume — guarantees visibility */}
+      <pointLight position={[0, 3.0, 1.5]} intensity={5} distance={8} color="#FFFFFF" />
 
       {/* Volumetric spotlight cone + actual SpotLight */}
       <SpotlightCone
@@ -224,49 +262,74 @@ function CameraController({ scrollRef }: {
   scrollRef: React.MutableRefObject<number>;
 }) {
   const { camera } = useThree();
-  const path = useMemo(() => {
-    return new THREE.CatmullRomCurve3(
-      CAMERA_PATH_POINTS.map((p) => new THREE.Vector3(...p)),
-      false, "catmullrom", 0.5
-    );
-  }, []);
-
   const lookTarget = useRef(new THREE.Vector3(0, 0, 0));
 
   useFrame(() => {
     const t = scrollRef.current;
-    const effectiveT = Math.max(0, Math.min(0.999, t));
-    const pos = path.getPointAt(effectiveT);
-
-    // Look target based on phase
     let targetPos: THREE.Vector3;
-    if (t < 0.28) {
-      // Approach phase — look at stage center
-      targetPos = new THREE.Vector3(0, 0, 0);
+    let lookPos: THREE.Vector3;
+
+    if (t < APPROACH_END) {
+      // Approach phase — interpolate through approach points, look at stage center
+      const approachT = t / APPROACH_END;
+      const segCount = APPROACH_POSITIONS.length - 1;
+      const segIdx = Math.min(segCount - 1, Math.floor(approachT * segCount));
+      const segT = (approachT * segCount) - segIdx;
+      const a = APPROACH_POSITIONS[segIdx];
+      const b = APPROACH_POSITIONS[segIdx + 1];
+      targetPos = lerpVec3(a, b, smoothstep01(segT));
+      lookPos = new THREE.Vector3(0, 0, 0);
     } else {
-      // Costume phase — 4 costumes, each gets ~18% of scroll
-      // Costume 1: 0.28-0.46, Costume 2: 0.46-0.64, etc.
-      const costumeT = (t - 0.28) / 0.72;
+      // Costume phase — find which costume we're viewing
+      const costumeT = (t - APPROACH_END) / (1 - APPROACH_END);
       const costumeIdx = Math.min(3, Math.floor(costumeT * 4));
+      const phase = COSTUME_PHASES[costumeIdx];
+
+      // Within this phase: 0-0.15 transition in, 0.15-0.85 dwell, 0.85-1.0 transition out
+      const withinPhase = (t - phase.start) / (phase.end - phase.start);
+      const camPos = COSTUME_CAMERA_POSITIONS[costumeIdx];
+
+      if (withinPhase < 0.15) {
+        // Transition from previous position
+        const transT = smoothstep01(withinPhase / 0.15);
+        const prevIdx = Math.max(0, costumeIdx - 1);
+        const prevCam = costumeIdx === 0 ? APPROACH_POSITIONS[3] : COSTUME_CAMERA_POSITIONS[prevIdx];
+        targetPos = lerpVec3(prevCam, camPos, transT);
+      } else if (withinPhase > 0.85 && costumeIdx < 3) {
+        // Transition to next
+        const transT = smoothstep01((withinPhase - 0.85) / 0.15);
+        const nextCam = COSTUME_CAMERA_POSITIONS[costumeIdx + 1];
+        targetPos = lerpVec3(camPos, nextCam, transT);
+      } else {
+        // Dwell — camera stays at costume position
+        targetPos = new THREE.Vector3(...camPos);
+      }
+
+      // LookTarget = costume position (camera looks AT costume)
       const angle = COSTUME_ANGLES[costumeIdx];
-      const cPos = angleToPos(angle, COSTUME_RING_RADIUS, 1.2);
-      // "Right" direction = perpendicular to costume angle (clockwise)
-      const rightAngle = angle - Math.PI / 2;
-      const offsetX = Math.cos(rightAngle) * 3.0;
-      const offsetZ = Math.sin(rightAngle) * 3.0;
-      targetPos = new THREE.Vector3(cPos[0] + offsetX, 1.2, cPos[2] + offsetZ);
+      const cPos = angleToPos(angle, COSTUME_RING_RADIUS, 1.5);
+      lookPos = new THREE.Vector3(cPos[0], 1.5, cPos[2]);
     }
 
-    lookTarget.current.lerp(targetPos, 0.05);
-    camera.position.lerp(pos, 0.08);
+    lookTarget.current.lerp(lookPos, 0.06);
+    camera.position.lerp(targetPos, 0.1);
     camera.lookAt(lookTarget.current);
 
-    // FOV: wider during approach, 40° for costume (fits full body in screen)
-    const targetFov = t < 0.28 ? 45 : 40;
+    // Use setViewOffset to shift projection — during costume view,
+    // shift right by 25% so costume appears on LEFT of screen,
+    // leaving ~50% on the right for info text blocks.
     if (camera instanceof THREE.PerspectiveCamera) {
+      const targetFov = t < APPROACH_END ? 45 : 40;
       // eslint-disable-next-line react-hooks/immutability
       camera.fov += (targetFov - camera.fov) * 0.05;
       camera.updateProjectionMatrix();
+
+      // Shift view horizontally during costume phase
+      if (t >= APPROACH_END) {
+        camera.setViewOffset(1, 1, 0.25, 0, 1, 1); // 25% right shift
+      } else {
+        camera.clearViewOffset();
+      }
     }
   });
 
