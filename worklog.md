@@ -1639,3 +1639,31 @@ Work Log:
 
 Stage Summary:
 Полная переработка: видео-занавес с SVG chroma-key фильтром (на лету, без предварительной конвертации), 3D космос с улучшенным освещением и 3 туманностями (теперь видимыми), SubHero секция появляется из финальной звезды как портал в остальной контент. Структура: CinematicHero (400vh, видео-занавес → космос → звезда-портал) → SubHero (золотой glow + "Добро пожаловать в ателье" + стрелка дальше) → TrustStrip → обычные секции. Mars-планета перекрашена (менее красная). VLM подтвердил 8.5/10.
+
+---
+Task ID: motion-design-subhero
+Agent: main
+Task: Пользователь уточнил: видео должно играть с самого начала (закрытый занавес) при скролле, и при приближении к звезде должен быть motion-design "сборка страницы" SubHero (не просто fade-in).
+
+Work Log:
+- Улучшил src/components/sections/video-curtain.tsx:
+  - Добавил ready state (показывает видео только когда loadeddata/canplay, чтобы не видеть "чёрный кадр")
+  - При готовности: v.currentTime = 0, v.pause() (фиксируем закрытый занавес на старте)
+  - preload="auto", autoPlay={false}
+  - Жёсткая синхронизация: scrollYProgress 0..0.10 → video.currentTime 0..duration, проверка |currentTime - targetTime| > 0.03
+  - Расширил chroma-key feColorMatrix: -0.7 R -1.6 G -0.7 B → сильнее вырезает зелёный
+  - curtainX [0, 0.12] → -115% (видео уезжает левее), curtainOpacity [0, 0.05, 0.12]
+- Переписал src/components/sections/sub-hero.tsx с motion design сборкой:
+  - 14 частиц: вылетают с круговых позиций (angle 0..2π, radius 200..320), летят к центру, opacity [0,1,0], scale [0,1.5,0], duration 1.4s staggered 0.04
+  - Иконка Sparkles: появляется после частиц (delay 0.55s), initial scale 0.3 rotate -90 → visible scale 1 rotate 0
+  - Заголовок "Добро пожаловать / в ателье": варианты hidden (opacity 0, y 30, blur 12px, scale 1.5) → visible (opacity 1, y 0, blur 0, scale 1), staggered children 0.05s, delayChildren 0.8s
+  - Декоративный разделитель: scaleX 0→1 (рисуется сам, delay 1.2s)
+  - Описание: opacity/blur reveal (delay 1.4s)
+  - CTA ArrowDown: fly-in from y 60 scale 0.7 (delay 1.7s)
+  - SubHero height 120vh (100vh sticky motion + 20vh обычный скролл)
+- Lint: чисто
+- Dev: 200 OK, без runtime ошибок
+- VLM 7 кадров: 1) Старт — занавес закрыт ✓, 2) Занавес открыт ✓, 3) Космос с планетами ✓, 4) Финальная звезда ✓, 5) Вспышка ✓, 6) SubHero 30% — частицы собираются, иконка появляется ✓, 7) SubHero 60% — полностью собранная композиция ✓
+
+Stage Summary:
+Видео-занавес: начинается с закрытого (currentTime=0 при scroll=0), синхронно открывается при scroll 0..0.10, chroma-key на лету. SubHero: motion-design сборка — 14 частиц летят к центру и собираются в иконку Sparkles, заголовок "Добро пожаловать в ателье" проявляется по словам с blur-from-large-scale, разделитель рисуется, описание и стрелка "Дальше" fly-in. VLM подтвердил полную прогрессию.
