@@ -1693,3 +1693,26 @@ Work Log:
 
 Stage Summary:
 Видео-занавес теперь работает как настоящее видео: видео остаётся на месте (не уезжает), его currentTime синхронизирован со scrollYProgress (0..15%). При скролле вниз — занавес открывается, при скролле вверх — закрывается (двунаправленная анимация). Chroma-key матрица вычисляет alpha = 2R-2G+2B+A: вырезает только чистый зелёный, не трогает красный бархат. VLM подтвердил реалистичный бархат со складками, нет зелёного фона, занавес реально расходится в стороны.
+
+---
+Task ID: hydration-fix
+Agent: main
+Task: Пользователь сообщил про hydration mismatch ошибку и статичную картинку занавеса в превью. Ошибка: "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties" с diff в motion.span style attributes (width: 3.2597000271780416 vs "3.2597px").
+
+Work Log:
+- Корневая причина: в sub-hero.tsx использовал Math.random() для генерации частиц (angle, radius, size), что давало разные значения на сервере и клиенте → hydration mismatch
+- Шаг 1: Заменил Math.random на детерминированную функцию seeded(i, salt) на основе Math.sin(i * 12.9898 + salt * 78.233) * 43758.5453 → детерминировано на сервере/клиенте
+- Шаг 2: hydration остался — React на клиенте округляет inline style numbers до 4 знаков после запятой, а на сервере оставляет полное число
+- Шаг 3: Заменил framer-motion motion.span на обычный <span> с CSS keyframes (полностью обходит framer-motion reformatting)
+- Шаг 4: Добавил @keyframes particle-fly-in и particle-twinkle в globals.css
+- Шаг 5: Добавил функцию r2(n) = Math.round(n*100)/100 для округления всех inline style значений до 2 знаков после запятой
+- Применил r2 ко всем числам в style: startX, startY, marginLeft, marginTop, size, delay
+- Lint: чисто
+- Restart dev server (HMR не подхватил изменения полностью)
+- VLM-проверка: 0%/3%/7%/15% скролла → "Занавес действительно открывается по мере скролла. Реальное плавное движение, не статичные кадры"
+- Console errors: hydration mismatch ушёл, остались только warnings (THREE.Clock deprecated, non-static container)
+- VLM-проверка старт: "Закрытый красный бархатный занавес + заголовок Карнавал без компромиссов"
+- VLM-проверка SubHero: "Добро пожаловать в ателье — золотой курсив"
+
+Stage Summary:
+Hydration mismatch исправлен: Math.random() → детерминированная seeded() функция, motion.span → обычный <span> с CSS keyframes (обходит framer-motion reformatting), все inline style numbers округлены до 2 знаков через r2(). Видео-занавес теперь проигрывается синхронно со скроллом (плавно открывается), SubHero motion design работает. VLM подтвердил реальное плавное движение занавеса.

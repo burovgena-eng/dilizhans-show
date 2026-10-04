@@ -451,3 +451,18 @@
   0%, 100% { opacity: 0.3; }
   50% { opacity: 1; }
 }
+
+/* Particle fly-in for SubHero "assembling from star portal" motion design.
+   Start position is supplied via CSS custom properties (--start-x, --start-y). */
+@keyframes particle-fly-in {
+  0%   { transform: translate(var(--start-x), var(--start-y)) scale(0);   opacity: 0; }
+  20%  { opacity: 1; }
+  70%  { opacity: 1; transform: translate(0, 0) scale(1.5); }
+  100% { transform: translate(0, 0) scale(0); opacity: 0; }
+}
+
+/* Subtle twinkling for the particle glow */
+@keyframes particle-twinkle {
+  0%, 100% { box-shadow: 0 0 6px rgba(255,200,100,0.5); }
+  50%      { box-shadow: 0 0 12px rgba(255,220,140,1); }
+}

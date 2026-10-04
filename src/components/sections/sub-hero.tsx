@@ -20,13 +20,24 @@ import { Sparkles, ArrowDown } from "lucide-react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
+// Deterministic pseudo-random based on index (no Math.random, to avoid
+// SSR/CSR hydration mismatch).
+function seeded(i: number, salt: number): number {
+  const v = Math.sin(i * 12.9898 + salt * 78.233) * 43758.5453;
+  return v - Math.floor(v);
+}
+
+// Round to 2 decimal places — React on the client rounds inline style numbers
+// to 4 decimal places, but on the server keeps full precision. To avoid
+// hydration mismatch, we round ourselves before passing to style.
+const r2 = (n: number) => Math.round(n * 100) / 100;
+
 const PARTICLES = Array.from({ length: 14 }, (_, i) => ({
   id: i,
-  // Random direction (angle + radius) for particle start
-  angle: (i / 14) * Math.PI * 2 + Math.random() * 0.4,
-  radius: 200 + Math.random() * 120,
-  delay: i * 0.04,
-  size: 2 + Math.random() * 3,
+  angle: (i / 14) * Math.PI * 2 + seeded(i, 1) * 0.4,
+  radius: 200 + seeded(i, 2) * 120,
+  delay: r2(i * 0.04),
+  size: r2(2 + seeded(i, 3) * 3),
 }));
 
 export function SubHero() {
@@ -75,31 +86,27 @@ export function SubHero() {
         style={{ y: contentY }}
         className="relative z-20 mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-6 py-24 text-center"
       >
-        {/* Step 1: Particles fly inward and cluster into the Sparkles icon */}
+        {/* Step 1: Particles fly inward and cluster into the Sparkles icon.
+            Using CSS keyframes instead of framer-motion here because
+            framer-motion reformats number→string in style attributes which
+            causes SSR/CSR hydration mismatches. */}
         <div className="relative mb-10 flex h-24 w-24 items-center justify-center">
-          {/* Particle motes that fly in from outside */}
           {PARTICLES.map((p) => {
-            const startX = Math.cos(p.angle) * p.radius;
-            const startY = Math.sin(p.angle) * p.radius;
+            const startX = r2(Math.cos(p.angle) * p.radius);
+            const startY = r2(Math.sin(p.angle) * p.radius);
             return (
-              <motion.span
+              <span
                 key={p.id}
-                className="absolute rounded-full bg-gold"
+                className="absolute left-1/2 top-1/2 rounded-full bg-gold"
                 style={{
-                  width: p.size,
-                  height: p.size,
-                  boxShadow: "0 0 8px rgba(255,200,100,0.8)",
-                }}
-                initial={{ x: startX, y: startY, opacity: 0, scale: 0 }}
-                whileInView={{
-                  x: 0, y: 0, opacity: [0, 1, 0], scale: [0, 1.5, 0],
-                }}
-                transition={{
-                  duration: 1.4,
-                  delay: p.delay,
-                  ease: EASE,
-                }}
-                viewport={{ once: true, margin: "-50px" }}
+                  "--start-x": `${startX}px`,
+                  "--start-y": `${startY}px`,
+                  width: `${p.size}px`,
+                  height: `${p.size}px`,
+                  marginLeft: `${r2(-p.size / 2)}px`,
+                  marginTop: `${r2(-p.size / 2)}px`,
+                  animation: `particle-fly-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) ${p.delay}s forwards, particle-twinkle 1.6s ease-in-out ${p.delay}s infinite`,
+                } as React.CSSProperties}
               />
             );
           })}
