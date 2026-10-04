@@ -1481,3 +1481,29 @@ Work Log:
 
 Stage Summary:
 Декоративный хвостик буквы D восстановлен — логотип теперь полный, не обрезанный снизу. VLM подтвердил, что хвостик полностью виден и плавно изгибается вниз-влево от основной буквы.
+
+---
+Task ID: fonts-rufonts
+Agent: main
+Task: Пользователь попросил просмотреть https://www.rufonts.ru/ и подобрать самый подходящий шрифт для сайта.
+
+Work Log:
+- Проверил текущие шрифты: Cormorant Garamond (display) + Manrope (body) через next/font/google
+- Через web-reader (z-ai function page_reader) прочитал rufonts.ru, нашёл 5 категорий: grotesk, antikva, bruskovyj, dekorativnyj, rukopisnyj
+- Прочитал antikva (35 шрифтов) и grotesk (35 шрифтов) — paginated по 12 на страницу
+- Просмотрел страницы 5 конкретных шрифтов: Playfair Display, Forum, Oranienbaum, Tilda Sans, Vollkorn
+- Все 5 доступны и на Google Fonts с поддержкой кириллицы — подключаем через next/font/google без скачивания woff2
+- Подобрал для премиум-бутика с золотом/тёмным фоном:
+  - Display: Playfair Display — высококонтрастный серив, премиальный "luxury editorial" стиль
+  - Body: Golos Text (Tilda Sans аналог, но с лучшей поддержкой next/font/google) — современный русский гротеск от студии Tilda
+- Изменил src/app/layout.tsx:
+  - Import: Cormorant_Garamond, Manrope → Playfair_Display, Golos_Text
+  - playfair: weight ["400","500","600","700","800","900"], style normal+italic
+  - golos: weight ["400","500","600","700"]
+  - body className: cormorant/manrope → playfair/golos
+- Lint: bun run lint → exit 0 (чисто)
+- Restart dev server (was running stale code), got 200 OK
+- VLM-проверка: "Контрастное сочетание: первая строка — высококонтрастный антиквенный серив (Playfair Display), вторая — золотой курсив. Luxury editorial стиль, премиальность, баланс. Дорогая типографическая схема."
+
+Stage Summary:
+Шрифты заменены: Cormorant Garamond → Playfair Display (display), Manrope → Golos Text (body). Оба имеют полную поддержку кириллицы через Google Fonts. VLM подтвердил премиальный luxury-editorial вид. Альтернативы (если Playfair покажется слишком журнальным): Forum (русско-имперский), Oranienbaum (изящный русский серив).

@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Playfair_Display, Golos_Text } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { SmoothScroll } from "@/components/site/smooth-scroll";
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   variable: "--font-display",
   subsets: ["latin", "cyrillic"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
   style: ["normal", "italic"],
 });
 
-const manrope = Manrope({
+const golos = Golos_Text({
   variable: "--font-body",
   subsets: ["latin", "cyrillic"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -69,7 +69,7 @@ export default function RootLayout({
   return (
     <html lang="ru" className="dark" suppressHydrationWarning>
       <body
-        className={`${cormorant.variable} ${manrope.variable} antialiased bg-background text-foreground`}
+        className={`${playfair.variable} ${golos.variable} antialiased bg-background text-foreground`}
       >
         <SmoothScroll>{children}</SmoothScroll>
         <Toaster />
