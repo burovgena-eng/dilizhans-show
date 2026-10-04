@@ -33,17 +33,21 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
   const sectionRef = useRef<HTMLElement | null>(null);
   const [ready, setReady] = useState(false);
 
-  // "Fly-through" effect: after the curtain opens, the video zooms in and
-  // moves up so it feels like the camera flies past/through the curtain.
-  //   scroll 0..0.15   → curtain opens (currentTime 0 → duration)
-  //   scroll 0.15..0.30 → fly-through (scale 1 → 2.5, translateY 0% → -25%)
-  //   scroll 0.30+     → video off-screen (opacity 0)
-  const videoOpacity = useTransform(scrollYProgress, [0, 0.13, 0.27, 0.32], [1, 1, 0.7, 0]);
-  const videoScale = useTransform(scrollYProgress, [0, 0.13, 0.30], [1, 1.05, 2.6]);
-  const videoY = useTransform(scrollYProgress, [0, 0.13, 0.30], ["0%", "0%", "-25%"]);
-  // Slight blur during fly-through for motion-blur feel
-  const videoBlur = useTransform(scrollYProgress, [0.13, 0.20, 0.30], [0, 3, 8]);
-  const videoFilter = useTransform(videoBlur, (b) => `blur(${b}px)`);
+  // Timeline:
+  //   scroll 0..0.15   → curtain opens (video.currentTime 0 → duration)
+  //   scroll 0.15..0.20 → pause (curtain fully open, nothing happens)
+  //   scroll 0.20..0.45 → 3D fly-through: translateZ 0 → 2200px
+  //                        (camera "flies past/through" the curtain)
+  //                        + scale 1 → 1.4 + motion blur 0 → 14px
+  //   scroll 0.45..0.50 → video fades out (now past the curtain)
+  //
+  // The 3D effect uses translateZ with perspective on the parent — this
+  // gives a real "camera flying forward" feel, not just 2D zoom.
+  const videoOpacity = useTransform(scrollYProgress, [0, 0.15, 0.20, 0.45, 0.50], [1, 1, 1, 1, 0]);
+  const videoTranslateZ = useTransform(scrollYProgress, [0.15, 0.20, 0.45], [0, 0, 2200]);
+  const videoScale = useTransform(scrollYProgress, [0.15, 0.20, 0.45], [1, 1, 1.4]);
+  const videoBlurAmount = useTransform(scrollYProgress, [0.20, 0.30, 0.45], [0, 6, 14]);
+  const videoFilter = useTransform(videoBlurAmount, (b) => `blur(${b}px)`);
 
   // Helper: get scroll position from multiple sources. In some preview
   // iframes, window.scrollY is always 0 — we fall back to other sources.
@@ -290,24 +294,29 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
         </defs>
       </svg>
 
-      {/* Video stays in place — its currentTime drives the curtain open/close.
-          After the curtain is fully open (scroll > 0.15), the video fades
-          out so the floor + cosmos become fully visible. The video ends
-          with the curtain partially visible at the bottom (≈10% of pixels),
-          so we fade it out to hide that remnant. */}
       {/* Video "fly-through" effect:
-          1. Curtain opens (scroll 0..0.15) — video plays forward
-          2. Camera flies past (0.15..0.30) — video scales up + moves up + blur
-          3. Video exits frame (0.30+) — opacity 0 */}
+          - Parent div: perspective 1000px (creates 3D space)
+          - motion.div: translateZ 0 → 2200px (camera flies forward)
+          - scale + blur for motion-blur feel
+          Timeline:
+            0..0.15  → curtain opens
+            0.15..0.20 → pause (curtain fully open)
+            0.20..0.45 → 3D fly-through
+            0.45..0.50 → fade out */}
       <motion.div
-        className="absolute inset-0 z-40 pointer-events-none will-change-transform"
-        style={{
-          opacity: videoOpacity,
-          scale: videoScale,
-          y: videoY,
-          filter: videoFilter,
-        }}
+        className="absolute inset-0 z-40 pointer-events-none"
+        style={{ perspective: 1000 }}
       >
+        <motion.div
+          className="absolute inset-0 will-change-transform"
+          style={{
+            opacity: videoOpacity,
+            z: videoTranslateZ,
+            scale: videoScale,
+            filter: videoFilter,
+            transformStyle: "preserve-3d",
+          }}
+        >
         <video
           ref={videoRef}
           src="/videos/curtain-green-screen.mp4"
@@ -318,6 +327,7 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
           className={`h-full w-full object-cover ${ready ? "" : "opacity-0"}`}
           style={{ filter: "url(#green-screen-key)" }}
         />
+        </motion.div>
       </motion.div>
 
       {/* Debug badge — visible bottom-left. When you scroll, the numbers
