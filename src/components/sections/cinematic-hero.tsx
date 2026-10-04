@@ -10,10 +10,10 @@ import { ImageCurtain } from "@/components/sections/image-curtain";
  *
  * 400vh tall section. The first 100vh shows the hero overlay (title + CTAs)
  * with the velvet curtain closed behind the title. As the user scrolls:
- *   0.00-0.10  Curtain opens, revealing the cosmic space behind it
- *   0.10-0.85  Camera flies through space (past 3 planets + gas giant + nebulae)
- *   0.85-1.00  Approaches the final star; the star "swallows" the screen as a
- *              portal into the SubHero section (which emerges from the star)
+ *   0.00-0.15  Curtain opens (158 pre-rendered WebP frames, 60fps scrubbing)
+ *   0.15-0.20  Pause (curtain fully open)
+ *   0.20-0.45  3D fly-through: camera flies past/through the curtain
+ *   0.45-0.50  Video fades out — hands off to SubHero section
  *
  * Scroll progress is computed manually from window.scrollY (NOT from
  * useScroll with `target`) so that progress starts at the FIRST scroll
@@ -26,7 +26,6 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function CinematicHero() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef(0);
   // Manual scroll progress MotionValue (starts at 0 at the very first scroll
   // pixel, regardless of sticky-header offset).
   const scrollYProgress = useMotionValue(0);
@@ -41,7 +40,6 @@ export function CinematicHero() {
       if (total <= 0) return;
       const p = Math.max(0, Math.min(1, window.scrollY / total));
       scrollYProgress.set(p);
-      scrollRef.current = p;
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
