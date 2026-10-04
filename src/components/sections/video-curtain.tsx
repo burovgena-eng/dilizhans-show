@@ -28,11 +28,13 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
   const [ready, setReady] = useState(false);
 
   // Helper: set video.currentTime from a 0..1 progress value.
+  // Lower threshold (0.01) for smoother scrubbing — every scroll tick
+  // nudges the video forward by a tiny amount instead of waiting for big jumps.
   const seekTo = (t01: number) => {
     const v = videoRef.current;
     if (!v || !v.duration || !isFinite(v.duration)) return;
     const targetTime = Math.min(Math.max(t01, 0), 1) * v.duration;
-    if (Math.abs(v.currentTime - targetTime) > 0.03) {
+    if (Math.abs(v.currentTime - targetTime) > 0.01) {
       try { v.currentTime = targetTime; } catch { /* seeking */ }
     }
   };
@@ -60,15 +62,6 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
       v.addEventListener("canplay", onLoaded, { once: true });
     }
     try { v.load(); } catch {}
-
-    // Try play() + pause() to force the browser to load the first frame.
-    // Some browsers won't render frame 0 of a video without a play attempt.
-    v.play().then(() => {
-      v.pause();
-      try { v.currentTime = 0; } catch {}
-    }).catch(() => {
-      // Autoplay blocked — that's fine, we drive currentTime manually
-    });
 
     return () => {
       v.removeEventListener("loadeddata", onLoaded);
@@ -137,7 +130,7 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
       if (total <= 0) return;
       const p = Math.max(0, Math.min(1, window.scrollY / total));
       const targetTime = (p / VIDEO_PLAY_RANGE) * v.duration;
-      if (Math.abs(v.currentTime - targetTime) > 0.03) {
+      if (Math.abs(v.currentTime - targetTime) > 0.01) {
         try { v.currentTime = Math.min(targetTime, v.duration); } catch {}
       }
     };
@@ -163,12 +156,11 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
                 2 -2 2 1 0
               "
             />
-            {/* Soften alpha edges */}
-            <feGaussianBlur in="alpha" stdDeviation="0.5" />
             {/* Re-threshold: ensure opaque pixels stay opaque, transparent stay
-                transparent, with smooth anti-aliased transition */}
+                transparent, with smooth anti-aliased transition. No blur —
+                keep maximum sharpness for the 2K video. */}
             <feComponentTransfer>
-              <feFuncA type="table" tableValues="0 0 0.05 0.5 1 1 1" />
+              <feFuncA type="table" tableValues="0 0 0.02 0.5 1 1 1" />
             </feComponentTransfer>
           </filter>
         </defs>

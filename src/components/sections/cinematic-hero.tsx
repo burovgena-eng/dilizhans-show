@@ -5,6 +5,7 @@ import { motion, useMotionValue, useTransform } from "framer-motion";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import { RealisticCosmos } from "@/components/three/realistic-cosmos";
 import { VideoCurtain } from "@/components/sections/video-curtain";
+import { TheaterFloor } from "@/components/sections/theater-floor";
 
 /* ============================================================================
  * Cinematic Hero — Bolshoi Theater Edition
@@ -75,15 +76,20 @@ export function CinematicHero() {
     >
       {/* === Sticky canvas — covers viewport for the whole journey === */}
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-onyx">
-        {/* Realistic 3D cosmos */}
-        <div className="absolute inset-0">
+        {/* Realistic 3D cosmos — backmost layer (z-10) */}
+        <div className="absolute inset-0 z-10">
           <RealisticCosmos scrollRef={scrollRef} />
         </div>
 
         {/* Ambient gradient overlays */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-onyx/30 via-transparent to-onyx/40" />
+        <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-b from-onyx/30 via-transparent to-onyx/40" />
 
-        {/* === Video theater curtain — opens on scroll 0..0.10 === */}
+        {/* === Theater floor — appears after curtain opens, disappears as we
+            fly forward into space. Sits BEHIND the curtain but IN FRONT of
+            the cosmos (z-30). === */}
+        <TheaterFloor scrollYProgress={scrollYProgress} />
+
+        {/* === Video theater curtain — opens on scroll 0..0.15 === */}
         <VideoCurtain scrollYProgress={scrollYProgress} />
 
         {/* === Hero overlay (title + CTA) — fades out early === */}
