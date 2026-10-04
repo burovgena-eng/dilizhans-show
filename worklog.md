@@ -1090,3 +1090,239 @@ Stage Summary:
   - "карточки выровнены по высоте" ✓
   - "композиция симметричная, сбалансированная, с чёткой визуальной иерархией, подчёркивающая премиальность" ✓
 - Lint clean, dev server compiles in 147ms, no runtime errors
+
+---
+Task ID: 11 (GATSBY PHOTO FIX)
+Agent: main (Z.ai Code)
+Task: Find real Gatsby 1920s costume photos, replace wrong 1950s New Look photos
+
+Work Log:
+- Diagnosed: COLLECTIONS[retro].image + OFFERS[o1].image pointed to 1950s New Look dresses (wrong era)
+- Searched dilizhans-show.ru via WordPress search + sitemap
+- Found /retro-30-e/ page with 49 adult female Gatsby photos
+- Downloaded 5 candidates with explicit "Женский образ в стиле Гэтсби" alt text
+- VLM confirmed all 5 are ADULT women in 1920s Gatsby style
+- Picked: adult_gatsby_05277 (red sequin dress) for COLLECTION, adult_gatsby_05278 (black with gold geometric) for OFFER
+- Cleaned watermarks via image-edit
+- Updated catalog.ts: COLLECTIONS[retro].image, OFFERS[o1].image, subtitle/description/tags
+
+Stage Summary:
+Gatsby photos fixed: 1950s New Look → real 1920s adult female Gatsby costumes
+
+---
+Task ID: 12 (MULTIPLE FIXES v7)
+Agent: main (Z.ai Code)
+Task: Fix 6 user complaints — adult Gatsby, catalog page size, lightbox bug, advantages rework, remove event type, redesign footer
+
+Work Log:
+- Bug 1: All 6 Gatsby photos were children → found adult photos on /retro-30-e/ page
+- Bug 2: PAGE_SIZE 24→8 (less scrolling)
+- Bug 3: Lightbox not opening — root cause: ancestor willChange:transform creates containing block for position:fixed. Fix: createPortal to document.body
+- Bug 4: Advantages reworked — removed "Доставка" + "Подгон по фигуре" (user said they don't have these). New 4: Чистка включена, Примерка перед арендой, 2000+ костюмов, Бронь по телефону
+- Bug 5: Removed "Тип события" field from booking form (EVENT_TYPES, eventType state, radio buttons)
+- Bug 6: Footer redesign — removed awkward email button, added ticker marquee (motion.dev), staggered column fade-in
+
+Stage Summary:
+6 bugs fixed, VLM verified each
+
+---
+Task ID: 13 (HERO + LOGO + BUTTONS v8)
+Agent: main (Z.ai Code)
+Task: Fix cropped logo D, redesign awful gold buttons, replace bad hero photo with motion
+
+Work Log:
+- Logo: analyzed original PNG pixel-by-pixel, found D ends at y=95, gap 96-102, text at 103-117. Updated PIL crop at y=102
+- Buttons: new .btn-gold CSS utility — solid deep onyx base + gold border + gold text (not garish gold gradient fill)
+- Hero: replaced REAL_PHOTOS.hero photo with 5-layer animated background (gradient mesh + SVG art-deco + floating orbs + mouse-following glow + sparse particles)
+- VLM: Hero 8.5/10 "Vogue/Harper's Bazaar level"
+
+---
+Task ID: 14 (CURSOR REDESIGN v13)
+Agent: main (Z.ai Code)
+Task: Remove awful lens flare, replace with elegant atmospheric cursor
+
+Work Log:
+- Removed: anamorphic streak + 8 starburst rays + 3 chromatic rings + 5-layer volumetric core
+- New: single soft wide radial gradient (alpha 0.05) + particle illumination (particles brighten near cursor)
+- VLM: 8/10 elegance "no cheap lens flare, atmospheric"
+
+---
+Task ID: 15 (PREMIUM 4K PARTICLE v10)
+Agent: main (Z.ai Code)
+Task: Upgrade particle effect to FHD 4K 60fps premium quality
+
+Work Log:
+- Additive blending (globalCompositeOperation = 'lighter') for HDR glow stacking
+- Gold gradient particles (radial gradient per particle, not flat dots)
+- Flow-field motion (trig-based, smooth organic drift)
+- Motion trails (partial alpha-clear)
+- 200+ particles with gold-shade variation (bright gold → bronze)
+- Magnetic lines from cursor to 3 nearest particles
+- Multi-stage cursor glow (4-stop gradient)
+- CSS bloom filter (blur + brightness + saturate)
+- DPR 3x for retina
+- VLM: "Высокое / Премиальное (4K motion style)"
+
+---
+Task ID: 16 (PREMIUM PARTICLE v11 — 6 FIXES)
+Agent: main (Z.ai Code)
+Task: Fix 6 specific particle problems
+
+Work Log:
+- Fix 1: Cursor glow dimmer (0.28→0.12 max alpha, layered)
+- Fix 2: Removed motion trails (full clear each frame, no sharp transitions)
+- Fix 3: Magnetic lines reduced 6→3 max + 40px min distance (no cluster spaghettis)
+- Fix 4: Smoothed mouse position via lerp (premium lag, no awful fast-cursor)
+- Fix 5: Volumetric particles (4 layered gradients: halo + mid + core + specular)
+- Fix 6: Specular highlight (offset ivory spot, 3D sphere look)
+- VLM: 8.5/10 "многослойное свечение, объёмная структура, сдержанный"
+
+---
+Task ID: 17 (VOLUMETRIC 3D LIGHT v12)
+Agent: main (Z.ai Code)
+Task: Replace flat cursor gradient with real 3D volumetric light
+
+Work Log:
+- 4-element volumetric light: anamorphic streak + 8 starburst rays + 3 chromatic rings + 5-layer core with red/cyan aberration
+- VLM: "настоящий 3D объёмный свет, анаморфный streak, starburst"
+
+---
+Task ID: 18 (CURSOR v13 — MINIMAL ELEGANT)
+Agent: main (Z.ai Code)
+Task: Remove awful lens flare, make cursor elegant
+
+Work Log:
+- Removed ALL lens flare elements
+- Single soft ambient radial gradient (alpha 0.05)
+- Particles illuminate near cursor (organic, not graphic)
+- VLM: 8/10 "элегантный, сдержанный, не отвлекает"
+
+---
+Task ID: 19 (PHOTO UPSCALE)
+Agent: main (Z.ai Code)
+Task: Upscale all photos — main pages + catalog
+
+Work Log:
+- Main photos (10): AI-enhance via image-edit + Sharp 2x Lanczos3 (ball_1, newyear_2, adult_gatsby_05277/05278, historical_5, spanish_1, halloween_1, gypsy_2, eastern_6, wedding_3)
+- Catalog photos (477): Sharp 2x Lanczos3 + denoise + sharpen + saturation + mozjpeg 4:4:4
+- AI upscaling for catalog failed (429 rate limit even with retry/backoff)
+- Manifest 100% updated — all 477 item.src paths point to *_u_2x.jpg
+- VLM: Main photos 8-9/10, Catalog 6.5/10
+
+---
+Task ID: 20 (TWO BUG FIXES)
+Agent: main (Z.ai Code)
+Task: Fix advantages cards clipping + scroll progress vertical artifact
+
+Work Log:
+- Bug 1: Reveal component had clipPath that clipped children on hover → removed clipPath, kept opacity+y only
+- Bug 2: ScrollProgress used scaleX (distorted gradient at small values) → replaced with width % + opacity fade-in at 2% scroll threshold
+- VLM: 10/10 for cards, no vertical artifacts in scroll
+
+---
+Task ID: 21 (CATALOG SEQUENTIAL REVEAL v14)
+Agent: main (Z.ai Code)
+Task: Sequential top-to-bottom card reveal with blur-in
+
+Work Log:
+- Per-card useInView (same viewport settings = single trigger) + per-card delay (index * 0.25)
+- Premium: opacity + y 40→0 + blur(10px)→blur(0px), duration 1.0s, ease [0.16,1,0.3,1]
+- Eager image loading for visible page
+- VLM: "0.5s all blurred → 1.0s top cards sharp → 2.5s all sharp" confirmed
+
+---
+Task ID: 22 (THREE.JS 3D PARTICLE SYSTEM)
+Agent: main (Z.ai Code)
+Task: Replace Canvas 2D particles with Three.js 3D
+
+Work Log:
+- Installed: three@0.186.1, @react-three/fiber@9.8.1, @react-three/drei@10.7.9, @react-three/postprocessing@3.1.3
+- Created /src/components/three/hero-particles.tsx:
+  - 6000 gold star particles in 3D space (x,y,z)
+  - Custom GLSL ShaderMaterial (vertex: flow-field + atmospheric perspective + cursor proximity; fragment: gold gradient + soft falloff)
+  - Star sprite texture (1024×1024 PNG, AI-generated)
+  - AdditiveBlending for HDR glow
+  - Bloom post-processing (intensity 0.8, threshold 0.3, mipmapBlur)
+  - Raycasting (mouse → 3D → particle illumination)
+  - Camera parallax (depth perception)
+  - useSyncExternalStore for SSR safety
+- Updated hero.tsx to use HeroParticles3D
+- VLM: "настоящая 3D глубина, объёмные световые следы, golden bloom"
+
+---
+Task ID: 23 (AMBIENT PARTICLES SITE-WIDE)
+Agent: main (Z.ai Code)
+Task: Gold particle trail across entire site
+
+Work Log:
+- Created ambient-particles.tsx (500 particles, fixed overlay, mix-blend-mode:screen)
+- Created ambient-particles-wrapper.tsx (useSyncExternalStore mount gate)
+- Added to page.tsx
+- User said "статичны и выглядят топорно" → REMOVED from page.tsx
+- Fixed hero.tsx SSR: replaced next/dynamic with useSyncExternalStore
+
+---
+Task ID: 24 (3D COVERFLOW FOR COLLECTIONS)
+Agent: main (Z.ai Code)
+Task: Replace horizontal scroll with 3D coverflow (Three.js + motion.dev)
+
+Work Log:
+- Created /src/components/sections/collections.tsx (668 lines):
+  - Layer 1: Three.js gold particle background (200 particles, same star texture)
+  - Layer 2: CSS 3D Coverflow (perspective 1200px + rotateY + translateX + translateZ + scale + opacity + zIndex)
+  - 7 cards (6 COLLECTIONS + 1 CTA), position:absolute, left:50%, marginLeft:-180px
+  - Scroll-driven: useScroll + useTransform (scrollYProgress → currentIndex 0→6)
+  - Each card: CoverflowCard component with useTransform for all properties
+  - TiltCard preserved, CSS reflection, metallic gold border
+  - Mobile: vertical 2-col grid (unchanged)
+  - ProgressDot component adapted for 7 cards
+- Fixed: removed SectionReveal wrapper (willChange:transform broke sticky)
+- Fixed: added left:50% + marginLeft:-180px for centering
+- VLM: 8/10 "central card centered, side cards rotated under angle, perspective depth"
+
+---
+Task ID: 25 (3D LOGO)
+Agent: main (Z.ai Code)
+Task: Convert original stylized D logo to 3D object with spotlight
+
+Work Log:
+- First attempt: ExtrudeGeometry with standard D shape → user said "не логотип а силуэт"
+- Second attempt: returned to original PNG logo-clean.png
+- Third attempt: created heightmap + normalMap + alphaMap + roughnessMap from original PNG alpha channel
+  - PIL script: alpha → heightmap, Sobel operator → normalMap (strength 5.0), height → roughnessMap
+  - All textures 512×512
+- Created /src/components/three/logo-3d.tsx:
+  - PlaneGeometry(3,3,200,200) with displacementMap + normalMap + alphaMap
+  - MeshStandardMaterial: color #D4AF37, metalness 0.72, roughness 0.18, emissive #5A4520 (0.28)
+  - SpotLight: position [0,2.8,3.2] (front-top, ~40° from vertical), angle 0.35, penumbra 0.2, intensity 5-18 (proximity-based)
+  - MIRRORED cursor follow: cursor left → spotlight right (and vice versa)
+  - Angle clamped (maxOffset 1.5) — beam always hits D
+  - Proximity brightness: closer cursor → brighter (MIN 5, MAX 18)
+  - Ambient light 0.3 (minimal — spotlight creates visible contrast)
+  - No pedestal/stage (removed per user request)
+  - useSyncExternalStore for SSR safety
+- Updated header.tsx: replaced PNG img with Logo3D component
+- Updated hero.tsx: replaced photo background with Three.js 3D particles
+
+Stage Summary:
+3D logo with bas-relief D + spotlight (mirrored cursor follow, proximity brightness, no pedestal)
+
+---
+Task ID: FINAL-RECOVERY
+Agent: main (Z.ai Code)
+Task: Recover lost Three.js files + textures + push to GitHub
+
+Work Log:
+- Discovered: src/components/three/ directory, star-particle.png, logo textures, HANDOFF.md — ALL LOST during server crashes
+- Regenerated star-particle.png (1024×1024 via image generation)
+- Regenerated logo textures (normalMap, heightMap, alphaMap, roughnessMap — 512×512 via PIL+numpy)
+- Recreated hero-particles.tsx (6000 particles, GLSL shaders, bloom, cursor interaction)
+- Recreated logo-3d.tsx (bas-relief D with spotlight, mirrored cursor, proximity brightness)
+- Updated hero.tsx (Three.js particles, not photo background)
+- Updated header.tsx (Logo3D component, not PNG img)
+- Installed Three.js packages (were missing from package.json after git re-init)
+- Pushed everything to GitHub: https://github.com/burovgena-eng/dilizhans-show
+- 641 files in repo, 495 photos, lint clean
+
+Stage Summary:
+All Three.js components + textures recovered and pushed to GitHub. Project fully restored.
