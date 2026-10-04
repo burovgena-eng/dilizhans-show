@@ -3,9 +3,7 @@
 import { useRef, useEffect } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { ChevronDown, ArrowRight } from "lucide-react";
-import { RealisticCosmos } from "@/components/three/realistic-cosmos";
-import { VideoCurtain } from "@/components/sections/video-curtain";
-import { TheaterFloor } from "@/components/sections/theater-floor";
+import { ImageCurtain } from "@/components/sections/image-curtain";
 
 /* ============================================================================
  * Cinematic Hero — Bolshoi Theater Edition
@@ -76,19 +74,11 @@ export function CinematicHero() {
     >
       {/* === Sticky canvas — covers viewport for the whole journey === */}
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-onyx">
-        {/* Cosmos temporarily disabled per user request */}
-        {/* <div className="absolute inset-0 z-10">
-          <RealisticCosmos scrollRef={scrollRef} />
-        </div> */}
-
         {/* Ambient gradient overlays */}
         <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-b from-onyx/30 via-transparent to-onyx/40" />
 
-        {/* Theater floor temporarily disabled per user request */}
-        {/* <TheaterFloor scrollYProgress={scrollYProgress} /> */}
-
-        {/* === Video theater curtain — opens + "flies through" === */}
-        <VideoCurtain scrollYProgress={scrollYProgress} />
+        {/* === Image curtain — 2K quality, 60fps scrubbing === */}
+        <ImageCurtain scrollYProgress={scrollYProgress} />
 
         {/* === Hero overlay (title + CTA) — fades out early ===
             Uses CSS keyframes (not framer-motion) for the title reveal so
