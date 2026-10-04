@@ -1788,3 +1788,24 @@ Work Log:
 
 Stage Summary:
 Занавес больше не открывается автоматически при загрузке. Синхронизация со скроллом плавная (delta 0.01s вместо 0.03s). Театральный пол (деревянный, с складками/швами/тёплым свечением) — отдельный слой z-30, появляется после открытия занавеса (0.15-0.25), исчезает при пролёте (0.55). Порядок слоёв: заголовок > занавес > пол > космос. Видео 2K без blur. VLM подтвердил правильное поведение на всех этапах.
+
+---
+Task ID: css-keyframes-fallback
+Agent: main
+Task: Пользователь: "опять статичная картинка" — VLM показал JS работает (видны [VideoCurtain] video loaded в Console), но заголовок не виден и занавес не двигается.
+
+Work Log:
+- VLM анализ скриншота пользователя: JS работает (console.log виден), но заголовок "Карнавал без компромиссов" НЕ виден, кнопки НЕ видны, занавес статичен
+- Корень проблемы: motion.span с initial={{ y: "110%" }} анимируется через framer-motion, который требует RAF. Если RAF throttled/blocked в превью iframe → motion.span остаётся в initial state (y=110% = спрятан внизу), заголовок не виден
+- Заменил все motion.span/motion.div/motion.p/motion.h1 в Hero overlay на обычные <span>/<div>/<p>/<h1> с CSS keyframes:
+  - @keyframes hero-fade-in (opacity 0→1)
+  - @keyframes hero-fade-in-up (translateY 20%→0 + opacity 0→1)
+  - @keyframes hero-bounce (translateY 0→6→0 для scroll hint)
+  - .hero-fade-in / .hero-fade-in-up / .hero-bounce utility классы
+- Убрал повторяющийся console.log("[VideoCurtain] video loaded") — он засорял консоль при HMR reload
+- VLM проверка: заголовок "Карнавал без компромиссов" теперь виден через CSS keyframes (без framer-motion)
+- Lint: чисто
+- Dev: 200 OK, без ошибок
+
+Stage Summary:
+Заголовок "Карнавал без компромиссов" теперь рендерится через CSS keyframes вместо framer-motion — не зависит от RAF, виден сразу при загрузке страницы даже если framer-motion throttled в превью iframe. Интервал sync (60Hz, 16ms) + RAF backup + scroll listener обеспечивают синхронизацию видео со скроллом через window.scrollY напрямую (не через React state).

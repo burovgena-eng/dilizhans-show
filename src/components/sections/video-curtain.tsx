@@ -50,9 +50,6 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
       setReady(true);
       // Initialize: curtain closed at start
       seekTo(0);
-      // Console marker — visible in browser DevTools so the user can confirm
-      // that JS executed and the VideoCurtain mounted properly.
-      console.log("[VideoCurtain] video loaded, ready, time=0");
     };
 
     if (v.readyState >= 2) {
@@ -136,6 +133,29 @@ export function VideoCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
+  }, []);
+
+  // setInterval fallback — also drives video sync at 60Hz regardless of
+  // React lifecycle. Belt-and-suspenders: even if RAF is throttled by the
+  // browser (background tab), or HMR keeps reloading the component, this
+  // interval keeps the curtain scrub-locked to scroll.
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      const v = videoRef.current;
+      if (!v || !v.duration || !isFinite(v.duration)) return;
+      const section = document.getElementById("top");
+      if (!section) return;
+      const sectionHeight = section.offsetHeight;
+      const vh = window.innerHeight;
+      const total = sectionHeight - vh;
+      if (total <= 0) return;
+      const p = Math.max(0, Math.min(1, window.scrollY / total));
+      const targetTime = (p / VIDEO_PLAY_RANGE) * v.duration;
+      if (Math.abs(v.currentTime - targetTime) > 0.01) {
+        try { v.currentTime = Math.min(targetTime, v.duration); } catch {}
+      }
+    }, 16); // ~60fps
+    return () => window.clearInterval(id);
   }, []);
 
   return (

@@ -466,3 +466,27 @@
   0%, 100% { box-shadow: 0 0 6px rgba(255,200,100,0.5); }
   50%      { box-shadow: 0 0 12px rgba(255,220,140,1); }
 }
+
+/* Hero overlay text — fade-in (opacity 0 → 1). No framer-motion needed,
+   so it works even if framer-motion's RAF is throttled in the preview. */
+@keyframes hero-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Hero overlay text — fade-in + slide up (y +20px → 0, opacity 0 → 1). */
+@keyframes hero-fade-in-up {
+  from { opacity: 0; transform: translateY(20%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero scroll hint — gentle vertical bounce (no framer-motion needed). */
+@keyframes hero-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}
+
+/* Utility classes (used inline in cinematic-hero.tsx) */
+.hero-fade-in    { animation: hero-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.hero-fade-in-up { animation: hero-fade-in-up 1.0s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.hero-bounce     { animation: hero-bounce 2.4s ease-in-out infinite; }

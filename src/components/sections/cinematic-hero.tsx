@@ -92,63 +92,53 @@ export function CinematicHero() {
         {/* === Video theater curtain — opens on scroll 0..0.15 === */}
         <VideoCurtain scrollYProgress={scrollYProgress} />
 
-        {/* === Hero overlay (title + CTA) — fades out early === */}
+        {/* === Hero overlay (title + CTA) — fades out early ===
+            Uses CSS keyframes (not framer-motion) for the title reveal so
+            that if framer-motion's RAF is throttled or doesn't initialize
+            in the preview iframe, the title still shows on page load. */}
         <motion.div
           style={{ opacity: overlayOpacity, y: overlayY }}
           className="pointer-events-none absolute inset-0 z-50 flex items-center justify-center"
         >
           <div className="mx-auto flex max-w-7xl flex-col items-center px-6 py-24 text-center text-ivory">
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: EASE }}
-              className="mb-6 text-[11px] uppercase tracking-[0.45em] text-gold/80"
+            <div
+              className="mb-6 text-[11px] uppercase tracking-[0.45em] text-gold/80 hero-fade-in"
+              style={{ animationDelay: "0.1s" }}
             >
               Ателье карнавальных фантазий · с 2013
-            </motion.div>
+            </div>
 
-            <motion.h1
+            <h1
               style={{ scale: titleScale }}
               className="font-display text-6xl leading-[0.92] tracking-tight md:text-8xl lg:text-[8rem]"
             >
               <span className="block overflow-hidden">
-                <motion.span
-                  className="block"
-                  initial={{ y: "110%" }}
-                  animate={{ y: "0%" }}
-                  transition={{ duration: 1.1, ease: EASE, delay: 0.1 }}
-                >
+                <span className="block hero-fade-in-up" style={{ animationDelay: "0.25s" }}>
                   Карнавал
-                </motion.span>
+                </span>
               </span>
               <span className="block overflow-hidden">
-                <motion.span
-                  className="block bg-gradient-to-r from-gold via-amber-300 to-gold bg-clip-text italic text-transparent"
-                  initial={{ y: "110%" }}
-                  animate={{ y: "0%" }}
-                  transition={{ duration: 1.1, ease: EASE, delay: 0.25 }}
+                <span
+                  className="block bg-gradient-to-r from-gold via-amber-300 to-gold bg-clip-text italic text-transparent hero-fade-in-up"
+                  style={{ animationDelay: "0.4s" }}
                 >
                   без компромиссов
-                </motion.span>
+                </span>
               </span>
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="mt-7 max-w-xl text-base leading-relaxed text-ivory/70 md:text-lg"
+            <p
+              className="mt-7 max-w-xl text-base leading-relaxed text-ivory/70 md:text-lg hero-fade-in"
+              style={{ animationDelay: "0.6s" }}
             >
               Эксклюзивная коллекция из <span className="text-gold">2000+</span> карнавальных,
               национальных и вечерних костюмов для детей и взрослых. Премиум-материалы,
               ручная вышивка, идеальная посадка.
-            </motion.p>
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.65, ease: EASE }}
-              className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
+            <div
+              className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center hero-fade-in-up"
+              style={{ animationDelay: "0.8s" }}
             >
               <a
                 href="#catalog"
@@ -163,7 +153,7 @@ export function CinematicHero() {
               >
                 Забронировать примерку
               </a>
-            </motion.div>
+            </div>
           </div>
         </motion.div>
 
@@ -172,14 +162,12 @@ export function CinematicHero() {
           style={{ opacity: hintOpacity }}
           className="absolute bottom-7 left-1/2 z-50 -translate-x-1/2"
         >
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-2 text-ivory/40"
+          <div
+            className="hero-bounce flex flex-col items-center gap-2 text-ivory/40"
           >
             <span className="text-[10px] uppercase tracking-[0.35em]">Открыть занавес</span>
             <ChevronDown className="h-3.5 w-3.5 text-gold/60" />
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* === Portal glow — warm gold halo as we approach the star === */}
