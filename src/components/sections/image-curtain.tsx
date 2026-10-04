@@ -14,8 +14,8 @@ import { useRef, useEffect, useState, useMemo } from "react";
  * Timeline (driven by scrollYProgress):
  *   0..0.15   → curtain opens (frame 0 → frame 157)
  *   0.15..0.20 → pause (curtain fully open)
- *   0.20..0.45 → 3D fly-through: translateZ 0 → 2200px + scale + blur
- *   0.45..0.50 → fade out (video exits frame)
+ *   0.20..0.25 → 3D fly-through: translateZ 0 → 2200px + scale + blur
+ *   0.25..0.30 → fade out (curtain exits frame, theater scene begins)
  *
  * Frames are preloaded on mount via new Image() — once cached by the
  * browser, scrubbing runs at 60fps with zero decode cost.
@@ -63,10 +63,10 @@ export function ImageCurtain({ scrollYProgress }: { scrollYProgress: MotionValue
   // "Fly-through" effect: after the curtain opens, the image zooms in and
   // moves forward via translateZ (3D) so it feels like the camera flies
   // through the curtain.
-  const imgOpacity = useTransform(scrollYProgress, [0, 0.15, 0.20, 0.45, 0.50], [1, 1, 1, 1, 0]);
-  const imgTranslateZ = useTransform(scrollYProgress, [0.15, 0.20, 0.45], [0, 0, 2200]);
-  const imgScale = useTransform(scrollYProgress, [0.15, 0.20, 0.45], [1, 1, 1.4]);
-  const imgBlurAmount = useTransform(scrollYProgress, [0.20, 0.30, 0.45], [0, 6, 14]);
+  const imgOpacity = useTransform(scrollYProgress, [0, 0.15, 0.20, 0.25, 0.30], [1, 1, 1, 0.7, 0]);
+  const imgTranslateZ = useTransform(scrollYProgress, [0.15, 0.20, 0.25], [0, 0, 2200]);
+  const imgScale = useTransform(scrollYProgress, [0.15, 0.20, 0.25], [1, 1, 1.4]);
+  const imgBlurAmount = useTransform(scrollYProgress, [0.20, 0.22, 0.25], [0, 6, 12]);
   const imgFilter = useTransform(imgBlurAmount, (b) => `blur(${b}px)`);
 
   // Find the parent <section> for scroll-progress calculation.

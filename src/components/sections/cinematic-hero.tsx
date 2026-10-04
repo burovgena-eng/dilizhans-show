@@ -10,20 +10,17 @@ import { TheaterScene3D } from "@/components/three/theater-scene";
  * Cinematic Hero — Bolshoi Theater Edition
  *
  * 800vh tall section. Timeline:
- *   0.00-0.15  Curtain opens (158 pre-rendered WebP frames, 60fps scrubbing)
- *   0.15-0.20  Pause (curtain fully open)
- *   0.20-0.40  3D fly-through: camera flies past/through the curtain
- *   0.40-0.45  Image curtain fades out → theater 3D scene begins
- *   0.45-1.00  Theater 3D scene:
- *     0.45-0.50  Camera approaches the stage from above (angle ~42°)
- *     0.50-0.55  4 spotlights ignite sequentially (warm gold)
- *     0.55-0.70  Camera approaches costume #1 (left screen, info right)
- *     0.70-0.80  Camera moves to costume #2
- *     0.80-0.90  Camera moves to costume #3
- *     0.90-1.00  Camera moves to costume #4
- *
- * The theater scene uses its own scrollRef that maps 0.45..1.0 of the
- * Hero scroll to 0..1 of the scene's internal timeline.
+ *   0.00-0.15  Curtain opens (158 WebP frames, 60fps scrubbing)
+ *   0.15-0.20  Curtain fully open — brief pause
+ *   0.20-0.25  3D fly-through: camera flies past the curtain
+ *   0.25-0.30  Image curtain fades out → theater 3D scene visible (stage far)
+ *   0.30-1.00  Theater 3D scene (theaterScrollRef maps 0.30..1.0 → 0..1):
+ *     0.00-0.30  Camera approaches stage from afar at 20-25° angle
+ *     0.30-0.42  4 spotlights ignite sequentially (bright volumetric cones)
+ *     0.42-0.57  Costume #1: close-up, 10-15° below horizon, left screen
+ *     0.57-0.71  Costume #2
+ *     0.71-0.85  Costume #3
+ *     0.85-1.00  Costume #4
  * ============================================================================ */
 
 function subscribe() { return () => {}; }
@@ -32,8 +29,8 @@ function getServerSnapshot() { return false; }
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-// Theater scene scroll range within Hero
-const THEATER_START = 0.45;
+// Theater scene starts earlier now (0.25 instead of 0.45)
+const THEATER_START = 0.25;
 const THEATER_END = 1.0;
 
 export function CinematicHero() {
