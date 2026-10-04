@@ -1326,3 +1326,70 @@ Work Log:
 
 Stage Summary:
 All Three.js components + textures recovered and pushed to GitHub. Project fully restored.
+
+---
+Task ID: RESTORE-LOST-CHANGES
+Agent: main (Z.ai Code)
+Task: Restore all lost changes to 7 files (reverted during server crashes)
+
+Work Log:
+- Read worklog.md (1328 lines, 25 prior task records) to understand project history.
+- Read current state of all 7 target files to identify what was reverted.
+- Updated src/app/globals.css:
+  - .btn-gold: garish gold gradient fill → solid deep onyx base + gold border + gold text + uppercase + tracking 0.04em + radial gold inner glow on hover (::before pseudo, opacity 0→1 on hover, contained via overflow:hidden + isolation:isolate)
+  - .shadow-luxe: 3-layer → 4-layer cinematic (inset gold top + sharp 1px + medium 8px blur + deep 24px blur)
+  - .shadow-luxe-hover: 4-layer → 6-layer (adds 1px gold ring + 60px gold halo)
+  - .shadow-gold: 3-layer → 5-layer with 80px gold halo (1px ring + sharp + medium + deep + 80px halo)
+  - .shadow-emerald: 2-layer → 4-layer (inset gold + sharp + deep + 60px emerald glow)
+  - Added .shadow-inset-luxe (recessed panel: inset white highlight + inset dark shadow + ambient inset)
+  - .lift-card: already had translateY(-4px) + layered shadow + gold border (preserved)
+  - .corner-accents: already 16px L-shapes (preserved)
+- Updated src/components/site/motion-utils.tsx:
+  - Reveal component: removed clipPath from initial/animate (was clipping hover children like lightboxes/dropdowns). Now only opacity + y. willChange changed from "transform, opacity, clip-path" → "transform, opacity"
+  - ScrollProgress: replaced scaleX with width % via useTransform to avoid gradient distortion artifact. Added clamping (useTransform v => Math.max(0, Math.min(1, v))). Added opacity fade-in (invisible until 2% scroll, fade in by 4%). Removed CSSProperties import (no longer needed for transformOrigin). Added useTransform to framer-motion imports. Outer container has bg-gold/8 track; inner bar has no box-shadow.
+- Updated src/components/sections/catalog.tsx:
+  - PAGE_SIZE: 24 → 8
+  - Lightbox: wrapped in createPortal(..., document.body) so position:fixed works (ancestor willChange:transform was creating a containing block that broke it). Used useSyncExternalStore noop pattern for SSR-safe mounted gate (avoids set-state-in-effect lint warning).
+  - CatalogCard: per-card useInView(ref, { once: true, margin: "-50px" }) + delay = 0.15 + index * 0.25 (sequential stagger). Premium animation: initial opacity 0 + y 40 + filter blur(10px) → animate opacity 1 + y 0 + filter blur(0px), duration 1.0s, ease EASE_LUXE. Changed <motion.img> → plain <img> with loading="eager". Removed clip-path image reveal (initial clipPath animate clipPath). Removed `layout` prop from motion.div (was interfering with variants). Removed `exit` variant. Removed unused AnimatePresence around grid.
+  - Grid: plain <div> instead of <AnimatePresence mode="popLayout">.
+- Updated src/components/sections/booking.tsx:
+  - Removed EVENT_TYPES constant entirely
+  - Removed eventType state
+  - Removed eventType from POST body (API still defaults it to "Не указан" when absent)
+  - Removed eventType reset in success state
+  - Removed "Тип события" Label + radio pill buttons section
+  - Submit button: already uses btn-gold utility class (verified)
+- Updated src/components/sections/advantages.tsx + src/lib/data/catalog.ts ADVANTAGES array:
+  - advantages.tsx imports: Gem/Wand2/Shirt/Truck → Sparkles/Eye/Library/CalendarCheck
+  - ICON_MAP: { Sparkles, Eye, Library, CalendarCheck } (NOT Crown:Gem, Sparkles:Wand2, Ruler:Shirt, Truck)
+  - SectionHeading title: "Сервис европейского бутика" → "Честные преимущества"
+  - Subtitle: "Мы не сдаём костюмы в аренду..." → "Без обещаний о доставке и подгоне по фигуре — только то, что у нас действительно есть."
+  - catalog.ts ADVANTAGES array: Crown/Premium, Sparkles/Чистка, Ruler/Подгон, Truck/Доставка → Sparkles/Чистка включена, Eye/Примерка перед арендой, Library/2000+ костюмов, CalendarCheck/Бронь по телефону
+  - Fallback icon in ICON_MAP[a.icon] ?? Gem → ?? Sparkles
+- Updated src/components/site/footer.tsx:
+  - Added ticker marquee strip between top gold border and main grid: border-b border-gold/10 py-4 wrapper, animate-marquee flex w-max, 2 copies of 8 costume category names (Новогодние, Ретро·Гэтсби, Исторические, Народы мира, Бальные платья, Хэллоуин, Стимпанк, Хогвартс), each span with rotated diamond gold separator, edge fade masks left/right
+  - Removed duplicate "Забронировать" `<li>` from nav column (was duplicating #booking already in NAV_LINKS via the "Бронирование" item, and the original extra `<li>` was redundant)
+  - Email subscribe button: large gradient gold button → small outline round (h-8 w-8 border-gold/30 text-gold, matches social icons)
+  - Staggered column fade-in: motion variants `columnVariants` with custom={i} delay i*0.12, applied to all 4 columns (Brand, Nav, Contacts, Newsletter)
+  - motion.footer with whileInView opacity+y reveal (already present in current file — preserved)
+  - Top gold border scaleX 0→1 on view (already present in current file — preserved)
+- Rewrote src/components/sections/collections.tsx with full 3D Coverflow:
+  - Mobile (lg:hidden): kept existing vertical 2-col grid + bottom CTA button
+  - Desktop (lg+): replaced horizontal scroll with 3D Coverflow
+    - Wrapper: `<div ref={desktopRef} className="hidden lg:block lg:h-[400vh]">` (300vh of coverflow rotation travel)
+    - Inner: `<div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">`
+    - Three.js background: CoverflowBackground component — 200 gold particles with star-particle.png sprite texture, PointsMaterial (gold color, additive blending, depthWrite false, sizeAttenuation true), slow ambient rotation of points object (useFrame on pointsRef), camera parallax from mouse position. useSyncExternalStore noop pattern for SSR safety.
+    - Perspective container: `style={{ perspective: "1200px", transformStyle: "preserve-3d" }}`
+    - 7 cards (6 COLLECTIONS + 1 CTA tail card) in `position: absolute, left: "50%", top: "50%", marginLeft: "-180px", marginTop: "-240px"` (360×480px card)
+    - currentIndex = useTransform(scrollYProgress, [0,1], [0,6])
+    - Each CoverflowCard: offset = i - currentIndex, then useTransform for rotateY (offset*-35°, clamped to ±70° max), x (offset*320px), z (-|offset|*120px), scale (1-|offset|*0.18, clamped min 0.4), opacity (1-|offset|*0.33, clamped min 0), zIndex (100-|offset|*10 rounded)
+    - Card has metallic gold border ring (linear-gradient overlay with mixBlendMode:screen) + CSS box-shadow reflection
+    - ProgressDot component for 7 cards
+  - Fixed: TS error on `material.rotation` (PointsMaterial doesn't have rotation property — moved rotation to points object via pointsRef)
+- Lint: ran `bun run lint` — 1 error initially (set-state-in-effect on the useEffect setMounted pattern). Fixed by switching to useSyncExternalStore noop pattern (matching hero-particles.tsx). Re-ran lint → exit 0.
+- TypeScript: `npx tsc --noEmit` — clean for src/ (only unrelated errors in scripts/ and skills/ from prior tasks).
+- Dev server: confirmed serving HTTP 200 on / with successful recompiles.
+- Git: `git add -A && git commit -m "Restore all lost changes to 7 files"` → commit b4e6826 (8 files changed, 632 insertions, 303 deletions). Pushed to https://github.com/burovgena-eng/dilizhans-show main → main (d2a86a2..b4e6826).
+
+Stage Summary:
+All 7 reverted files restored to their latest intended state (btn-gold onyx+gold, motion-utils clipPath-free, catalog portal+sequential reveal, booking without eventType, advantages with new icon set + Russian copy, footer with ticker marquee, collections with full 3D Coverflow). Lint + tsc clean, dev server serving 200, pushed to GitHub.
