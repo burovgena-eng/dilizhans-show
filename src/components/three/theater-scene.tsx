@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useSyncExternalStore, useMemo, useState } from "react";
+import { useRef, useSyncExternalStore, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { EffectComposer, Bloom, Vignette, SMAA, ToneMapping } from "@react-three/postprocessing";
 import { KernelSize } from "postprocessing";
@@ -29,8 +29,8 @@ const STAGE_RADIUS = 10;
 const STAGE_HEIGHT = 0.4;
 const COSTUME_COUNT = 4;
 const COSTUME_RING_RADIUS = 7;
-const SPOTLIGHT_HEIGHT = 16;
-const SPOTLIGHT_RING_RADIUS = 8;
+const SPOTLIGHT_HEIGHT = 18;
+const SPOTLIGHT_RING_RADIUS = 6; // closer to costume, directly above
 
 // 4 costumes around the circular stage
 const COSTUME_ANGLES = [
@@ -44,27 +44,37 @@ function angleToPos(angle: number, radius: number, y: number = 0): [number, numb
   return [Math.cos(angle) * radius, y, Math.sin(angle) * radius];
 }
 
-// Camera path — stage far away → approach at 20-25° → 4 costume close-ups
-// For each costume: camera close (dist ~3), slightly above (10-15° below horizon),
-// offset to the RIGHT so costume appears on LEFT of screen.
+// Camera path — stage far → approach at 20-25° → 4 costume close-ups
+// For each costume: camera FARTHER back (costume fits fully in screen),
+// 10-15° below horizon, offset right so costume appears on LEFT.
+// More keyframes per costume = longer dwell time.
 const CAMERA_PATH_POINTS: [number, number, number][] = [
   // Stage far away after curtain — high and distant (20-25° angle)
-  [0, 20, 50],          // very far back, high
-  [0, 16, 38],          // approaching
-  [0, 12, 28],          // closer, stage visible at 20-25°
-  [0, 10, 22],          // arrival at stage — spotlights ignite
-  // Costume 1 (front, angle=0°) — close-up, 10-15° below horizon, camera right
-  [3, 3.5, 6],          // approach from right
-  [2.5, 2.5, 4.5],      // CLOSE-UP: costume left, camera right, looking slightly down
+  [0, 22, 55],          // very far
+  [0, 18, 42],          // approaching
+  [0, 14, 32],          // closer
+  [0, 11, 24],          // arrival — spotlights ignite
+  // Costume 1 (front, angle=0°) — profile view, full body in screen
+  // Camera farther back (dist ~7) so full costume fits
+  [5, 4, 9],            // approach
+  [4.5, 3.5, 8],        // settle — costume on left, profile
+  [4.5, 3.5, 8],        // dwell (duplicate = longer pause)
+  [4.5, 3.5, 8],        // dwell
   // Costume 2 (right, angle=90°)
-  [9, 3.5, 1],          // move to right side
-  [8, 2.5, 0.5],        // close-up
+  [9, 4, 3],            // move
+  [8.5, 3.5, 2],        // settle
+  [8.5, 3.5, 2],        // dwell
+  [8.5, 3.5, 2],        // dwell
   // Costume 3 (back, angle=180°)
-  [4, 3.5, -6],         // move to back
-  [3, 2.5, -7],          // close-up
+  [4, 4, -5],            // move
+  [3.5, 3.5, -6],        // settle
+  [3.5, 3.5, -6],        // dwell
+  [3.5, 3.5, -6],        // dwell
   // Costume 4 (left, angle=270°)
-  [-4, 3.5, -2],        // move to left
-  [-5, 2.5, -1],         // close-up
+  [-3, 4, -1],          // move
+  [-3.5, 3.5, 0],       // settle
+  [-3.5, 3.5, 0],       // dwell
+  [-3.5, 3.5, 0],        // dwell
 ];
 
 // ---------------- Stage ----------------
@@ -111,80 +121,36 @@ function StagePlatform() {
 
 // ---------------- Volumetric spotlight cone ----------------
 // A transparent cone that simulates the visible beam of a stage spotlight.
-function SpotlightCone({ position, targetPos, intensity }: {
+function SpotlightCone({ position, targetPos, intensityRef }: {
   position: [number, number, number];
   targetPos: [number, number, number];
-  intensity: number;
+  intensityRef: React.MutableRefObject<number>;
 }) {
-  const coneRef = useRef<THREE.Mesh>(null);
   const spotRef = useRef<THREE.SpotLight>(null);
-  const spotTargetRef = useRef<THREE.Object3D>(null);
-
-  // Compute cone geometry from position to target
-  const dir = useMemo(() => {
-    const p = new THREE.Vector3(...position);
-    const t = new THREE.Vector3(...targetPos);
-    return new THREE.Vector3().subVectors(t, p);
-  }, [position, targetPos]);
-
-  const length = dir.length();
-  const midPoint = useMemo(() => {
-    const p = new THREE.Vector3(...position);
-    const t = new THREE.Vector3(...targetPos);
-    return new THREE.Vector3().addVectors(p, t).multiplyScalar(0.5);
-  }, [position, targetPos]);
-
-  // Cone orientation: point from position toward target
-  const quaternion = useMemo(() => {
-    const up = new THREE.Vector3(0, 1, 0);
-    const d = dir.clone().normalize();
-    return new THREE.Quaternion().setFromUnitVectors(up, d);
-  }, [dir]);
+  const targetRef = useRef<THREE.Object3D>(null);
 
   useFrame(() => {
-    if (spotRef.current) {
-      spotRef.current.intensity = intensity * 25;
+    const intensity = intensityRef.current;
+    if (spotRef.current && targetRef.current) {
+      spotRef.current.intensity = intensity * 30;
+      spotRef.current.target = targetRef.current;
+      targetRef.current.updateMatrixWorld();
     }
   });
 
   return (
     <group>
-      {/* Volumetric cone — transparent, additive blending */}
-      <mesh
-        ref={coneRef}
-        position={midPoint.toArray()}
-        quaternion={quaternion}
-      >
-        <coneGeometry args={[1.5, length, 32, 1, true]} />
-        <meshBasicMaterial
-          color="#FFE8B0"
-          transparent
-          opacity={intensity * 0.15}
-          side={THREE.DoubleSide}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
-        />
-      </mesh>
-
-      {/* Actual SpotLight for scene illumination */}
       <spotLight
         ref={spotRef}
         position={position}
-        angle={0.25}
-        penumbra={0.15}
+        angle={0.3}
+        penumbra={0.2}
         intensity={0}
         color="#FFE8B0"
         distance={30}
-        decay={0.8}
-        castShadow
-        shadow-mapSize={[2048, 2048]}
-        shadow-bias={-0.0001}
+        decay={0.5}
       />
-      <primitive
-        ref={spotTargetRef}
-        object={new THREE.Object3D()}
-        position={targetPos}
-      />
+      <object3D ref={targetRef} position={targetPos} />
     </group>
   );
 }
@@ -203,15 +169,17 @@ function CostumePlaceholder({ index, scrollRef }: {
   const igniteStart = 0.30 + index * 0.03;
   const igniteEnd = igniteStart + 0.04;
 
-  const [spotlightIntensity, setSpotlightIntensity] = useState(0);
+  // Use ref for intensity (NOT useState) — useState in useFrame causes
+  // 60fps re-renders which breaks R3F rendering
+  const intensityRef = useRef(0);
 
-  useFrame((state, delta) => {
+  useFrame(() => {
+    // Profile view: fixed rotation (no spinning)
     if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.12;
+      groupRef.current.rotation.y = angle + Math.PI / 2;
     }
     const t = scrollRef.current;
-    const intensity = THREE.MathUtils.smoothstep(t, igniteStart, igniteEnd);
-    setSpotlightIntensity(intensity);
+    intensityRef.current = THREE.MathUtils.smoothstep(t, igniteStart, igniteEnd);
   });
 
   const spotPos = angleToPos(angle, SPOTLIGHT_RING_RADIUS, SPOTLIGHT_HEIGHT);
@@ -228,29 +196,23 @@ function CostumePlaceholder({ index, scrollRef }: {
         <meshStandardMaterial color="#D4AF37" metalness={0.85} roughness={0.25} />
       </mesh>
 
-      {/* Costume placeholder — capsule + head */}
-      <group ref={groupRef} position={[0, 1.5, 0]}>
-        <mesh castShadow>
-          <capsuleGeometry args={[0.35, 1.2, 8, 16]} />
-          <meshStandardMaterial
-            color="#C8961F"
-            metalness={0.6}
-            roughness={0.35}
-            emissive="#3A2A10"
-            emissiveIntensity={0.2}
-          />
-        </mesh>
-        <mesh position={[0, 0.9, 0]} castShadow>
-          <sphereGeometry args={[0.22, 24, 24]} />
-          <meshStandardMaterial color="#E8C8A0" metalness={0.2} roughness={0.6} />
-        </mesh>
-      </group>
+      {/* Costume placeholder — BIG bright box for visibility testing */}
+      <mesh ref={groupRef} position={[0, 3.0, 0]} castShadow>
+        <boxGeometry args={[1.5, 4.0, 0.8]} />
+        <meshStandardMaterial
+          color="#FFD700"
+          metalness={0.5}
+          roughness={0.3}
+          emissive="#FFD700"
+          emissiveIntensity={1.0}
+        />
+      </mesh>
 
       {/* Volumetric spotlight cone + actual SpotLight */}
       <SpotlightCone
         position={spotPos}
-        targetPos={[pos[0], STAGE_HEIGHT, pos[2]]}
-        intensity={spotlightIntensity}
+        targetPos={[pos[0], STAGE_HEIGHT + 0.5, pos[2]]}
+        intensityRef={intensityRef}
       />
     </group>
   );
@@ -278,31 +240,29 @@ function CameraController({ scrollRef }: {
 
     // Look target based on phase
     let targetPos: THREE.Vector3;
-    if (t < 0.30) {
+    if (t < 0.28) {
       // Approach phase — look at stage center
       targetPos = new THREE.Vector3(0, 0, 0);
     } else {
-      // Costume phase — look at point to the RIGHT of the costume
-      // (perpendicular to camera→costume direction) so the costume
-      // appears on the LEFT side of the screen, leaving room for the
-      // info text block on the right.
-      const costumeT = (t - 0.30) / 0.70;
+      // Costume phase — 4 costumes, each gets ~18% of scroll
+      // Costume 1: 0.28-0.46, Costume 2: 0.46-0.64, etc.
+      const costumeT = (t - 0.28) / 0.72;
       const costumeIdx = Math.min(3, Math.floor(costumeT * 4));
       const angle = COSTUME_ANGLES[costumeIdx];
       const cPos = angleToPos(angle, COSTUME_RING_RADIUS, 1.2);
       // "Right" direction = perpendicular to costume angle (clockwise)
       const rightAngle = angle - Math.PI / 2;
-      const offsetX = Math.cos(rightAngle) * 2.5;
-      const offsetZ = Math.sin(rightAngle) * 2.5;
+      const offsetX = Math.cos(rightAngle) * 3.0;
+      const offsetZ = Math.sin(rightAngle) * 3.0;
       targetPos = new THREE.Vector3(cPos[0] + offsetX, 1.2, cPos[2] + offsetZ);
     }
 
-    lookTarget.current.lerp(targetPos, 0.06);
-    camera.position.lerp(pos, 0.1);
+    lookTarget.current.lerp(targetPos, 0.05);
+    camera.position.lerp(pos, 0.08);
     camera.lookAt(lookTarget.current);
 
-    // FOV: wider during approach (20-25° angle), narrower for costume close-up
-    const targetFov = t < 0.30 ? 45 : 30;
+    // FOV: wider during approach, 40° for costume (fits full body in screen)
+    const targetFov = t < 0.28 ? 45 : 40;
     if (camera instanceof THREE.PerspectiveCamera) {
       // eslint-disable-next-line react-hooks/immutability
       camera.fov += (targetFov - camera.fov) * 0.05;
