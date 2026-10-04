@@ -76,20 +76,18 @@ export function CinematicHero() {
     >
       {/* === Sticky canvas — covers viewport for the whole journey === */}
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-onyx">
-        {/* Realistic 3D cosmos — backmost layer (z-10) */}
-        <div className="absolute inset-0 z-10">
+        {/* Cosmos temporarily disabled per user request */}
+        {/* <div className="absolute inset-0 z-10">
           <RealisticCosmos scrollRef={scrollRef} />
-        </div>
+        </div> */}
 
         {/* Ambient gradient overlays */}
         <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-b from-onyx/30 via-transparent to-onyx/40" />
 
-        {/* === Theater floor — appears after curtain opens, disappears as we
-            fly forward into space. Sits BEHIND the curtain but IN FRONT of
-            the cosmos (z-30). === */}
-        <TheaterFloor scrollYProgress={scrollYProgress} />
+        {/* Theater floor temporarily disabled per user request */}
+        {/* <TheaterFloor scrollYProgress={scrollYProgress} /> */}
 
-        {/* === Video theater curtain — opens on scroll 0..0.15 === */}
+        {/* === Video theater curtain — opens + "flies through" === */}
         <VideoCurtain scrollYProgress={scrollYProgress} />
 
         {/* === Hero overlay (title + CTA) — fades out early ===
