@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import {
   MapPin,
   Clock,
@@ -41,6 +41,28 @@ const SOCIAL_ICONS = [
 
 const FOOTER_EYEBROW_CLASS =
   "text-[11px] font-semibold uppercase tracking-[0.3em] text-gold";
+
+/** Marquee strip — 8 costume category names that scroll continuously. */
+const TICKER_ITEMS = [
+  "Новогодние",
+  "Ретро · Гэтсби",
+  "Исторические",
+  "Народы мира",
+  "Бальные платья",
+  "Хэллоуин",
+  "Стимпанк",
+  "Хогвартс",
+];
+
+/** Staggered column fade-in variants — each column delayed by i * 0.12s. */
+const columnVariants: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] },
+  }),
+};
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -87,6 +109,24 @@ export function Footer() {
         style={{ transformOrigin: "left" }}
       />
 
+      {/* === Ticker marquee — motion.dev pattern, 2 copies for seamless loop === */}
+      <div className="relative overflow-hidden border-b border-gold/10 py-4">
+        <div className="flex w-max animate-marquee items-center gap-12">
+          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((label, i) => (
+            <span
+              key={i}
+              className="flex items-center gap-3 font-display text-sm italic text-ivory/40"
+            >
+              {label}
+              <span className="h-1 w-1 rotate-45 bg-gold/50" />
+            </span>
+          ))}
+        </div>
+        {/* Edge fade masks */}
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-onyx to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-onyx to-transparent" />
+      </div>
+
       {/* Soft grain overlay */}
       <div
         className="grain-overlay pointer-events-none absolute inset-0 opacity-40"
@@ -96,7 +136,15 @@ export function Footer() {
       <div className="relative mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* === Column 1 — Brand (with subtle scroll parallax) === */}
-          <motion.div style={{ y: yBrand }} className="flex flex-col gap-4">
+          <motion.div
+            custom={0}
+            variants={columnVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            style={{ y: yBrand }}
+            className="flex flex-col gap-4"
+          >
             <div className="flex items-center gap-3">
               <span className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 bg-gradient-to-br from-emerald to-emerald-deep text-gold shadow-inner">
                 <span className="font-display text-2xl leading-none">Д</span>
@@ -127,7 +175,14 @@ export function Footer() {
           </motion.div>
 
           {/* === Column 2 — Навигация === */}
-          <nav className="flex flex-col gap-4">
+          <motion.nav
+            custom={1}
+            variants={columnVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            className="flex flex-col gap-4"
+          >
             <h3 className={FOOTER_EYEBROW_CLASS}>Навигация</h3>
             <ul className="flex flex-col">
               {NAV_LINKS.map((l) => (
@@ -140,19 +195,18 @@ export function Footer() {
                   </a>
                 </li>
               ))}
-              <li>
-                <a
-                  href="#booking"
-                  className="block py-1 text-sm text-ivory/70 transition-colors hover:text-gold"
-                >
-                  Бронирование
-                </a>
-              </li>
             </ul>
-          </nav>
+          </motion.nav>
 
           {/* === Column 3 — Контакты === */}
-          <div className="flex flex-col gap-4">
+          <motion.div
+            custom={2}
+            variants={columnVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            className="flex flex-col gap-4"
+          >
             <h3 className={FOOTER_EYEBROW_CLASS}>Контакты</h3>
             <ul className="flex flex-col gap-3">
               <li className="flex items-start gap-2 text-sm text-ivory/75">
@@ -181,10 +235,17 @@ export function Footer() {
                 </span>
               </li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* === Column 4 — Рассылка + соцсети === */}
-          <div className="flex flex-col gap-4">
+          <motion.div
+            custom={3}
+            variants={columnVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            className="flex flex-col gap-4"
+          >
             <h3 className={FOOTER_EYEBROW_CLASS}>Рассылка</h3>
             <p className="text-xs text-muted-foreground">
               Новые поступления и закрытые распродажи
@@ -198,12 +259,13 @@ export function Footer() {
                 aria-label="E-mail для подписки"
                 className="w-full rounded-full border border-gold/20 bg-onyx-soft px-4 py-2 text-sm text-ivory placeholder:text-muted-foreground focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold/30"
               />
+              {/* Small outline round button — not the large gradient gold button */}
               <button
                 type="submit"
                 aria-label="Подписаться"
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-gold-bright via-gold to-gold-deep text-emerald-deep shadow-[0_8px_24px_-8px_rgba(201,169,97,0.6)] transition-transform hover:scale-105"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold/30 text-gold transition-colors hover:border-gold hover:bg-gold/5 hover:text-gold-bright"
               >
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-3.5 w-3.5" />
               </button>
             </form>
             <div className="flex flex-wrap gap-2">
@@ -221,7 +283,7 @@ export function Footer() {
                 </a>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Bottom bar */}

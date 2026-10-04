@@ -1,7 +1,15 @@
 "use client";
 
 import { AnimatePresence, motion, useInView } from "framer-motion";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
+import { createPortal } from "react-dom";
 import type { ChangeEvent } from "react";
 import {
   ArrowRight,
@@ -47,11 +55,25 @@ const ALL_ITEMS: ManifestItem[] = CATEGORIES.flatMap((c) => c.items);
 
 const TOTAL_COUNT = ALL_ITEMS.length;
 
-/** Page size for "load more" pagination. */
-const PAGE_SIZE = 24;
+/** Page size for "load more" pagination — 8 per page keeps the grid readable
+ *  and lets the sequential reveal stagger feel cinematic rather than endless. */
+const PAGE_SIZE = 8;
 
 /** Luxury easing curve — matches motion-utils EASE_LUXE. */
 const EASE_LUXE = [0.16, 1, 0.3, 1] as const;
+
+/* SSR-safe "is client mounted" gate — using useSyncExternalStore avoids
+ * the "set-state-in-effect" lint warning that comes with the more common
+ * `useEffect(() => setMounted(true), [])` pattern. */
+function noopSubscribe() {
+  return () => {};
+}
+function getMountedSnapshot() {
+  return true;
+}
+function getMountedServerSnapshot() {
+  return false;
+}
 
 /* ============================================================
  *  Catalog section component
@@ -64,6 +86,15 @@ export function Catalog() {
   const [searchQuery, setSearchQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  /* Mounted gate — createPortal must only run client-side. Using
+   * useSyncExternalStore (no-op store returning true on client, false on
+   * server) keeps React happy without the set-state-in-effect warning. */
+  const mounted = useSyncExternalStore(
+    noopSubscribe,
+    getMountedSnapshot,
+    getMountedServerSnapshot
+  );
 
   const isSearching = searchQuery.trim().length > 0;
 
@@ -320,19 +351,20 @@ export function Catalog() {
               </div>
             ) : (
               <>
-                {/* Grid — perspective-1000 + transform-gpu for 3D depth + HW accel */}
+                {/* Grid — perspective-1000 + transform-gpu for 3D depth + HW accel.
+                    Plain <div> instead of <AnimatePresence> — per-card useInView +
+                    sequential delay handles reveal, and AnimatePresence was
+                    interfering with the premium blur-in animation. */}
                 <div className="perspective-1000 transform-gpu grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
-                  <AnimatePresence mode="popLayout">
-                    {visibleItems.map((item, i) => (
-                      <CatalogCard
-                        key={item.src}
-                        item={item}
-                        index={i}
-                        showCategory={showCategoryTag}
-                        onOpen={() => openLightbox(i)}
-                      />
-                    ))}
-                  </AnimatePresence>
+                  {visibleItems.map((item, i) => (
+                    <CatalogCard
+                      key={item.src}
+                      item={item}
+                      index={i}
+                      showCategory={showCategoryTag}
+                      onOpen={() => openLightbox(i)}
+                    />
+                  ))}
                 </div>
 
                 {/* Load more */}
@@ -360,120 +392,131 @@ export function Catalog() {
       </div>
 
       {/* ============================================================
-       *  Lightbox modal
+       *  Lightbox modal — rendered via createPortal to document.body.
+       *  Why: the catalog section's ancestor has `willChange: transform`
+       *  (Reveal / motion wrappers), which creates a containing block that
+       *  breaks `position: fixed` on the lightbox — it would be sized to
+       *  the ancestor instead of the viewport. Portaling to document.body
+       *  escapes that containing block so fixed positioning works correctly.
+       *  The AnimatePresence stays mounted in the portal so the close
+       *  animation still runs when `active` becomes null.
        * ============================================================ */}
-      <AnimatePresence mode="wait">
-        {active ? (
-          <motion.div
-            key="catalog-lightbox-backdrop"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            onClick={closeLightbox}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-onyx/95 p-4 backdrop-blur-md md:p-8"
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.97, y: 6 }}
-              transition={{ duration: 0.3, ease: EASE_LUXE }}
-              onClick={(e) => e.stopPropagation()}
-              className="shadow-luxe relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-y-auto rounded-2xl border border-gold/15 bg-onyx-card md:flex-row md:overflow-hidden"
-            >
-              {/* Close */}
-              <button
-                type="button"
+      {mounted && createPortal(
+        <AnimatePresence mode="wait">
+            {active ? (
+              <motion.div
+                key="catalog-lightbox-backdrop"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
                 onClick={closeLightbox}
-                aria-label="Закрыть"
-                className="absolute right-3 top-3 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-gold/30 bg-onyx-soft/80 text-ivory transition hover:border-gold hover:text-gold"
+                className="fixed inset-0 z-[100] flex items-center justify-center bg-onyx/95 p-4 backdrop-blur-md md:p-8"
               >
-                <X className="h-5 w-5" />
-              </button>
-
-              {/* Prev */}
-              <button
-                type="button"
-                onClick={goPrev}
-                aria-label="Предыдущий образ"
-                className="absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-gold/30 bg-onyx-soft/70 text-ivory transition hover:border-gold hover:text-gold md:left-3"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-
-              {/* Next */}
-              <button
-                type="button"
-                onClick={goNext}
-                aria-label="Следующий образ"
-                className="absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-gold/30 bg-onyx-soft/70 text-ivory transition hover:border-gold hover:text-gold md:right-3"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-
-              {/* Image side */}
-              <div className="flex flex-1 items-center justify-center bg-onyx p-4 md:p-6">
-                <img
-                  src={active.src}
-                  alt={active.title}
-                  className="img-luxe max-h-[55vh] w-auto max-w-full object-contain md:max-h-[80vh]"
-                />
-              </div>
-
-              {/* Details panel */}
-              <aside className="flex w-full flex-col gap-4 border-t border-gold/15 bg-onyx-card p-6 md:w-80 md:border-l md:border-t-0">
-                <span className="glass-gold inline-flex w-fit items-center rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-gold">
-                  {active.category}
-                </span>
-                <h3 className="font-display text-2xl leading-tight text-ivory">
-                  {active.title}
-                </h3>
-
-                <div className="divider-gold-fade" />
-
-                <p className="text-xs leading-relaxed text-muted-foreground">
-                  Из коллекции «Дилижанс Шоу» — бутика карнавальных костюмов в
-                  Новосибирске с 2013 года.
-                </p>
-
-                <a
-                  href={active.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-gold/80 transition hover:text-gold-bright"
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.97, y: 6 }}
+                  transition={{ duration: 0.3, ease: EASE_LUXE }}
+                  onClick={(e) => e.stopPropagation()}
+                  className="shadow-luxe relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-y-auto rounded-2xl border border-gold/15 bg-onyx-card md:flex-row md:overflow-hidden"
                 >
-                  Просмотр на оригинале
-                  <ExternalLink className="h-3 w-3" />
-                </a>
+                  {/* Close */}
+                  <button
+                    type="button"
+                    onClick={closeLightbox}
+                    aria-label="Закрыть"
+                    className="absolute right-3 top-3 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-gold/30 bg-onyx-soft/80 text-ivory transition hover:border-gold hover:text-gold"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
 
-                <div className="mt-2 flex-1" />
+                  {/* Prev */}
+                  <button
+                    type="button"
+                    onClick={goPrev}
+                    aria-label="Предыдущий образ"
+                    className="absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-gold/30 bg-onyx-soft/70 text-ivory transition hover:border-gold hover:text-gold md:left-3"
+                  >
+                    <ChevronLeft className="h-5 w-5" />
+                  </button>
 
-                <a
-                  href="#booking"
-                  onClick={closeLightbox}
-                  className="btn-gold px-5 py-3 text-sm uppercase tracking-wider"
-                >
-                  Забронировать этот образ
-                  <ArrowRight className="h-4 w-4" />
-                </a>
+                  {/* Next */}
+                  <button
+                    type="button"
+                    onClick={goNext}
+                    aria-label="Следующий образ"
+                    className="absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-gold/30 bg-onyx-soft/70 text-ivory transition hover:border-gold hover:text-gold md:right-3"
+                  >
+                    <ChevronRight className="h-5 w-5" />
+                  </button>
 
-                <p className="text-[11px] leading-relaxed text-muted-foreground">
-                  Все костюмы можно примерить в бутике на Державина 13. Стилист
-                  перезвонит в течение часа.
-                </p>
-              </aside>
-            </motion.div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+                  {/* Image side */}
+                  <div className="flex flex-1 items-center justify-center bg-onyx p-4 md:p-6">
+                    <img
+                      src={active.src}
+                      alt={active.title}
+                      className="img-luxe max-h-[55vh] w-auto max-w-full object-contain md:max-h-[80vh]"
+                    />
+                  </div>
+
+                  {/* Details panel */}
+                  <aside className="flex w-full flex-col gap-4 border-t border-gold/15 bg-onyx-card p-6 md:w-80 md:border-l md:border-t-0">
+                    <span className="glass-gold inline-flex w-fit items-center rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-gold">
+                      {active.category}
+                    </span>
+                    <h3 className="font-display text-2xl leading-tight text-ivory">
+                      {active.title}
+                    </h3>
+
+                    <div className="divider-gold-fade" />
+
+                    <p className="text-xs leading-relaxed text-muted-foreground">
+                      Из коллекции «Дилижанс Шоу» — бутика карнавальных костюмов в
+                      Новосибирске с 2013 года.
+                    </p>
+
+                    <a
+                      href={active.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-gold/80 transition hover:text-gold-bright"
+                    >
+                      Просмотр на оригинале
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+
+                    <div className="mt-2 flex-1" />
+
+                    <a
+                      href="#booking"
+                      onClick={closeLightbox}
+                      className="btn-gold px-5 py-3 text-sm uppercase tracking-wider"
+                    >
+                      Забронировать этот образ
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+
+                    <p className="text-[11px] leading-relaxed text-muted-foreground">
+                      Все костюмы можно примерить в бутике на Державина 13. Стилист
+                      перезвонит в течение часа.
+                    </p>
+                  </aside>
+                </motion.div>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>,
+          document.body
+        )}
     </section>
   );
 }
 
 /* ============================================================
- *  Single catalog card — TiltCard 3D tilt + clip-path image
- *  reveal + staggered entry. Each card owns its useInView so
- *  the clip-path animation triggers per-card on scroll.
+ *  Single catalog card — TiltCard 3D tilt + premium sequential reveal.
+ *  Each card owns its useInView + delay so it can blur-in individually as
+ *  the user scrolls (or as more cards load via "Показать ещё"). The plain
+ *  <img> uses loading="eager" so the visible page paints immediately.
  * ============================================================ */
 function CatalogCard({
   item,
@@ -488,18 +531,21 @@ function CatalogCard({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
-  /* Stagger delay — capped at 12 items so a 4-col x 3-row grid completes
-     its stagger in 0.44s, then loops for cards beyond the first row. */
-  const delay = (index % 12) * 0.04;
+  /* Sequential stagger — base 0.15s + 0.25s per card slot. With PAGE_SIZE=8
+     the first page completes its stagger in ~1.9s, matching the cinematic
+     "cards blur in top-to-bottom" reveal. */
+  const delay = 0.15 + index * 0.25;
 
   return (
     <motion.div
       ref={ref}
-      layout
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      exit={{ opacity: 0, y: 10 }}
-      transition={{ duration: 0.6, ease: EASE_LUXE, delay }}
+      initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+      animate={
+        inView
+          ? { opacity: 1, y: 0, filter: "blur(0px)" }
+          : { opacity: 0, y: 40, filter: "blur(10px)" }
+      }
+      transition={{ duration: 1.0, ease: EASE_LUXE, delay }}
     >
       <TiltCard>
         <button
@@ -508,14 +554,11 @@ function CatalogCard({
           aria-label={`Открыть образ: ${item.title}`}
           className="group lift-card shadow-luxe relative block aspect-[3/4] w-full overflow-hidden rounded-lg border border-gold/15 bg-onyx-card text-left"
         >
-          {/* Image with clip-path reveal — wipes in from top to bottom */}
-          <motion.img
+          {/* Image — plain <img>, eager-loaded for the visible page */}
+          <img
             src={item.src}
             alt={item.title}
-            loading="lazy"
-            initial={{ clipPath: "inset(0 0 100% 0)" }}
-            animate={inView ? { clipPath: "inset(0 0 0% 0)" } : {}}
-            transition={{ duration: 0.8, ease: EASE_LUXE }}
+            loading="eager"
             className="img-luxe-strong h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
           />
 

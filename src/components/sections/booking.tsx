@@ -10,21 +10,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { REAL_PHOTOS } from "@/lib/data/catalog";
 
-const EVENT_TYPES = [
-  "Свадьба",
-  "Корпоратив",
-  "Детский праздник",
-  "Фотосессия",
-  "Другое",
-];
-
 export function Booking() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-120px" });
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [eventType, setEventType] = useState(EVENT_TYPES[0]);
   const [date, setDate] = useState("");
   const [notes, setNotes] = useState("");
 
@@ -50,7 +41,6 @@ export function Booking() {
         body: JSON.stringify({
           name: name.trim(),
           phone: phone.trim(),
-          eventType,
           date,
           notes: notes.trim() || undefined,
         }),
@@ -69,7 +59,6 @@ export function Booking() {
       });
       setName("");
       setPhone("");
-      setEventType(EVENT_TYPES[0]);
       setDate("");
       setNotes("");
     } catch (e) {
@@ -144,32 +133,6 @@ export function Booking() {
                       autoComplete="tel"
                       className="border-gold/20 bg-onyx-soft text-ivory placeholder:text-muted-foreground focus-visible:border-gold focus-visible:ring-gold/30"
                     />
-                  </div>
-                </div>
-
-                {/* Event type — radio pills */}
-                <div className="flex flex-col gap-2">
-                  <Label className="text-ivory">Тип события</Label>
-                  <div className="flex flex-wrap gap-2">
-                    {EVENT_TYPES.map((t) => {
-                      const active = eventType === t;
-                      return (
-                        <button
-                          key={t}
-                          type="button"
-                          onClick={() => setEventType(t)}
-                          className={
-                            "rounded-full border px-3.5 py-1.5 text-xs font-medium uppercase tracking-[0.12em] transition-colors " +
-                            (active
-                              ? "border-gold bg-gradient-to-br from-gold-bright via-gold to-gold-deep font-semibold text-onyx shadow-[0_4px_18px_-4px_rgba(201,169,97,0.6)]"
-                              : "border-gold/30 text-ivory/70 hover:border-gold/60 hover:text-ivory")
-                          }
-                          aria-pressed={active}
-                        >
-                          {t}
-                        </button>
-                      );
-                    })}
                   </div>
                 </div>
 

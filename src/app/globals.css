@@ -183,30 +183,48 @@
     background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.35), transparent);
   }
 
-  /* === DEPTH: layered shadows for real card elevation === */
+  /* === DEPTH: layered cinematic shadows for real card elevation === */
   .shadow-luxe {
+    /* 4-layer: inset gold top + sharp 1px + medium 8px blur + deep 24px blur */
     box-shadow:
-      0 1px 0 0 rgba(201, 169, 97, 0.06) inset,
-      0 20px 50px -20px rgba(0, 0, 0, 0.9),
-      0 8px 20px -8px rgba(0, 0, 0, 0.6);
+      0 1px 0 0 rgba(201, 169, 97, 0.08) inset,
+      0 1px 2px 0 rgba(0, 0, 0, 0.55),
+      0 8px 20px -8px rgba(0, 0, 0, 0.6),
+      0 24px 50px -20px rgba(0, 0, 0, 0.9);
   }
   .shadow-luxe-hover {
+    /* 6-layer: shadow-luxe + 1px gold ring + 60px gold halo */
     box-shadow:
-      0 1px 0 0 rgba(201, 169, 97, 0.15) inset,
-      0 30px 80px -25px rgba(0, 0, 0, 1),
-      0 12px 32px -10px rgba(201, 169, 97, 0.18),
-      0 0 0 1px rgba(201, 169, 97, 0.25);
+      0 1px 0 0 rgba(201, 169, 97, 0.18) inset,
+      0 1px 2px 0 rgba(0, 0, 0, 0.55),
+      0 8px 20px -8px rgba(0, 0, 0, 0.6),
+      0 24px 50px -20px rgba(0, 0, 0, 0.95),
+      0 0 0 1px rgba(201, 169, 97, 0.28),
+      0 0 60px -10px rgba(201, 169, 97, 0.32);
   }
   .shadow-gold {
+    /* 5-layer: 1px gold ring + sharp + medium + deep + 80px gold halo */
     box-shadow:
       0 0 0 1px rgba(201, 169, 97, 0.18),
-      0 18px 40px -12px rgba(0, 0, 0, 0.7),
-      0 0 60px -20px rgba(201, 169, 97, 0.22);
+      0 1px 2px 0 rgba(0, 0, 0, 0.55),
+      0 8px 22px -8px rgba(0, 0, 0, 0.6),
+      0 20px 44px -16px rgba(0, 0, 0, 0.85),
+      0 0 80px -16px rgba(201, 169, 97, 0.32);
   }
   .shadow-emerald {
+    /* 4-layer: inset gold top + sharp + deep + 60px emerald glow */
     box-shadow:
-      0 1px 0 0 rgba(201, 169, 97, 0.05) inset,
-      0 24px 60px -20px rgba(0, 0, 0, 0.9);
+      0 1px 0 0 rgba(201, 169, 97, 0.06) inset,
+      0 1px 2px 0 rgba(0, 0, 0, 0.5),
+      0 24px 60px -20px rgba(0, 0, 0, 0.9),
+      0 0 60px -16px rgba(26, 90, 66, 0.55);
+  }
+  .shadow-inset-luxe {
+    /* Recessed panel: inset white highlight + inset dark shadow + ambient inset */
+    box-shadow:
+      inset 0 1px 0 0 rgba(245, 239, 224, 0.05),
+      inset 0 -1px 0 0 rgba(0, 0, 0, 0.45),
+      inset 0 8px 28px -10px rgba(0, 0, 0, 0.55);
   }
 
   /* === Refined glass morphism === */
@@ -316,7 +334,10 @@
     background: rgba(201, 169, 97, 0.55);
   }
 
-  /* === REFINED luxury button — solid gold, no paint-like gradient === */
+  /* === REFINED luxury button — solid deep onyx base + gold border + gold text ===
+   * No garish gold gradient fill. On hover a subtle radial gold glow appears
+   * under the gold border via a ::before pseudo (contained, no paint streaks).
+   * ========================================================================== */
   .btn-gold {
     position: relative;
     display: inline-flex;
@@ -324,25 +345,49 @@
     justify-content: center;
     gap: 0.5rem;
     border-radius: 9999px;
-    background: linear-gradient(180deg, #E6C775 0%, #C9A961 50%, #8A6F2F 100%);
-    color: #060807;
+    border: 1px solid rgba(201, 169, 97, 0.55);
+    background: #0A0F0D;
+    color: #E6C775;
     font-family: var(--font-display);
     font-weight: 500;
-    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    overflow: hidden;
+    isolation: isolate;
     box-shadow:
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.25),
-      inset 0 -1px 0 0 rgba(0, 0, 0, 0.25),
-      0 6px 20px -8px rgba(201, 169, 97, 0.45),
-      0 1px 2px rgba(0, 0, 0, 0.4);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.04),
+      0 1px 2px rgba(0, 0, 0, 0.5);
+    transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  /* Radial gold inner glow — only on hover, contained inside the button */
+  .btn-gold::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(
+      ellipse 70% 120% at 50% 50%,
+      rgba(201, 169, 97, 0.35) 0%,
+      rgba(201, 169, 97, 0.10) 40%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
   }
   .btn-gold:hover {
     transform: translateY(-1px);
+    color: #F5EFE0;
+    border-color: rgba(201, 169, 97, 0.85);
     box-shadow:
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.35),
-      inset 0 -1px 0 0 rgba(0, 0, 0, 0.2),
-      0 12px 32px -10px rgba(201, 169, 97, 0.65),
-      0 0 0 1px rgba(201, 169, 97, 0.3);
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
+      0 12px 32px -10px rgba(201, 169, 97, 0.35),
+      0 0 0 1px rgba(201, 169, 97, 0.25);
+  }
+  .btn-gold:hover::before {
+    opacity: 1;
   }
   .btn-gold:active {
     transform: translateY(0);

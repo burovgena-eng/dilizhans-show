@@ -1,6 +1,12 @@
 "use client";
 
-import { Gem, Wand2, Shirt, Truck, type LucideIcon } from "lucide-react";
+import {
+  Sparkles,
+  Eye,
+  Library,
+  CalendarCheck,
+  type LucideIcon,
+} from "lucide-react";
 import { ADVANTAGES } from "@/lib/data/catalog";
 import { SectionHeading, GoldDivider } from "@/components/site/primitives";
 import { Reveal } from "@/components/site/motion-utils";
@@ -8,12 +14,13 @@ import { Reveal } from "@/components/site/motion-utils";
 /**
  * Varied icon map — each advantage uses a distinct semantic icon
  * (no more 100× Sparkles repeats across the site).
+ * Sparkles → cleaning, Eye → try-on, Library → 2000+ catalog, CalendarCheck → booking
  */
 const ICON_MAP: Record<string, LucideIcon> = {
-  Crown: Gem, // premium quality → gem
-  Sparkles: Wand2, // cleaning → wand
-  Ruler: Shirt, // fitting → shirt
-  Truck, // delivery stays
+  Sparkles, // cleaning included
+  Eye, // try-on in boutique
+  Library, // 2000+ costumes
+  CalendarCheck, // phone booking
 };
 
 export function Advantages() {
@@ -35,11 +42,11 @@ export function Advantages() {
           eyebrow="Почему Дилижанс Шоу"
           title={
             <>
-              Сервис европейского{" "}
-              <span className="text-gold-gradient italic">бутика</span>
+              Честные{" "}
+              <span className="text-gold-gradient italic">преимущества</span>
             </>
           }
-          subtitle="Мы не сдаём костюмы в аренду — мы создаём образы."
+          subtitle="Без обещаний о доставке и подгоне по фигуре — только то, что у нас действительно есть."
         />
 
         <GoldDivider className="mx-auto mt-8 w-full max-w-md" />
@@ -47,7 +54,7 @@ export function Advantages() {
         {/* Cards grid — each wrapped in <Reveal> with staggered delay */}
         <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {ADVANTAGES.map((a, i) => {
-            const Icon = ICON_MAP[a.icon] ?? Gem;
+            const Icon = ICON_MAP[a.icon] ?? Sparkles;
             return (
               <Reveal key={a.icon} delay={i * 0.1} y={28}>
                 <article className="group lift-card relative flex h-full flex-col items-start overflow-hidden rounded-lg border border-gold/15 bg-onyx-card p-6 transition-colors duration-500 hover:border-gold/45">

@@ -7,6 +7,7 @@ import {
   useMotionValue,
   useScroll,
   useSpring,
+  useTransform,
   animate,
   type MotionValue,
 } from "framer-motion";
@@ -14,7 +15,6 @@ import {
   useEffect,
   useRef,
   useState,
-  type CSSProperties,
   type MouseEventHandler,
   type ReactNode,
 } from "react";
@@ -249,10 +249,11 @@ export function RevealText({
 }
 
 /* ============================================================================
- * Reveal — generic scroll-triggered reveal wrapper. Fades + clip-path wipes
- * children in from the right when they scroll into view.
- * Initial: opacity 0, y {default 30}, clip-path inset(0 100% 0 0) [hidden right]
- * Animate: opacity 1, y 0, clip-path inset(0 0% 0 0) [revealed]
+ * Reveal — generic scroll-triggered reveal wrapper. Fades + slides children
+ * upward when they scroll into view. (clipPath was removed — it was clipping
+ * hover children like dropdowns / lightboxes that escaped the card bounds.)
+ * Initial: opacity 0, y {default 30}
+ * Animate: opacity 1, y 0
  * Transition: duration 0.9, ease [0.16, 1, 0.3, 1], {delay}
  * ========================================================================== */
 export function Reveal({
@@ -273,14 +274,10 @@ export function Reveal({
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, y, clipPath: "inset(0 100% 0 0)" }}
-      animate={
-        inView
-          ? { opacity: 1, y: 0, clipPath: "inset(0 0% 0 0)" }
-          : {}
-      }
+      initial={{ opacity: 0, y }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.9, ease: EASE_LUXE, delay }}
-      style={{ willChange: "transform, opacity, clip-path" }}
+      style={{ willChange: "transform, opacity" }}
     >
       {children}
     </motion.div>
@@ -415,26 +412,36 @@ export function Confetti({ trigger }: { trigger: boolean }) {
 }
 
 /* ============================================================================
- * ScrollProgress — top-of-page gold progress bar. Fixed at top, scaled on X
- * axis by the page's scroll progress. Spring-smoothed for a luxe feel.
+ * ScrollProgress — top-of-page gold progress bar. Fixed at top, width grows
+ * from 0% to 100% as the user scrolls down. Using width % (instead of scaleX)
+ * avoids the gradient distortion artifact that happens when the bar is very
+ * narrow. Outer container is the empty track (bg-gold/8); inner bar has no
+ * box-shadow. The whole bar also fades in between 2% and 4% scroll so it
+ * doesn't flash at the very top of the page.
  * ========================================================================== */
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
+  const progress = useSpring(scrollYProgress, {
     stiffness: 200,
     damping: 30,
     mass: 0.4,
   });
 
-  const barStyle: CSSProperties = {
-    transformOrigin: "0%",
-  };
+  // Clamp to [0, 1] — protects against any overshoot from the spring / iOS
+  // rubber-band scroll.
+  const clamped = useTransform(progress, (v) => Math.max(0, Math.min(1, v)));
+  const widthPct = useTransform(clamped, [0, 1], ["0%", "100%"]);
+  const opacity = useTransform(clamped, [0, 0.02, 0.04, 1], [0, 0, 1, 1]);
 
   return (
     <motion.div
       aria-hidden
-      style={{ scaleX, ...barStyle }}
-      className="fixed left-0 top-0 z-[100] h-0.5 w-full bg-gradient-to-r from-gold-bright via-gold to-gold-deep shadow-[0_2px_12px_rgba(201,169,97,0.45)]"
-    />
+      className="fixed left-0 top-0 z-[100] h-0.5 w-full bg-gold/8"
+    >
+      <motion.div
+        style={{ width: widthPct, opacity }}
+        className="h-full bg-gradient-to-r from-gold-bright via-gold to-gold-deep"
+      />
+    </motion.div>
   );
 }
